@@ -1,0 +1,45 @@
+{
+    "name": "light",
+    "version": "1.1.3",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "axios": "^0.20.0",
+        "canvacord": "^5.0.7",
+        "canvas": "^2.6.1",
+        "common-tags": "^1.8.0",
+        "covidapi": "^0.5.0",
+        "dblapi.js": "^2.4.1",
+        "discord-anti-spam": "^2.4.1",
+        "discord-backup": "^2.2.5",
+        "discord-canvas": "^1.3.2",
+        "discord-giveaways": "^4.2.1",
+        "discord-image-generation": "^1.4.1",
+        "discord-leveling": "^1.1.0",
+        "discord.js": "^12.4.1",
+        "erela.js": "^2.2.0",
+        "jimp": "^0.16.1",
+        "mathjs": "^7.5.1",
+        "moment": "^2.29.1",
+        "mongoose": "^5.10.9",
+        "ms": "^2.1.2",
+        "node-fetch": "^2.6.1",
+        "node-superfetch": "^0.1.10",
+        "quick.db": "^7.1.2"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lightjsbot/light.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/lightjsbot/light/issues"
+    },
+    "homepage": "https://github.com/lightjsbot/light#readme"
+}
