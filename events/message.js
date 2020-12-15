@@ -72,6 +72,13 @@ module.exports = {
 
             return message.channel.send({ embed })
         }
+           message.mentions.users.forEach(async(u) => {
+            let afkdb = await guild.findOne({ serverID: u.id, reason: `afk` })
+            if (afkdb) {
+                message.channel.send(` ${u.tag} est afk pour la raison : \`${afkdb.content}\``);
+
+            }
+        });
         if (!message.content.startsWith(prefix) || message.author.bot) return;
 
         const args = message.content.slice(prefix.length).trim().split(/ +/);
