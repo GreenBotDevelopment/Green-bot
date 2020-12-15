@@ -13,7 +13,7 @@ module.exports = {
     guildOnly: true,
 
 
-    execute(message, args) {
+    async execute(message, args) {
 
         let bio = args.join(" ")
 
