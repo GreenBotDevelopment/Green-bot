@@ -33,7 +33,7 @@ module.exports = {
                 content: `${bio}`,
                 reason: 'afk',
             }).save();
-            return message.channel.send(`${emoji.error} Votre afk a été enregistrée avec succès!**`);
+            return message.channel.send(`${emoji.succesr} Votre afk a été enregistrée avec succès!`);
         }
     },
 };
