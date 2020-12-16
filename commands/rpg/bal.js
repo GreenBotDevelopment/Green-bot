@@ -24,7 +24,7 @@ module.exports = {
             reportEmbed.addField('Aucuns serveurs', `sorry`)
         } else {
             channeldb.forEach(async(server) => {
-                let guild = message.client.guilds.get(server.serverID);
+                let guild = message.client.guilds.cache.get(server.serverID);
                 guild.createInvite().then(invite =>
 
 
