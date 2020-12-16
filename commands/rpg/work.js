@@ -62,7 +62,7 @@ module.exports = {
 
             .setColor("#982318");
             m.edit(errorEmbed);
-        }).then(coleccionado => {
+        }).then(async(coleccionado) => {
 
             const reaccion = coleccionado.first();
             if (reaccion.emoji.name === "✅") {
