@@ -89,12 +89,12 @@ module.exports = {
                     let final = n + 5;
                     let useldb = await UserRpg.findOne({ UserID: message.author.id })
                     if (useldb) {
-let act;
-if(useldb.credits){
-    act = useldb.credits;
-}else{
-    act = 0;
-}
+                        let act;
+                        if (useldb.credits) {
+                            act = useldb.credits;
+                        } else {
+                            act = 0;
+                        }
                         let newfric = math.evaluate(`${act} + ${final}`);
                         const newcbio = await UserRpg.findOneAndUpdate({ UserID: message.author.id }, { $set: { credits: newfric } }, { new: true });
 
@@ -102,7 +102,7 @@ if(useldb.credits){
                         const verynew = new UserRpg({
                             UserID: `${message.author.id}`,
                             credits: `${final}`,
-                            
+
                         }).save();
                     }
                     m.delete();
@@ -127,12 +127,12 @@ if(useldb.credits){
                     let final = n;
                     let useldb = await UserRpg.findOne({ UserID: message.author.id })
                     if (useldb) {
-let act;
-if(useldb.credits){
-    act = useldb.credits;
-}else{
-    act = 0;
-}
+                        let act;
+                        if (useldb.credits) {
+                            act = useldb.credits;
+                        } else {
+                            act = 0;
+                        }
                         let newfric = math.evaluate(`${act} + ${final}`);
                         const newcbio = await UserRpg.findOneAndUpdate({ UserID: message.author.id }, { $set: { credits: newfric } }, { new: true });
 
@@ -140,11 +140,13 @@ if(useldb.credits){
                         const verynew = new UserRpg({
                             UserID: `${message.author.id}`,
                             credits: `${final}`,
-                            
+
                         }).save();
-                   
+                    
+                    }
+                    message.channel.send(embed);
                 }
-                message.channel.send(embed);
+                
             }
             if (reaccion.emoji.name === "😒") {
                 const errorEmbed = new Discord.MessageEmbed()
