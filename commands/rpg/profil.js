@@ -27,7 +27,7 @@ module.exports = {
             .addField("Réputation", `0`,true)
 
 
-        .setFootermessage.client.footer)
+        .setFooter(message.client.footer)
 
         .setColor(message.client.color);
         message.channel.send(reportEmbed);
