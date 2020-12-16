@@ -4,6 +4,7 @@ const emoji = require('../../emojis.json')
 const adventure = require("../../database/models/adventure");
 const UserRpg = require("../../database/models/userrpg");
 module.exports = {
+    
     name: 'profil',
     description: 'Affiche votre profil sur le rpg',
     exemple: '@pauldB09',
