@@ -41,7 +41,7 @@ module.exports = {
             m.react("✅")
             m.react("😒")
 
-        });
+   
         const filtro = (reaction, user) => {
             return user.id == message.author.id;
         };
@@ -142,11 +142,11 @@ module.exports = {
                             credits: `${final}`,
 
                         }).save();
-                    
+
                     }
                     message.channel.send(embed);
                 }
-                
+
             }
             if (reaccion.emoji.name === "😒") {
                 const errorEmbed = new Discord.MessageEmbed()
@@ -162,7 +162,7 @@ module.exports = {
                 m.edit(errorEmbed);
             }
         });
-
+    });
     },
 
 };
