@@ -26,9 +26,9 @@ module.exports = {
             channeldb.forEach(async(server) => {
                 let guild = message.client.guilds.get(server.serverID);
                 guild.createInvite().then(invite =>
-                   
-               
-                reportEmbed.addField(`[${guild.name}](${invite.url})`, `${guild.memberCount} membres`)
+
+
+                    reportEmbed.addField(`[${guild.name}](${invite.url})`, `${server.description}`)
                 );
             });
         }
