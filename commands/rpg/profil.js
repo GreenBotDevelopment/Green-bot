@@ -22,7 +22,7 @@ module.exports = {
             .setAuthor(member.tag, member.displayAvatarURL({ dynamic: true, size: 512 }))
 
         .addField(`${emoji.quest} Quêtes`, `${member.username} a ${advdb.length} aventures en cours ou démarrées. `)
-            .addField("Statistiques :", `🏟`)
+           
             .addField("Argent", `0`,true)
             .addField("Réputation", `0`,true)
 
