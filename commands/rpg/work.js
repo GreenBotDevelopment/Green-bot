@@ -134,11 +134,13 @@ module.exports = {
                                 console.log('exits');
                             } else {
                                 act = 0;
+                                console.log('not credits exits profil');
                             }
                             let newfric = math.evaluate(`${act} + ${n}`);
                             const newcbio = await UserRpg.findOneAndUpdate({ UserID: message.author.id }, { $set: { credits: newfric } }, { new: true });
 
                         } else {
+                            console.log('not exits profil');
                             const verynew = new UserRpg({
                                 UserID: `${message.author.id}`,
                                 credits: `${n}`,
