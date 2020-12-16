@@ -1,7 +1,6 @@
 const fetch = require("node-fetch");
 const Discord = require('discord.js');
 const emoji = require('../../emojis.json')
-
 const adventure = require("../../database/models/adventure");
 const UserRpg = require("../../database/models/userrpg");
 module.exports = {
