@@ -54,18 +54,18 @@ module.exports = {
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText('👋🏼 BIENVENUE', canvas.width / 7, canvas.height / 3.5);
+                    ctx.fillText(' BIENVENUE', canvas.width / 8, canvas.height / 3.5);
 
 
                     ctx.font = applyText(canvas, `${member.displayName}`);
                     ctx.fillStyle = '#100101 ';
 
-                    ctx.fillText(`${member.displayName}`, canvas.width / 7, canvas.height / 1.8);
+                    ctx.fillText(`${member.displayName}`, canvas.width / 8, canvas.height / 1.8);
 
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 7, canvas.height / 1.3);
+                    ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 8, canvas.height / 1.3);
 
 
 
