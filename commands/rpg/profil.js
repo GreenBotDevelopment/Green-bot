@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const emoji = require('../../emojis.json')
 
 const adventure = require("../../database/models/adventure");
-const UserRpg = require("../../database/models/UserRpg");
+const UserRpg = require("../../database/models/userrpg");
 module.exports = {
     name: 'profil',
     description: 'Affiche votre profil sur le rpg',
