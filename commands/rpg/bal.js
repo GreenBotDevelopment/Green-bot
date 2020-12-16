@@ -25,11 +25,10 @@ module.exports = {
         } else {
             channeldb.forEach(async(server) => {
                 let guild = message.client.guilds.cache.get(server.serverID);
-                guild.createInvite().then(invite =>
+              
 
-
-                    reportEmbed.addField(`[${guild.name}](${invite.url})`, `${server.description}`)
-                );
+                    reportEmbed.addField(`[${guild.name}](https://green-site.herokuapp.com/)`, `${server.description}`)
+                
             });
         }
 
