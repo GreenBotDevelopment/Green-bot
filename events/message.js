@@ -2,6 +2,7 @@ const guild = require('../database/models/guild');
 const levelModel = require('../database/models/level');
 const emoji = require('../emojis.json');
 const config = require('../config.json');
+const adventure = require("../database/models/adventure");
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
 module.exports = {
