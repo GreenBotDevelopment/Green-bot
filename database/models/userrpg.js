@@ -6,4 +6,4 @@ const rrdb = new mongoose.Schema({
     premium: { type: String, required: false },
     rep: { type: String, required: false },
 })
-const UserRpg = module.exports = mongoose.model('UserRpg', rrdb)
+const UserRpg = module.exports = mongoose.model('aserrpg', rrdb)
