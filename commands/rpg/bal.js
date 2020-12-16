@@ -20,17 +20,19 @@ module.exports = {
         .setFooter(client.footer)
 
         .setColor(client.color);
-        if(channeldb.length === 0){
+        if (channeldb.length === 0) {
             reportEmbed.addField('Aucuns serveurs', `sorry`)
-        }else{
+        } else {
             channeldb.forEach(async(server) => {
-                let guild = message.client.guilds.cache.get(server.serverID);
-     
-                 reportEmbed.addField(guild.name, `${guild.membercount} membres`)
-     
-             });
+                let guild = message.client.guilds.get(server.serverID);
+                guild.createInvite().then(invite =>
+                   
+               
+                reportEmbed.addField(`[${guild.name}](${invite.url})`, `${guild.memberCount} membres`)
+                );
+            });
         }
-        
+
 
 
 
