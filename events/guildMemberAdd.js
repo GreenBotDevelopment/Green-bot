@@ -116,6 +116,7 @@ module.exports = {
             }
         }
         if (member.guild.id === "784773050956513290") {
+            if(!member.user.bot){
             const guildInvites = client.guildInvites;
             const cachedInvites = guildInvites.get(member.guild.id);
             const newInvites = await member.guild.fetchInvites();
@@ -141,7 +142,7 @@ module.exports = {
             } catch (err) {
                 console.log(err);
             }
-
+}
         }
 
     }
