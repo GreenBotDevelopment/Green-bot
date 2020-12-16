@@ -21,9 +21,9 @@ module.exports = {
 
             .setAuthor(`${message.client.user.username} - Commande d'aide`, message.client.user.displayAvatarURL())
                 .setDescription(`● Bonjour , je suis ${message.client.user.tag} et mon préfixe est \`${prefix}\` 
-                ● Je dispose de  \`${commands.size}\`commandes disponibles
+                ● Je dispose de  \`${commands.size}\` commandes disponibles
              ● J'ai été codé par [𝖕𝖆𝖚𝖑𝖉𝖇09#9846](https://github.com/pauldb09/Green-bot) 
-             ● Pour me configurer , allez sur mon [Dashboard](https://github.com/pauldb09/Green-bot) `)
+             ● Pour me configurer , allez sur mon  [Dashboard](http://green-bot.tk/) `)
                 .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.rpg} | Economy (${commands.filter(command => command.cat === "rpg").size}) `, value: commands.filter(command => command.cat === "rpg").map(command => `\`${command.name}\``).join(', ') })
 
@@ -40,7 +40,7 @@ module.exports = {
 
 
             .addFields({ name: "Liens utliles", value: `
-            [Dashboard](https://green-site.herokuapp.com/)-[Inviter le bot](https://discord.com/oauth2/authorize?client_id=${message.client.id}&scope=bot&permissions=8) - [Support](https://discord.gg/X6jZrUf) - [Github](https://github.com/pauldb09/Green-bot)` })
+            [Dashboard](http://green-bot.tk/)-[Inviter le bot](https://discord.com/oauth2/authorize?client_id=${message.client.id}&scope=bot&permissions=8) - [Support](https://discord.gg/X6jZrUf) - [Github](https://github.com/pauldb09/Green-bot)` })
 
             .setFooter(config.footer || 'Green-bot - open source', message.client.user.displayAvatarURL());
 
