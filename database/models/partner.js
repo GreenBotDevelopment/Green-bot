@@ -4,5 +4,6 @@ const rrdb = new mongoose.Schema({
     description: { type: String, required: false },
     argent: { type: String, required: true },
     reason: { type: String, required: false },
+    
 })
 const partner = module.exports = mongoose.model('partner', rrdb)
