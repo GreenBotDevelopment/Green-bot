@@ -3,24 +3,29 @@ const Discord = require('discord.js');
 const emoji = require('../../emojis.json')
 
 const adventure = require("../../database/models/adventure");
+const UserRpg = require("../../database/models/UserRpg");
 module.exports = {
     name: 'profil',
-    description: 'Affiche votre profil',
-
+    description: 'Affiche votre profil sur le rpg',
+    exemple: '@pauldB09',
+    usage: '[utilisateur]',
+    botpermission: ['EMBED_LINKS'],
     cat: 'rpg',
     async execute(message, args) {
+        const member = message.mentions.users.first() || message.author;
 
-        let channeldb = await adventure.findOne({ UserID: message.author.id, active: true })
+        let advdb = await adventure.find({ UserID: member.id })
+        let userldb = await UserRpg.findOne({ UserID: member.id })
 
         const reportEmbed = new Discord.MessageEmbed()
-            .setTitle(`${emoji.quest} | Vos quetes`)
-            .setAuthor()
+            .setTitle(`Profil de \`${member.username}\``)
+            .setAuthor(member.tag, member.displayAvatarURL({ dynamic: true, size: 512 }))
 
-        .addField("Quêtes en cours", channeldb.map(rr => `${rr.active ? '⭐' : ''}\`${rr.nom}\` / Niveau ${rr.level} ,${rr.xp} XP  / ${rr.profil || 'profil non disponible pour cette quete'} `).join(`
-                `) || `${emoji.error} Vous n\'avez aucunne quete en cours`)
-            .addField("Quêtes finie ", `Vous n\'avez aucunne quête finie`)
-            .setDescription(`Voici toutes vos quetes , leur dates , leur but et leur avancement.
-         ⭐ = quete actuelle`)
+        .addField(`${emoji.quest} Quêtes`, `${member.username} a ${advdb.length} aventures en cours ou démarrées. `)
+            .addField("Statistiques :", `🏟`)
+            .addField("Argent", `0`,true)
+            .addField("Réputation", `0`,true)
+
 
         .setFooter(client.footer)
 
