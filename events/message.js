@@ -57,8 +57,8 @@ module.exports = {
 
 
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
-        const prefix = prefixget.content || '*';
-        client.prefix = prefix;
+        const prefix = prefixget.content;
+
         const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
         if (message.content.match(mentionRegex)) {
 
@@ -66,13 +66,13 @@ module.exports = {
                 .setColor(message.client.color || '#3A871F')
 
             .setAuthor(`${message.client.user.username} - Besoin d'aide ?`, message.client.user.displayAvatarURL())
-                .setDescription(`Eh je suis **${message.client.user.username}** et mon préfixe est **${prefix}** , faites **${prefix}help** pour la liste des commandes ! `)
+                .setDescription(`Eh je suis \`${message.client.user.username}\` et mon préfixe est \`${prefix}\` , faites \`${prefix}help\` pour la liste des commandes ! `)
                 .setTimestamp()
                 .setFooter(message.client.footer || 'Green-Bot | Open source bot by 𝖕𝖆𝖚𝖑𝖉𝖇09#9846')
 
             return message.channel.send({ embed })
         }
-           message.mentions.users.forEach(async(u) => {
+        message.mentions.users.forEach(async(u) => {
             let afkdb = await guild.findOne({ serverID: u.id, reason: `afk` })
             if (afkdb) {
                 message.channel.send(` ${u.tag} est afk pour la raison : \`${afkdb.content}\``);
@@ -185,6 +185,10 @@ module.exports = {
 
                 }
             }
+        }
+        if (command.adventure) {
+            let advdb = await adventure.findOne({ UserID: message.author.id, active: true })
+            if (!advdb) return message.channel.send(`${emoji.error} Vous devez déja commencer une quete... faite ${}`)
         }
         if (command.guildOnly && message.channel.type === 'dm') {
             return message.reply(`${emoji.error} | je ne peux pas faire cette commande en MP.... !`);
