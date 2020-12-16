@@ -188,7 +188,7 @@ module.exports = {
         }
         if (command.adventure) {
             let advdb = await adventure.findOne({ UserID: message.author.id, active: true })
-            if (!advdb) return message.channel.send(`${emoji.error} Vous devez déja commencer une quete... faite ${}`)
+            if (!advdb) return message.channel.send(`${emoji.error} Vous devez déja commencer une quete... faite ${prefix}quete-start pour commencer 😉`)
         }
         if (command.guildOnly && message.channel.type === 'dm') {
             return message.reply(`${emoji.error} | je ne peux pas faire cette commande en MP.... !`);
