@@ -101,7 +101,7 @@ module.exports = {
                         } else {
                             const verynew = new UserRpg({
                                 UserID: `${message.author.id}`,
-                                credits: `${final}`,
+                                credits: `${final}`
 
                             }).save();
                         }
@@ -143,8 +143,8 @@ module.exports = {
                             console.log('not exits profil');
                             const verynew = new UserRpg({
                                 UserID: `${message.author.id}`,
-                                credits: `${n}`,
-
+                                credits: `${n}`
+                              
                             }).save();
 
                         }
