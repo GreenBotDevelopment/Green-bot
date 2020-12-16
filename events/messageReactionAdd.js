@@ -13,7 +13,7 @@ module.exports = {
         let message = reaction.message;
         if (!message) return;
         if (user.bot) return;
-
+       if (message.author.id !== client.user.id) return;
 
         let already = new Discord.MessageEmbed()
             .setColor("#2f3136")
