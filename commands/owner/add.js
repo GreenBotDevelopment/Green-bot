@@ -12,7 +12,7 @@ module.exports = {
     aliases: ['addballet'],
     cat: 'rpg',
     async execute(message, args) {
-        if (!message.client.guilds.get(args[0])) return message.channel.send(`${emoji.error} Veuillez indiquer un ID de serveur valide`)
+        if (!message.client.guilds.cache.get(args[0])) return message.channel.send(`${emoji.error} Veuillez indiquer un ID de serveur valide`)
         let des = args.slice(1).join("");
         if (!des) return message.channel.send(`${emoji.error} Veuillez fournir une description pour ce serveur`)
         const verynew = new partner({
