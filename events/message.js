@@ -89,7 +89,7 @@ module.exports = {
             client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
         if (!command) {
-            return message.channel.send(`${emoji.error} | Cette commande n'existe pas !`);
+            return ;
         } else {
             if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
                 return;
