@@ -20,7 +20,7 @@ module.exports = {
   maxUses: 0 // 0 = infinite uses
 }).catch(console.error);
         const verynew = new partner({
-            serverID: `${args[0]}`,
+            serverID: `$message.guild.id}`,
             description: `${des}`,
             argent: '10',
             reason: `${invite.code}`,
