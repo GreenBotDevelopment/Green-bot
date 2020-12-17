@@ -14,7 +14,7 @@ module.exports = {
         if (!member) return message.channel.send(`${emoji.error} Veuillez fournir un membre valide`)
 
         let mensagem = args.slice(1).join(' ')
-        if (!mensagem) return message.channel.send(`${emoji.error}, veuillez placer un message après avoir memntionner un membre.`)
+        if (!mensagem) return message.channel.send(`${emoji.error}, veuillez placer un message après avoir memtionner un membre.`)
 
         let avatar = member.displayAvatarURL({ dynamic: true });
         message.channel.createWebhook(member.username, { avatar: avatar }).then(msgWebhook => {
