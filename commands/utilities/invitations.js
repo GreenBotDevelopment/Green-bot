@@ -3,7 +3,7 @@ const emoji = require('../../emojis.json')
 module.exports = {
     name: 'invitations',
     description: 'Regarde les invitations',
-
+botpermissions: ['MANAGE_GUILD'],
     cat: 'utilities',
 
     async execute(message, args) {
