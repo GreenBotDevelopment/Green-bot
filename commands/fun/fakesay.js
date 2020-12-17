@@ -7,7 +7,7 @@ module.exports = {
     args: true,
     exemple: '@pauldB09 funny ?',
     usage: '<membre> <message>',
-    permissions: ['MANAGE_WEBHOOKS'],
+    botpermissions: ['MANAGE_WEBHOOKS'],
     cat: 'fun',
     async execute(message, args) {
 
