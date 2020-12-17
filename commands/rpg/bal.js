@@ -17,18 +17,18 @@ module.exports = {
             .setTitle(`\`✨\` Serveurs pour gagner de l'argent `)
             .setDescription(`Voici tous les serveurs (${channeldb.length}) ou tu gagneras de l'argent en les rejoignants . Si tu souhaite voir ton serveur ici , il suffit de gagner 100 crédits.`)
 
-        .setFooter(client.footer)
+        .setFooter(message.client.footer)
 
-        .setColor(client.color);
+        .setColor(message.client.color);
         if (channeldb.length === 0) {
             reportEmbed.addField('Aucuns serveurs', `sorry`)
         } else {
             channeldb.forEach(async(server) => {
                 let guild = message.client.guilds.cache.get(server.serverID);
-              
 
-                    reportEmbed.addField(`[${guild.name}](https://green-site.herokuapp.com/)`, `${server.description}`)
-                
+
+                reportEmbed.addField(`${guild.name} (https://discord.gg/${server.reason}) ${server.argent} ${emoji.money}`, `${server.description}`)
+
             });
         }
 
