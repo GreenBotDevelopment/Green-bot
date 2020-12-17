@@ -12,13 +12,18 @@ module.exports = {
     aliases: ['addballet'],
     cat: 'rpg',
     async execute(message, args) {
-        if (!message.client.guilds.cache.get(args[0])) return message.channel.send(`${emoji.error} Veuillez indiquer un ID de serveur valide`)
-        let des = args.slice(1).join(" ");
+     
+        let des = args.join(" ");
         if (!des) return message.channel.send(`${emoji.error} Veuillez fournir une description pour ce serveur`)
+        let invite = await message.channel.createInvite({
+  maxAge: 0, // 0 = infinite expiration
+  maxUses: 0 // 0 = infinite uses
+}).catch(console.error);
         const verynew = new partner({
             serverID: `${args[0]}`,
             description: `${des}`,
             argent: '10',
+            reason: `${invite.code}`,
         }).save();
 
 message.channel.send(`${emoji.succes} Ce serveur a été add avec succès`)
