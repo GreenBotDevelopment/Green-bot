@@ -24,6 +24,7 @@ module.exports = {
                 ● Je dispose de  \`${commands.size}\` commandes disponibles
              ● J'ai été codé par [𝖕𝖆𝖚𝖑𝖉𝖇09#9846](https://github.com/pauldb09/Green-bot) 
              ● Pour me configurer , allez sur mon  [Dashboard](http://green-bot.tk/) `)
+                        .addFields({ name: `🥘 | Inter-serveur (${commands.filter(command => command.cat === "inter").size}) `, value: commands.filter(command => command.cat === "inter").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.rpg} | Economy (${commands.filter(command => command.cat === "rpg").size}) `, value: commands.filter(command => command.cat === "rpg").map(command => `\`${command.name}\``).join(', ') })
 
@@ -34,7 +35,7 @@ module.exports = {
                 .addFields({ name: `${emoji.configuration} | Configuration (${commands.filter(command => command.cat === "configuration").size}) `, value: commands.filter(command => command.cat === "configuration").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.role} | Roles à réaction (${commands.filter(command => command.cat === "rr").size}) `, value: commands.filter(command => command.cat === "rr").map(command => `\`${command.name}\``).join(', ') })
 
-            .addFields({ name: `🌏 | Autres (${commands.filter(command => command.cat === "other").size}) `, value: commands.filter(command => command.cat === "other").map(command => `\`${command.name}\``).join(', ') })
+
                 .addFields({ name: `${emoji.owner} | Owner (${commands.filter(command => command.cat === "owner").size})`, value: commands.filter(command => command.cat === "owner").map(command => `\`${command.name}\``).join(', ') })
 
 
