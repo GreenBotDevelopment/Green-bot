@@ -3,7 +3,7 @@ module.exports = {
     name: 'invite',
     description: 'Envoye un lien pour inviter le bot :)',
     aliases: ['add', 'botinvite'],
-    cat: 'other',
+    cat: 'util',
     execute(message, client) {
 
         const embed = new Discord.MessageEmbed()
