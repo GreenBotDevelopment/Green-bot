@@ -20,7 +20,9 @@ module.exports = {
 
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-
+    if (!member || member == undefined) {
+            return message.channel.send(`${emoji.error} Veuillez indiquer un membre valide  !`)
+        }
         if (member.user.bot) {
             return message.channel.send(`${emoji.error} Un bot ne peut pas avoir d'avertisements !`)
         }
