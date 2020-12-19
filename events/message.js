@@ -2,6 +2,7 @@ const guild = require('../database/models/guild');
 const levelModel = require('../database/models/level');
 const emoji = require('../emojis.json');
 const config = require('../config.json');
+const Welcome = require('../database/models/Welcome');
 const adventure = require("../database/models/adventure");
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
@@ -59,7 +60,24 @@ module.exports = {
 
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         const prefix = prefixget.content;
+        const ischannel = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat` })
+        if (ischannel.channelID === message.channel.id) {
+          
+                const reportEmbed = new Discord.MessageEmbed()
+                    .setTitle(`Interchat : Erreur`)
 
+
+                .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
+            Veuillez faire : \`${prefix}interchat-server <id>\``)
+
+
+
+                .setFooter(client.footer)
+
+                .setColor("#DA7226");
+                message.channel.send(reportEmbed);
+            
+        }
         const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
         if (message.content.match(mentionRegex)) {
 
@@ -89,7 +107,7 @@ module.exports = {
             client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
         if (!command) {
-            return ;
+            return;
         } else {
             if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
                 return;
