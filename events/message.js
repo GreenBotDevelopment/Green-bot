@@ -61,23 +61,28 @@ module.exports = {
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         const prefix = prefixget.content;
         const ischannel = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat` })
+        if(ischannel){
         if (ischannel.channelID === message.channel.id) {
-          
+            const serv = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
+            if(!serv){
                 const reportEmbed = new Discord.MessageEmbed()
-                    .setTitle(`Interchat : Erreur`)
+                .setTitle(`Interchat : Erreur`)
 
 
-                .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
+            .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
             Veuillez faire : \`${prefix}interchat-server <id>\``)
 
 
 
-                .setFooter(client.footer)
+            .setFooter(client.footer)
 
-                .setColor("#DA7226");
-                message.channel.send(reportEmbed);
+            .setColor("#DA7226");
+            message.channel.send(reportEmbed);
+            }
             
+
         }
+    }
         const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
         if (message.content.match(mentionRegex)) {
 
