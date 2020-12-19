@@ -31,7 +31,7 @@ module.exports = {
             const verynew = new Welcome({
                 serverID: `${message.guild.id}`,
                 channelID: `${server.id}`,
-                reason: 'interchat-se',
+                reason: 'interchat-s',
             }).save();
    return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user.tag}\`)`);
 
