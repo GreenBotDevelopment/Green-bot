@@ -44,7 +44,7 @@ module.exports = {
                     .setTitle(`Demande d'interchat`)
 
 
-                .setDescription(`${message.autor.tag} , du serveur \`${message.guild.name}\` a fait une demande d'interchat avec l'un de vos serveurs(\`${server.name}\`)
+                .setDescription(`${message.author.tag} , du serveur \`${message.guild.name}\` a fait une demande d'interchat avec l'un de vos serveurs(\`${server.name}\`)
                     Si vous acceptez , veuillez réagir avec ✔ , sinon , avec ❌  !`)
 
 
