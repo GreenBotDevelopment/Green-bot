@@ -33,8 +33,14 @@ module.exports = {
                 channelID: `${server.id}`,
                 reason: 'interchat-s',
             }).save();
-    
-                const reportEmbede = new Discord.MessageEmbed()
+     let owner = message.client.members.cache.get(server.owner.id)
+            if (!owner) {
+                console.log('not exits')
+                return message.channel.send(`${emoji.error} Je ne peux pas mp l'owner car je n'ai aucuns serveurs en commun avec lui`)
+
+            } else {
+                console.log('exits')
+                const reportEmbed = new Discord.MessageEmbed()
                     .setTitle(`Demande d'interchat`)
 
 
@@ -46,11 +52,11 @@ module.exports = {
                 .setFooter(message.client.footer)
 
                 .setColor("#73810C");
-                server.owner.user.send(reportEmbede).then(m => {
+                owner.user.send(reportEmbed).then(m => {
                     m.react("✔")
                     m.react("❌");
                 });
-            
+            }
             return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user}\`)`);
 
         }
