@@ -24,7 +24,7 @@ module.exports = {
         const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
         if (verify) {
             const newserver = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `interchat-s` }, { $set: { channelID: server.id, reason: `interchat-s` } }, { new: true });
-   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user}\`)`);
+   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user.tag}\`)`);
 
 
         } else {
@@ -33,7 +33,7 @@ module.exports = {
                 channelID: `${server.id}`,
                 reason: 'interchat-se',
             }).save();
-   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user}\`)`);
+   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user.tag}\`)`);
 
         }
 
