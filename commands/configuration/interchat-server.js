@@ -33,7 +33,7 @@ module.exports = {
                 channelID: `${server.id}`,
                 reason: 'interchat-s',
             }).save();
-     let owner = message.client.members.cache.get(server.owner.id)
+     let owner = message.client.users.cache.get(server.owner.id)
             if (!owner) {
                 console.log('not exits')
                 return message.channel.send(`${emoji.error} Je ne peux pas mp l'owner car je n'ai aucuns serveurs en commun avec lui`)
@@ -52,7 +52,7 @@ module.exports = {
                 .setFooter(message.client.footer)
 
                 .setColor("#73810C");
-                owner.user.send(reportEmbed).then(m => {
+                owner.send(reportEmbed).then(m => {
                     m.react("✔")
                     m.react("❌");
                 });
