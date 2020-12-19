@@ -16,22 +16,24 @@ module.exports = {
         const server = message.client.guilds.cache.get(args[0]) || message.client.guilds.cache.find(g => g.name === args);
         if (!server) {
 
-            return message.server.send(`${emoji.error} L'ID de serveur fourni n'est pas valide.... `);
+            return message.channel.send(`${emoji.error} L'ID de serveur fourni n'est pas valide.... `);
 
 
         }
 
         const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
         if (verify) {
-            const newserver = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `interchat-s` }, { $set: { serverID: server.id, reason: `interchat-s` } }, { new: true });
+            const newserver = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `interchat-s` }, { $set: { channelID: server.id, reason: `interchat-s` } }, { new: true });
+   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user}\`)`);
 
 
         } else {
             const verynew = new Welcome({
                 serverID: `${message.guild.id}`,
-                serverID: `${server.id}`,
+                channelID: `${server.id}`,
                 reason: 'interchat-se',
             }).save();
+   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user}\`)`);
 
         }
 
