@@ -6,7 +6,7 @@ module.exports = {
     description: 'Crée un sondage',
     aliases: ['poll'],
     args: true,
-    cat: 'other',
+    cat: 'util',
     usage: '<raison>',
     cooldown: 5,
     execute(message, args) {
