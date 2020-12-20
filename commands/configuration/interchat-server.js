@@ -23,14 +23,14 @@ module.exports = {
 
         const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
         if (verify) {
-            const newserver = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `interchat-s` }, { $set: { channelID: server.id, reason: `interchat-s` } }, { new: true });
-   return message.channel.send(`${emoji.succes} J'envoie une demande d'interchat au propriétaire de \`${server.name}\`(\`${server.owner.user.tag}\`)`);
+   return message.channel.send(`${emoji.error} Vous avez déja un interchat en cours... . Veuillez d'abord y mettre fin.`);
 
 
         } else {
             const verynew = new Welcome({
                 serverID: `${message.guild.id}`,
                 channelID: `${server.id}`,
+                message:`no set`,
                 reason: 'interchat-s',
             }).save();
      let owner = message.client.users.cache.get(server.owner.id)
@@ -39,13 +39,13 @@ module.exports = {
                 return message.channel.send(`${emoji.error} Je ne peux pas mp l'owner car je n'ai aucuns serveurs en commun avec lui`)
 
             } else {
-                console.log('exits')
+              
                 const reportEmbed = new Discord.MessageEmbed()
                     .setTitle(`Demande d'interchat`)
 
 
                 .setDescription(`${message.author.tag} , du serveur \`${message.guild.name}\` a fait une demande d'interchat avec l'un de vos serveurs(\`${server.name}\`)
-                    Si vous acceptez , veuillez réagir avec ✔ , sinon , avec ❌  !`)
+                    Si vous acceptez , veuillez réagir avec ✅ , sinon , avec ❌  !`)
 
 
 
@@ -53,7 +53,7 @@ module.exports = {
 
                 .setColor("#73810C");
                 owner.send(reportEmbed).then(m => {
-                    m.react("✔")
+                    m.react("✅")
                     m.react("❌");
                 });
             }
