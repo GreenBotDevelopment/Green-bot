@@ -90,12 +90,10 @@ module.exports = {
                     if (welcomechannel) {
 
                         if (welcomedb.message) {
-                            let msg;
+                           
 
 
 
-
-                            if (!member.user.bot) {
                                 const guildInvites = client.guildInvites;
                                 const cachedInvites = guildInvites.get(member.guild.id);
                                 const newInvites = await member.guild.fetchInvites();
@@ -122,10 +120,14 @@ module.exports = {
                                         .replace(/{tag}/g, member.user.tag)
 
                                     .replace(/{membercount}/g, member.guild.memberCount);
+                                    if (welcomedb.image) {
+                                        welcomechannel.send(`${msg}`, attachment);
+                                    } else {
+        
+                                        welcomechannel.send(msg);
+                                    }
                                 })
-                            } else {
-                                msg = `Le bot ${member} a rejoint le serveur en utilisant l'oAuth2`;
-                            }
+                           
 
 
 
@@ -133,12 +135,7 @@ module.exports = {
 
 
 
-                            if (welcomedb.image) {
-                                welcomechannel.send(`${msg}`, attachment);
-                            } else {
-
-                                welcomechannel.send(msg);
-                            }
+                         
                         } else {
                             if (welcomedb.image) {
                                 welcomechannel.send(attachment);
