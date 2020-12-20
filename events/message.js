@@ -116,8 +116,16 @@ module.exports = {
                                     return message.channel.send(reportEmbed);
                                 }
                                 let avatar = message.author.displayAvatarURL({ dynamic: true });
+
+                                function getLinks(attachments) {
+                                    const valid = /^.*(gif|png|jpg|jpeg0)$/g
+                                    return attachments.array()
+                                        .filter(attachments => valid.test(attachments.url))
+                                        .map(attachments => attachments.url);
+                                }
                                 dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
-                                    msgWebhook.send(message.content)
+                                    const files = getLinks(message.attachments);
+                                    msgWebhook.send(message.content ,files)
 
 
                                     setTimeout(function() {
