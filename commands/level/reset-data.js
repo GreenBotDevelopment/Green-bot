@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 
-const levelModel = require('../../database/models/level');
 const emoji = require('../../emojis.json')
 const levelModel = require('../../database/models/level');
 const { oneLine } = require('common-tags');
