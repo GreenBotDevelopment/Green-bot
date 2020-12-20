@@ -34,6 +34,12 @@ module.exports = {
                 message:`no set`,
                 reason: 'interchat-s',
             }).save();
+              const sec = new Welcome({
+                serverID: `${server.id}`,
+                channelID: `${message.guild.id}`,
+                message:`no set`,
+                reason: 'interchat-s',
+            }).save();
      let owner = message.client.users.cache.get(server.owner.id)
             if (!owner) {
                 console.log('not exits')
