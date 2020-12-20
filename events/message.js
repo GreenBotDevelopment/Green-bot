@@ -119,7 +119,6 @@ module.exports = {
                                 dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
                                     msgWebhook.send(message.content)
 
-                                    message.react("✅")
 
                                     setTimeout(function() {
                                         msgWebhook.delete()
