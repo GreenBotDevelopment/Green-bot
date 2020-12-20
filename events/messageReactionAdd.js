@@ -31,7 +31,7 @@ module.exports = {
         let split = '';
         let usr = user.id.split(split);
         for (var i = 0; i < usr.length; i++) usr[i] = usr[i].trim();
-
+if(message.guild){
         let rrdb = await rrmodel.findOne({ serverID: message.guild.id, reaction: reaction.emoji.name })
         if (rrdb) {
             console.log(rrdb.roleID);
@@ -171,6 +171,7 @@ module.exports = {
 
             }
         }
+    }
         if (reaction.emoji.name === "✅") {
             if (message.channel.type === 'dm') {
                 let success = new Discord.MessageEmbed()
@@ -183,7 +184,6 @@ module.exports = {
         }
         if (reaction.emoji.name === "❌") {
             if (message.channel.type === 'dm') {
-                const newchannel = await Welcome.findOneAndDelete({ serverID: message.guild.id, reason: `interchat-s` });
 
                 let success = new Discord.MessageEmbed()
                     .setColor("#DA7226")
