@@ -27,7 +27,7 @@ module.exports = {
 
             .setColor(message.client.color);
 
-            message.channel.send(reportEmbed).then(m => {
+            message.channel.send(embed).then(m => {
                 m.react("✅")
                 m.react("❌")
 
