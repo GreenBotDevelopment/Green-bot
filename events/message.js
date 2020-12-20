@@ -61,28 +61,61 @@ module.exports = {
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         const prefix = prefixget.content;
         const ischannel = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat` })
-        if(ischannel){
-        if (ischannel.channelID === message.channel.id) {
-            const serv = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
-            if(!serv){
-                const reportEmbed = new Discord.MessageEmbed()
-                .setTitle(`Interchat : Erreur`)
+        if (ischannel) {
+            if (ischannel.channelID === message.channel.id) {
+                const serv = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
+                if (!serv) {
+                    const reportEmbed = new Discord.MessageEmbed()
+                        .setTitle(`Interchat : Erreur`)
 
 
-            .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
+                    .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
             Veuillez faire : \`${prefix}interchat-server <id>\``)
 
 
 
-            .setFooter(client.footer)
+                    .setFooter(client.footer)
 
-            .setColor("#DA7226");
-            message.channel.send(reportEmbed);
+                    .setColor("#DA7226");
+                    return message.channel.send(reportEmbed);
+                } else {
+                    let oserver = client.guilds.cache.get(serv.channelID)
+                    if (!oserver) {
+                        const reportEmbed = new Discord.MessageEmbed()
+                            .setTitle(`Interchat : Erreur`)
+
+
+                        .setDescription(`Je ne trouve plus le serveur de l'interchat , il a a peut être été supprimé ou j'ai quitté ce serveur...`)
+
+
+
+                        .setFooter(client.footer)
+
+                        .setColor("#DA7226");
+                        return message.channel.send(reportEmbed);
+                    } else {
+                        const ochannel = await Welcome.findOne({ serverID: oserver.id, reason: `interchat` })
+                        if (ochannel) {
+                            let dchannel = oserver.channels.cache.get(ochannel.channelID)
+                            if (dchannel) {
+                                let avatar = message.author.displayAvatarURL({ dynamic: true });
+                                dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
+                                    msgWebhook.send(message.content)
+
+                                   message.react("✅")
+
+                                    setTimeout(function() {
+                                        msgWebhook.delete()
+                                    }, 1000 * 5)
+                                })
+                            }
+                        }
+                    }
+                }
+
+
             }
-            
-
         }
-    }
         const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
         if (message.content.match(mentionRegex)) {
 
