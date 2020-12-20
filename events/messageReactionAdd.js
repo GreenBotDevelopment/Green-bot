@@ -13,16 +13,16 @@ module.exports = {
         let message = reaction.message;
         if (!message) return;
         if (user.bot) return;
-       if (message.author.id !== client.user.id) return;
+        if (message.author.id !== client.user.id) return;
 
         let already = new Discord.MessageEmbed()
-            .setColor("#2f3136")
+            .setColor("#982318")
             .setAuthor(`⛔ | Éh non ..`)
             .setFooter(client.footer)
             .setDescription(`Vous pouvez avoir qu'un seul ticket d'ouvert à la fois.`);
 
         let success = new Discord.MessageEmbed()
-            .setColor("#2f3136")
+            .setColor(client.color)
             .setTitle(`🎫  Nouveau ticket`)
             .setFooter(client.footer)
             .setDescription("Veuillez expliquer la raison de votre demande. Un membre de l'équipe prendra en charge votre ticket sous peu.");
@@ -51,7 +51,7 @@ module.exports = {
 
                             .setFooter(client.footer)
                                 .setTimestamp()
-                                .setColor("#2f3136");
+                                .setColor("#DA7226");
                             const err1 = await message.channel.send(reportEmbed);
                             setTimeout(() => {
                                 err1.delete();
@@ -80,7 +80,7 @@ module.exports = {
 
                                 .setFooter(client.footer)
 
-                                .setColor("#2f3136");
+                                .setColor("#DA7226");
                                 const err2 = await message.channel.send(reportEmbed);
                                 setTimeout(() => {
                                     err2.delete();
@@ -100,7 +100,7 @@ module.exports = {
 
                         .setFooter(client.footer)
 
-                        .setColor("#2f3136");
+                        .setColor("#DA7226");
                         const err2 = await message.channel.send(reportEmbed);
                         setTimeout(() => {
                             err2.delete();
@@ -116,7 +116,7 @@ module.exports = {
         }
         if (reaction.emoji.name === "🎫") {
             console.log('GOOD REACTION');
-            if (!message.author.id == client.user.id) return;
+
             if (!message.guild.channels.cache.find(c => c.name === `ticket-${usr[0]}${usr[1]}${usr[2]}${usr[3]}`)) {
 
 
@@ -142,7 +142,9 @@ module.exports = {
                 }).then(channel => {
 
 
-                    channel.send(`${user}`, { embed: success });
+                    channel.send(`${user}`, { embed: success }).then(m => {
+                        m.react("🗑️");
+                    });
                     db.set(`ticket.ticket-${usr[0]}${usr[1]}${usr[2]}${usr[3]}`, { user: user.id });
                 })
 
@@ -163,18 +165,7 @@ module.exports = {
 
         if (reaction.emoji.name === "🗑️") {
             if (user.id === db.get(`ticket.${message.channel.name}.user`)) {
-                const reportEmbed = new Discord.MessageEmbed()
-                    .setTitle(`Arrivée de ${member.user.tag}`)
-                    .setThumbnail(member.user.displayAvatarURL())
-
-                .setDescription(`${member.guild.memberCount} membres dans le serveur.`)
-
-
-
-                .setFooter(client.footer)
-
-                .setColor("#04781B");
-                if (logchannel) logchannel.send(reportEmbed);
+               
                 message.channel.delete();
 
             }
