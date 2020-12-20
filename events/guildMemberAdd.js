@@ -90,52 +90,60 @@ module.exports = {
                     if (welcomechannel) {
 
                         if (welcomedb.message) {
-                           
 
 
 
-                                const guildInvites = client.guildInvites;
-                                const cachedInvites = guildInvites.get(member.guild.id);
-                                const newInvites = await member.guild.fetchInvites();
-                                guildInvites.set(member.guild.id, newInvites);
-                                const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+                            if (member.user.bot) {
+                                if (welcomedb.image) {
+                                    welcomechannel.send(`Le bot ${member} a rejoint le serveur en utilisant l'oAuth2 .`, attachment);
+                                } else {
+
+                                    welcomechannel.send(`Le bot ${member} a rejoint le serveur en utilisant l'oAuth2 .`);
+                                }
+                                return;
+                            }
+                            const guildInvites = client.guildInvites;
+                            const cachedInvites = guildInvites.get(member.guild.id);
+                            const newInvites = await member.guild.fetchInvites();
+                            guildInvites.set(member.guild.id, newInvites);
+                            const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
 
 
-                                member.guild.fetchInvites()
-                                    .then
+                            member.guild.fetchInvites()
+                                .then
 
-                                    (invites => {
-                                    const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
-                                    var userInviteCount = 0;
-                                    for (var i = 0; i < userInvites.length; i++) {
-                                        var invite = userInvites[i];
-                                        userInviteCount += invite['uses'];
-                                    }
-                                    msg = `${welcomedb.message}`
-                                        .replace(/{user}/g, member)
-                                        .replace(/{server}/g, member.guild.name)
-                                        .replace(/{username}/g, member.user.username)
-                                        .replace(/{inviter}/g, usedInvite.inviter)
-                                        .replace(/{invites}/g, userInviteCount)
-                                        .replace(/{tag}/g, member.user.tag)
+                                (invites => {
+                                const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
+                                var userInviteCount = 0;
+                                for (var i = 0; i < userInvites.length; i++) {
+                                    var invite = userInvites[i];
+                                    userInviteCount += invite['uses'];
+                                }
+                                msg = `${welcomedb.message}`
+                                    .replace(/{user}/g, member)
+                                    .replace(/{server}/g, member.guild.name)
+                                    .replace(/{username}/g, member.user.username)
+                                    .replace(/{inviter}/g, usedInvite.inviter)
+                                    .replace(/{invites}/g, userInviteCount)
+                                    .replace(/{tag}/g, member.user.tag)
 
-                                    .replace(/{membercount}/g, member.guild.memberCount);
-                                    if (welcomedb.image) {
-                                        welcomechannel.send(`${msg}`, attachment);
-                                    } else {
-        
-                                        welcomechannel.send(msg);
-                                    }
-                                })
-                           
+                                .replace(/{membercount}/g, member.guild.memberCount);
+                                if (welcomedb.image) {
+                                    welcomechannel.send(`${msg}`, attachment);
+                                } else {
 
+                                    welcomechannel.send(msg);
+                                }
+                            })
 
 
 
 
 
 
-                         
+
+
+
                         } else {
                             if (welcomedb.image) {
                                 welcomechannel.send(attachment);
@@ -147,35 +155,7 @@ module.exports = {
 
             }
         }
-        if (member.guild.id === "784773050956513290") {
-            if (!member.user.bot) {
-                const guildInvites = client.guildInvites;
-                const cachedInvites = guildInvites.get(member.guild.id);
-                const newInvites = await member.guild.fetchInvites();
-                guildInvites.set(member.guild.id, newInvites);
-                try {
-                    const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
-
-                    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '787705977596149761');
-                    member.guild.fetchInvites()
-                        .then
-
-                        (invites => {
-                        const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
-                        var userInviteCount = 0;
-                        for (var i = 0; i < userInvites.length; i++) {
-                            var invite = userInvites[i];
-                            userInviteCount += invite['uses'];
-                        }
-                        welcomeChannel.send(`Hey ${member} Bienvenue dans le support officiel de Green-Bot vas voir le projet dans <#786304725939257406> .Tu as été invité par  ${usedInvite.inviter} , qui a désormais ${userInviteCount} invitattions sur ce serveur. Merci à lui !!!!`);
-                    })
-
-
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-        }
+ 
 
     }
 };
