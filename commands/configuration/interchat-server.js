@@ -23,7 +23,8 @@ module.exports = {
 
         const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
         if (verify) {
-   return message.channel.send(`${emoji.error} Vous avez déja un interchat en cours... . Veuillez d'abord y mettre fin.`);
+     const newserver = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `interchat-s` }, { $set: { channelID: server.id, reason: `interchat-s` } }, { new: true });
+   return message.channel.send(`${emoji.succes} Interchat mis à jour !`);
 
 
         } else {
