@@ -54,18 +54,18 @@ module.exports = {
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText(' BIENVENUE', canvas.width / 8, canvas.height / 3.5);
+                    ctx.fillText(' BIENVENUE', canvas.width / 10, canvas.height / 3.5);
 
 
                     ctx.font = applyText(canvas, `${member.displayName}`);
                     ctx.fillStyle = '#100101 ';
 
-                    ctx.fillText(`${member.displayName}`, canvas.width / 8, canvas.height / 1.8);
+                    ctx.fillText(`${member.displayName}`, canvas.width / 10, canvas.height / 1.8);
 
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 8, canvas.height / 1.3);
+                    ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 10, canvas.height / 1.3);
 
 
 
@@ -91,11 +91,15 @@ module.exports = {
 
                         if (welcomedb.message) {
                             let msg;
-                            const guildInvites = client.guildInvites;
+                            
+
+
+
+                            if (!member.user.bot) {
+                                const guildInvites = client.guildInvites;
                             const cachedInvites = guildInvites.get(member.guild.id);
                             const newInvites = await member.guild.fetchInvites();
                             guildInvites.set(member.guild.id, newInvites);
-                            try {
                                 const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
 
 
@@ -109,32 +113,25 @@ module.exports = {
                                         var invite = userInvites[i];
                                         userInviteCount += invite['uses'];
                                     }
-                                    if (!member.user.bot) {
-                                        msg = `${welcomedb.message}`
-                                            .replace(/{user}/g, member)
-                                            .replace(/{server}/g, member.guild.name)
-                                            .replace(/{username}/g, member.user.username)
-                                        replace(/{inviter}/g, usedInvite.inviter)
-                                            .replace(/{invites}/g, userInviteCount)
-                                            .replace(/{tag}/g, member.user.tag)
+                                    msg = `${welcomedb.message}`
+                                        .replace(/{user}/g, member)
+                                        .replace(/{server}/g, member.guild.name)
+                                        .replace(/{username}/g, member.user.username)
+                                        .replace(/{inviter}/g, usedInvite.inviter)
+                                        .replace(/{invites}/g, userInviteCount)
+                                        .replace(/{tag}/g, member.user.tag)
 
-                                        .replace(/{membercount}/g, member.guild.memberCount);
-                                    } else {
-                                        msg = `Le bot ${member} a rejoint le serveur en utilisant l'oAuth2`;
-                                    }
+                                    .replace(/{membercount}/g, member.guild.memberCount);
                                 })
-
-
-                            } catch (err) {
-                                msg = `${welcomedb.message}`
-                                    .replace(/{user}/g, member)
-                                    .replace(/{server}/g, member.guild.name)
-                                    .replace(/{username}/g, member.user.username)
-
-                                .replace(/{tag}/g, member.user.tag)
-
-                                .replace(/{membercount}/g, member.guild.memberCount);
+                            } else {
+                                msg = `Le bot ${member} a rejoint le serveur en utilisant l'oAuth2`;
                             }
+
+
+
+
+                         
+
 
                             if (welcomedb.image) {
                                 welcomechannel.send(`${msg}`, attachment);
