@@ -3,6 +3,7 @@ const rrmodel = require('../database/models/rr')
 const emoji = require('../emojis.json');
 var db = require('quick.db')
 const Discord = require('discord.js');
+const Welcome = require('../database/models/Welcome');
 module.exports = {
 
 
@@ -165,9 +166,31 @@ module.exports = {
 
         if (reaction.emoji.name === "🗑️") {
             if (user.id === db.get(`ticket.${message.channel.name}.user`)) {
-               
+
                 message.channel.delete();
 
+            }
+        }
+        if (reaction.emoji.name === "✅") {
+            if (message.channel.type === 'dm') {
+                let success = new Discord.MessageEmbed()
+                    .setColor(client.color)
+                    .setTitle(`Interchat : accepté`)
+                    .setFooter(client.footer)
+                    .setDescription("Veuillez maintenant définir le salon de l'interchat avec la commande `interchat-channel <salon>` ");
+                message.reply(success)
+            }
+        }
+        if (reaction.emoji.name === "❌") {
+            if (message.channel.type === 'dm') {
+                const newchannel = await Welcome.findOneAndDelete({ serverID: message.guild.id, reason: `interchat-s` });
+
+                let success = new Discord.MessageEmbed()
+                    .setColor("#DA7226")
+                    .setTitle(`Interchat : Réfusé`)
+                    .setFooter(client.footer)
+                    .setDescription("Vous avez refusé l'interchat.");
+                message.reply(success)
             }
         }
     }
