@@ -37,11 +37,11 @@ module.exports = {
             return ctx.font;
         };
 
-        let welcomedb = await Welcome.findOne({ serverID: member.guild.id, reason: 'welcome' })
+        const welcomedb = await Welcome.findOne({ serverID: member.guild.id, reason: 'welcome' })
         if (welcomedb) {
             if (welcomedb.status) {
                 if (welcomedb.channelID) {
-                    let welcomechannel = member.guild.channels.cache.get(welcomedb.channelID);
+                    const welcomechannel = member.guild.channels.cache.get(welcomedb.channelID);
                     const canvas = Canvas.createCanvas(1024, 450);
                     const ctx = canvas.getContext('2d');
 
@@ -91,15 +91,15 @@ module.exports = {
 
                         if (welcomedb.message) {
                             let msg;
-                            
+
 
 
 
                             if (!member.user.bot) {
                                 const guildInvites = client.guildInvites;
-                            const cachedInvites = guildInvites.get(member.guild.id);
-                            const newInvites = await member.guild.fetchInvites();
-                            guildInvites.set(member.guild.id, newInvites);
+                                const cachedInvites = guildInvites.get(member.guild.id);
+                                const newInvites = await member.guild.fetchInvites();
+                                guildInvites.set(member.guild.id, newInvites);
                                 const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
 
 
@@ -130,7 +130,7 @@ module.exports = {
 
 
 
-                         
+
 
 
                             if (welcomedb.image) {
