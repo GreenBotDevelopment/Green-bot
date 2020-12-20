@@ -21,8 +21,7 @@ module.exports = {
 
             .setAuthor(`${message.client.user.username} - Commande d'aide`, message.client.user.displayAvatarURL())
                 .setDescription(`● Bonjour , je suis ${message.client.user.tag} et mon préfixe est \`${prefix}\` 
-                ● Je dispose de  \`${commands.size}\` commandes disponibles
-             ● J'ai été codé par [𝖕𝖆𝖚𝖑𝖉𝖇09#9846](https://github.com/pauldb09/Green-bot) 
+              ● Pour de l'aide sur une commande : \`${prefix}help <commande>\`
              ● Pour me configurer , allez sur mon  [Dashboard](http://green-bot.tk/) `)
                         .addFields({ name: `🥘 | Inter-serveur (${commands.filter(command => command.cat === "inter").size}) `, value: commands.filter(command => command.cat === "inter").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
