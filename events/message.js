@@ -98,11 +98,28 @@ module.exports = {
                         if (ochannel) {
                             let dchannel = oserver.channels.cache.get(ochannel.channelID)
                             if (dchannel) {
+                                if (message.content === 'info') {
+                                    const reportEmbed = new Discord.MessageEmbed()
+                                        .setTitle(`Interchat : Info`)
+
+
+                                    .setDescription(`Vous êtes actuellement en interchat avec le serveur **${oserver.name}**
+                                    ${oserver.channels.cache.size} salons
+                                    ${oserver.roles.cache.size} roles
+                     `)
+
+
+
+                                    .setFooter(client.footer)
+
+                                    .setColor(client.color);
+                                    return message.channel.send(reportEmbed);
+                                }
                                 let avatar = message.author.displayAvatarURL({ dynamic: true });
                                 dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
                                     msgWebhook.send(message.content)
 
-                                   message.react("✅")
+                                    message.react("✅")
 
                                     setTimeout(function() {
                                         msgWebhook.delete()
