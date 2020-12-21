@@ -14,7 +14,7 @@ module.exports = {
 
         let img = await new DIG.Triggered().getImage(avatar)
 
-        let attach = new Discord.MessageAttachment(img, "delete.png");;
+        let attach = new Discord.MessageAttachment(img, "delete.gif");;
         message.channel.send(attach)
 
 
