@@ -68,7 +68,7 @@ module.exports = {
                 }
             }
         }).then(() => {
-            message.channel.send(`${emoji.succes} Giveaway démarré avec succès`)
+            message.channel.send(`${emoji.succes} Giveaway démarré avec succès (${g.messageID})`)
         });
 
 
