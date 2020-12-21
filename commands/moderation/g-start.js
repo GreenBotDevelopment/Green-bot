@@ -14,7 +14,7 @@ module.exports = {
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
 
-        const currentGiveaways = message.client.giveawaysManager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
+        const currentGiveaways = message.client.manager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
         if (currentGiveaways > 0) {
             return message.channel.send(`${emoji.error} Vous avez déja un autre giveaway en cours sur ce serveur . veuillez d'abord y mettre fin.`)
         }
@@ -45,7 +45,7 @@ module.exports = {
             return message.channel.send(`${emoji.error} Veuillez mettre un prix au giveaway . Pour de l'aide , faîtes \`help g-start\`.`)
 
         }
-        message.client.giveawaysManager.start(message.channel, {
+        message.client.manager.start(message.channel, {
             time: ms(time),
             prize: prize,
             winnerCount: parseInt(winnersCount, 10),
