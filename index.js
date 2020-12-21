@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
+const emojis = require('./emojis.json');
 if (!config.prefix) return console.error(`ERREUR : Veuillez mettre un préfixe dans le config.json`);
 if (!config.token) return console.error(`ERREUR : Veuillez mettre un token dans le config.json`)
 const footer = config.footer;
