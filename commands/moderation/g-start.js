@@ -14,7 +14,7 @@ module.exports = {
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
 
-        const currentGiveaways = this.client.giveawaysManager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
+        const currentGiveaways = message.client.giveawaysManager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
         if (currentGiveaways > 0) {
             return message.channel.send(`${emoji.error} Vous avez déja un autre giveaway en cours sur ce serveur . veuillez d'abord y mettre fin.`)
         }
