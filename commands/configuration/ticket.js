@@ -20,7 +20,7 @@ module.exports = {
 
         .setDescription(`Bonjour , pour créer un ticket il suffit de réagir avec 🎫 !
 ⚠ Toute ouverture de ticket inutile sera sanctionée !`)
-        .setFooter(message.client.footer , message.client.user.displatAvatarUrl());
+        .setFooter(message.client.footer ,  message.client.user.displayAvatarURL());
         message.channel.send(embed).then(m => {
             m.react('🎫');
         });
