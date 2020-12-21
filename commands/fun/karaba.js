@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const emoji = require('../../emojis.json')
 const DIG = require("discord-image-generation");
 module.exports = {
-    name: 'karaba',
+    name: 'delete',
     description: 'Ajoute des effets à votre avatar',
     botpermissions: ['ATTACH_FILES'],
     usage: '[user]',
@@ -12,7 +12,7 @@ module.exports = {
         const user = message.mentions.users.first() || message.author;
         let avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
 
-        let img = await new DIG.Karaba().getImage(avatar)
+        let img = await new DIG.Delete().getImage(avatar)
 
         let attach = new Discord.MessageAttachment(img, "delete.png");;
         message.channel.send(attach)
