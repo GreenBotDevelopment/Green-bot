@@ -13,7 +13,7 @@ module.exports = {
     permissions: ['MANAGE_GUILD'],
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
-
+        let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
         const currentGiveaways = message.client.manager.giveaways.filter((g) => g.guildID === message.guild.id && !g.ended).length;
         if (currentGiveaways > 0) {
             return message.channel.send(`${emoji.error} Vous avez déja un autre giveaway en cours sur ce serveur . veuillez d'abord y mettre fin.`)
@@ -45,7 +45,7 @@ module.exports = {
             return message.channel.send(`${emoji.error} Veuillez mettre un prix au giveaway . Pour de l'aide , faîtes \`help g-start\`.`)
 
         }
-        message.client.manager.start(message.channel, {
+        message.client.manager.start(channel, {
             time: ms(time),
             prize: prize,
             winnerCount: parseInt(winnersCount, 10),
@@ -53,7 +53,7 @@ module.exports = {
                 giveaway: "\n\n🎉🎉 **NOUVEAU GIVEAWAY**🎉🎉",
                 giveawayEnded: "\n\n🎉🎉 **GIVEAWAY TERMINE**🎉🎉",
                 timeRemaining: "`🕰`Temps restant: **{duration}**!",
-                inviteToParticipate: "`➕`Réagissez avec 🎉 pour participer!\n `👑` Host par " + message.author + "",
+                inviteToParticipate: "`➕`Réagissez avec 🎉 pour participer!\n `👑` Host par <@" + message.author + ">\n\n`🔢`" + winnersCount + " Gagnants",
                 winMessage: "🎉 Félicitations, {winners} ! Vous gagnez **{prize}**!",
                 embedFooter: "Giveaways",
                 noWinner: "Giveaway annulé , aucunne partcipation valide.",
@@ -64,7 +64,7 @@ module.exports = {
                     minutes: "minutes",
                     hours: "heures",
                     days: "jours",
-                    pluralS: false 
+                    pluralS: false
                 }
             }
         }).then(() => {
