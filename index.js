@@ -16,15 +16,23 @@ const guildInvites = new Map();
 const mongoose = require('mongoose')
 
 const { GiveawaysManager } = require("discord-giveaways");
-const manager = new GiveawaysManager(client, {
-    storage: "./giveaways.json",
+client.giveawaysManager = new GiveawaysManager(client, {
+    storage: "../giveaways.json",
     updateCountdownEvery: 10000,
     default: {
         botsCanWin: false,
-        exemptPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
-        embedColor: "#303136",
-        reaction: "dr"
+        exemptPermissions: [],
+        embedColor: "#FF0000",
+        reaction: "🎉"
     }
+});
+client.giveawaysManager.on('giveawayReactionAdded', (giveaway, member, reaction) => {
+    const succes = new Discord.MessageEmbed()
+        .setTitle(`${emojis.succes} Participation acceptée`)
+        .setDescription(`Votre participation au giveaway pour **${giveaway.prize}** dans le serveur **${giveaway.message.guild.name}** est acceptée !`)
+        .setColor(config.color)
+        .setFooter(config.footer)
+    member.send(succes)
 });
 client.commands = new Discord.Collection();
 client.guildInvites = guildInvites;
