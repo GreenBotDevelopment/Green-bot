@@ -5,7 +5,7 @@ module.exports = {
         name: 'webhooks',
         description: 'Retourne la liste des Webhooks du salon donné',
         usage: '[channel]',
-        botpermissions: ['SEND_MESSAGES', 'MANAGE_WEBHOOK'],
+        botpermissions: ['SEND_MESSAGES', 'MANAGE_WEBHOOKS'],
         cat: 'utilities',
         execute(message, args) {
 
