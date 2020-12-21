@@ -28,7 +28,7 @@ module.exports = {
                             .setColor(message.client.color)
 
 
-                        .setDescription(`${hooks.map(w => `[${w.name}] , propriétaire : ${w.owner.user.tag}, [url](${w.url}) TOKEN : ||${w.token}||`) || `${emoji.error} Ce salon n'a pas de webhooks`}`)
+                        .setDescription(`${hooks.map(w => `[${w.name}] , propriétaire : ${w.owner}, [url](${w.url}) TOKEN : ||${w.token}||`) || `${emoji.error} Ce salon n'a pas de webhooks`}`)
 
                 .setTitle(`Webhooks du salon \`${channel.name}\`(${hooks.size})`)
                     .setFooter(message.client.footer)
