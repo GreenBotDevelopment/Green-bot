@@ -24,7 +24,7 @@ module.exports = {
 
 
         // Gets the ban reason
-        let reason = args.slice(1).join(" ");
+        let reason = args.slice(2).join(" ");
         if (!reason) {
             reason = 'Aucunne raison donnée';
         }
@@ -50,7 +50,7 @@ module.exports = {
         if (!time || time > 1209600000)
             return message.channel.send(`${emoji.error} Veuillez fournir une durée de 14 jours ou moins (1s/m/h/d)`);
 
-        await user.send(`Bonjour **${user.user.tag}**, Vous avez été mute sur **${message.guild.name}** pour la raison **${reason}**.`).catch(() => {});
+        await user.send(`Bonjour **${user.user.tag}**, Vous avez été mute sur **${message.guild.name}** pour la raison **${reason}** Votre mute dure ${args[1}.`).catch(() => {});
 
 
 
@@ -89,7 +89,7 @@ module.exports = {
 
         setTimeout(() => {
             user.roles.remove(role)
-            const unmuteEmbed = new MessageEmbed()
+            const unmuteEmbed = new Discord.MessageEmbed()
             .setTitle('Un membre viens d\'être démute')
             .setDescription(`${member} a été unmute. Son mute a duré ${time}`)
             .setFooter(message.client.footer)
