@@ -18,7 +18,9 @@ module.exports = {
             .setTitle(`🎫 | Système de Tickets`)
             .setColor(message.client.color)
 
-        .setDescription(`Bonjour , pour créer un ticket il suffit de réagir avec 🎫 !`);
+        .setDescription(`Bonjour , pour créer un ticket il suffit de réagir avec 🎫 !
+⚠ Toute ouverture de ticket inutile sera sanctionée !`)
+        .setFooter(message.client.footer , message.client.user.displatAvatarUrl());
         message.channel.send(embed).then(m => {
             m.react('🎫');
         });
