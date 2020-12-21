@@ -3,11 +3,11 @@ const Discord = require('discord.js');
 const emoji = require('../../emojis.json')
 const DIG = require("discord-image-generation");
 module.exports = {
-    name: 'triggered',
+    name: 'ad',
     description: 'Ajoute des effets à votre avatar',
     botpermissions: ['ATTACH_FILES'],
     usage: '[user]',
-    cat: 'fun',
+    cat: 'pictures',
     async execute(message, args) {
         const user = message.mentions.users.first() || message.author;
         let avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
