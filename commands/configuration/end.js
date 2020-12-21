@@ -16,7 +16,7 @@ module.exports = {
         const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
         if (verify) {
             const newserver = await Welcome.findOneAndDelete({ serverID: message.guild.id, reason: `interchat-s` });
-            const newserver = await Welcome.findOneAndDelete({ channelID: message.guild.id, reason: `interchat-s` });
+            const newserveer = await Welcome.findOneAndDelete({ channelID: message.guild.id, reason: `interchat-s` });
 
             return message.channel.send(`${emoji.succes} j'ai mis fin à l'interchat avec succès.`);
 
