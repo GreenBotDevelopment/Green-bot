@@ -50,7 +50,7 @@ module.exports = {
         if (!time || time > 1209600000)
             return message.channel.send(`${emoji.error} Veuillez fournir une durée de 14 jours ou moins (1s/m/h/d)`);
 
-        await user.send(`Bonjour **${user.user.tag}**, Vous avez été mute sur **${message.guild.name}** pour la raison **${reason}** Votre mute dure ${args[1}.`).catch(() => {});
+        await user.send(`Bonjour **${user.user.tag}**, Vous avez été mute sur **${message.guild.name}** pour la raison **${reason}**. Votre mute dure **${args[1]}**.`).catch(() => {});
 
 
 
@@ -80,7 +80,7 @@ module.exports = {
         }
         try {
             user.roles.add(role);
-            message.channel.send(`${emoji.succes} **${user.user.tag}** a été réduit au silence sur le serveur pour une durée de **${time}**`);
+            message.channel.send(`${emoji.succes} **${user.user.tag}** a été réduit au silence sur le serveur pour une durée de **${args[1]}**`);
 
         } catch (err) {
             message.channel.send(`${emoji.error} Je n'ai pas réussi à mute ce membre , veuillez vérifier la hiérarchie.`);
