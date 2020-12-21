@@ -7,13 +7,16 @@ module.exports = {
     description: 'Ajoute des effets à votre avatar',
     botpermissions: ['ATTACH_FILES'],
     usage: '[user]',
-    cat: 'fun',
+    cat: 'pictures',
     async execute(message, args) {
         const user = message.mentions.users.first() || message.author;
+        let avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
+      
+        let img = await new DIG.Beautiful().getImage(avatar)
+        
+        let attach = new Discord.MessageAttachment(img, "delete.png");;
+        message.channel.send(attach)
+       
 
-        let image = new DIG.Beautiful().getImage(user.displayAvatarURL({ dynamic: false, format: 'png' }));
-        const attachment = new Discord.MessageAttachment(image, "beautiful.png");
-        message.channel.send(attachment);
-     
     },
 };
