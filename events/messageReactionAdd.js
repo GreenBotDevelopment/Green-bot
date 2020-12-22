@@ -14,28 +14,31 @@ module.exports = {
         let message = reaction.message;
         if (!message) return;
         if (reaction.emoji.name === "⭐") {
-            message.channel.send('IT WORK')
+
 
             const stardb = await Welcome.findOne({ serverID: message.guild.id, reason: 'starboard' })
             if (stardb) {
-                console.log('exist')
+
                 const starboard = message.guild.channels.cache.get(stardb.channelID)
                 if (message.channel.id === starboard.id) return;
-                console.log('yeah exist')
+
                 const msgs = await starboard.messages.fetch({ limit: 100 });
                 const existingMsg = msgs.find(msg =>
                     msg.embeds.length === 1 ?
                     (msg.embeds[0].footer.text.startsWith(message.id) ? true : false) : false);
                 if (existingMsg) existingMsg.edit(`${reaction.count} - ⭐`);
                 else {
+                    let att = message.attachments.map(a => a.url)
                     const embed = new Discord.MessageEmbed()
                         .setAuthor(message.author.tag, message.author.displayAvatarURL())
-                        .addField('Url', message.url, true)
+                        .addField('Url', `[Acceder au message](${message.url})`, true)
                         .setColor("#BDD320")
-                        .addField('Message', message.content, true)
+                        .addField('Autheur', message.author, true)
+                        .addField('Contenu du Message', message.content)
 
                     .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
                         .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
+                    if (att.length > 0) embed.setImage(att);
                     if (starboard)
                         starboard.send('1 - ⭐', embed);
                 }
