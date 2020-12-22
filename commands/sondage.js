@@ -18,10 +18,10 @@ module.exports = {
 
 
 
-        if (!args[1])
+        if (!args[0])
             return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (1s/m/h/d)`);
-        let time = ms(args[1]);
-        if (!time || time > 19000)
+        let time = ms(args[0]);
+        if (!time || time > 120000)
             return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (1s/m/h/d)`);
         let question = args.slice(1).join(" ");
         if (!question) return message.channel.send(`${emoji.error} Veuillez mettre une question`)
