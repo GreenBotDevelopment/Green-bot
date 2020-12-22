@@ -9,7 +9,7 @@ module.exports = {
     args: true,
     cat: 'util',
     usage: '<temps> <contenu>',
-    exemple: ' 1m Un nouveau salon',
+    exemple: '1m un nouveau salon',
     permissions: `MENTION_EVERYONE`,
     cooldown: 5,
     async execute(message, args) {
@@ -18,10 +18,11 @@ module.exports = {
 
 
 
-        if (!args[0]) return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (s/m/h/d)`);
+        if (!args[1])
+            return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (1s/m/h/d)`);
         let time = ms(args[1]);
-        if (!time || time > 10000)
-            return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (s/m/h/d)`);
+        if (!time || time > 19000)
+            return message.channel.send(`${emoji.error} Veuillez fournir une durée valide (1s/m/h/d)`);
         let question = args.slice(1).join(" ");
         if (!question) return message.channel.send(`${emoji.error} Veuillez mettre une question`)
 
