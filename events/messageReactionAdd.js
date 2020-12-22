@@ -15,7 +15,7 @@ module.exports = {
         if (!message) return;
         if (user.bot) return;
         if (message.author.id !== client.user.id) return;
-        if (reaction.emoji.name === "⭐") {
+        if (reaction.emoji.name === "🌟") {
             console.log('star')
 
             const stardb = await Welcome.findOne({ serverID: message.guild.id, reason: 'starboard' })
