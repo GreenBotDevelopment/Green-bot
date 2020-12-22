@@ -26,7 +26,7 @@ module.exports = {
         let question = args.slice(1).join(" ");
         if (!question) return message.channel.send(`${emoji.error} Veuillez mettre une question`)
 
-        const embed = new MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setTitle(question)
             .setDescription('Réagissez 👍 ou 👎')
             .setColor(message.client.color)
@@ -58,7 +58,7 @@ module.exports = {
                 thumbsUpResults = thumbsUp.users.cache.filter(u => !u.bot).size;
             if (thumbsDown)
                 thumbsDownResults = thumbsDown.users.cache.filter(u => !u.bot).size;
-            const resultsEmbed = new MessageEmbed()
+            const resultsEmbed = new Discord.MessageEmbed()
                 .setTitle('Resultats')
                 .setColor(message.client.color)
                 .setDescription(`👍 - ${thumbsUpResults} votes\n\n👎 - ${thumbsDownResults} votes\n`);
