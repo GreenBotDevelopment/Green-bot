@@ -28,6 +28,8 @@ module.exports = {
                     (msg.embeds[0].footer.text.startsWith(message.id) ? true : false) : false);
                 if (existingMsg) existingMsg.edit(`${reaction.count} - ⭐`);
                 else {
+                    let d = reaction.message.attachments;
+
                     let att = message.attachments.map(a => a.url)
                     const embed = new Discord.MessageEmbed()
                         .setAuthor(message.author.tag, message.author.displayAvatarURL())
@@ -38,7 +40,7 @@ module.exports = {
 
                     .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
                         .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
-                    if (att.length > 0) embed.setImage(att);
+                        if(d.find(x => x)) embed.setImage(d.map(x => x.url));
                     if (starboard)
                         starboard.send('1 - ⭐', embed);
                 }
