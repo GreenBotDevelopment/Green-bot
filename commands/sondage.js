@@ -30,7 +30,7 @@ module.exports = {
             .setTitle(question)
             .setDescription('Réagissez 👍 ou 👎')
             .setColor(message.client.color)
-            .setDescription(`Sondage de ${message.author.tag}`, message.author.displayAvatarUrl())
+            .setDescription(`Sondage de ${message.author.tag}`, message.author.displayAvatarURL)
         try {
             const polls = new Map();
             const userVotes = new Map();
