@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 const fetch = require("node-fetch");
 const guild = require('../../database/models/guild');
 module.exports = {
-    name: 'reafk',
+    name: 'remafk',
     description: 'Désactive votre afk sur le bot',
-    aliases: ['remafk'],
+    aliases: ['reafk'],
   
     cat: 'utilities',
     guildOnly: true,
