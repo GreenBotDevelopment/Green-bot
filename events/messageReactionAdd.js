@@ -15,34 +15,7 @@ module.exports = {
         if (!message) return;
         if (user.bot) return;
         if (message.author.id !== client.user.id) return;
-        if (reaction.emoji.name === "🌟") {
-            console.log('star')
 
-            const stardb = await Welcome.findOne({ serverID: message.guild.id, reason: 'starboard' })
-            if (stardb) {
-                console.log('exist')
-                const starboard = message.guild.channels.cache.get(stardb.channelID)
-                if (message.channel.id === starboard.id) return;
-                console.log('yeah exist')
-                const msgs = await starboard.messages.fetch({ limit: 100 });
-                const existingMsg = msgs.find(msg =>
-                    msg.embeds.length === 1 ?
-                    (msg.embeds[0].footer.text.startsWith(message.id) ? true : false) : false);
-                if (existingMsg) existingMsg.edit(`${reaction.count} - ⭐`);
-                else {
-                    const embed = new Discord.MessageEmbed()
-                        .setAuthor(message.author.tag, message.author.displayAvatarURL())
-                        .addField('Url', message.url, true)
-                        .setColor("#BDD320")
-                        .addField('Message', message.content, true)
-
-                    .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
-                        .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
-                    if (starboard)
-                        starboard.send('1 - ⭐', embed);
-                }
-            }
-        }
         let already = new Discord.MessageEmbed()
             .setColor("#982318")
             .setAuthor(`⛔ | Éh non ..`)
@@ -142,7 +115,34 @@ module.exports = {
 
 
             }
+            if (reaction.emoji.name === "🟡") {
+                console.log('star ADDED');
 
+                const stardb = await Welcome.findOne({ serverID: message.guild.id, reason: 'starboard' })
+                if (stardb) {
+                    console.log('exist')
+                    const starboard = message.guild.channels.cache.get(stardb.channelID)
+                    if (message.channel.id === starboard.id) return;
+                    console.log('yeah exist')
+                    const msgs = await starboard.messages.fetch({ limit: 100 });
+                    const existingMsg = msgs.find(msg =>
+                        msg.embeds.length === 1 ?
+                        (msg.embeds[0].footer.text.startsWith(message.id) ? true : false) : false);
+                    if (existingMsg) existingMsg.edit(`${reaction.count} - ⭐`);
+                    else {
+                        const embed = new Discord.MessageEmbed()
+                            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                            .addField('Url', message.url, true)
+                            .setColor("#BDD320")
+                            .addField('Message', message.content, true)
+
+                        .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
+                            .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
+                        if (starboard)
+                            starboard.send('1 - ⭐', embed);
+                    }
+                }
+            }
             if (reaction.emoji.name === "🎫") {
                 console.log('GOOD REACTION');
 
