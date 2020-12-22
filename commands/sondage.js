@@ -11,7 +11,7 @@ module.exports = {
     exemple: 'Un nouveau salon 1m',
     permissions: `MENTION_EVERYONE`,
     cooldown: 5,
-    execute(message, args) {
+  async  execute(message, args) {
 
 
 
