@@ -13,7 +13,7 @@ module.exports = {
     permissions: ['MANAGE_GUILD'],
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
-        const messageID = args[1];
+        const messageID = args[0];
         if (!messageID) {
             return message.channel.send(`${emoji.error} Veuillez fournir un ID de message valide...`)
         }
