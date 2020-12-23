@@ -1,8 +1,9 @@
 const config = require('../config.json');
+const Discord = require('discord.js')
 module.exports = {
 
 
-    async execute(client) {
+    async execute(guild ,client) {
         const owner = guild.owner.user
         let paule = new Discord.MessageEmbed()
             .setColor('#303136')
