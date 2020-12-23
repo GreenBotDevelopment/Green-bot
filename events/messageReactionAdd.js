@@ -36,7 +36,7 @@ module.exports = {
                         .addField('Url', `[Acceder au message](${message.url})`, true)
                         .setColor("#BDD320")
                         .addField('Autheur', message.author, true)
-                        .addField('Contenu du Message', message.content)
+                        .addField('Contenu du Message', message.content || 'Image')
 
                     .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
                         .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
