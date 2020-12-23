@@ -28,7 +28,7 @@ module.exports = {
                     (msg.embeds[0].footer.text.startsWith(message.id) ? true : false) : false);
                 if (existingMsg) existingMsg.edit(`${reaction.count} - ⭐`);
                 else {
-                    let d = message.attachments.map(x => x.url)
+                let d = message.attachments.map(x => x.url);
 
                     let att = message.attachments.map(a => a.url)
                     const embed = new Discord.MessageEmbed()
@@ -40,7 +40,7 @@ module.exports = {
 
                     .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
                         .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
-                        if(d.lenght > 0) embed.setImage(d[0]);
+                        if(d.lenght) embed.setImage(d[0]);
                     if (starboard)
                         starboard.send('1 - ⭐', embed);
                 }
