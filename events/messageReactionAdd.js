@@ -40,7 +40,7 @@ module.exports = {
 
                     .setDescription(`⭐ Le message de ${message.author} passe dans le starboard !`)
                         .setFooter(message.id + ' - ' + new Date(message.createdTimestamp));
-                        if(d.lenght) embed.setImage(d[0]);
+                        if(!message.content ) embed.setImage(d[0])
                     if (starboard)
                         starboard.send('1 - ⭐', embed);
                 }
