@@ -6,7 +6,7 @@ module.exports = {
     name: 'interchat-channel',
     description: 'Défini le salon de l\'interchat',
     aliases: ['setinterchat-channel'],
-    cat: 'inter',
+    cat: 'configuration',
     args: 'channel',
     guildOnly: true,
     usage: '#salon',
