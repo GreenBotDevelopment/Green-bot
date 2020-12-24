@@ -21,7 +21,7 @@ module.exports = {
         if (!message.client.player.getQueue(message)) return message.channel.send(`${emoji.error} Je ne joue pas de musique actuellement.`)
 
 
-        const queue = client.player.getQueue(message);
+        const queue = message.client.player.getQueue(message);
         const embed = new Discord.MessageEmbed()
 
         .setTitle(`Queue du serveur (${queue.tracks.length} sons)`)
