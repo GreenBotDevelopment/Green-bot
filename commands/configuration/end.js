@@ -6,7 +6,7 @@ module.exports = {
     name: 'interchat-end',
     description: 'Arrete le système d\'interchat',
     aliases: ['endinterchat'],
-    cat: 'inter',
+    cat: 'configuration',
 
     guildOnly: true,
 
