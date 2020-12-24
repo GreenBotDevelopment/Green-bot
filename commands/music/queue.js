@@ -15,7 +15,7 @@ module.exports = {
 
         const voice = message.member.voice.channel;
         if (!voice) {
-            return message.channel.send(`${emoji.error} Vous devez d'abord rejoidre un salon vocal !`)
+            return message.channel.send(`${emoji.error} Vous devez d'abord rejoindre un salon vocal !`)
         }
 
         if (!message.client.player.getQueue(message)) return message.channel.send(`${emoji.error} Je ne joue pas de musique actuellement.`)
@@ -29,7 +29,7 @@ module.exports = {
         .setColor(message.client.color)
             .addField('En cours :', `${queue.playing.title} | ${queue.playing.author}
     `)
-            .addField('Queue complète', queue.tracks.map((track, i) => `**#${i + 1}** - ${track.title} | ${track.author} [ ${track.requestedBy}]`))
+            .addField(`Queue ${queue.repeatMode ? `Répétition : ${emoji.succes}` : `Répétition ${emoji.error}`}`, queue.tracks.map((track, i) => `**#${i + 1}** - ${track.title} | ${track.author} [ ${track.requestedBy}]`))
 
 
         .setFooter(message.client.footer)
