@@ -23,7 +23,7 @@ module.exports = {
                 .setDescription(`● Bonjour , je suis ${message.client.user.tag} et mon préfixe est \`${prefix}\` 
               ● Pour de l'aide sur une commande : \`${prefix}help <commande>\`
              ● Pour me configurer , allez sur mon  [Dashboard](http://green-bot.tk/) `)
-                        .addFields({ name: `🥘 | Inter-serveur (${commands.filter(command => command.cat === "inter").size}) `, value: commands.filter(command => command.cat === "inter").map(command => `\`${command.name}\``).join(', ') })
+                .addFields({ name: `${emoji.music} | Musique (${commands.filter(command => command.cat === "musique").size}) `, value: commands.filter(command => command.cat === "musique").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
                 .addFields({ name: `${emoji.rpg} | Economy (${commands.filter(command => command.cat === "rpg").size}) `, value: commands.filter(command => command.cat === "rpg").map(command => `\`${command.name}\``).join(', ') })
 
@@ -35,14 +35,13 @@ module.exports = {
                 .addFields({ name: `${emoji.role} | Roles à réaction (${commands.filter(command => command.cat === "rr").size}) `, value: commands.filter(command => command.cat === "rr").map(command => `\`${command.name}\``).join(', ') })
 
 
-                .addFields({ name: `${emoji.owner} | Owner (${commands.filter(command => command.cat === "owner").size})`, value: commands.filter(command => command.cat === "owner").map(command => `\`${command.name}\``).join(', ') })
+            .addFields({ name: `${emoji.owner} | Owner (${commands.filter(command => command.cat === "owner").size})`, value: commands.filter(command => command.cat === "owner").map(command => `\`${command.name}\``).join(', ') })
 
 
 
             .addFields({ name: "Liens utliles", value: `
             [Dashboard](http://green-bot.tk/)-[Inviter le bot](https://discord.com/oauth2/authorize?client_id=${message.client.id}&scope=bot&permissions=8) - [Support](https://discord.gg/X6jZrUf) - [Github](https://github.com/pauldb09/Green-bot)` })
 
-            .setFooter(config.footer || 'Green-bot - open source', message.client.user.displayAvatarURL());
 
 
             return message.channel.send(exampleEmbed)
@@ -60,7 +59,7 @@ module.exports = {
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return message.reply(`${emoji.error} La commande indiqué n\'est pas une commande valide !`);
+            return message.reply(`${emoji.error} La commande indiquée n\'est pas une commande valide !`);
         }
         const reportEmbed = new Discord.MessageEmbed()
             .setTitle(`Commande  \`${command.name}\``)
