@@ -21,7 +21,7 @@ module.exports = {
         if (!message.client.player.getQueue(message)) return message.channel.send(`${emoji.error} Je ne joue pas de musique actuellement.`)
         message.client.player.pause(message);
 
-        message.channel.send(`${emoji.success} - La musique a été mise en pause  !`);
+        message.channel.send(`${emoji.succes} - La musique a été mise en pause  !`);
 
 
 
