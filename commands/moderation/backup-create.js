@@ -28,16 +28,16 @@ module.exports = {
                 jsonBeautify: true
             }).then((backupData) => {
 
-                const unmuteEmbedee = new Discord.MessageEmbed()
-                .setTitle('Backup crée avec succès.')
-                .setDescription(`***Pour la charger :**
-                \`\`\`*backup-load ${backupData.id}\`\`\`
-                ***Info :**
-                \`\`\`*backup-info ${backupData.id}\`\`\`
-                `)
-                .setFooter(message.client.footer)
-                .setColor(message.client.color);
-            message.author.send(unmuteEmbedee)
+                 const unmuteEmbedee = new Discord.MessageEmbed()
+                    .setTitle('Backup crée avec succès.')
+                  .addField(`Pour la charger :`, `
+                  \`\`\`*backup-load ${backupData.id}\`\`\`
+                  `)  .addField(`Pour des infos :`, `
+                  \`\`\`*backup-info ${backupData.id}\`\`\`
+                  `)
+                    .setFooter(message.client.footer)
+                    .setColor(message.client.color);
+                message.author.send(unmuteEmbedee)
             const unmuteEmbede = new Discord.MessageEmbed()
                 .setTitle('Backup crée avec succès.')
                 .setDescription(`Vous avez reçu les informations en MP 😉`)
