@@ -29,8 +29,7 @@ module.exports = {
         .setColor(message.client.color)
             .addField('En cours :', `${queue.playing.title} | ${queue.playing.author}
     `)
-            .addField('Queue complète', queue.tracks.map((track, i) => `**#${i + 1}** - ${track.title} | ${track.author} [ ${track.requestedBy}]
-    `))
+            .addField('Queue complète', queue.tracks.map((track, i) => `**#${i + 1}** - ${track.title} | ${track.author} [ ${track.requestedBy}]`))
 
 
         .setFooter(message.client.footer)
