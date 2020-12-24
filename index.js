@@ -27,6 +27,10 @@ const manager = new GiveawaysManager(client, {
         reaction: "🎉"
     }
 });
+const { Player } = require('discord-player');
+
+const player = new Player(client);
+client.player = player;
 client.manager = manager;
 client.manager.on('giveawayReactionAdded', (giveaway, member, reaction) => {
     const succes = new Discord.MessageEmbed()
