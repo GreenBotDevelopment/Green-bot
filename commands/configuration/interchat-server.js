@@ -6,7 +6,7 @@ module.exports = {
     name: 'interchat-server',
     description: 'Défini le salon de l\'interchat',
     aliases: ['setinterchat-server'],
-    cat: 'inter',
+    cat: 'configuration',
     args: true,
     guildOnly: true,
     usage: '<id du serveur>',
