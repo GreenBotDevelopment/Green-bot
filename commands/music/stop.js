@@ -22,7 +22,7 @@ module.exports = {
         message.client.player.setRepeatMode(message, false);
         message.client.player.stop(message);
 
-        message.channel.send(`${emoji.success} - J'ai **arrété** la musique avec succès  !`);
+        message.channel.send(`${emoji.succes} - J'ai **arrété** la musique avec succès  !`);
 
 
 
