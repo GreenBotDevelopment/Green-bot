@@ -51,65 +51,17 @@ mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: t
 
 
 const init = async() => {
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+      const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const directories = await readdir("./commands/");
+    console.log(`Loading a total of ${directories.length} categories.`);
+    directories.forEach(async(dir) => {
+        const commands = await readdir("./commands/" + dir + "/");
+        commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
+            const command = require(`./commands/${dir}/${cmd}`);
 
-    for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        client.commands.set(command.name, command);
-    }
-    const rrcommands = fs.readdirSync('./commands/rolereaction').filter(file => file.endsWith('.js'));
-    for (const rrfile of rrcommands) {
-        const command = require(`./commands/rolereaction/${rrfile}`);
-        client.commands.set(command.name, command);
-    }
-    const admincommands = fs.readdirSync('./commands/moderation').filter(file => file.endsWith('.js'));
-
-    for (const afile of admincommands) {
-        const command = require(`./commands/moderation/${afile}`);
-        client.commands.set(command.name, command);
-    }
-    const funcommands = fs.readdirSync('./commands/fun').filter(file => file.endsWith('.js'));
-
-    for (const ffile of funcommands) {
-        const command = require(`./commands/fun/${ffile}`);
-        client.commands.set(command.name, command);
-    }
-    const utilcommands = fs.readdirSync('./commands/utilities').filter(file => file.endsWith('.js'));
-
-    for (const ufile of utilcommands) {
-        const command = require(`./commands/utilities/${ufile}`);
-        client.commands.set(command.name, command);
-    }
-    const pcommands = fs.readdirSync('./commands/pictures').filter(file => file.endsWith('.js'));
-
-    for (const pfile of pcommands) {
-        const command = require(`./commands/pictures/${pfile}`);
-        client.commands.set(command.name, command);
-    }
-    const ownercommands = fs.readdirSync('./commands/owner').filter(file => file.endsWith('.js'));
-
-    for (const ofile of ownercommands) {
-        const command = require(`./commands/owner/${ofile}`);
-        client.commands.set(command.name, command);
-    }
-    const configcommands = fs.readdirSync('./commands/configuration').filter(file => file.endsWith('.js'));
-
-    for (const cfile of configcommands) {
-        const command = require(`./commands/configuration/${cfile}`);
-        client.commands.set(command.name, command);
-    }
-    const levelcommands = fs.readdirSync('./commands/level').filter(file => file.endsWith('.js'));
-
-    for (const lfile of levelcommands) {
-        const command = require(`./commands/level/${lfile}`);
-        client.commands.set(command.name, command);
-    }
-    const rpgcommands = fs.readdirSync('./commands/rpg').filter(file => file.endsWith('.js'));
-
-    for (const rgrfile of rpgcommands) {
-        const command = require(`./commands/rpg/${rgrfile}`);
-        client.commands.set(command.name, command);
-    }
+            client.commands.set(command.name, command);
+        });
+    });
     const evtFiles = await readdir("./events/");
     console.log(`Loading a total of ${evtFiles.length} events.`);
     evtFiles.forEach((file) => {
