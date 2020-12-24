@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 const backup = require("discord-backup");
 const emoji = require('../../emojis.json')
 module.exports = {
