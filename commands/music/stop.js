@@ -19,8 +19,8 @@ module.exports = {
         }
 
         if (!message.client.player.getQueue(message)) return message.channel.send(`${emoji.error} Je ne joue pas de musique actuellement.`)
-        client.player.setRepeatMode(message, false);
-        client.player.stop(message);
+        message.client.player.setRepeatMode(message, false);
+        message.client.player.stop(message);
 
         message.channel.send(`${emoji.success} - J'ai **arrété** la musique avec succès  !`);
 
