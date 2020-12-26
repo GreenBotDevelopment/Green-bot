@@ -114,20 +114,38 @@ module.exports = {
 
                                     (invites => {
                                     const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
-                                    var userInviteCount = 0;
-                                    for (var i = 0; i < userInvites.length; i++) {
-                                        var invite = userInvites[i];
-                                        userInviteCount += invite['uses'];
-                                    }
-                                    msg = `${welcomedb.message}`
-                                        .replace(/{user}/g, member)
-                                        .replace(/{server}/g, member.guild.name)
-                                        .replace(/{username}/g, member.user.username)
-                                        .replace(/{inviter}/g, usedInvite.inviter)
-                                        .replace(/{invites}/g, userInviteCount)
-                                        .replace(/{tag}/g, member.user.tag)
+                                    if (userInvites) {
+                                        var userInviteCount = 0;
+                                        for (var i = 0; i < userInvites.length; i++) {
+                                            var invite = userInvites[i];
+                                            userInviteCount += invite['uses'];
+                                        }
+                                        msg = `${welcomedb.message}`
+                                            .replace(/{user}/g, member)
+                                            .replace(/{server}/g, member.guild.name)
+                                            .replace(/{username}/g, member.user.username)
+                                            .replace(/{inviter}/g, usedInvite.inviter)
+                                            .replace(/{invites}/g, userInviteCount)
+                                            .replace(/{tag}/g, member.user.tag)
 
-                                    .replace(/{membercount}/g, member.guild.memberCount);
+                                        .replace(/{membercount}/g, member.guild.memberCount);
+                                    } else {
+                                        var userInviteCount = 0;
+                                        for (var i = 0; i < userInvites.length; i++) {
+                                            var invite = userInvites[i];
+                                            userInviteCount += invite['uses'];
+                                        }
+                                        msg = `${welcomedb.message}`
+                                            .replace(/{user}/g, member)
+                                            .replace(/{server}/g, member.guild.name)
+                                            .replace(/{username}/g, member.user.username)
+                                            .replace(/{inviter}/g, usedInvite.inviter)
+                                            .replace(/{invites}/g, '0')
+                                            .replace(/{tag}/g, member.user.tag)
+
+                                        .replace(/{membercount}/g, member.guild.memberCount);
+                                    }
+
                                     if (welcomedb.image) {
                                         welcomechannel.send(`${msg}`, attachment);
                                     } else {
