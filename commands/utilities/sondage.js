@@ -30,7 +30,7 @@ module.exports = {
             .setTitle(`:bar_chart: Sondage :`)
             .setDescription(question)
             .setColor(`#2f3136`)
-          .setFooter(message.client.footer)
+            .setFooter(message.client.footer)
         let msg = await message.channel.send(embed);
         await msg.react('🔵');
         await msg.react('🔴');
@@ -60,11 +60,11 @@ module.exports = {
             if (thumbsDown)
                 thumbsDownResults = thumbsDown.users.cache.filter(u => !u.bot).size;
             const resultsEmbed = new Discord.MessageEmbed()
-            .setTitle(`:bar_chart: Sondage :`)
-            .setDescription(`${question}
+                .setTitle(`:bar_chart: Sondage :`)
+                .setDescription(`${question}\n\n
             🔵 - ${thumbsUpResults} Pour\n\n🔴 - ${thumbsDownResults} Contre\n`)
-            .setColor(`#2f3136`)
-            .setFooter(message.client.footer)
+                .setColor(`#2f3136`)
+                .setFooter(message.client.footer)
             await msg.edit(resultsEmbed);
         } catch (err) {
             console.log(err);
