@@ -2,6 +2,7 @@ const Welcome = require('../database/models/Welcome');
 const emoji = require('../emojis.json');
 const config = require('../config.json');
 const Discord = require('discord.js');
+const moment = require('moment')
 const Canvas = require('canvas');
 module.exports = {
 
@@ -16,7 +17,7 @@ module.exports = {
                 .setTitle(`Arrivée de ${member.user.tag}`)
                 .setThumbnail(member.user.displayAvatarURL())
 
-            .setDescription(`${member.guild.memberCount} membres dans le serveur.`)
+            .setDescription(`Compté crée le ${moment(member.user.createdTimestamp).locale('fr').format('LT ,')} ${moment(member.user.createdTimestamp).locale('fr').format('LL, ')} ${moment(member.user.createdTimestamp).locale('fr').fromNow()}`)
 
 
 
@@ -107,24 +108,41 @@ module.exports = {
                             const newInvites = await member.guild.fetchInvites();
                             guildInvites.set(member.guild.id, newInvites);
                             const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+                            if (usedInvite) {
+                                member.guild.fetchInvites()
+                                    .then
 
+                                    (invites => {
+                                    const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
+                                    var userInviteCount = 0;
+                                    for (var i = 0; i < userInvites.length; i++) {
+                                        var invite = userInvites[i];
+                                        userInviteCount += invite['uses'];
+                                    }
+                                    msg = `${welcomedb.message}`
+                                        .replace(/{user}/g, member)
+                                        .replace(/{server}/g, member.guild.name)
+                                        .replace(/{username}/g, member.user.username)
+                                        .replace(/{inviter}/g, usedInvite.inviter)
+                                        .replace(/{invites}/g, userInviteCount)
+                                        .replace(/{tag}/g, member.user.tag)
 
-                            member.guild.fetchInvites()
-                                .then
+                                    .replace(/{membercount}/g, member.guild.memberCount);
+                                    if (welcomedb.image) {
+                                        welcomechannel.send(`${msg}`, attachment);
+                                    } else {
 
-                                (invites => {
-                                const userInvites = invites.array().filter(o => o.inviter.id === usedInvite.inviter.id);
-                                var userInviteCount = 0;
-                                for (var i = 0; i < userInvites.length; i++) {
-                                    var invite = userInvites[i];
-                                    userInviteCount += invite['uses'];
-                                }
+                                        welcomechannel.send(msg);
+                                    }
+                                })
+                            } else {
+
                                 msg = `${welcomedb.message}`
                                     .replace(/{user}/g, member)
                                     .replace(/{server}/g, member.guild.name)
                                     .replace(/{username}/g, member.user.username)
-                                    .replace(/{inviter}/g, usedInvite.inviter)
-                                    .replace(/{invites}/g, userInviteCount)
+                                    .replace(/{inviter}/g, 'Un inconnu :eyes:')
+                                    .replace(/{invites}/g, '0')
                                     .replace(/{tag}/g, member.user.tag)
 
                                 .replace(/{membercount}/g, member.guild.memberCount);
@@ -134,7 +152,10 @@ module.exports = {
 
                                     welcomechannel.send(msg);
                                 }
-                            })
+
+                            }
+
+
 
 
 
@@ -155,7 +176,7 @@ module.exports = {
 
             }
         }
- 
+
 
     }
 };
