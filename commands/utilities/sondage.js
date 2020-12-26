@@ -29,50 +29,46 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setTitle(`:bar_chart: Sondage :`)
             .setDescription(question)
-            .setColor(`#FF0000`)
-            .setFooter(message.client.footer)
-        message.channel.send(embed).then(msg => {
-            msg.react('🔵');
-            msg.react('🔴');
-            try {
-                const polls = new Map();
-                const userVotes = new Map();
-                let filter = (reaction, user) => {
-                    if (user.bot) return false;
-                    if (['🔵', '🔴'].includes(reaction.emoji.name)) {
-                        if (polls.get(reaction.message.id).get(user.id))
-                            return false;
-                        else {
-                            userVotes.set(user.id, reaction.emoji.name);
-                            return true;
-                        }
+            .setColor(`#2f3136`)
+          .setFooter(message.client.footer)
+        let msg = await message.channel.send(embed);
+        await msg.react('🔵');
+        await msg.react('🔴');
+        try {
+            const polls = new Map();
+            const userVotes = new Map();
+            let filter = (reaction, user) => {
+                if (user.bot) return false;
+                if (['🔵', '🔴'].includes(reaction.emoji.name)) {
+                    if (polls.get(reaction.message.id).get(user.id))
+                        return false;
+                    else {
+                        userVotes.set(user.id, reaction.emoji.name);
+                        return true;
                     }
                 }
-
-                polls.set(msg.id, userVotes);
-                let reactions = await msg.awaitReactions(filter, { time: time });
-                let thumbsUp = reactions.get('🔵');
-                let thumbsDown = reactions.get('🔴');
-                let thumbsUpResults = 0,
-                    thumbsDownResults = 0;
-                if (thumbsUp)
-                    thumbsUpResults = thumbsUp.users.cache.filter(u => !u.bot).size;
-                if (thumbsDown)
-                    thumbsDownResults = thumbsDown.users.cache.filter(u => !u.bot).size;
-                const resultsEmbed = new Discord.MessageEmbed()
-                    .setTitle(`:bar_chart: Sondage :`)
-                    .setDescription(`${question}
-                    🔵 - ${thumbsUpResults} Pour\n\n🔴 - ${thumbsDownResults} Contre\n`)
-                    .setColor(`#FF0000`)
-                    .setFooter(message.client.footer)
-                  
-                msg.edit(resultsEmbed);
-            } catch (err) {
-                console.log(err);
             }
 
-
-        });
+            polls.set(msg.id, userVotes);
+            let reactions = await msg.awaitReactions(filter, { time: time });
+            let thumbsUp = reactions.get('🔵');
+            let thumbsDown = reactions.get('🔴');
+            let thumbsUpResults = 0,
+                thumbsDownResults = 0;
+            if (thumbsUp)
+                thumbsUpResults = thumbsUp.users.cache.filter(u => !u.bot).size;
+            if (thumbsDown)
+                thumbsDownResults = thumbsDown.users.cache.filter(u => !u.bot).size;
+            const resultsEmbed = new Discord.MessageEmbed()
+            .setTitle(`:bar_chart: Sondage :`)
+            .setDescription(`${question}
+            🔵 - ${thumbsUpResults} Pour\n\n🔴 - ${thumbsDownResults} Contre\n`)
+            .setColor(`#2f3136`)
+            .setFooter(message.client.footer)
+            await msg.edit(resultsEmbed);
+        } catch (err) {
+            console.log(err);
+        }
 
 
 
