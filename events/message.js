@@ -1,6 +1,8 @@
 const guild = require('../database/models/guild');
 const levelModel = require('../database/models/level');
 const emoji = require('../emojis.json');
+const Warn = require('../database/models/warn');
+
 const config = require('../config.json');
 const Welcome = require('../database/models/Welcome');
 const adventure = require("../database/models/adventure");
@@ -16,6 +18,33 @@ module.exports = {
         if (message.author.bot) return;
         if (!message) return;
         if (!message.member && !message.author) return;
+        const automod = await Welcome.findOne({ serverID: message.guild.id, reason: `automod` })
+        if (automod) {
+            if (/(discord\.(gg|io|me|li)\/.+|discordapp\.com\/invite\/.+)/i.test(message.content)) {
+                if (!message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES")) {
+                    message.delete();
+                    const verynew = new Warn({
+                        serverID: `${message.guild.id}`,
+                        manID: `${message.author.id}`,
+                        reason: `A Posté une invitation`,
+                        date: new Date,
+                        moderator: `${client.user.id}`
+                    }).save()
+                    const reportEmbed = new Discord.MessageEmbed()
+                    .setTitle(`😒 Invitation....`)
+
+
+                .setDescription(`${message.author} pas d'invitations ici , je vous ai ajouté 1 warn , à 3 , c'est le ban `)
+
+
+
+                .setFooter(client.footer)
+
+                .setColor("#DA7226");
+                return message.channel.send(reportEmbed);
+                }
+            }
+        }
         let prefixedb = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         if (prefixedb) {
 
@@ -125,7 +154,7 @@ module.exports = {
                                 }
                                 dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
                                     const files = getLinks(message.attachments);
-                                    msgWebhook.send(message.content ,files)
+                                    msgWebhook.send(message.content, files)
 
 
                                     setTimeout(function() {
@@ -247,7 +276,24 @@ module.exports = {
             validatePermissions(permissions);
             for (const permission of permissions) {
                 if (!message.member.hasPermission(permission)) {
-                    return message.channel.send(`${emoji.error} Il vous manque la permission \`${permission}\` pour utiliser cette commande`);
+                    const reportEmbed = new Discord.MessageEmbed()
+                        .setTitle(`${emoji.error}  Erreur.....`)
+
+
+
+                    .addField("Il vous manque des pemissions...", `\`\`\`diff\n\`${permission}\`\`\`\`
+                
+                Veuillez demander à un Administateur ces permissions.
+                `)
+
+
+
+                    .setFooter(footer)
+
+                    .setColor(config.color);
+
+                    message.channel.send(reportEmbed);
+                    return;
 
                 }
             }
