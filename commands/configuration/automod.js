@@ -18,10 +18,10 @@ module.exports = {
             const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `automod` })
             if (verify) {
                 const newchannel = await Welcome.findOneAndDelete({ serverID: message.guild.id, reason: `automod` });
-                return message.channel.send(`${emoji.succes} J'ai désactivé l'automodération dans ce serveur avec succès.`)
+                return message.channel.send(`${emoji.succes} - J'ai désactivé l'automodération dans ce serveur avec succès.`)
 
             } else {
-                return message.channel.send(`${emoji.error} Vous devez avoir une configuration pour la supprimer.`)
+                return message.channel.send(`${emoji.error} - Vous devez avoir une configuration pour la supprimer.`)
 
             }
 
@@ -29,14 +29,15 @@ module.exports = {
         if (args[0] === 'on') {
             const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `automod` })
             if (verify) {
-                return message.channel.send(`${emoji.error} L'automodération est déja activée dans ce serveur.`)
+                return message.channel.send(`${emoji.error} - L'automodération est déja activée dans ce serveur.`)
 
             } else {
                 const verynew = new Welcome({
                     serverID: `${message.guild.id}`,
                     reason: 'automod',
+                    channelID:'fdp',
                 }).save();
-                return message.channel.send(`${emoji.succes} J'ai activé l'automodération dans ce serveur avec succès.`)
+                return message.channel.send(`${emoji.succes} - J'ai activé l'automodération dans ce serveur avec succès.`)
 
             }
 
