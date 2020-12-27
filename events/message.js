@@ -31,17 +31,17 @@ module.exports = {
                         moderator: `${client.user.id}`
                     }).save()
                     const reportEmbed = new Discord.MessageEmbed()
-                    .setTitle(`😒 Invitation....`)
+                        .setTitle(`😒 Invitation....`)
 
 
-                .setDescription(`${message.author} pas d'invitations ici , je vous ai ajouté 1 warn , à 3 , c'est le ban `)
+                    .setDescription(`${message.author} pas d'invitations ici , je vous ai ajouté 1 warn , à 3 , c'est le ban `)
 
 
 
-                .setFooter(client.footer)
+                    .setFooter(client.footer)
 
-                .setColor("#DA7226");
-                return message.channel.send(reportEmbed);
+                    .setColor("#DA7226");
+                    return message.channel.send(reportEmbed);
                 }
             }
         }
@@ -281,9 +281,11 @@ module.exports = {
 
 
 
-                    .addField("Il vous manque des pemissions...", `\`\`\`diff\n\`${permission}\`\`\`\`
+                    .addField("Il vous manque des pemissions...", `
+                    \`\`\`diff\n\`${permission}\`\`\`\`
                 
                 Veuillez demander à un Administateur ces permissions.
+
                 `)
 
 
@@ -318,17 +320,17 @@ module.exports = {
             if (!advdb) return message.channel.send(`${emoji.error} Vous devez déja commencer une quete... faite ${prefix}quete-start pour commencer 😉`)
         }
         if (command.guildOnly && message.channel.type === 'dm') {
-            return message.reply(`${emoji.error} | je ne peux pas faire cette commande en MP.... !`);
+            return message.reply(`${emoji.error} - je ne peux pas faire cette commande en MP.... !`);
         }
         if (command.owner && message.author.id !== config.ownerID) {
-            return message.reply(`${emoji.error}  | Tu dois etre owner du bot pour faire cette commande !`);
+            return message.reply(`${emoji.error} - Tu dois etre owner du bot pour faire cette commande !`);
         }
         if (command.args === 'user' && !message.mentions.members.first()) {
             if (message.guild.members.cache.get(args[0])) {
 
             } else {
 
-                let reply = `${emoji.error}  | Cette commande requiert des arguments , ${message.author}!`;
+                let reply = `${emoji.error}  - Cette commande requiert des arguments , ${message.author}!`;
 
                 if (command.usage) {
 
@@ -387,7 +389,7 @@ module.exports = {
 
             if (command.usage) {
                 const reportEmbed = new Discord.MessageEmbed()
-                    .setTitle(`${emoji.error}  | Erreur d'utlisation`)
+                    .setTitle(`${emoji.error} - Erreur d'utlisation`)
 
 
 
@@ -432,7 +434,8 @@ module.exports = {
             command.execute(message, args, );
         } catch (error) {
             console.error(error);
-            message.channel.send(`${emoji.error} **| Une erreur est survenue lors de l'éxécution de la commande !**`);
+            message.channel.send(`${emoji.error} - Une erreur est survenue lors de l'éxécution de la commande . Veuillez rejoindre le support pour signaler cette erreur :
+            https://discord.gg/bCK2FrJfAG`);
         }
 
     }
