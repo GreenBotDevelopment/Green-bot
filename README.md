@@ -20,7 +20,7 @@ Mais regardons plus en profondeur ses fonctionnalitées :
 
 :blue_circle: **Système de ticket**
 
-:red_circle:**Messages d'accueil  & départs**
+:red_circle: **Messages d'accueil  & départs**
 
 :white_circle: **Starboard**
 
@@ -30,6 +30,9 @@ et bien plus....
 
 Alors ! n'hésite plus ! ajoute le vite !
 **Liens :**
+
 > Dashboard : http://green-bot.tk/
+
 > Support : https://discord.gg/bCK2FrJfAG
+
 A bientot :wave_tone2:
