@@ -1,4 +1,6 @@
 # Green-bot
+Pour contribuer , veuillez ouvrir une requete dans pulls requests
+
 🟢 Un bot open source ou tout le monde peut faire avancer le développement
 
 `Green-bot`
