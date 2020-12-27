@@ -20,13 +20,14 @@ Mais regardons plus en profondeur ses fonctionnalitées :
 
 :blue_circle: **Système de ticket**
 
-:red_circle:** Messages d'accueil  & départs**
+:red_circle:**Messages d'accueil  & départs**
 
-:white_circle: ** Starboard**
+:white_circle: **Starboard**
 
-:white_circle: ** Système d'interchat**
+:white_circle: **Système d'interchat**
 
 et bien plus....
+
 Alors ! n'hésite plus ! ajoute le vite !
 **Liens :**
 > Dashboard : http://green-bot.tk/
