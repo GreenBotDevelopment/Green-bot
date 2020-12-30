@@ -7,6 +7,6 @@
     "supportID": "787706192440459294",
     "status": "regarder ses {server} serveurs",
     "color": "#3A871F",
-    "MongoURL": "mongodb+srv://pauldb09:jamesb001@daltie.ifwuu.mongodb.net/daltie?retryWrites=true&w=majority"
+    "MongoURL": ""
 
 }
