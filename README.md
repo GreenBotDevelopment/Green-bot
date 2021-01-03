@@ -29,7 +29,7 @@ Mais regardons plus en profondeur ses fonctionnalitées :
 :white_circle: **Système d'interchat**
 
 et bien plus....
-
+ce bot est fait pour toi !
 Alors ! n'hésite plus ! ajoute le vite !
 
 **Liens :**
