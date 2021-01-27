@@ -85,6 +85,18 @@ client.manager.on('giveawayReactionAdded', async(giveaway, member, reaction) => 
         if (find.requiredMessages) {
             const levelModel = require('./database/models/level');
             const userdata = await levelModel.findOne({ serverID: giveaway.guildID, userID: member.id })
+               if (!userdata) {
+                const succese = new Discord.MessageEmbed()
+                    .setTitle(`${emojis.error} Participation Refusée`)
+                    .setDescription(`Votre participation pour [ce giveaway](${message.url}) a été refusée ! Vous devez avoir ${find.requiredMessages} Messages !!`)
+                    .addFields({ name: "🧷 Liens utliles", value: `
+[Dashboard](http://green-bot.tk/)-[Inviter le bot](https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8) - [Support](https://discord.gg/nrReAmApVJ) - [Github](https://github.com/pauldb09/Green-bot)` })
+                    .setColor('#982318')
+                    .setFooter(config.footer)
+                member.send(succese)
+                reaction.users.remove(member.user);
+                return;
+            }
             if (find.requiredMessages > userdata.messagec) {
                 const succese = new Discord.MessageEmbed()
                     .setTitle(`${emojis.error} Participation Refusée`)
