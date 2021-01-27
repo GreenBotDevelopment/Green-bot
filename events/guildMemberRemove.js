@@ -28,7 +28,7 @@ module.exports = {
                     const canvas = Canvas.createCanvas(1024, 450);
                     const ctx = canvas.getContext('2d');
 
-                    const background = await Canvas.loadImage('https://tutosduweb.000webhostapp.com/tuto/image.jpg');
+                    const background = await Canvas.loadImage('https://tutos-du-web.com/uploads/image.png');
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
                     ctx.strokeStyle = '#100101 ';
@@ -37,7 +37,7 @@ module.exports = {
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText('AU REVOIR 😭', canvas.width / 6, canvas.height / 3.5);
+                    ctx.fillText('AU REVOIR ', canvas.width / 6, canvas.height / 3.5);
 
 
                     ctx.font = applyText(canvas, `${member.displayName}`);
@@ -48,7 +48,7 @@ module.exports = {
 
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
-                    ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 6, canvas.height / 1.3);
+                    ctx.fillText(`#${member.guild.memberCount} Membres dans le serveur`, canvas.width / 6, canvas.height / 1.3);
 
 
 
@@ -134,7 +134,7 @@ module.exports = {
             if (target.id === member.id) {
                 const reportEmbed = new Discord.MessageEmbed()
 
-                .setDescription(` ${executor} a expulsé ${member} du serveur ! `)
+                .setDescription(` **${executor.user.tag}** a expulsé **${member.user.tag}** du serveur ! `)
                     .setTitle(`${member.guild.memberCount} membres dans le serveur.`)
                     .setThumbnail(member.user.displayAvatarURL())
 
