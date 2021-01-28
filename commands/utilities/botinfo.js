@@ -33,7 +33,7 @@ module.exports = {
             💻\`Language\` : **Discord.js**
             👨🏼‍💻\`Développeur\` : **<@${message.client.owner}>**
             💾\`Base de données\` : **MongoDB**
-            🖥\`Hébergeur\` : **Digital Ocean**
+           \`Merci à :\` : **Universe Tech YT#0077** , **!Zerio.js#0001**
             `)
 
         .setColor(message.client.color)
