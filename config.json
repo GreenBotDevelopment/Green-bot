@@ -2,9 +2,9 @@
 
     "prefix": "*",
     "token": "BOT TOKEN",
-    "ownerID": "688402229245509844",
+    "ownerID": "OWNER ID",
     "footer": " Green-bot | open source project ",
-    "supportID": "787706192440459294",
+    "supportID": "SUPPORT ID",
     "status": "regarder ses {server} serveurs",
     "color": "#3A871F",
     "MongoURL": ""
