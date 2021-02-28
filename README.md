@@ -1,5 +1,5 @@
 # Green-bot
-Pour contribuer , veuillez ouvrir une requete dans pulls requests
+:pray: S'il vous plait, si vous aimez ce projet, mettez une :star: !
 
 🟢 Un bot open source ou tout le monde peut faire avancer le développement
 
