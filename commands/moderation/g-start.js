@@ -18,7 +18,7 @@ module.exports = {
 
     usage: ' <temps> <nb de gagnants> <prix>',
     exemple: '#giveaways 2d 2 Un superbe bot en Discord.js',
-    cat: 'moderation',
+   cat: 'gway',
     permissions: ['MANAGE_GUILD'],
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
