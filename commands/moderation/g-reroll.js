@@ -9,7 +9,7 @@ module.exports = {
     args: true,
     usage: '<id>',
     exemple: '447357094895550474',
-    cat: 'moderation',
+  cat: 'gway',
     permissions: ['MANAGE_GUILD'],
     botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
     async execute(message, args, client) {
