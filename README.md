@@ -4,7 +4,7 @@
 
 # Green-bot
 [![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](http://green-bot.xyz/discord)
-[![](https://discordbots.org/api/widget/status/784773050956513290.svg)](https://discordbots.org/bot/784773050956513290)
+[![](https://discordbots.org/api/widget/status/783708073390112830.svg)](https://discordbots.org/bot/783708073390112830)
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
 
