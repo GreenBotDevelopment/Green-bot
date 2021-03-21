@@ -37,4 +37,4 @@ Vous pouvez directerment **Editer la configuration**, **Gérer vos serveurs**, *
 
 ## License
 
-Atlanta est sous licence GPL 3.0. Voir le fichier «LICENCE» pour plus d'informations. Si vous prévoyez d'utiliser une partie de ce code source dans votre propre bot, je vous serais reconnaissant d'inclure une forme de crédit quelque part.
+Green-bot est sous licence GPL 3.0. Voir le fichier «LICENCE» pour plus d'informations. Si vous prévoyez d'utiliser une partie de ce code source dans votre propre bot, je vous serais reconnaissant d'inclure une forme de crédit quelque part.
