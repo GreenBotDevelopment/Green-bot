@@ -1,41 +1,41 @@
 # Green-bot
 :pray: S'il vous plait, si vous aimez ce projet, mettez une :star: !
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Atlanta" src="https://i.goopics.net/lEENx.png">  
 
-🟢 Un bot open source ou tout le monde peut faire avancer le développement
+# Atlanta
 
-`Green-bot`
+[![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](http://green-bot.xyz/discord)
+[![](https://discordbots.org/api/widget/status/784773050956513290.svg)](https://discordbots.org/bot/784773050956513290)
+[![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
+[![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
 
-**Bot discord multis fonctions**
-Eh toi tu connais green bot ? Non ? dans ce cas, laisse moi te le présenter !
+> Ce bot est utlisé par plus de 115k d'utilisateurs dans plus de 200 serveurs.
 
-Green bot est un bot qui va gérer ton serveur , avec plus de  **100**  commandes et un pannel web !
+Green bot est un bot open source en  [Discord.js](https://discord.js.org) Et avec [Mongoose](https://mongoosejs.com/docs/api.html) par [Pauldb09](https://github.com/Pauldb09).  
+Vous êtes libre d'ajouter une étoile ⭐ pour promouvoir le projet !
 
-Mais regardons plus en profondeur ses fonctionnalitées :
+## Fonctionnalités
 
-:black_circle:**Dashboard web**
 
-:purple_circle: **Invite tracker**
+### Un magnifique site
 
-:green_circle: **Logs approfondis**
+Green bot a un magnifique dashboard qui offre plein de fonctionnalitées! Le dashboard est fait avec express et EJS!
 
-:yellow_circle: **Rôles à réaction**
+<img align="left" style="float: centrer; margin: 0 10px 0 0;" src="https://zupimages.net/up/19/31/c3ya.png" height="200" width="350"/>
+<img align="center" style="float: left; margin: 0 10px 0 0;" src="https://zupimages.net/up/19/31/vnq5.png" height="200" width="350"/>
+<img align="center" style="float: centrer; margin: 0 10px 0 0;" src="https://zupimages.net/up/19/31/htga.png" height="200" width="350"/>
 
-:blue_circle: **Système de ticket**
+Vous pouvez directerment **Editer la configuration**, **Gérer vos serveurs**, **Votre carte de rank**, Et bien plus!
 
-:red_circle: **Messages d'accueil  & départs**
+## Liens
 
-:white_circle: **Starboard**
+*   [Commands List](http://green-bot.xyz)
+*   [Installation Guide](http://green-bot.xyz/discord)
+*   [F.A.Q](http://green-bot.xyz/discord)
+*   [Discord](http://green-bot.xyz/discord)
+*   [Github](https://github.com/pauldb09/Green-bot/)
+*   [Dashboard](http://green-bot.xyz/)
 
-:white_circle: **Système d'interchat**
+## License
 
-et bien plus....
-ce bot est fait pour toi !
-Alors ! n'hésite plus ! ajoute le vite !
-
-**Liens :**
-
-> Dashboard : http://green-bot.tk/
-
-> Support : https://discord.gg/bCK2FrJfAG
-
-A bientot :wave_tone2:
+Atlanta est sous licence GPL 3.0. Voir le fichier «LICENCE» pour plus d'informations. Si vous prévoyez d'utiliser une partie de ce code source dans votre propre bot, je vous serais reconnaissant d'inclure une forme de crédit quelque part.
