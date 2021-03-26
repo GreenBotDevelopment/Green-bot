@@ -22,9 +22,7 @@ module.exports = {
 
             } else {
                 return message.channel.send(`${emoji.error} - Vous devez avoir une configuration pour la supprimer.`)
-
             }
-
         }
         if (args[0] === 'on') {
             const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `automod` })
@@ -38,24 +36,9 @@ module.exports = {
                     channelID:'fdp',
                 }).save();
                 return message.channel.send(`${emoji.succes} - J'ai activé l'automodération dans ce serveur avec succès.`)
-
             }
-
-
         } else {
             return message.channel.send(`${emoji.error} Veuillez mettre un argument , on ou off !`)
         }
-
-
-
-
-
-
-
-
-
-
-
-
     },
 };
