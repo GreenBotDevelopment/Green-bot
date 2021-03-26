@@ -32,7 +32,6 @@ module.exports = {
             } else {
                 return message.channel.send(`${emoji.error} Vous devez avoir une configuration pour la supprimer`)
             }
-
         }
         let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
         if (!channel || channel.type != 'text' || !channel.viewable) {
@@ -72,9 +71,5 @@ module.exports = {
 
             message.channel.send(embed)
         }
-
-
-
-
     },
 };
