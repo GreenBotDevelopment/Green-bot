@@ -7,9 +7,7 @@ module.exports = {
     description: 'Arrete le système d\'interchat',
     aliases: ['endinterchat'],
     cat: 'configuration',
-
     guildOnly: true,
-
     permissions: ['MANAGE_GUILD'],
     async execute(message, args) {
 
