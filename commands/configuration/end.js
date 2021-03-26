@@ -20,16 +20,9 @@ module.exports = {
 
             return message.channel.send(`${emoji.succes} j'ai mis fin à l'interchat avec succès.`);
 
-
         } else {
 
             return message.channel.send(`${emoji.error} Vous devez avoir une configuration pour la supprimer..`);
-
         }
-
-
-
-
-
     },
 };
