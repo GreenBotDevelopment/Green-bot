@@ -12,7 +12,6 @@ module.exports = {
     exemple: '!',
     permissions: ['MANAGE_GUILD'],
 
-
     async execute(message, args) {
         const prefixe = await guild.findOne({ serverID: message.guild.id, reason: `prefix` });
 
@@ -26,17 +25,7 @@ module.exports = {
             .setFooter(message.client.footer)
             .setTimestamp()
             .setColor(message.client.color);
-        message.channel.send(embed);
-
-
-
-
-
-
-
-
-
-
-
+        
+            message.channel.send(embed);
     },
 };
