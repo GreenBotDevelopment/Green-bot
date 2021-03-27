@@ -385,7 +385,7 @@ client.footer = footer;
 client.owner = config.ownerID;
 client.color = config.color;
 
-mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
     console.log("Connécté à la base de données MongoDB");
 }).catch((err) => {
     console.log("Je n'ai pas réussi à me connecter à la base de données mongoDB. Erreur:" + err);
