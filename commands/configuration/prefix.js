@@ -6,7 +6,6 @@ const { oneLine } = require('common-tags');
 module.exports = {
     name: 'prefix',
     description: 'Récupère le préfix du bot',
-
     cat: 'configuration',
     exemple: '',
 
@@ -22,16 +21,5 @@ module.exports = {
             .setTimestamp()
             .setColor(message.client.color);
         message.channel.send(embed);
-
-
-
-
-
-
-
-
-
-
-
     },
 };
