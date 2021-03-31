@@ -8,6 +8,7 @@ const Welcome = require('../database/models/Welcome');
 const adventure = require("../database/models/adventure");
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
+require('../util/extenders.js')
 module.exports = {
 
 
