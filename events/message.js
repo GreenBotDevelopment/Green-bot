@@ -11,7 +11,6 @@ const cooldowns = new Discord.Collection();
 require('../util/extenders.js')
 module.exports = {
 
-
     async execute(message) {
         const { client } = message;
         const footer = client.footer;
@@ -31,16 +30,11 @@ module.exports = {
                         date: new Date,
                         moderator: `${client.user.id}`
                     }).save()
+                    
                     const reportEmbed = new Discord.MessageEmbed()
                         .setTitle(`😒 Invitation....`)
-
-
                     .setDescription(`${message.author} pas d'invitations ici , je vous ai ajouté 1 warn , à 3 , c'est le ban `)
-
-
-
                     .setFooter(client.footer)
-
                     .setColor("#DA7226");
                     return message.channel.send(reportEmbed);
                 }
@@ -49,14 +43,12 @@ module.exports = {
         let prefixedb = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         if (prefixedb) {
 
-
         } else {
             const verynew = new guild({
                 serverID: `${message.guild.id}`,
                 content: `${config.prefix}`,
                 reason: 'prefix',
             }).save();
-
 
         }
         const userdata = await levelModel.findOne({ serverID: message.guild.id, userID: message.author.id })
@@ -67,14 +59,11 @@ module.exports = {
                     message.channel.send(` GG ${message.author} , tu viens de passer un niveau ! Tu es désormais au niveau ${userdata.level + 1} !`)
                     const levelupdate = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: '0', level: userdata.level + 1, messagec: userdata.messagec + 1 } }, { new: true });
 
-
                 } else {
                     const levelupdategt = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: '0', level: userdata.level + 1, messagec: userdata.messagec + 1 } }, { new: true });
-
-                }
+               }
             } else {
                 const normalupdate = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: `${userdata.xp + 5}`, messagec: userdata.messagec + 1 } }, { new: true });
-
             }
         } else {
             const verynew = new levelModel({
@@ -85,8 +74,6 @@ module.exports = {
                 messagec: 1
             }).save();
         }
-
-
 
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         const prefix = prefixget.content;
@@ -99,13 +86,8 @@ module.exports = {
                         .setTitle(`Interchat : Erreur`)
 
 
-                    .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant !
-            Veuillez faire : \`${prefix}interchat-server <id>\``)
-
-
-
+                    .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant ! Veuillez faire : \`${prefix}interchat-server <id>\``)
                     .setFooter(client.footer)
-
                     .setColor("#DA7226");
                     return message.channel.send(reportEmbed);
                 } else {
@@ -113,14 +95,8 @@ module.exports = {
                     if (!oserver) {
                         const reportEmbed = new Discord.MessageEmbed()
                             .setTitle(`Interchat : Erreur`)
-
-
                         .setDescription(`Je ne trouve plus le serveur de l'interchat , il a a peut être été supprimé ou j'ai quitté ce serveur...`)
-
-
-
                         .setFooter(client.footer)
-
                         .setColor("#DA7226");
                         return message.channel.send(reportEmbed);
                     } else {
@@ -131,17 +107,8 @@ module.exports = {
                                 if (message.content === 'info') {
                                     const reportEmbed = new Discord.MessageEmbed()
                                         .setTitle(`Interchat : Info`)
-
-
-                                    .setDescription(`Vous êtes actuellement en interchat avec le serveur **${oserver.name}**
-                                    ${oserver.channels.cache.size} salons
-                                    ${oserver.roles.cache.size} roles
-                     `)
-
-
-
+                                    .setDescription(`Vous êtes actuellement en interchat avec le serveur **${oserver.name}** ${oserver.channels.cache.size} salons ${oserver.roles.cache.size} roles`)
                                     .setFooter(client.footer)
-
                                     .setColor(client.color);
                                     return message.channel.send(reportEmbed);
                                 }
@@ -166,8 +133,6 @@ module.exports = {
                         }
                     }
                 }
-
-
             }
         }
         const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
@@ -187,7 +152,6 @@ module.exports = {
             let afkdb = await guild.findOne({ serverID: u.id, reason: `afk` })
             if (afkdb) {
                 message.channel.send(` ${u.tag} est afk pour la raison : \`${afkdb.content}\``);
-
             }
         });
         if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -221,7 +185,6 @@ module.exports = {
                     content: `${message.author.id}`,
                     reason: 'command',
                 }).save();
-
 
             }
         }
@@ -279,17 +242,7 @@ module.exports = {
                 if (!message.member.hasPermission(permission)) {
                     const reportEmbed = new Discord.MessageEmbed()
                         .setTitle(`${emoji.error}  Erreur.....`)
-
-
-
-                    .addField("Il vous manque des pemissions...", `
-                    \`\`\`diff\n\`${permission}\`\`\`\`
-                
-                Veuillez demander à un Administateur ces permissions.
-
-                `)
-
-
+                    .addField("Il vous manque des pemissions...", ` \`\`\`diff\n\`${permission}\`\`\`\` Veuillez demander à un Administateur ces permissions.  `)
 
                     .setFooter(footer)
 
