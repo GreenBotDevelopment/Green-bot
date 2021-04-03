@@ -7,7 +7,6 @@ module.exports = {
     name: 'automod',
     description: 'Active ou désactive le système d\'automodération',
 
-
     cat: 'configuration',
     args: true,
     usage: 'on/off',
