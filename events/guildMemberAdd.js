@@ -6,7 +6,6 @@ const moment = require('moment')
 const Canvas = require('canvas');
 module.exports = {
 
-
     async execute(member, client) {
         let logdb = await Welcome.findOne({ serverID: member.guild.id, reason: 'logs' })
         if (logdb) {
@@ -19,13 +18,10 @@ module.exports = {
 
             .setDescription(`Compté crée le ${moment(member.user.createdTimestamp).locale('fr').format('LT ,')} ${moment(member.user.createdTimestamp).locale('fr').format('LL, ')} ${moment(member.user.createdTimestamp).locale('fr').fromNow()}`)
 
-
-
             .setFooter(client.footer)
 
             .setColor("#04781B");
             if (logchannel) logchannel.send(reportEmbed);
-
         }
         const applyText = (canvas, text) => {
             const ctx = canvas.getContext('2d');
@@ -63,12 +59,9 @@ module.exports = {
 
                     ctx.fillText(`${member.displayName}`, canvas.width / 10, canvas.height / 1.8);
 
-
                     ctx.font = '35px sans-serif';
                     ctx.fillStyle = '#100101 ';
                     ctx.fillText(`#${member.guild.memberCount} membres dans le serveur`, canvas.width / 10, canvas.height / 1.3);
-
-
 
                     ctx.beginPath();
 
@@ -91,8 +84,6 @@ module.exports = {
                     if (welcomechannel) {
 
                         if (welcomedb.message) {
-
-
 
                             if (member.user.bot) {
                                 if (welcomedb.image) {
@@ -173,16 +164,6 @@ module.exports = {
 
                             }
 
-
-
-
-
-
-
-
-
-
-
                         } else {
                             if (welcomedb.image) {
                                 welcomechannel.send(attachment);
@@ -194,7 +175,5 @@ module.exports = {
 
             }
         }
-
-
     }
 };
