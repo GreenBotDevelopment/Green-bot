@@ -18,10 +18,5 @@ module.exports = {
             })
             g.send(`🔒 | Le salon a été bloqué par ${message.author}`)
         })
-
-
-
-
-
     },
 };
