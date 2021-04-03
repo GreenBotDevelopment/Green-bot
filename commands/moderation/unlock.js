@@ -18,11 +18,6 @@ module.exports = {
                 name: g.name.replace(/\s*🔒/, '')
             })
             g.send(`🔓 | Salon déverrouillé avec succès`)
-
         })
-
-
-
-
     },
 };
