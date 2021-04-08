@@ -23,7 +23,7 @@ Green bot a un magnifique dashboard qui offre plein de fonctionnalitées! Le das
 
 <img align="left" style="float: centrer; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829707973626429471/unknown.png"/>
 <img align="center" style="float: left; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829708123064238110/unknown.png"/>
-<img align="center" style="float: centrer; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829708082077630565/unknown.png" height="200" width="350"/>
+<img align="center" style="float: centrer; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829708082077630565/unknown.png"/>
 
 Vous pouvez directerment **Editer la configuration**, **Gérer vos serveurs**, **Votre carte de rank**, Et bien plus!
 
