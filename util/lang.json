@@ -1,0 +1,17 @@
+{
+    "languages": ["fr", "en"],
+    "translations": {
+        "LANG_NO_CORRECT": {
+            "fr": "Veuillez fournir une langue valide , **fr** (pour français) ou **en** (pour anglais)",
+            "en": "Please provide a valid language  , **fr** (for french) or **en** (for english)"
+        },
+        "HELLO_NEED_HELP": {
+            "fr": "Eh je suis {bot} , mon préfixe est {prefix} , faites {prefix}help pour la liste des commandes",
+            "en": "Please provide an valid language  , **fr** (for french) or **en** (for english)"
+        },
+        "NO_VIDEO_FOUND": {
+            "fr": "Désolé , je n'ai trouvé aucunne vidéo sur youtube , veuillez fournir une autre recherche.",
+            "en": "Sorry , no videos found , please try again"
+        }
+    }
+}
