@@ -25,7 +25,6 @@ module.exports = {
                     .setDescription(`Commandes : **${commands.size}**\nVous pouvez me configurer **entièrement** depuis mon [Dashboard](http://green-bot.xyz/)`)
                     .setAuthor(`Liste des commande Green-bot`)
                     .setFooter(`Fait ${prefix}help <commande> pour de l'aide sur une commande !`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-
                 .addFields({ name: `${emoji.music} | Musique (${commands.filter(command => command.cat === "musique").size}) `, value: commands.filter(command => command.cat === "musique").map(command => `\`${command.name}\``).join(', ') })
                     .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
                     .addFields({ name: `${emoji.util} | Utilitaires (${commands.filter(command => command.cat === "utilities").size}) `, value: commands.filter(command => command.cat === "utilities").map(command => `\`${command.name}\``).join(', ') })
@@ -34,12 +33,7 @@ module.exports = {
                     .addFields({ name: `<:gift:829357477682085968> | Giveaway (${commands.filter(command => command.cat === "gway").size}) `, value: commands.filter(command => command.cat === "gway").map(command => `\`${command.name}\``).join(', ') })
                     .addFields({ name: `<:quiz:829357477966643220> | Jeux (${commands.filter(command => command.cat === "quiz").size}) `, value: commands.filter(command => command.cat === "quiz").map(command => `\`${command.name}\``).join(', ') });
 
-                if (customs.filter(c => c.displayHelp === "ok").length > 0) {
-                    exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
-
-                } else {
-
-               }
+                if (customs.filter(c => c.displayHelp === "ok").length > 0) exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
 
                exampleEmbed.addField("> Dashboard" ,`[Clique ici](http://green-bot.xyz/)` ,true)
 
@@ -60,31 +54,26 @@ module.exports = {
             return;
         }
 
-        const name = args[0].toLowerCase();
-        const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+        const name = args[0].toLowerCase(), command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
-        if (!command) {
-            return message.errorMessage(`Je n'ai aucunne commande ou aliases de nom : \`${name}\``);
-        }
+        if (!command) return message.errorMessage(`Je n'ai aucunne commande ou aliases de nom : \`${name}\``);
+                
         let des = await message.translate(command.description)
+        
         const reportEmbed = new Discord.MessageEmbed()
             .setTitle(`${command.name}`)
 .setDescription(command.description || "Aucunne description pour cette commande")
         .setFooter(message.client.footer)
-
         .setColor(message.client.color)
-
             .addField("> Usage", `${prefix}${command.name} ${command.usage || ""}`,true)
             .addField("> Exemple", `${command.exemple ? `${prefix}${command.name} ${command.exemple}` : "Aucun exemple"}`,true)
-            .addField("> Satut", `<:IconSwitchIconOn:825378657287274529>`,true)
-            .addField("> Utilisable en MP", `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`,true)
-
-            .addField("> Aliases", `${command.aliases.join(', ') || "Aucune aliases"}`);
-      reportEmbed.addField('> Permissions Requises', `${command.permissions || "Vous n'avez pas besoin de permission :)"}`)
-      reportEmbed.addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions}`: "Le bot n'a pas besoin de permissions :)"}`)
+        .addField("Statut", "Satut de la commande : <:IconSwitchIconOn:825378657287274529>\nEn mp :" + `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`, true)
+            .addField("> Aliases", `${command.aliases.join(', ') || "Aucune aliases"}`)
+      .addField('> Permissions Requises', `${command.permissions || "Vous n'avez pas besoin de permission :)"}`)
+      .addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions}`: "Le bot n'a pas besoin de permissions :)"}`);
 
 
-        message.channel.send(reportEmbed);
+        message.channel.send(null, { embed: reportEmbed });
 
     },
 };
