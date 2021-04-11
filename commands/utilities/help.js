@@ -1,76 +1,87 @@
 const config = require('../../config.json');
 const Discord = require('discord.js');
 const guild = require('../../database/models/guild');
+const CmdModel = require('../../database/models/cmd');
+
 const emoji = require('../../emojis.json');
 module.exports = {
-    name: 'help',
-    description: '  Affiche une liste de toutes les commandes actuelles, triées par catégorie. Peut être utilisé en conjonction avec une commande pour plus d\'informations.',
-    aliases: ['commands'],
-    usage: '[command name]',
-    cat: 'utilities',
-    cooldown: 5,
-    async execute(message, args) {
-        const data = [];
-        const { commands } = message.client;
-        let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
-        const prefix = prefixget.content;
-        if (!args.length) {
-            let Title = await message.translate(`Commande d'aide`)
-            let Description = await message.translate(`● Bonjour , je suis ${message.client.user.tag} et mon préfixe est \`${prefix}\` 
-● Pour de l'aide sur une commande : \`${prefix}help <commande>\`
-● Pour me configurer , allez sur mon  [Dashboard](http://green-bot.tk/)`)
-            const exampleEmbed = new Discord.MessageEmbed()
-                .setColor(message.client.color || '#3A871F')
+        name: 'help',
+        description: '  Affiche une liste de toutes les commandes actuelles, triées par catégorie. Peut être utilisé en conjonction avec une commande pour plus d\'informations.',
+        aliases: ['commands', 'aide', 'cmd', 'h'],
+        usage: '[command name]',
+        cat: 'utilities',
+        cooldown: 5,
+        async execute(message, args) {
+            const data = [];
+            const { commands } = message.client;
+            let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` }).sort()
+            const prefix = prefixget.content;
+            if (!args.length) {
+                let customs = await CmdModel.find({ serverID: message.guild.id })
+                let Title = await message.translate(`Commande d'aide - Green-bot`)
+                let Description = await message.translate(`● Vous pouvez me configurer depuis mon [Dashboard](http://green-bot.xyz/commands) `)
+                const exampleEmbed = new Discord.MessageEmbed()
+                    .setColor(message.client.color)
+                    .setDescription(`Commandes : **${commands.size}**\nVous pouvez me configurer **entièrement** depuis mon [Dashboard](http://green-bot.xyz/)`)
+                    .setAuthor(`Liste des commande Green-bot`)
+                    .setFooter(`Fait ${prefix}help <commande> pour de l'aide sur une commande !`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 
-            .setAuthor(`${message.client.user.username} - ${Title}`, message.client.user.displayAvatarURL())
-                .setDescription(Description)
                 .addFields({ name: `${emoji.music} | Musique (${commands.filter(command => command.cat === "musique").size}) `, value: commands.filter(command => command.cat === "musique").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.util} | Utilitaires (${commands.filter(command => command.cat === "utilities").size}) `, value: commands.filter(command => command.cat === "utilities").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.moderator} | Modération (${commands.filter(command => command.cat === "moderation").size}) `, value: commands.filter(command => command.cat === "moderation").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.configuration} | Configuration (${commands.filter(command => command.cat === "configuration").size}) `, value: commands.filter(command => command.cat === "configuration").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `🎁 | Giveaway (${commands.filter(command => command.cat === "gway").size}) `, value: commands.filter(command => command.cat === "gway").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.fun}  | Fun (${commands.filter(command => command.cat === "fun").size})`, value: commands.filter(command => command.cat === "fun").map(command => `\`${command.name}\``).join(', ') })
-                .addFields({ name: `${emoji.picture}  | Images (${commands.filter(command => command.cat === "pictures").size})`, value: commands.filter(command => command.cat === "pictures").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `${emoji.util} | Utilitaires (${commands.filter(command => command.cat === "utilities").size}) `, value: commands.filter(command => command.cat === "utilities").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `${emoji.moderator} | Modération (${commands.filter(command => command.cat === "moderation").size}) `, value: commands.filter(command => command.cat === "moderation").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `${emoji.configuration} | Configuration (${commands.filter(command => command.cat === "configuration").size}) `, value: commands.filter(command => command.cat === "configuration").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `<:gift:829357477682085968> | Giveaway (${commands.filter(command => command.cat === "gway").size}) `, value: commands.filter(command => command.cat === "gway").map(command => `\`${command.name}\``).join(', ') })
+                    .addFields({ name: `<:quiz:829357477966643220> | Jeux (${commands.filter(command => command.cat === "quiz").size}) `, value: commands.filter(command => command.cat === "quiz").map(command => `\`${command.name}\``).join(', ') });
+
+                if (customs.filter(c => c.displayHelp === "ok").length > 0) {
+                    exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
+
+                } else {
+
+               }
+
+               exampleEmbed.addField("> Dashboard" ,`[Clique ici](http://green-bot.xyz/)` ,true)
+
+                  exampleEmbed.addField("> Support" ,`[Clique Ici](http://green-bot.xyz/discord)` ,true)
+                  exampleEmbed.addField("> Inviter" ,`[Clique ici](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=8)` ,true)
 
 
 
-
-            .addFields({ name: "Liens utliles", value: `
-            [Dashboard](http://green-bot.tk/)-[Inviter le bot](https://discord.com/oauth2/authorize?client_id=${message.client.user.id}&scope=bot&permissions=8) - [Support](https://discord.gg/nrReAmApVJ) - [Github](https://github.com/pauldb09/Green-bot)` })
-
-
-
-            return message.channel.send(exampleEmbed)
+            message.channel.send(exampleEmbed)
                 .then(() => {
-                    if (message.channel.type === 'dm') return;
+
 
                 })
                 .catch(error => {
-                    console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
-                    message.reply('it seems like I can\'t DM you!');
+
+                    message.errorMessage(`Une erreur est survenue , surement les permissions`)
                 });
+            return;
         }
 
         const name = args[0].toLowerCase();
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) {
-            return message.errorMessage(`La commande indiquée n\'est pas une commande valide !`);
+            return message.errorMessage(`Je n'ai aucunne commande ou aliases de nom : \`${name}\``);
         }
         let des = await message.translate(command.description)
         const reportEmbed = new Discord.MessageEmbed()
-            .setTitle(`Commande  \`${command.name}\``)
-
+            .setTitle(`${command.name}`)
+.setDescription(command.description || "Aucunne description pour cette commande")
         .setFooter(message.client.footer)
 
         .setColor(message.client.color)
 
-        .addField("Description", `\`\`\`\n${des  || "Aucune description"}\`\`\``)
-            .addField("Usage", `\`\`\`diff\n${prefix}${command.name} ${command.usage || ""}\`\`\``)
-            .addField("Aliases", `\`\`\`https\n${command.aliases || "Aucune aliases"}\`\`\``);
-        if (command.exemple) reportEmbed.addField('Exemple', `\`\`\`diff\n${prefix}${command.name} ${command.exemple}\`\`\``);
-        if (command.permissions) reportEmbed.addField('Permissions', `\`\`\`diff\n${command.permissions}\`\`\``)
+            .addField("> Usage", `${prefix}${command.name} ${command.usage || ""}`,true)
+            .addField("> Exemple", `${command.exemple ? `${prefix}${command.name} ${command.exemple}` : "Aucun exemple"}`,true)
+            .addField("> Satut", `<:IconSwitchIconOn:825378657287274529>`,true)
+            .addField("> Utilisable en MP", `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`,true)
+
+            .addField("> Aliases", `${command.aliases.join(', ') || "Aucune aliases"}`);
+      reportEmbed.addField('> Permissions Requises', `${command.permissions || "Vous n'avez pas besoin de permission :)"}`)
+      reportEmbed.addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions}`: "Le bot n'a pas besoin de permissions :)"}`)
 
 
         message.channel.send(reportEmbed);
