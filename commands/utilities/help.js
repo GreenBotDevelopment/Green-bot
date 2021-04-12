@@ -54,7 +54,7 @@ module.exports = {
             return;
         }
 
-        const name = args[0].toLowerCase(), command = (commands.get(message.client.aliases.get(name) ? message.client.aliases.get(name) : name));
+        const name = args[0].toLowerCase(), command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
         if (!command) return message.errorMessage(`Je n'ai aucunne commande ou aliases de nom : \`${name}\``);
                 
