@@ -12,9 +12,7 @@ require('../util/extenders.js')
 module.exports = {
 
     async execute(message) {
-        const { client } = message;
-        const footer = client.footer;
-        const color = client.color;
+        const { client } = message, footer = client.footer, color = client.color;
         if (message.author.bot) return;
         if (!message) return;
         if (!message.member && !message.author) return;
@@ -41,16 +39,13 @@ module.exports = {
             }
         }
         let prefixedb = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
-        if (prefixedb) {
-
-        } else {
+        if (!prefixedb) {
             const verynew = new guild({
                 serverID: `${message.guild.id}`,
                 content: `${config.prefix}`,
                 reason: 'prefix',
             }).save();
-
-        }
+        };
         const userdata = await levelModel.findOne({ serverID: message.guild.id, userID: message.author.id })
         if (userdata) {
             if (userdata.xp + 5 > 100) {
@@ -58,13 +53,8 @@ module.exports = {
                 if (levelstsats) {
                     message.channel.send(` GG ${message.author} , tu viens de passer un niveau ! Tu es désormais au niveau ${userdata.level + 1} !`)
                     const levelupdate = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: '0', level: userdata.level + 1, messagec: userdata.messagec + 1 } }, { new: true });
-
-                } else {
-                    const levelupdategt = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: '0', level: userdata.level + 1, messagec: userdata.messagec + 1 } }, { new: true });
-               }
-            } else {
-                const normalupdate = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: `${userdata.xp + 5}`, messagec: userdata.messagec + 1 } }, { new: true });
-            }
+                } else const levelupdategt = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: '0', level: userdata.level + 1, messagec: userdata.messagec + 1 } }, { new: true });
+            } else const normalupdate = await levelModel.findOneAndUpdate({ serverID: message.guild.id, userID: message.author.id }, { $set: { xp: `${userdata.xp + 5}`, messagec: userdata.messagec + 1 } }, { new: true });
         } else {
             const verynew = new levelModel({
                 serverID: `${message.guild.id}`,
@@ -73,19 +63,15 @@ module.exports = {
                 level: 0,
                 messagec: 1
             }).save();
-        }
+        };
 
-        let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
-        const prefix = prefixget.content;
-        const ischannel = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat` })
+        let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` }), prefix = prefixget.content, ischannel = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat` })
         if (ischannel) {
             if (ischannel.channelID === message.channel.id) {
                 const serv = await Welcome.findOne({ serverID: message.guild.id, reason: `interchat-s` })
                 if (!serv) {
                     const reportEmbed = new Discord.MessageEmbed()
-                        .setTitle(`Interchat : Erreur`)
-
-
+                     .setTitle(`Interchat : Erreur`)
                     .setDescription(`Vous avez défini le salon de l'interchat mais pas un serveur correspondant ! Veuillez faire : \`${prefix}interchat-server <id>\``)
                     .setFooter(client.footer)
                     .setColor("#DA7226");
@@ -123,8 +109,6 @@ module.exports = {
                                 dchannel.createWebhook(message.author.username, { avatar: avatar }).then(msgWebhook => {
                                     const files = getLinks(message.attachments);
                                     msgWebhook.send(message.content, files)
-
-
                                     setTimeout(function() {
                                         msgWebhook.delete()
                                     }, 1000 * 5)
@@ -147,7 +131,7 @@ module.exports = {
                 .setFooter(message.client.footer || 'Green-Bot | Open source bot by 𝖕𝖆𝖚𝖑𝖉𝖇09#9846')
 
             return message.channel.send({ embed })
-        }
+        };
         message.mentions.users.forEach(async(u) => {
             let afkdb = await guild.findOne({ serverID: u.id, reason: `afk` })
             if (afkdb) {
@@ -156,28 +140,17 @@ module.exports = {
         });
         if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-        const args = message.content.slice(prefix.length).trim().split(/ +/);
-        const commandName = args.shift().toLowerCase();
+        const args = message.content.slice(prefix.length).trim().split(/ +/), commandName = args.shift().toLowerCase();
 
-        const command = client.commands.get(commandName) ||
-            client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-        if (!command) {
-            return;
-        } else {
-            if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
-                return;
-
-            }
-            if (!message.guild.me.hasPermission("EMBED_LINKS")) {
-                return message.channel.send(`${emoji.error} Il manque au bot la permission \`EMBED_LINKS\` , qui permet de faire des embeds . Veuillez lui la donner pour son bon fonctionnement.`);
-
-            }
+        if (command) {
+            if (!message.guild.me.hasPermission("SEND_MESSAGES")) return;
+            if (!message.guild.me.hasPermission("EMBED_LINKS")) return message.channel.send(`${emoji.error} Il manque au bot la permission \`EMBED_LINKS\` , qui permet de faire des embeds . Veuillez lui la donner pour son bon fonctionnement.`);
             let commanddb = await guild.findOne({ serverID: message.guild.id, content: message.author.id, reason: `command` })
             if (commanddb) {
                 let newcommand = +commanddb.description + 1;
                 const levelupdate = await guild.findOneAndUpdate({ serverID: message.guild.id, content: message.author.id, reason: `command` }, { $set: { description: newcommand } }, { new: true });
-
             } else {
                 const verynew = new guild({
                     serverID: `${message.guild.id}`,
@@ -186,9 +159,8 @@ module.exports = {
                     reason: 'command',
                 }).save();
 
-            }
-        }
-
+            };
+        };
         const validatePermissions = (permissions) => {
             const validPermissions = [
                 'CREATE_INSTANT_INVITE',
@@ -227,96 +199,63 @@ module.exports = {
             for (const permission of permissions) {
                 if (!validPermissions.includes(permission)) {
                     console.log(`Unknown permission node "${permission}"`);
-                }
-            }
-        }
+                };
+            };
+        };
         let permissions = command.permissions;
 
         if (permissions) {
-            if (typeof permissions === 'string') {
-                permissions = [permissions]
-            }
-
+            if (typeof permissions === 'string') permissions = [permissions];
             validatePermissions(permissions);
             for (const permission of permissions) {
                 if (!message.member.hasPermission(permission)) {
                     const reportEmbed = new Discord.MessageEmbed()
-                        .setTitle(`${emoji.error}  Erreur.....`)
+                    .setTitle(`${emoji.error}  Erreur.....`)
                     .addField("Il vous manque des pemissions...", ` \`\`\`diff\n\`${permission}\`\`\`\` Veuillez demander à un Administateur ces permissions.  `)
-
                     .setFooter(footer)
-
                     .setColor(config.color);
-
                     message.channel.send(reportEmbed);
                     return;
 
-                }
-            }
-        }
+                };
+            };
+        };
         let botpermissions = command.botpermissions;
-
         if (botpermissions) {
-            if (typeof botpermissions === 'string') {
-                botpermissions = [botpermissions]
-            }
-
+            if (typeof botpermissions === 'string') botpermissions = [botpermissions];
             validatePermissions(botpermissions);
             for (const permission of botpermissions) {
-                if (!message.guild.me.hasPermission(permission)) {
-                    return message.channel.send(`${emoji.error} Il manque au bot la permission \`${permission}\` pour utiliser cette commande`);
-
-                }
-            }
-        }
+                if (!message.guild.me.hasPermission(permission)) return message.channel.send(`${emoji.error} Il manque au bot la permission \`${permission}\` pour utiliser cette commande`);
+            };
+        };
         if (command.adventure) {
             let advdb = await adventure.findOne({ UserID: message.author.id, active: true })
             if (!advdb) return message.channel.send(`${emoji.error} Vous devez déja commencer une quete... faite ${prefix}quete-start pour commencer 😉`)
         }
-        if (command.guildOnly && message.channel.type === 'dm') {
-            return message.reply(`${emoji.error} - je ne peux pas faire cette commande en MP.... !`);
-        }
-        if (command.owner && message.author.id !== config.ownerID) {
-            return message.reply(`${emoji.error} - Tu dois etre owner du bot pour faire cette commande !`);
-        }
+        if (command.guildOnly && message.channel.type === 'dm') return message.reply(`${emoji.error} - je ne peux pas faire cette commande en MP.... !`);
+        if (command.owner && message.author.id !== config.ownerID) return message.reply(`${emoji.error} - Tu dois etre owner du bot pour faire cette commande !`);
         if (command.args === 'user' && !message.mentions.members.first()) {
-            if (message.guild.members.cache.get(args[0])) {
-
-            } else {
-
+            if (!message.guild.members.cache.get(args[0])) {
                 let reply = `${emoji.error}  - Cette commande requiert des arguments , ${message.author}!`;
-
                 if (command.usage) {
-
                     const reportEmbed = new Discord.MessageEmbed()
                         .setTitle(`${emoji.error}  | Erreur d'utlisation `)
-
-
-
                     .addField("Il faut mentionner un utilisateur ou mettre un id !", `\`\`\`diff\n${prefix}${command.name} ${command.usage}\`\`\``)
                         .addField("Exemple", `\`\`\`https\n${prefix}${command.name} ${command.exemple || '#pauldb09'}\`\`\``)
-
-
                     .setFooter(footer)
-
                     .setColor(client.color);
                     message.channel.send(reportEmbed);
                     return;
-                }
+                };
 
                 return message.channel.send(reply);
 
-            }
-        }
+            };
+        };
         if (command.args === 'channel' && !message.mentions.channels.first()) {
-            if (message.guild.channels.cache.get(args[0])) {
-
-            } else {
-                if (args[0] === 'disable') {
-
-                } else {
+            if (!message.guild.channels.cache.get(args[0])) {
+                if (args[0] !== 'disable') {
                     let reply = `${emoji.error}  | Cette commande requiert des arguments , ${message.author}!`;
-
                     if (command.usage) {
                         const reportEmbed = new Discord.MessageEmbed()
                             .setTitle(`${emoji.error}  | Erreur d'utlisation `)
@@ -332,12 +271,12 @@ module.exports = {
                         .setColor(client.color);
                         message.channel.send(reportEmbed);
                         return;
-                    }
+                    };
 
                     return message.channel.send(reply);
-                }
-            }
-        }
+                };
+            };
+        };
         if (command.args && !args.length) {
             let reply = `${emoji.error}  | Cette commande requiert des arguments , ${message.author}!`;
 
@@ -358,15 +297,13 @@ module.exports = {
 
                 message.channel.send(reportEmbed);
                 return;
-            }
+            };
 
             return message.channel.send(reply);
-        }
+        };
 
 
-        if (!cooldowns.has(command.name)) {
-            cooldowns.set(command.name, new Discord.Collection());
-        }
+        if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection());
 
         const now = Date.now();
         const timestamps = cooldowns.get(command.name);
@@ -378,8 +315,8 @@ module.exports = {
             if (now < expirationTime) {
                 const timeLeft = (expirationTime - now) / 1000;
                 return message.reply(`${emoji.error}  merci d'attendre encore ${timeLeft.toFixed(1)} secondes avant de réutliser la commande \`${command.name}\` `);
-            }
-        }
+            };
+        };
 
         timestamps.set(message.author.id, now);
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
@@ -390,7 +327,7 @@ module.exports = {
             console.error(error);
             message.channel.send(`${emoji.error} - Une erreur est survenue lors de l'éxécution de la commande . Veuillez rejoindre le support pour signaler cette erreur :
             https://discord.gg/bCK2FrJfAG`);
-        }
+        };
 
-    }
+    };
 };
