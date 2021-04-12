@@ -54,7 +54,7 @@ module.exports = {
             return;
         }
 
-        const name = args[0].toLowerCase(), command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+        const name = args[0].toLowerCase(), command = (commands.get(message.client.aliases.get(name) ? message.client.aliases.get(name) : name));
 
         if (!command) return message.errorMessage(`Je n'ai aucunne commande ou aliases de nom : \`${name}\``);
                 
@@ -67,7 +67,7 @@ module.exports = {
         .setColor(message.client.color)
             .addField("> Usage", `${prefix}${command.name} ${command.usage || ""}`,true)
             .addField("> Exemple", `${command.exemple ? `${prefix}${command.name} ${command.exemple}` : "Aucun exemple"}`,true)
-        .addField("Statut", "Satut de la commande : <:IconSwitchIconOn:825378657287274529>\nEn mp :" + `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`, true)
+        .addField("Statut", "Satut de la commande : <:IconSwitchIconOn:825378657287274529>\nEn mp : " + `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`, true)
             .addField("> Aliases", `${command.aliases.join(', ') || "Aucune aliases"}`)
       .addField('> Permissions Requises', `${command.permissions || "Vous n'avez pas besoin de permission :)"}`)
       .addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions}`: "Le bot n'a pas besoin de permissions :)"}`);
