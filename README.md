@@ -8,7 +8,7 @@
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
 
-> Ce bot est utlisé par plus de 115k d'utilisateurs dans plus de 200 serveurs.
+> Ce bot est utlisé par plus de 115k d'utilisateurs dans plus de 300 serveurs.
 
 Green bot est un bot open source en  [Discord.js](https://discord.js.org) Et avec [Mongoose](https://mongoosejs.com/docs/api.html) par [Pauldb09](https://github.com/Pauldb09).  
 Vous êtes libre d'ajouter une étoile ⭐ pour promouvoir le projet !
