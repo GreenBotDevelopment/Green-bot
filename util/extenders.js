@@ -3,11 +3,11 @@ const lang = require('./lang.json')
 const guild = require('../database/models/guild');
 const emoji = require('../emojis.json')
 const config = require('../config.json')
-const translate = require("@vitalets/google-translate-api");
 
+const translate = require("@vitalets/google-translate-api");
 Message.prototype.translate = async function(text, args, options = {}) {
     if (!text) {
-        throw new Error(`Aucun texte indiqué`)
+        throw new Error(`Aucun texte indiqu `)
         return;
     }
     const langbd = await guild.findOne({
@@ -24,7 +24,6 @@ Message.prototype.translate = async function(text, args, options = {}) {
 
     return texttoreturn;
 };
-
 Message.prototype.error = async function(text, args, options = {}) {
     if (text) {
         if (!lang.translations[text]) {
@@ -32,7 +31,7 @@ Message.prototype.error = async function(text, args, options = {}) {
             return;
         }
     } else {
-        throw new Error(`Aucun texte indiqué`)
+        throw new Error(`Aucun texte indiqu `)
         return;
     }
     const langbd = await guild.findOne({
@@ -69,12 +68,34 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
                 .replace('[ ', '[')
                 .replace('] ', ']')
                 .replace(': ', ':')
-            let embed = new MessageEmbed()
+            let embed1 = new MessageEmbed()
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
                 .setDescription(`${emoji.error} - ${finaltxt}`)
                 .setColor('#982318')
-                .setFooter(this.client.footer);
-            this.channel.send(embed)
+
+            this.channel.send(embed1).then((m) => {
+                m.react("<:delete:830790543659368448>")
+                const filtro = (reaction, user) => {
+                    return user.id == this.author.id;
+                };
+                m.awaitReactions(filtro, {
+                    max: 1,
+                    time: 200000,
+                    errors: ["time"]
+                }).catch(() => {
+
+                }).then(async(coleccionado) => {
+
+                    if (coleccionado) {
+                        const reaccion = coleccionado.first();
+                        if (reaccion.emoji.id === "830790543659368448") {
+                            m.delete()
+
+
+                        }
+                    }
+                });
+            });
         }).catch(error => {
 
 
@@ -113,7 +134,29 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
                 .setDescription(`${finaltxt}`)
                 .setColor(color)
                 .setFooter(config.footer);
-            this.send(embed)
+            this.send(embed).then((m) => {
+                m.react("<:delete:830790543659368448>")
+                const filtro = (reaction, user) => {
+                    return user.id == this.author.id;
+                };
+                m.awaitReactions(filtro, {
+                    max: 1,
+                    time: 200000,
+                    errors: ["time"]
+                }).catch(() => {
+
+                }).then(async(coleccionado) => {
+
+                    if (coleccionado) {
+                        const reaccion = coleccionado.first();
+                        if (reaccion.emoji.id === "830790543659368448") {
+                            m.delete()
+
+
+                        }
+                    }
+                });
+            });
         }).catch(error => {
 
 
@@ -149,13 +192,34 @@ Message.prototype.succesMessage = async function(text, args, options = {}) {
                 .replace(': ', ':')
                 .replace('<:791279906809577482: 811168114376048680>', '<:791279906809577482:811168114376048680>')
                 .replace('<: 802916311972708372: 811168497953800202>', '<:802916311972708372:811168497953800202>')
-            let embed = new MessageEmbed()
+            let embed1 = new MessageEmbed()
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
                 .setDescription(`${emoji.succes} - ${finaltxt}`)
                 .setColor(this.client.color)
 
-            .setFooter(this.client.footer);
-            this.channel.send(embed)
+
+            this.channel.send(embed1).then((m) => {
+                m.react("<:delete:830790543659368448>")
+                const filtro = (reaction, user) => {
+                    return user.id == this.author.id;
+                };
+                m.awaitReactions(filtro, {
+                    max: 1,
+                    time: 200000,
+                    errors: ["time"]
+                }).catch(() => {
+
+                }).then(async(coleccionado) => {
+                    if (coleccionado) {
+                        const reaccion = coleccionado.first();
+                        if (reaccion.emoji.id === "830790543659368448") {
+                            m.delete()
+
+
+                        }
+                    }
+                });
+            });
         }).catch(error => {
 
 
@@ -192,12 +256,34 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
                 .replace('<:791279906809577482: 811168114376048680>', '<:791279906809577482:811168114376048680>')
                 .replace('<: 802916311972708372: 811168497953800202>', '<:802916311972708372:811168497953800202>')
                 .replace('<:802916311972708372: 811168497953800202>', '<:802916311972708372:811168497953800202>')
-            let embed = new MessageEmbed()
+            let embed1 = new MessageEmbed()
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
                 .setDescription(`${finaltxt}`)
                 .setColor(this.client.color)
-                .setFooter(this.client.footer);
-            this.channel.send(embed)
+
+            this.channel.send(embed1).then((m) => {
+                m.react("<:delete:830790543659368448>")
+                const filtro = (reaction, user) => {
+                    return user.id == this.author.id;
+                };
+                m.awaitReactions(filtro, {
+                    max: 1,
+                    time: 200000,
+                    errors: ["time"]
+                }).catch(() => {
+
+                }).then(async(coleccionado) => {
+                    if (coleccionado) {
+                        const reaccion = coleccionado.first();
+                        if (reaccion.emoji.id === "830790543659368448") {
+                            m.delete()
+
+
+                        }
+                    }
+                });
+            });
+
         }).catch(error => {
 
 
@@ -233,7 +319,7 @@ Message.prototype.sendT = async function(text, args, options = {}) {
                 .replace('] ', ']')
                 .replace(': ', ':')
 
-            this.channel.send(finaltxt)
+            this.channel.send(text)
         }).catch(error => {
 
 
