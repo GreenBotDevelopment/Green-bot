@@ -3,11 +3,11 @@ const lang = require('./lang.json')
 const guild = require('../database/models/guild');
 const emoji = require('../emojis.json')
 const config = require('../config.json')
-
 const translate = require("@vitalets/google-translate-api");
+
 Message.prototype.translate = async function(text, args, options = {}) {
     if (!text) {
-        throw new Error(`Aucun texte indiqu `)
+        throw new Error(`Aucun texte indiqué`)
         return;
     }
     const langbd = await guild.findOne({
@@ -32,7 +32,7 @@ Message.prototype.error = async function(text, args, options = {}) {
             return;
         }
     } else {
-        throw new Error(`Aucun texte indiqu `)
+        throw new Error(`Aucun texte indiqué`)
         return;
     }
     const langbd = await guild.findOne({
