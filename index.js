@@ -1,11 +1,11 @@
 if(Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("La version de Node.js est inférieure à la 12.0.0. Veuillez vous mettre en v12.0.0 ou plus.");
 
-const fs = require('fs');
-const Discord = require('discord.js');
+const { readdirSync, readdir } = require('fs');
+const { Intents, Client, Collection } = require('discord.js');
 const { Database } = require('quickmongo');
 const config = require('./config.json');
 const footer = config.footer;
-const intents = new Discord.Intents();
+const intents = new Intents();
 intents.add(
     'GUILD_MEMBERS',
     'GUILDS',
@@ -14,12 +14,10 @@ intents.add(
     'GUILD_MESSAGE_REACTIONS',
     'GUILD_BANS',
     'GUILD_INVITES',
-    'GUILD_EMOJIS',
-    'GUILD_VOICE_STATES',
+    'GUILD_EMOJIS'
 );
-const client = new Discord.Client({
+const client = new Client({
     fetchAllMembers: true,
-    autoReconnect: true,
     partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER', 'REACTION', 'GUILD_VOICE_STATES'],
     intents: intents,
 });
@@ -27,8 +25,8 @@ let Temps = require('./database/models/Temps')
 const TempChannels = require("discord-temp-channels");
 const tempChannels = new TempChannels(client);
 client.tempChannels = tempChannels;
-const util = require("util");
-const readdir = util.promisify(fs.readdir);
+const { promisify } = require("util");
+const readdir = promisify(readdir);
 const guildInvites = new Map();
 const mongoose = require('mongoose')
 const { GiveawaysManager } = require("discord-giveaways");
@@ -113,7 +111,7 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 
 client.manager = manager;
 
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 client.guildInvites = guildInvites;
 client.footer = footer;
 
@@ -128,7 +126,7 @@ mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: t
 
 
 const init = async() => {
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const commandFiles = readdirSync('./commands').filter(file => file.endsWith('.js'));
     const directories = await readdir("./commands/");
     console.log(`Loading a total of ${directories.length} categories.`);
     directories.forEach(async(dir) => {
@@ -157,7 +155,7 @@ const init = async() => {
         client.manager.on(eventName, (...args) => event.execute(...args, client));
         delete require.cache[require.resolve(`./giveaways-events/${file}`)];
     });
-    fs.readdir('./player-events/', (err, files) => {
+    readdir('./player-events/', (err, files) => {
         if (err) return console.error(err);
         files.forEach(file => {
             const event = require(`./player-events/${file}`);
