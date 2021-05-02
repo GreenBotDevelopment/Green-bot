@@ -1,11 +1,11 @@
 if(Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("La version de Node.js est inférieure à la 12.0.0. Veuillez vous mettre en v12.0.0 ou plus.");
 
-const { readdirSync, readdir } = require('fs');
-const { Intents, Client, Collection } = require('discord.js');
+const fs = require('fs');
+const Discord = require('discord.js');
 const { Database } = require('quickmongo');
 const config = require('./config.json');
 const footer = config.footer;
-const intents = new Intents();
+const intents = new Discord.Intents();
 intents.add(
     'GUILD_MEMBERS',
     'GUILDS',
@@ -14,10 +14,12 @@ intents.add(
     'GUILD_MESSAGE_REACTIONS',
     'GUILD_BANS',
     'GUILD_INVITES',
-    'GUILD_EMOJIS'
+    'GUILD_EMOJIS',
+    'GUILD_VOICE_STATES',
 );
-const client = new Client({
+const client = new Discord.Client({
     fetchAllMembers: true,
+    autoReconnect: true,
     partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER', 'REACTION', 'GUILD_VOICE_STATES'],
     intents: intents,
 });
@@ -25,8 +27,8 @@ let Temps = require('./database/models/Temps')
 const TempChannels = require("discord-temp-channels");
 const tempChannels = new TempChannels(client);
 client.tempChannels = tempChannels;
-const { promisify } = require("util");
-const readdir = promisify(readdir);
+const util = require("util");
+const readdir = util.promisify(fs.readdir);
 const guildInvites = new Map();
 const mongoose = require('mongoose')
 const { GiveawaysManager } = require("discord-giveaways");
@@ -66,7 +68,7 @@ client.on("ready", async() => {
         });
     });
 });
-const ap = AutoPoster('', client)
+const ap = AutoPoster('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc4MzcwODA3MzM5MDExMjgzMCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE1MTI1MDUyfQ.Vr-8vqpKnCZv3T5L8ngsdXyAyd5eV5UXW1Ml4r53m38', client)
 
 ap.on('posted', () => {
     console.log('Posted stats to Top.gg!')
@@ -111,7 +113,7 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 
 client.manager = manager;
 
-client.commands = new Collection();
+client.commands = new Discord.Collection();
 client.guildInvites = guildInvites;
 client.footer = footer;
 
@@ -126,7 +128,7 @@ mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: t
 
 
 const init = async() => {
-    const commandFiles = readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
     const directories = await readdir("./commands/");
     console.log(`Loading a total of ${directories.length} categories.`);
     directories.forEach(async(dir) => {
@@ -155,7 +157,7 @@ const init = async() => {
         client.manager.on(eventName, (...args) => event.execute(...args, client));
         delete require.cache[require.resolve(`./giveaways-events/${file}`)];
     });
-    readdir('./player-events/', (err, files) => {
+    fs.readdir('./player-events/', (err, files) => {
         if (err) return console.error(err);
         files.forEach(file => {
             const event = require(`./player-events/${file}`);
