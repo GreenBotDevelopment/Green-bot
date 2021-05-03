@@ -24,6 +24,10 @@ Message.prototype.translate = async function(text, args, options = {}) {
 
     return texttoreturn;
 };
+Message.prototype.getMember = function(args = {}) {
+    member = this.mentions.members.first() || this.guild.members.cache.get(args[0]) || this.guild.members.cache.filter(m => m.user.tag.toLowerCase().includes(args[0].toLowerCase()) || m.displayName.toLowerCase().includes(args[0].toLowerCase()) || m.user.username.toLowerCase().includes(args[0].toLowerCase())).first()
+    return member;
+};
 Message.prototype.error = async function(text, args, options = {}) {
     if (text) {
         if (!lang.translations[text]) {
@@ -72,8 +76,12 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
                 .setDescription(`${emoji.error} - ${finaltxt}`)
                 .setColor('#982318')
+                .setFooter(this.client.footer, this.client.user.displayAvatarURL())
 
             this.channel.send(embed1).then((m) => {
+                if (!this.channel.permissionsFor(this.guild.me).has("MANAGE_MESSAGES")) return;
+                if (!this.channel.permissionsFor(this.guild.me).has("ADD_REACTIONS")) return;
+
                 m.react("<:delete:830790543659368448>")
                 const filtro = (reaction, user) => {
                     return user.id == this.author.id;
@@ -83,9 +91,8 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
-
+                    m.reactions.removeAll()
                 }).then(async(coleccionado) => {
-
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
                         if (reaccion.emoji.id === "830790543659368448") {
@@ -100,7 +107,6 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
 
 
         });
-
 
 
     } else {
@@ -133,8 +139,13 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
                 .setAuthor(this.guild.name, this.guild.iconURL())
                 .setDescription(`${finaltxt}`)
                 .setColor(color)
-                .setFooter(config.footer);
+                .setFooter(this.client.footer, this.client.user.displayAvatarURL())
+
             this.send(embed).then((m) => {
+                if (!this.channel.permissionsFor(this.guild.me).has("MANAGE_MESSAGES")) return;
+                if (!this.channel.permissionsFor(this.guild.me).has("ADD_REACTIONS")) return;
+
+
                 m.react("<:delete:830790543659368448>")
                 const filtro = (reaction, user) => {
                     return user.id == this.author.id;
@@ -144,9 +155,8 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
-
+                    m.reactions.removeAll()
                 }).then(async(coleccionado) => {
-
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
                         if (reaccion.emoji.id === "830790543659368448") {
@@ -161,6 +171,7 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
 
 
         });
+
 
 
 
@@ -194,11 +205,15 @@ Message.prototype.succesMessage = async function(text, args, options = {}) {
                 .replace('<: 802916311972708372: 811168497953800202>', '<:802916311972708372:811168497953800202>')
             let embed1 = new MessageEmbed()
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
-                .setDescription(`${emoji.succes} - ${finaltxt}`)
+                .setDescription(`✅ - ${finaltxt}`)
                 .setColor(this.client.color)
+                .setFooter(this.client.footer, this.client.user.displayAvatarURL())
 
 
             this.channel.send(embed1).then((m) => {
+                if (!this.channel.permissionsFor(this.guild.me).has("MANAGE_MESSAGES")) return;
+                if (!this.channel.permissionsFor(this.guild.me).has("ADD_REACTIONS")) return;
+
                 m.react("<:delete:830790543659368448>")
                 const filtro = (reaction, user) => {
                     return user.id == this.author.id;
@@ -208,7 +223,7 @@ Message.prototype.succesMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
-
+                    m.reactions.removeAll()
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
@@ -260,6 +275,7 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
                 .setAuthor(this.author.tag, this.author.displayAvatarURL())
                 .setDescription(`${finaltxt}`)
                 .setColor(this.client.color)
+                .setFooter(this.client.footer, this.client.user.displayAvatarURL())
 
             this.channel.send(embed1).then((m) => {
                 m.react("<:delete:830790543659368448>")
@@ -271,6 +287,7 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
+                    m.reactions.removeAll()
 
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
