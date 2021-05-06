@@ -3,4 +3,10 @@
 
 [-] Système de transcipt ticket
 
+[-] Commande pour créer un embed
+
 [-] Système d'alertes twtich
+
+[-] Système d'anniversaires
+
+[-] Un créateur d'embeds sur le site
