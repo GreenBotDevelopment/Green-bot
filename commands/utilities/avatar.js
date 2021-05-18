@@ -16,6 +16,6 @@ module.exports = {
         .setColor(message.client.color)
         .setImage(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
         .setFooter(message.client.footer)
-        message.channel.send(embed)
+        message.channel.send(avatarEmbed)
     },
 };
