@@ -3,6 +3,7 @@
     "prefix": "*",
     "token": "BOT TOKEN",
     "ownerID": "OWNER ID",
+    "topgg": "TOPGG AUTHORIZATION",
     "footer": " Green-bot | open source project ",
     "supportID": "SUPPORT ID",
     "status": "regarder ses {server} serveurs",
