@@ -25,31 +25,28 @@ module.exports = {
                     .setDescription(`Commandes : **${commands.size}**\nVous pouvez me configurer **entièrement** depuis mon [Dashboard](http://green-bot.xyz/)`)
                     .setAuthor(`Liste des commande Green-bot`)
                     .setFooter(`Fait ${prefix}help <commande> pour de l'aide sur une commande !`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-                    .addFields({ name: `<:admin:831512332575178762> | Administration (${commands.filter(command => command.cat === "admin").size}) `, value: commands.filter(command => command.cat === "admin").map(command => `\`${command.name}\``).join(', ') })
-
-                .addFields({ name: `${emoji.music} | Musique (${commands.filter(command => command.cat === "musique").size}) `, value: commands.filter(command => command.cat === "musique").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `${emoji.util} | Utilitaires (${commands.filter(command => command.cat === "utilities").size}) `, value: commands.filter(command => command.cat === "utilities").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `${emoji.moderator} | Modération (${commands.filter(command => command.cat === "moderation").size}) `, value: commands.filter(command => command.cat === "moderation").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `${emoji.configuration} | Configuration (${commands.filter(command => command.cat === "configuration").size}) `, value: commands.filter(command => command.cat === "configuration").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `<:gift:829357477682085968> | Giveaway (${commands.filter(command => command.cat === "gway").size}) `, value: commands.filter(command => command.cat === "gway").map(command => `\`${command.name}\``).join(', ') })
-                    .addFields({ name: `<:quiz:829357477966643220> | Jeux (${commands.filter(command => command.cat === "quiz").size}) `, value: commands.filter(command => command.cat === "quiz").map(command => `\`${command.name}\``).join(', ') });
+                    .addFields(
+                            { name: `<:admin:831512332575178762> | Administration (${commands.filter(command => command.cat === "admin").size}) `, value: commands.filter(command => command.cat === "admin").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `${emoji.music} | Musique (${commands.filter(command => command.cat === "musique").size}) `, value: commands.filter(command => command.cat === "musique").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `${emoji.level} | Système de Niveau (${commands.filter(command => command.cat === "level").size}) `, value: commands.filter(command => command.cat === "level").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `${emoji.util} | Utilitaires (${commands.filter(command => command.cat === "utilities").size}) `, value: commands.filter(command => command.cat === "utilities").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `${emoji.moderator} | Modération (${commands.filter(command => command.cat === "moderation").size}) `, value: commands.filter(command => command.cat === "moderation").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `${emoji.configuration} | Configuration (${commands.filter(command => command.cat === "configuration").size}) `, value: commands.filter(command => command.cat === "configuration").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `<:gift:829357477682085968> | Giveaway (${commands.filter(command => command.cat === "gway").size}) `, value: commands.filter(command => command.cat === "gway").map(command => `\`${command.name}\``).join(', ') },
+                            { name: `<:quiz:829357477966643220> | Jeux (${commands.filter(command => command.cat === "quiz").size}) `, value: commands.filter(command => command.cat === "quiz").map(command => `\`${command.name}\``).join(', '), inline: false },
+                    )
 
                 if (customs.filter(c => c.displayHelp === "ok").length > 0) {
                     exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
+                }
 
-                } else {
+               exampleEmbed.addFields(
+                       { name: "> Dashboard", value: `[Clique ici](http://green-bot.xyz/)`, inline: true },
+                       { name: "> Support", value: `[Clique Ici](http://green-bot.xyz/discord)`, inline: true },
+                       { name: "> Inviter", value:`[Clique ici](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=8)`, inline: true },
+               )
 
-               }
-
-               exampleEmbed.addField("> Dashboard" ,`[Clique ici](http://green-bot.xyz/)` ,true)
-
-                  exampleEmbed.addField("> Support" ,`[Clique Ici](http://green-bot.xyz/discord)` ,true)
-                  exampleEmbed.addField("> Inviter" ,`[Clique ici](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=8)` ,true)
-
-
-
-            message.channel.send(exampleEmbed)
+                message.channel.send(exampleEmbed)
                 .then(() => {
 
 
@@ -69,15 +66,15 @@ module.exports = {
         
         const reportEmbed = new Discord.MessageEmbed()
             .setTitle(`${command.name}`)
-.setDescription(command.description || "Aucunne description pour cette commande")
-        .setFooter(message.client.footer)
-        .setColor(message.client.color)
+            .setDescription(command.description || "Aucunne description pour cette commande")
+            .setFooter(message.client.footer)
+            .setColor(message.client.color)
             .addField("> Usage", `${prefix}${command.name} ${command.usage || ""}`,true)
             .addField("> Exemple", `${command.exemple ? `${prefix}${command.name} ${command.exemple}` : "Aucun exemple"}`,true)
-        .addField("Statut", "Satut de la commande : <:IconSwitchIconOn:825378657287274529>\nEn mp :" + `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`, true)
+            .addField("Statut", "Satut de la commande : <:IconSwitchIconOn:825378657287274529>\nEn mp :" + `${command.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" :"<:IconSwitchIconOn:825378657287274529>"}`, true)
             .addField("> Aliases", `${command.aliases.join(', ') || "Aucune aliases"}`)
-      .addField('> Permissions Requises', `${command.permissions ? command.permissions.map(p=>`\`${p}\``) : "Vous n'avez pas besoin de permission :)"}`)
-      .addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions.map(p=>`\`${p}\``)}`: "Le bot n'a pas besoin de permissions :)"}`);
+            .addField('> Permissions Requises', `${command.permissions ? command.permissions.map(p=>`\`${p}\``) : "Vous n'avez pas besoin de permission :)"}`)
+            .addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions.map(p=>`\`${p}\``)}`: "Le bot n'a pas besoin de permissions :)"}`);
 
 
         message.channel.send(null, { embed: reportEmbed });
