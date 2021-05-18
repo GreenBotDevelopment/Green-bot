@@ -68,7 +68,7 @@ client.on("ready", async() => {
         });
     });
 });
-const ap = AutoPoster('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc4MzcwODA3MzM5MDExMjgzMCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjE1MTI1MDUyfQ.Vr-8vqpKnCZv3T5L8ngsdXyAyd5eV5UXW1Ml4r53m38', client)
+const ap = AutoPoster(config.topgg, client)
 
 ap.on('posted', () => {
     console.log('Posted stats to Top.gg!')
