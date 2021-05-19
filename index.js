@@ -51,9 +51,10 @@ const dbTemps = require("quick.db");
 client.dbTemps = dbTemps;
 const Voice = require("discord-voice");
 
-Voice.setURL(config.MongoURL);
+
 client.on("ready", async() => {
-    const StartVoice = await Voice.start(client, false, true);
+     const soice = new vvoice(client, config.MongoURL);
+    client.discordVoice = soice;
     if ((await db.get('giveaways')) === null) await db.set('giveaways', []);
     console.log('quicmongo is lready');
     let findTemps = await Temps.find({})
