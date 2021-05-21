@@ -191,7 +191,7 @@ module.exports = {
 
         }
 
-        const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
+        const mentionRegex = RegExp(`^<@!?${client.user.id}>$`);
         if (message.content.match(mentionRegex)) {
 
 
