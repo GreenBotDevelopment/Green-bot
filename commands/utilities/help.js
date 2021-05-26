@@ -1,26 +1,34 @@
 const config = require('../../config.json');
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const guild = require('../../database/models/guild');
 const CmdModel = require('../../database/models/cmd');
-
 const emoji = require('../../emojis.json');
+
 module.exports = {
+        
         name: 'help',
-        description: '  Affiche une liste de toutes les commandes actuelles, triées par catégorie. Peut être utilisé en conjonction avec une commande pour plus d\'informations.',
-        aliases: ['commands', 'aide', 'cmd', 'h'],
+        description: "Affichage d'une liste de toutes les commandes actuelles, triées par catégorie. Peut être utilisé en conjonction avec une commande pour plus d'informations.",
+        aliases: [ 'commands', 'aide', 'cmd', 'h' ],
         usage: '[command name]',
         cat: 'utilities',
         cooldown: 5,
+        
         async execute(message, args) {
+                
             const data = [];
             const { commands } = message.client;
-            let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` }).sort()
+            let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` }).sort();
             const prefix = prefixget.content;
+                
             if (!args.length) {
-                let customs = await CmdModel.find({ serverID: message.guild.id })
-                let Title = await message.translate(`Commande d'aide - Green-bot`)
-                let Description = await message.translate(`● Vous pouvez me configurer depuis mon [Dashboard](http://green-bot.xyz/commands) `)
-                const exampleEmbed = new Discord.MessageEmbed()
+                    
+                let customs = await CmdModel.find({ serverID: message.guild.id }),
+                    
+                        Title = await message.translate("Commande d'aide - Green-bot"),
+                    
+                        Description = await message.translate("● Vous pouvez me configurer depuis mon [Dashboard](http://green-bot.xyz/commands)");
+                
+                const exampleEmbed = new MessageEmbed()
                     .setColor(message.client.color)
                     .setDescription(`Commandes : **${commands.size}**\nVous pouvez me configurer **entièrement** depuis mon [Dashboard](http://green-bot.xyz/)`)
                     .setAuthor(`Liste des commande Green-bot`)
@@ -36,9 +44,7 @@ module.exports = {
                             { name: `<:quiz:829357477966643220> | Jeux (${commands.filter(command => command.cat === "quiz").size}) `, value: commands.filter(command => command.cat === "quiz").map(command => `\`${command.name}\``).join(', '), inline: false },
                     )
 
-                if (customs.filter(c => c.displayHelp === "ok").length > 0) {
-                    exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
-                }
+                if (customs.filter(c => c.displayHelp === "ok").length > 0) exampleEmbed.addFields({ name: `<:panelconfig:830347712330203146> | Commandes personnalisées (${customs.filter(c=>c.displayHelp === "ok").length}) `, value: `${customs.filter(c=>c.displayHelp === "ok").map(command => `\`${command.name}\``).join(', ') || `Aucunne commandes personnalisée. [Créer une commande](http://green-bot.xyz/server/${message.guild.id}/customs/add)`} ` })
 
                exampleEmbed.addFields(
                        { name: "> Dashboard", value: `[Clique ici](http://green-bot.xyz/)`, inline: true },
@@ -46,16 +52,12 @@ module.exports = {
                        { name: "> Inviter", value:`[Clique ici](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=8)`, inline: true },
                )
 
-                message.channel.send(exampleEmbed)
-                .then(() => {
+                return message.channel.send(exampleEmbed).catch(error => {
 
-
-                })
-                .catch(error => {
-
-                    message.errorMessage(`Une erreur est survenue , surement les permissions`)
+                    return message.errorMessage("Une erreur est survenue , surement les permissions");
+                        
                 });
-            return;
+                    
         }
 
         const name = args[0].toLowerCase(), command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
@@ -64,7 +66,7 @@ module.exports = {
                 
         let des = await message.translate(command.description)
         
-        const reportEmbed = new Discord.MessageEmbed()
+        const reportEmbed = new MessageEmbed()
             .setTitle(`${command.name}`)
             .setDescription(command.description || "Aucunne description pour cette commande")
             .setFooter(message.client.footer)
@@ -77,7 +79,8 @@ module.exports = {
             .addField('> Permissions du bot', `${command.botpermissions ? `${command.botpermissions.map(p=>`\`${p}\``)}`: "Le bot n'a pas besoin de permissions :)"}`);
 
 
-        message.channel.send(null, { embed: reportEmbed });
+        message.channel.send({ embed: reportEmbed });
 
-    },
-};
+    }
+        
+}
