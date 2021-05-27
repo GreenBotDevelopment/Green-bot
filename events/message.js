@@ -57,18 +57,31 @@ module.exports = {
                 }
             }
         }
-        if (message.guild.memberCount !== message.guild.members.cache.size) await message.guild.members.fetch()
+        
+        if (message.guild.memberCount !== message.guild.members.cache.size) await message.guild.members.fetch();
 
-        const verifye = await Welcome.findOne({ serverID: message.guild.id, reason: `count`, channelID: message.channel.id })
+        const verifye = await Welcome.findOne({ serverID: message.guild.id, reason: `count`, channelID: message.channel.id });
+        
         if (verifye) {
-            if (!message.content && !message.author.bot ||
-                message.author.bot && message.author.id !== client.user.id) return message.delete().catch(() => {});
-            let argss = message.content.trim().split(/ +/);
-            let number = Math.abs(argss[0]);
+            
+            if (!message.content && !message.author.bot || message.author.bot && message.author.id !== client.user.id) return message.delete().catch(() => {
+            
+                return;
+            
+            });
+            
+            let argss = message.content.trim().split(/ +/),
+                
+                number = Math.abs(argss[0]);
+            
             if (!number) return message.delete().catch(() => {});
-            if (number === NaN || number === Infinity) {
-                message.delete().catch(() => {});
-            }
+            
+            if (number === NaN || number === Infinity) message.delete().catch(() => {
+            
+                return;
+            
+            });
+            
             number = Math.round(number);
             const old = await Welcome.findOne({ serverID: message.guild.id, reason: `old_number` })
             if (old) {
@@ -82,9 +95,13 @@ module.exports = {
 
                 }
             } else {
-                if (number !== 1) {
-                    message.delete().catch(() => {});
-                }
+                
+                if (number !== 1)  message.delete().catch(() => {
+                
+                    return;
+                
+                });
+                
                 const verynew = new Welcome({
                     serverID: message.guild.id,
                     reason: `old_number`,
@@ -94,18 +111,16 @@ module.exports = {
             return;
         }
         let prefixedb = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
-        if (prefixedb) {
-
-
-        } else {
+        if (!prefixedb) {
+            
             const verynew = new guild({
                 serverID: `${message.guild.id}`,
                 content: `${config.prefix}`,
                 reason: 'prefix',
             }).save();
-
-
+            
         }
+        
         let prefixget = await guild.findOne({ serverID: message.guild.id, reason: `prefix` })
         const prefix = prefixget ? prefixget.content : "*";
         let premiumDb = await guild.findOne({ serverID: message.guild.id, reason: `premium` })
@@ -113,9 +128,8 @@ module.exports = {
         if (premiumDb) {
             toa = true;
             message.guild.premiumuserID = premiumDb.content
-        } else {
-            toa = null;
-        }
+        } else toa = null;
+        
         message.guild.premium = toa;
         if (!message.content.startsWith(prefix) || message.content.startsWith('!') || message.content.startsWith('^^') || message.content.startsWith('.')) {
             const userdata = await levelModel.findOne({ serverID: message.guild.id, userID: message.author.id })
@@ -259,16 +273,12 @@ module.exports = {
                         content: `${message.author.id}`,
                         reason: 'command',
                     }).save();
-
-
                 }
             }
             let limited = rateLimiter.take(message.author.id);
-            if (limited) {
-                // Send back a message (or you may want to just drop the request)
-                message.errorMessage(`Oups ! Vous devez attendre 4 secondes entre chaque commande`);
-                return;
-            }
+            
+            if (limited) return message.errorMessage(`Oups ! Vous devez attendre 4 secondes entre chaque commande`);
+
             const validatePermissions = (permissions) => {
                 const validPermissions = [
                     'CREATE_INSTANT_INVITE',
@@ -305,57 +315,59 @@ module.exports = {
                 ]
 
                 for (const permission of permissions) {
-                    if (!validPermissions.includes(permission)) {
-                        console.log(`Unknown permission node "${permission}"`);
-                    }
+                    if (!validPermissions.includes(permission))  console.log(`Unknown permission node "${permission}"`);
+                    
                 }
             }
+            
             let permissions = command.permissions;
+            
             if (message.author.id !== '688402229245509844') {
+                
                 if (permissions) {
-                    if (typeof permissions === 'string') {
-                        permissions = [permissions]
-                    }
+                    
+                    if (typeof permissions === 'string')  permissions = [permissions]
+                    
 
                     validatePermissions(permissions);
+                    
                     for (const permission of permissions) {
+                        
                         if (!message.member.permissions.has(permission) && message.author.id !== '688402229245509844') {
+                            
                             if (permission === "MANAGE_GUILD") {
+                                
                                 let admindb = await guild.findOne({ serverID: message.guild.id, reason: `admin_role` })
 
                                 if (admindb) {
+                                    
                                     AdminRole = message.guild.roles.cache.get(admindb.content)
+                                    
                                     if (AdminRole) {
+                                        
                                         if (message.member.roles.cache) {
+                                            
                                             if (!message.member.roles.cache.has(AdminRole.id)) return message.errorMessage(`Vous devez avoir la permission \`${permission}\` ou le rôle ${AdminRole} pour utiliser cette commande !`);
 
+                                        } else  return message.errorMessage(`Vous devez avoir la permission \`${permission}\` ou le rôle ${AdminRole} pour utiliser cette commande !`);
 
-                                        } else {
-                                            return message.errorMessage(`Vous devez avoir la permission \`${permission}\` ou le rôle ${AdminRole} pour utiliser cette commande !`);
+                                    } else  return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
+                                    
+                                } else  return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
 
-                                        }
-                                    } else {
-                                        return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
-
-                                    }
-                                } else {
-                                    return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
-
-                                }
-                            } else {
-                                return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
-
-                            }
-
+                            } else  return message.errorMessage(`Vous devez avoir la permission \`${permission}\` pour utiliser cette commande !`);
+                            
                         }
+                        
                     }
+                    
                 }
+                
                 let botpermissions = command.botpermissions;
 
                 if (botpermissions) {
-                    if (typeof botpermissions === 'string') {
-                        botpermissions = [botpermissions]
-                    }
+                    if (typeof botpermissions === 'string') botpermissions = [botpermissions]
+                    
 
                     validatePermissions(botpermissions);
                     for (const permission of botpermissions) {
@@ -370,16 +382,12 @@ module.exports = {
                 let advdb = await adventure.findOne({ UserID: message.author.id, active: true })
                 if (!advdb) return message.errorMessage(`Vous devez déja commencer une quête... faite ${prefix}quete-start pour commencer 😉`)
             }
-            if (command.guildOnly && message.channel.type === 'dm') {
-                return message.reply(`${emoji.error} - je ne peux pas faire cette commande en MP.... !`);
-            }
-            if (command.owner && message.author.id !== config.ownerID) {
-                return message.errorMessage(`Tu dois etre owner du bot pour faire cette commande !`);
-            }
+            if (command.guildOnly && message.channel.type === 'dm')  return message.reply(`${emoji.error} - je ne peux pas faire cette commande en MP.... !`);
+            
+            if (command.owner && message.author.id !== config.ownerID)  return message.errorMessage(`Tu dois etre owner du bot pour faire cette commande !`);
+            
             if (command.args === 'user' && !message.mentions.members.first()) {
-                if (message.guild.members.cache.get(args[0])) {
-
-                } else {
+                if (!message.guild.members.cache.get(args[0])) {
 
                     let reply = `${emoji.error}  - Cette commande requiert des arguments , ${message.author}!`;
 
@@ -427,9 +435,8 @@ module.exports = {
             }
 
 
-            if (!cooldowns.has(command.name)) {
-                cooldowns.set(command.name, new Discord.Collection());
-            }
+            if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection());
+            
 
             const now = Date.now();
             const timestamps = cooldowns.get(command.name);
