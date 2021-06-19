@@ -42,13 +42,17 @@ Message.prototype.error = async function(text, args, options = {}) {
         serverID: this.guild.id,
         reason: 'lang',
     })
+    
     let target;
+    
     if (langbd) {
+        
         target = langbd.content;
-    } else {
-        target = 'fr';
-    }
-    return this.channel.send(`${emoji.error} ${lang.translations[text][target]}`)
+        
+    } else target = 'fr';
+    
+    return this.channel.send(`${emoji.error} ${lang.translations[text][target]}`);
+    
 };
 
 
@@ -59,11 +63,13 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
             reason: 'lang',
         })
         let target;
+        
         if (langbd) {
+            
             target = langbd.content;
-        } else {
-            target = 'fr';
-        }
+            
+        } else target = 'fr';
+        
 
         translate(text, { to: target }).then(res => {
             let finaltxt = `${res.text}`
@@ -79,8 +85,7 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
                 .setFooter(this.client.footer, this.client.user.displayAvatarURL())
 
             this.channel.send(embed1).then((m) => {
-                if (!this.channel.permissionsFor(this.guild.me).has("MANAGE_MESSAGES")) return;
-                if (!this.channel.permissionsFor(this.guild.me).has("ADD_REACTIONS")) return;
+                if (!this.channel.permissionsFor(this.guild.me).has("MANAGE_MESSAGES") || !this.channel.permissionsFor(this.guild.me).has("ADD_REACTIONS")) return;
 
                 m.react("<:delete:830790543659368448>")
                 const filtro = (reaction, user) => {
@@ -91,15 +96,13 @@ Message.prototype.errorMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
+                    
                     m.reactions.removeAll()
+                    
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
-                        if (reaccion.emoji.id === "830790543659368448") {
-                            m.delete()
-
-
-                        }
+                        if (reaccion.emoji.id === "830790543659368448")  m.delete()
                     }
                 });
             });
@@ -121,12 +124,14 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
             serverID: this.guild.id,
             reason: 'lang',
         })
+        
         let target;
+        
         if (langbd) {
+            
             target = langbd.content;
-        } else {
-            target = 'fr';
-        }
+            
+        } else target = 'fr';
 
         translate(text, { to: target }).then(res => {
             let finaltxt = `${res.text}`
@@ -155,20 +160,18 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
+                    
                     m.reactions.removeAll()
+                    
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
-                        if (reaccion.emoji.id === "830790543659368448") {
-                            m.delete()
-
-
-                        }
+                        if (reaccion.emoji.id === "830790543659368448") m.delete()
                     }
                 });
             });
         }).catch(error => {
-
+return;
 
         });
 
@@ -190,9 +193,7 @@ Message.prototype.succesMessage = async function(text, args, options = {}) {
         let target;
         if (langbd) {
             target = langbd.content;
-        } else {
-            target = 'fr';
-        }
+        } else  target = 'fr';
 
         translate(text, { to: target }).then(res => {
             let finaltxt = `${res.text}`
@@ -223,15 +224,13 @@ Message.prototype.succesMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
+                    
                     m.reactions.removeAll()
+                    
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
-                        if (reaccion.emoji.id === "830790543659368448") {
-                            m.delete()
-
-
-                        }
+                        if (reaccion.emoji.id === "830790543659368448") m.delete()
                     }
                 });
             });
@@ -257,9 +256,7 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
         let target;
         if (langbd) {
             target = langbd.content;
-        } else {
-            target = 'fr';
-        }
+        } else  target = 'fr';
 
         translate(text, { to: target }).then(res => {
             let finaltxt = `${res.text}`
@@ -287,16 +284,13 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
                     time: 200000,
                     errors: ["time"]
                 }).catch(() => {
+                    
                     m.reactions.removeAll()
 
                 }).then(async(coleccionado) => {
                     if (coleccionado) {
                         const reaccion = coleccionado.first();
-                        if (reaccion.emoji.id === "830790543659368448") {
-                            m.delete()
-
-
-                        }
+                        if (reaccion.emoji.id === "830790543659368448") m.delete()
                     }
                 });
             });
@@ -324,9 +318,7 @@ Message.prototype.sendT = async function(text, args, options = {}) {
         let target;
         if (langbd) {
             target = langbd.content;
-        } else {
-            target = 'en';
-        }
+        } else  target = 'en';
 
         translate(text, { to: target }).then(res => {
             let finaltxt = `${res.text}`
@@ -339,7 +331,7 @@ Message.prototype.sendT = async function(text, args, options = {}) {
             this.channel.send(text)
         }).catch(error => {
 
-
+return;
         });
 
 
@@ -367,9 +359,7 @@ Message.prototype.succes = async function(text, args, options) {
     let target;
     if (langbd) {
         target = langbd.content;
-    } else {
-        target = 'fr';
-    }
+    } else target = 'fr';
 
     return this.channel.send(`${emoji.succes} ${lang.translations[text][target]}`)
 };
