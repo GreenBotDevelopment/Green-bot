@@ -53,7 +53,7 @@ const Voice = require("discord-voice");
 
 
 client.on("ready", async() => {
-     const soice = new vvoice(client, config.MongoURL);
+     const soice = new Voice(client, config.MongoURL);
     client.discordVoice = soice;
     let alls = await db.get('giveaways')
     if (!alls) await db.set('giveaways', []);
