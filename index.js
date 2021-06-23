@@ -159,17 +159,15 @@ const init = async() => {
         client.manager.on(eventName, (...args) => event.execute(...args, client));
         delete require.cache[require.resolve(`./giveaways-events/${file}`)];
     });
-    fs.readdir('./player-events/', (err, files) => {
-        if (err) return console.error(err);
-        files.forEach(file => {
-            const event = require(`./player-events/${file}`);
-            let eventName = file.split(".")[0];
-            console.log(`Loading player event ${eventName}`);
+    const loadPlayerEvents = (dir = "./player-events/") => {
+        fs.readdirSync(dir).forEach(dirs => {
+            const event = fs.readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith('.js'));
+            const eventName = event.split(".")[0];
             client.player.on(eventName, event.bind(null, client));
         });
-    });
+    };
+    loadPlayerEvents();
 };
 init();
-
 
 client.login(config.token);
