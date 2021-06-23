@@ -55,7 +55,7 @@ const Voice = require("discord-voice");
 client.on("ready", async() => {
      const soice = new vvoice(client, config.MongoURL);
     client.discordVoice = soice;
-    if ((await db.get('giveaways')) === null) await db.set('giveaways', []);
+    if ((await db.get('giveaways') === null) await db.set('giveaways', []);
     console.log('quicmongo is lready');
     let findTemps = await Temps.find({})
     findTemps.forEach((channelData) => {
