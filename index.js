@@ -161,7 +161,7 @@ const init = async() => {
     });
     const loadPlayerEvents = (dir = "./player-events/") => {
         fs.readdirSync(dir).forEach(dirs => {
-            const event = fs.readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith('.js'));
+            const event = fs.readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith('.js'));
             const eventName = event.split(".")[0];
             client.player.on(eventName, event.bind(null, client));
         });
