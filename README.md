@@ -1,7 +1,5 @@
 
 
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/avatars/783708073390112830/3d5a0b798ef6d28df06cbcfdbf697d98.webp?size=512">  
-
 # Green-bot
 [![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](http://green-bot.xyz/discord)
 [![](https://discordbots.org/api/widget/status/783708073390112830.svg)](https://discordbots.org/bot/783708073390112830)
