@@ -8,7 +8,7 @@ const config = require('../config.json');
 const CmdModel = require('../database/models/cmd');
 const Welcome = require('../database/models/Welcome');
 const adventure = require("../database/models/adventure");
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { RateLimiter } = require('discord.js-rate-limiter')
 let rateLimiter = new RateLimiter(1, 4000);
 const cooldowns = new Discord.Collection();
@@ -19,12 +19,13 @@ module.exports = {
 
 
     async execute(message) {
-        const { client } = message;
-        const footer = client.footer;
-        const color = client.color;
-        if (message.author.bot) return;
-        if (!message.guild) return;
-        const verifyeee = await guild.findOne({ serverID: message.guild.id, reason: `ignored`, content: message.channel.id })
+        
+      if (!message || message.author.bot || !message.guild) return;
+        
+const { client } = message;
+        const { color, footer } = client;
+
+const verifyeee = await guild.findOne({ serverID: message.guild.id, reason: `ignored`, content: message.channel.id })
         if (verifyeee) return;
 
         const automod = await Welcome.findOne({ serverID: message.guild.id, reason: `automod` })
@@ -39,7 +40,7 @@ module.exports = {
                         date: new Date,
                         moderator: `${client.user.id}`
                     }).save()
-                    const reportEmbed = new Discord.MessageEmbed()
+                    const reportEmbed = new MessageEmbed()
                         .setTitle(`😒 Invitation....`)
 
 
@@ -221,11 +222,9 @@ module.exports = {
         });
         if (message.content.startsWith(prefix) || message.content.startsWith(`green `) || message.content.startsWith(`<@783708073390112830>`)) {
             let args;
-            if (message.content.startsWith(prefix)) {
-                args = message.content.slice(prefix.length).trim().split(/ +/);
+            if (message.content.startsWith(prefix)) args = message.content.slice(prefix.length).trim().split(/ +/);
 
-            }
-            if (message.content.startsWith(`green `)) {
+            else if (message.content.startsWith(`green `)) {
                 let text = `green `
 
                 args = message.content.slice(6).trim().split(/ +/);
@@ -393,7 +392,7 @@ module.exports = {
 
                     if (command.usage) {
 
-                        const reportEmbed = new Discord.MessageEmbed()
+                        const reportEmbed = new MessageEmbed()
                             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
 
                         .setDescription(`Il vous faut des arguments pout la commande \`${command.name}\` ! \nUsage correct : \`${prefix}${command.name} ${command.usage}\``)
@@ -418,11 +417,11 @@ module.exports = {
                 .setFooter(footer)
                     .setColor("#982318")
 
-                message.channel.send(reportEmbed);
-                return;
+               return message.channel.send(reportEmbed);
+               
             }
             if (command.args && !args.length) {
-                const reportEmbed = new Discord.MessageEmbed()
+                const reportEmbed = new MessageEmbed()
                     .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
 
                 .setDescription(`Il vous faut des arguments pout la commande \`${command.name}\` ! \nUsage correct : \`${prefix}${command.name} ${command.usage}\``)
@@ -430,8 +429,8 @@ module.exports = {
                 .setFooter(footer)
                     .setColor("#982318")
 
-                message.channel.send(reportEmbed);
-                return;
+                return message.channel.send(reportEmbed);
+              
             }
 
 
@@ -457,7 +456,7 @@ module.exports = {
             try {
                 let DeleteActive = await guild.findOne({ serverID: message.guild.id, reason: `delete_msg` })
                 if (DeleteActive) await message.delete().catch()
-                command.execute(message, args, );
+                return command.execute(message, args);
             } catch (error) {
                 console.error(error);
                 message.errorMessage(`Une erreur est survenue lors de l'éxécution de la commande . Veuillez rejoindre le support pour signaler cette erreur :
