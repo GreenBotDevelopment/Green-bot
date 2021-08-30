@@ -4,13 +4,10 @@
     <p>Green-bot is a Free Multipurpose bot with lots of features like Giveaways, Moderation, AutoMod, Fun, Levelling, Tickets, YouTube & Twitch notifications, Server Stats, Music, Gatekeeper, Counting, auto responders, auto ping of the news users and many
         many more <br> <br><strong>Use <code class= "code" style="color:#4B67F4!important">*help</code> or <code class= "code" style="color:#4B67F4!important">green help</code> for a full list of commands </strong>
     </p>
-
     <br>
     <center>
         <h2>🧷 Links</h2>
-
         <div class="flex" style="display: flex;justify-content: center;flex-wrap: wrap;">
-
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: #3A871F;
@@ -40,7 +37,6 @@
                        font-size: 16px;
                        font-weight: bold;" href="https://green-bot.app/commands"> Commands list </a>
         </div>
-
     </center>
     
 **Installation**
