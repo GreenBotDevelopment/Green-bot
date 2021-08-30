@@ -7,11 +7,15 @@ const { Database } = require("quickmongo");
 const config = require("../config")
 const dbTemps = require("quick.db");
 const db = new Database(config.database.MongoURL);
-null === (await client.db.get("giveaways")) && (await client.db.set("giveaways", []));
 const { Client, Collection } = require("discord.js")
 class GreenBot extends Client {
     constructor(options) {
         super(options);
+        db.get("giveaways").then(async d => {
+            if (d === null) {
+                await db.set("giveaways", [])
+            }
+        })
         createClientVars(this);
         this.player = new Player(this, {
             leaveOnEnd: !1,
