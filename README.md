@@ -6,33 +6,6 @@
     </p>
     <br>
     <center>
-      <style>
-        .code {
-            color: #fff !important;
-            background: none !important;
-        }
-        div.ui-menu li {
-            list-style: none;
-            background-image: none;
-            background-repeat: none;
-            background-position: 0;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0px;
-            margin: 0px;
-        }
-        li {
-            background-image: url(sqpurple.gif);
-            background-repeat: no-repeat;
-            background-position: 0px 5px;
-            padding-left: 14px;
-        }
-        .entity-sidebar__button:hover {
-            transform: scale(1.1);
-            transition: 1s;
-        }
-    </style>
         <h2>🧷 Links</h2>
         <div class="flex" style="display: flex;justify-content: center;flex-wrap: wrap;">
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" style="  margin: 2px 5px;
@@ -41,21 +14,21 @@
                 color: white;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" rel="nofollow" class="blue-btn" href="https://green-bot.app/invite"> Add the bot </a>
+                font-weight: bold;" rel="nofollow" class="blue-btn" href="https://green-bot.app/invite"> Add the bot •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: white;
                 color: black;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/discord"> Support server </a>
+                font-weight: bold;" href="https://green-bot.app/discord"> Support server •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: #3A871F;
                 color: white;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/profile"> Dashboard </a>
+                font-weight: bold;" href="https://green-bot.app/profile"> Dashboard •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                        padding: 8px 15px;
                        background-color: white;
