@@ -11,29 +11,23 @@
             color: #fff !important;
             background: none !important;
         }
-    </style>
-    <style type="text/css">
         div.ui-menu li {
             list-style: none;
             background-image: none;
             background-repeat: none;
             background-position: 0;
         }
-        
         ul {
             list-style-type: none;
             padding: 0px;
             margin: 0px;
         }
-        
         li {
             background-image: url(sqpurple.gif);
             background-repeat: no-repeat;
             background-position: 0px 5px;
             padding-left: 14px;
         }
-    </style>
-      <style>
         .entity-sidebar__button:hover {
             transform: scale(1.1);
             transition: 1s;
