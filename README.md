@@ -1,42 +1,75 @@
+**Installation**
 
+Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
 
-# Green-bot
-[![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](http://green-bot.xyz/discord)
-[![](https://discordbots.org/api/widget/status/783708073390112830.svg)](https://discordbots.org/bot/783708073390112830)
-[![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
-[![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
+__Step 1.__
 
-> Ce bot est utlisé par plus de 600k d'utilisateurs dans plus de 2700 serveurs.
+Install NodeJS on your computer or on your vps. https://nodejs.org. You MUST have NodeJs 12 or an higher version.
+Then, download the files and open them with Visual Studio code (code.visualstudio.com). Then press `Crtl + shift + ù` or click on "new terminal", on the top bar.
 
+__Step 2.__
+When your terminal is created, write `npm i` in your terminal to download the modules. 
+If you encounter an error, make you sure that you have the latest version of nodejs.
 
-⚠ Ce code n'est plus mis à jour pour le moment et donc, il peut y avoir des bugs. Pour toute aide, rendez vous sur le [Discord](https://green-bot.app/discord) 
+__Step 3.__
+When the modules have been downloaded and a `node-modules` directory has been created, go to the `config.js` file and setup the bot.
+You can find some comments about every setting.
 
-Green bot est un bot open source en  [Discord.js](https://discord.js.org) Et avec [Mongoose](https://mongoosejs.com/docs/api.html) par [Pauldb09](https://github.com/Pauldb09).  
-Vous êtes libre d'ajouter une étoile ⭐ pour promouvoir le projet !
+__Step 4.__
+Now, you can start the bot by pressing `F5` or putting `node sharder.js` in the terminal.
 
-## Fonctionnalités
+__Step 5.__
+Enjoy your bot !
 
+**Bot features**
 
-### Un magnifique site
+► Music system
+Green-bot has a powefull music system with a wonderfull quality and a dj system (Youtube, Soundcloud, Twitch, and more!
 
-Green bot a un magnifique dashboard qui offre plein de fonctionnalitées! Le dashboard est fait avec express et EJS!
+► Anti-raid
+Powerful security features,a responsive team. A configurable captcha. Smart anti-spam, anti selfbot, anti caps And many others to protect your server...
 
+► Moderation
+Green-bot has a powefull moderation system (massban, softban etc) and a log of every moderation action.
 
-<img align="left" style="float: centrer; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829707973626429471/unknown.png"/>
-<img align="center" style="float: left; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829708123064238110/unknown.png"/>
-<img align="center" style="float: centrer; margin: 0 10px 0 0;" src="https://cdn.discordapp.com/attachments/795737641559523328/829708082077630565/unknown.png"/>
+► Backups
+Create backups of your server to clone it.
 
-Vous pouvez directerment **Editer la configuration**, **Gérer vos serveurs**, **Votre carte de rank**, Et bien plus!
+► Utility commands
+Green-bot has all of the basics commands like userinfo, serverinfo etc. But you can find too originals commands (disriml, tiktok).
 
-## Liens
+► Giveaways
+Green-bot has a giveaway system with 2 requirements : Invites and messages and a giveaways logs channel too.
 
-*   [Commands List](http://green-bot.xyz)
-*   [Installation Guide](http://green-bot.xyz/discord)
-*   [F.A.Q](http://green-bot.xyz/discord)
-*   [Discord](http://green-bot.xyz/discord)
-*   [Github](https://github.com/pauldb09/Green-bot/)
-*   [Dashboard](http://green-bot.xyz/)
+► Setup
+Simple setup. (from the dashboard or with commands). Advanced customization (embeds color, prefix..). Multiple langages (en/fr)
 
-## License
+► Birthdays system
+Allow your users to define their birthdays. Send a message to a channel on the birthday of one of them!
 
-Green-bot est sous licence GPL 3.0. Voir le fichier «LICENCE» pour plus d'informations. Si vous prévoyez d'utiliser une partie de ce code source dans votre propre bot, je vous serais reconnaissant d'inclure une forme de crédit quelque part.
+► Server stats
+Get lots of graphs about your server activity.The number of time spent in voc, number of messages sent etc.
+
+► Youtube alerts
+Send a message in a specific channel when your favourite youtuber post a new video.
+
+► Auto responders & auto reaction
+Send a message or react to the message when a user send a specific message. Everything is customizable
+
+► Advanded suggestion system
+Green-Bot has an advanced suggestion system, you can accept, refuse etc the suggestions
+
+► Welcome & Leave Messages
+Customize your own welcome messages and send them via DM or in a channel with an image !
+
+► Auto-role
+Automatically assign a role to members when they join! Autorole for bots and autorole for users.
+
+► Logging
+Logs discord events (joins, leaves, message modifications, attachments, nickname changes, and more)
+
+► Reactions roles
+Let players assign (and unassign) themselves ranks just by reacting to a specific message!
+
+► Unique features
+Green-Bot has unique features too like auto publishing system (auto-publish) or ghost ping the new users (autoping)

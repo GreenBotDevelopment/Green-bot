@@ -1,173 +1,84 @@
-if(Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("La version de Node.js est inférieure à la 12.0.0. Veuillez vous mettre en v12.0.0 ou plus.");
-
-const fs = require('fs');
-const Discord = require('discord.js');
-const { Database } = require('quickmongo');
-const config = require('./config.json');
-const footer = config.footer;
-const intents = new Discord.Intents();
-intents.add(
-    'GUILD_MEMBERS',
-    'GUILDS',
-    'GUILD_VOICE_STATES',
-    'GUILD_MESSAGES',
-    'GUILD_MESSAGE_REACTIONS',
-    'GUILD_BANS',
-    'GUILD_INVITES',
-    'GUILD_EMOJIS',
-    'GUILD_VOICE_STATES',
-);
-const client = new Discord.Client({
-    fetchAllMembers: true,
-    autoReconnect: true,
-    partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER', 'REACTION', 'GUILD_VOICE_STATES'],
-    intents: intents,
-});
-let Temps = require('./database/models/Temps')
-const TempChannels = require("discord-temp-channels");
-const tempChannels = new TempChannels(client);
-client.tempChannels = tempChannels;
-const util = require("util");
-const readdir = util.promisify(fs.readdir);
-const guildInvites = new Map();
-const mongoose = require('mongoose')
-const { GiveawaysManager } = require("discord-giveaways");
-const { Player } = require('discord-player');
-const player = new Player(client, {
-    leaveOnEnd: true,
-    leaveOnStop: true,
-    leaveOnEmpty: true,
-    timeout: 0,
-    volume: 70,
-    quality: 'high',
-});
-client.player = player;
-const db = new Database(config.MongoURL);
-client.db = db;
-const AutoPoster = require('topgg-autoposter')
-const discordTTS = require("discord-tts");
-
-const dbTemps = require("quick.db");
-client.dbTemps = dbTemps;
-const Voice = require("discord-voice");
-
-
-client.on("ready", async() => {
-     const soice = new Voice(client, config.MongoURL);
-    client.discordVoice = soice;
-    let alls = await db.get('giveaways')
-    if (!alls) await db.set('giveaways', []);
-    console.log('quicmongo is lready');
-    let findTemps = await Temps.find({})
-    findTemps.forEach((channelData) => {
-        tempChannels.registerChannel(channelData.channelID, {
-            childCategory: channelData.categoryID,
-            childAutoDeleteIfEmpty: true,
-            childAutoDeleteIfOwnerLeaves: true,
-            childMaxUsers: channelData.size,
-            childBitrate: 64000,
-            childFormat: (member, count) => `#${count} | Salon de ${member.user.username}`
-        });
-    });
-});
-const ap = AutoPoster(config.topgg, client)
-
-ap.on('posted', () => {
-    console.log('Posted stats to Top.gg!')
-})
-class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
-    async getAllGiveaways() {
-        return await db.get('giveaways');
-    }
-
-    async saveGiveaway(messageID, giveawayData) {
-        await db.push('giveaways', giveawayData);
-        return true;
-    }
-
-    async editGiveaway(messageID, giveawayData) {
-        const giveaways = await db.get('giveaways');
-        const newGiveawaysArray = giveaways.filter((giveaway) => giveaway.messageID !== messageID);
-        newGiveawaysArray.push(giveawayData);
-        await db.set('giveaways', newGiveawaysArray);
-        return true;
-    }
-
-    async deleteGiveaway(messageID) {
-        const data = await db.get('giveaways');
-        const newGiveawaysArray = data.filter((giveaway) => giveaway.messageID !== messageID);
-        await db.set('giveaways', newGiveawaysArray);
-        return true;
+const fs = require("fs"),
+    config = require("./config.js");
+if (config.checkConfig) {
+    const { checkConfig } = require("./util/functions")
+    const result = await checkConfig(config)
+    if (result) {
+        console.log("Config error")
+        process.exit(0);
     }
 }
-
-const manager = new GiveawayManagerWithOwnDatabase(client, {
-    storage: false,
-    updateCountdownEvery: 10000,
-    default: {
-        botsCanWin: false,
-        exemptPermissions: [],
-        embedColorEnd: '#4FEA2D',
-        embedColor: "#D6EA2D",
-        reaction: '🎁'
-    }
+const GreenBot = require("./base/GreenBot");
+const client = new GreenBot({
+    fetchAllMembers: !0,
+    autoReconnect: !0,
+    messageCacheMaxSize: 20,
+    partials: ["MESSAGE", "CHANNEL", "GUILD_MEMBER", "REACTION", "GUILD_VOICE_STATES"],
+    intents: [
+        "GUILD_MEMBERS",
+        "GUILDS",
+        "GUILD_VOICE_STATES",
+        "GUILD_MESSAGES",
+        "GUILD_MESSAGE_REACTIONS",
+        "GUILD_BANS",
+        "GUILD_INVITES",
+        "GUILD_VOICE_STATES",
+        "DIRECT_MESSAGES",
+        "GUILD_INTEGRATIONS",
+        "GUILD_WEBHOOKS",
+        "GUILD_MESSAGE_TYPING",
+        "DIRECT_MESSAGES",
+        "DIRECT_MESSAGE_REACTIONS",
+        "DIRECT_MESSAGE_TYPING",
+        "GUILD_MESSAGE_REACTIONS",
+    ],
 });
-
-client.manager = manager;
-
-client.commands = new Discord.Collection();
-client.guildInvites = guildInvites;
-client.footer = footer;
-
-client.owner = config.ownerID;
-client.color = config.color;
-
-mongoose.connect(config.MongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
-    console.log("Connécté à la base de données MongoDB");
-}).catch((err) => {
-    console.log("Je n'ai pas réussi à me connecter à la base de données mongoDB. Erreur:" + err);
-});
-
-
+const util = require("util");
+require("./util/extenders.js");
+const readdir = util.promisify(fs.readdir),
+    mongoose = require("mongoose");
+mongoose
+    .connect(config.database.MongoURL, { useNewUrlParser: !0, useUnifiedTopology: !0, useFindAndModify: !1 })
+    .then(() => {
+        console.log("[MongoDB] : Ready");
+    })
+    .catch((e) => {
+        console.log("MongoDB Error:" + e);
+    });
 const init = async() => {
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-    const directories = await readdir("./commands/");
-    console.log(`Loading a total of ${directories.length} categories.`);
-    directories.forEach(async(dir) => {
-        const commands = await readdir("./commands/" + dir + "/");
-        commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
-            const command = require(`./commands/${dir}/${cmd}`);
-
-            client.commands.set(command.name, command);
+    fs.readdirSync("./commands").filter((e) => e.endsWith(".js"));
+    const e = await readdir("./commands/");
+    console.log(`[Commands] ${e.length} Categories loaded.`),
+        e.forEach(async(e) => {
+            (await readdir("./commands/" + e + "/"))
+            .filter((e) => "js" === e.split(".").pop())
+                .forEach((t) => {
+                    const n = require(`./commands/${e}/${t}`);
+                    client.commands.set(n.name, n);
+                });
         });
-    });
-    const evtFiles = await readdir("./events/");
-    console.log(`Loading a total of ${evtFiles.length} events.`);
-    evtFiles.forEach((file) => {
-        const eventName = file.split(".")[0];
-        console.log(`Loading Event: ${eventName}`);
-        const event = require(`./events/${file}`);
-        client.on(eventName, (...args) => event.execute(...args, client));
-        delete require.cache[require.resolve(`./events/${file}`)];
-    });
-    const GFiles = await readdir("./giveaways-events/");
-    console.log(`Loading a total of ${GFiles.length} events.`);
-    GFiles.forEach((file) => {
-        const eventName = file.split(".")[0];
-        console.log(`Loading giveaways Event: ${eventName}`);
-        const event = require(`./giveaways-events/${file}`);
-        client.manager.on(eventName, (...args) => event.execute(...args, client));
-        delete require.cache[require.resolve(`./giveaways-events/${file}`)];
-    });
-    const loadPlayerEvents = (dir = "./player-events/") => {
-        fs.readdirSync(dir).forEach(dirs => {
-            const event = fs.readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith('.js'));
-            const eventName = event.split(".")[0];
-            client.player.on(eventName, event.bind(null, client));
+    const t = await readdir("./events/discord");
+    console.log(`[Events] ${t.length} events loaded.`),
+        t.forEach((e) => {
+            const t = e.split(".")[0];
+            const n = require(`./events/discord/${e}`);
+            client.on(t, (...e) => n.execute(...e, client)), delete require.cache[require.resolve(`./events/discord/${e}`)];
         });
-    };
-    loadPlayerEvents();
+    const n = await readdir("./events/giveaways");
+    n.forEach((e) => {
+            const t = e.split(".")[0];
+            const n = require(`./events/giveaways/${e}`);
+            client.manager.on(t, (...e) => n.execute(...e, client)), delete require.cache[require.resolve(`./events/giveaways/${e}`)];
+        }),
+        fs.readdir("./events/player", (e, t) => {
+            if (e) return console.error(e);
+            t.forEach((e) => {
+                const t = require(`./events/player/${e}`);
+                let n = e.split(".")[0];
+                client.player.on(n, t.bind(null, client));
+            });
+        });
 };
-init();
-
-client.login(config.token);
+init(), client.login(config.token).catch(err => {
+    console.log("[Discord login] Please provide a valid discord bot token\n" + err + "")
+});

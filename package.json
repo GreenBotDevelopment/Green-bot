@@ -1,52 +1,42 @@
 {
     "name": "GreenBot",
-    "description": "Test",
+    "description": "Green-bot is a powerfull open source discord bot. Free feel to add a ⭐ to support us.",
     "main": "index.js",
     "dependencies": {
         "@discord-player/extractor": "^2.0.2",
         "@discordjs/opus": "^0.5.0",
         "@sentry/node": "6.2.3",
         "@vitalets/google-translate-api": "^5.0.0",
-        "axios": "^0.20.0",
         "better-sqlite3": "^7.3.1",
         "canvas": "^2.7.0",
         "cheerio": "^1.0.0-rc.9",
-        "common-tags": "^1.8.0",
-        "discord-canvas": "^1.3.2",
         "discord-giveaways": "github:Androz2091/discord-giveaways#develop",
-        "discord-logs": "^1.9.0",
         "discord-player": "^3.4.0",
-        "discord-temp-channels": "^1.0.5",
-        "discord-tts": "^1.0.3",
         "discord-voice": "^1.0.7",
         "discord-ytdl-core": "^5.0.3",
         "discord.js": "github:discordjs/discord.js#master",
         "discord.js-rate-limiter": "^1.0.7",
+        "easy-games-js": "^1.2.1",
         "easy-number-formatter": "^1.0.3",
         "emoji-api": "^1.0.2",
         "ffmpeg-static": "^4.2.8",
         "figlet": "^1.5.0",
         "hastebin-gen": "^2.0.5",
-        "jimp": "^0.16.1",
+        "hex-color-regex": "^1.1.0",
         "mathjs": "^7.5.1",
         "moment": "^2.29.1",
         "mongoose": "^5.12.8",
         "ms": "^2.1.2",
         "node-cron": "^3.0.0",
         "node-fetch": "^2.6.1",
-        "node-opus": "^0.3.3",
-        "node-superfetch": "^0.1.11",
-        "npm": "^7.12.1",
         "opusscript": "^0.0.8",
         "quick.db": "^7.1.3",
         "quickmongo": "^3.0.0",
+        "reconlx": "^1.2.41",
         "rss-parser": "^3.12.0",
-        "smartestchatbot": "^1.0.5",
         "tiktok-scraper": "^1.4.23",
         "topgg-autoposter": "^1.1.10",
         "twemoji-parser": "^13.0.0",
-        "twitchrequest": "^1.4.9",
-        "youtube-search": "^1.1.6",
         "ytdl-core": "^4.7.0"
     },
     "scripts": {
@@ -54,13 +44,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pauldb09/Green-bot.git"
+        "url": "git+https://github.com/lightjsbot/light.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/pauldb09/Green-bot/issues"
+        "url": "https://github.com/lightjsbot/light/issues"
     },
-    "homepage": "https://github.com/pauldb09/Green-bot/#readme"
+    "homepage": "https://github.com/lightjsbot/light#readme"
 }
