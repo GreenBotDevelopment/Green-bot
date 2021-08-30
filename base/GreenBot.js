@@ -11,11 +11,6 @@ const { Client, Collection } = require("discord.js")
 class GreenBot extends Client {
     constructor(options) {
         super(options);
-        db.get("giveaways").then(async d => {
-            if (d === null) {
-                await db.set("giveaways", [])
-            }
-        })
         createClientVars(this);
         this.player = new Player(this, {
             leaveOnEnd: !1,
@@ -38,11 +33,9 @@ class GreenBot extends Client {
         this.db = db;
         this.commands = new Collection()
         this.dbTemps = dbTemps;
-        const TempChannels = require("discord-temp-channels"),
-            tempChannels = new TempChannels(this);
-        this.tempChannels = tempChannels;
         class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
             async getAllGiveaways() {
+                if (!Array.isArray(await db.get('giveaways'))) await db.set('giveaways', []);
                 return await db.get("giveaways");
             }
             async saveGiveaway(e, t) {
