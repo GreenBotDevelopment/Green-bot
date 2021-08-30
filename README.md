@@ -39,7 +39,9 @@
         </div>
     </center>
     
+    
 **Installation**
+
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
 
@@ -62,7 +64,9 @@ Now, you can start the bot by pressing `F5` or putting `node sharder.js` in the 
 __Step 5.__
 Enjoy your bot !
 
+
 **Bot features**
+
 
 ► Music system
 Green-bot has a powefull music system with a wonderfull quality and a dj system (Youtube, Soundcloud, Twitch, and more!
