@@ -7,6 +7,7 @@ const { Database } = require("quickmongo");
 const config = require("../config")
 const dbTemps = require("quick.db");
 const db = new Database(config.database.MongoURL);
+null === (await client.db.get("giveaways")) && (await client.db.set("giveaways", []));
 const { Client, Collection } = require("discord.js")
 class GreenBot extends Client {
     constructor(options) {
@@ -33,6 +34,9 @@ class GreenBot extends Client {
         this.db = db;
         this.commands = new Collection()
         this.dbTemps = dbTemps;
+        const TempChannels = require("discord-temp-channels"),
+            tempChannels = new TempChannels(this);
+        this.tempChannels = tempChannels;
         class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
             async getAllGiveaways() {
                 return await db.get("giveaways");
