@@ -5,6 +5,7 @@ const guildData = require('../database/models/guildData');
 const Case = require("../database/models/case")
 const Warn = require("../database/models/warn")
 const Welcome = require("../database/models/Welcome");
+const config = require("../config")
 /**
  * Create an uniq ID
  * @param {string} Charlength The size of the uniq ID
@@ -42,7 +43,7 @@ Guild.prototype.addDB = async function(guildID = {}) {
     }
     const data = await new guildData({
         serverID: guildID,
-        prefix: "*",
+        prefix:config.prefix,
         lang: "en",
         premium: null,
         premiumUserID: null,
