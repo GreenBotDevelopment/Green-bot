@@ -54,13 +54,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lightjsbot/light.git"
+        "url": "git+https://github.com/pauldb09/Green-bot/Green-bot.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/lightjsbot/light/issues"
+        "url": "https://github.com/pauldb09/Green-bot/issues"
     },
-    "homepage": "https://github.com/lightjsbot/light#readme"
+    "homepage": "https://github.com/pauldb09/Green-bot/#readme"
 }
