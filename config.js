@@ -12,7 +12,7 @@ module.exports = {
     // The id of the support
     supportID: "729774155037278268",
     // The status of your bot
-    game: null,
+    game: "Green-bot | green-bot.app ",
     //the color of the embeds
     color: "#3A871F",
     // OPTIONAL: Your top.gg token.
