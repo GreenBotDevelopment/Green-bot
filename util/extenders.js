@@ -375,8 +375,8 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
             .setColor(this.guild.settings.color)
             .setFooter(this.client.footer, this.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
             this.reply({ embeds: [embed1], allowedMentions: { repliedUser: false } }).then(m=>{
-            m.react("<:delete:830790543659368448>")
-            const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === this.member.id;
+            m.react("✅")
+            const filter = (reaction, user) => reaction.emoji.name === "✅" && user.id === this.member.id;
             const collector = m.createReactionCollector({ filter, time: 11000, max: 1 });
             collector.on('collect', async r => {
                 m.delete()
@@ -396,8 +396,8 @@ Message.prototype.mainMessageT = async function(text, args, options = {}) {
             .setFooter(this.client.footer, this.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
         this.channel.send({ embeds: [embed1] })
             .then((m) => {
-                m.react("<:delete:830790543659368448>")
-                const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === this.member.id;
+                m.react("✅")
+                const filter = (reaction, user) => reaction.emoji.name === "✅" && user.id === this.member.id;
                 const collector = m.createReactionCollector({ filter, time: 110000, max: 1 });
                 collector.on('collect', async r => {
                     m.delete()
