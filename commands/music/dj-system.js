@@ -22,8 +22,8 @@ module.exports = {
                 .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } }).then((m) => {
-            m.react("<:panelconfig:830347712330203146>")
-            const filter = (reaction, user) => reaction.emoji.id === '830347712330203146' && user.id === message.author.id;
+            m.react("📜")
+            const filter = (reaction, user) => reaction.emoji.name ==== "📜" && user.id === message.author.id;
             const collector = m.createReactionCollector({ filter, time: 11000000,max:1 });
             collector.on('collect', async r =>{
                 const response = await getResponses(message)

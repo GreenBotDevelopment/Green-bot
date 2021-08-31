@@ -447,8 +447,8 @@
             "en": "💡 Operation canceled"
         },
         "ARGS_TIP": {
-            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec <:panelconfig:830347712330203146> pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
-            "en": "You don't need any arguments for this command. **You have to react with <:panelconfig:830347712330203146> to start the configuration**. \n You can send `cancel` at any time to cancel"
+            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec 📜 pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
+            "en": "You don't need any arguments for this command. **You have to react with 📜 to start the configuration**. \n You can send `cancel` at any time to cancel"
         },
         "HELP_CAT": {
             "fr": ["Modération", "Musique", "Système de Niveau", "Utilitaires", "Jeux", "Commandes personnalisées"],
