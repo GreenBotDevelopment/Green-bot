@@ -33,7 +33,9 @@ const client = new GreenBot({
         "DIRECT_MESSAGE_REACTIONS",
         "DIRECT_MESSAGE_TYPING",
         "GUILD_MESSAGE_REACTIONS",
-    ],
+    ],allowedMentions: {
+				parse: ["users","roles]
+			}
 });
 const util = require("util");
 require("./util/extenders.js");
