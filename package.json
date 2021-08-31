@@ -11,7 +11,7 @@
         "canvas": "^2.7.0",
         "cheerio": "^1.0.0-rc.9",
         "discord-giveaways": "^4.5.1",
-        "discord-player": "^3.4.0",
+        "discord-player": "^5.1.0",
         "discord-voice": "^1.0.7",
         "discord-ytdl-core": "^5.0.3",
         "discord.js": "github:discordjs/discord.js#master",
