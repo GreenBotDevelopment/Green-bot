@@ -30,8 +30,8 @@ module.exports = {
         message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } }).then((m) => {
             if (!message.channel.permissionsFor(message.guild.me).has("MANAGE_MESSAGES")) return;
             if (!message.channel.permissionsFor(message.guild.me).has("ADD_REACTIONS")) return;
-            m.react("<:delete:830790543659368448>")
-            const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === message.author.id;
+            m.react("✅")
+            const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
             const collector = message.createReactionCollector({ filter, time: 1000000 });
             collector.on('collect', r => m.delete());
             collector.on('end', collected => m.reactions.removeAll());
@@ -123,9 +123,9 @@ return message.succesMessage(`${message.guild.settings.lang === "fr" ? "Panel su
 message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } }).then((m) => {
 if (!message.channel.permissionsFor(message.guild.me).has("MANAGE_MESSAGES")) return;
 if (!message.channel.permissionsFor(message.guild.me).has("ADD_REACTIONS")) return;
-m.react("<:delete:830790543659368448>")
+m.react("✅")
 
-const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === message.author.id;
+const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
 const collector = message.createReactionCollector({ filter, time: 1000000 });
 collector.on('collect', r => m.delete());
 collector.on('end', collected => m.reactions.removeAll());

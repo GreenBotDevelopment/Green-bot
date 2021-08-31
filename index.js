@@ -2,13 +2,13 @@ const fs = require("fs"),
     config = require("./config.js");
 if (config.checkConfig) {
     const { checkConfig } = require("./util/functions")
-    const result = checkConfig(config).then(result=>{
-           if (result) {
-        console.log("Config error")
-        process.exit(0);
-    }
+    const result = checkConfig(config).then(result => {
+        if (result) {
+            console.log("Config error")
+            process.exit(0);
+        }
     })
- 
+
 }
 const GreenBot = require("./base/GreenBot");
 const client = new GreenBot({
@@ -33,9 +33,10 @@ const client = new GreenBot({
         "DIRECT_MESSAGE_REACTIONS",
         "DIRECT_MESSAGE_TYPING",
         "GUILD_MESSAGE_REACTIONS",
-    ],allowedMentions: {
-				parse: ["users","roles]
-			}
+    ],
+    allowedMentions: {
+        parse: ["users", "roles"]
+    },
 });
 const util = require("util");
 require("./util/extenders.js");
