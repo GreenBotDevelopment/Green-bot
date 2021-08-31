@@ -10,9 +10,9 @@ module.exports = {
     cat: 'utilities',
     async execute(message, args, client) {
         const lang = await message.translate("STATS")
-        let guildsCounts = await message.client.shard.fetchClientValues("guilds.cache.size");
+        let guildsCounts = await client.shard.fetchClientValues("guilds.cache.size");
         let guildsCount = guildsCounts.reduce((p, count) => p + count);
-        let a = await message.client.shard.fetchClientValues("users.cache.size");
+        let a = await client.shard.fetchClientValues("users.cache.size");
         let b = a.reduce((p, count) => p + count);
         console.log(client.users.cache.size * 4)
         const embed = new Discord.MessageEmbed()
