@@ -1,38 +1,35 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
     <h3>Green-bot</h3>
-    Feel free to add a ⭐ to support the project
+        Feel free to add a ⭐ to support the project
     <br>
     <p>Green-bot is a Free Multipurpose bot with lots of features like Giveaways, Moderation, AutoMod, Fun, Levelling, Tickets, YouTube & Twitch notifications, Server Stats, Music, Gatekeeper, Counting, auto responders, auto ping of the news users and many
         many more <br> <br><strong>Use <code class= "code" style="color:#4B67F4!important">*help</code> or <code class= "code" style="color:#4B67F4!important">green help</code> for a full list of commands </strong>
     </p>
-
     <br>
     <center>
         <h2>🧷 Links</h2>
-
         <div class="flex" style="display: flex;justify-content: center;flex-wrap: wrap;">
-
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: #3A871F;
                 color: white;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" rel="nofollow" class="blue-btn" href="https://green-bot.app/invite"> Add the bot </a>
+                font-weight: bold;" rel="nofollow" class="blue-btn" href="https://green-bot.app/invite"> Add the bot •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: white;
                 color: black;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/discord"> Support server </a>
+                font-weight: bold;" href="https://green-bot.app/discord"> Support server •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: #3A871F;
                 color: white;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/profile"> Dashboard </a>
+                font-weight: bold;" href="https://green-bot.app/profile"> Dashboard •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                        padding: 8px 15px;
                        background-color: white;
@@ -41,9 +38,10 @@
                        font-size: 16px;
                        font-weight: bold;" href="https://green-bot.app/commands"> Commands list </a>
         </div>
-
     </center>
-
+    
+ <br>  
+ 
 **Installation**
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
@@ -67,7 +65,9 @@ Now, you can start the bot by pressing `F5` or putting `node sharder.js` in the 
 __Step 5.__
 Enjoy your bot !
 
+
 **Bot features**
+
 
 ► Music system
 Green-bot has a powefull music system with a wonderfull quality and a dj system (Youtube, Soundcloud, Twitch, and more!

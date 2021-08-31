@@ -35,6 +35,7 @@ class GreenBot extends Client {
         this.dbTemps = dbTemps;
         class GiveawayManagerWithOwnDatabase extends GiveawaysManager {
             async getAllGiveaways() {
+                if (!Array.isArray(await db.get('giveaways'))) await db.set('giveaways', []);
                 return await db.get("giveaways");
             }
             async saveGiveaway(e, t) {
