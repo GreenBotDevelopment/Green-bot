@@ -6,8 +6,8 @@
             "fr": "Vous devez avoir la permission `{perm}` pour utiliser cette commande"
         },
         "MISSING_ROLE": {
-            "en": "You must have the `{perm}` permission or the {role} role to use this command",
-            "fr": "Vous devez avoir la permission `{perm}` our le rôle {role} pour utiliser cette commande"
+            "en": "You must have the `{perm}` permission or the `@{role}` role to use this command",
+            "fr": "Vous devez avoir la permission `{perm}` our le rôle `@{role}` pour utiliser cette commande"
         },
         "BOT_PERMISSIONS": {
             "en": "The bot must have the `{perm}` permission to use this command",
@@ -57,6 +57,10 @@
             "fr": "Veuillez me donner la permission de Gérer les message pour supprimer le message d'invocation",
             "en": "Please give me the `Manage messages` permission to delete the invocation message"
         },
+        "ROLE_PERMS": {
+            "fr": "Je ne peux pas définir un rôle qui a des permissions comme autorôle",
+            "en": "A role with `Manage guild` permissions can't be set as autorole"
+        },
         "MUSIC": {
             "fr": "<:Idle:857505512924774410> Désolé **{user}** mais les commandes de musiques sont temporairement en maintenance.\nPlus d'infos : https://discord.gg/nrReAmApVJ",
             "en": "<:Idle:857505512924774410> Sorry **{user}** but the music commands are temporarily under maintenance.\nMore informations : https://discord.gg/nrReAmApVJ"
@@ -98,7 +102,7 @@
         },
         "VOTE": {
             "fr": "<:nitro_gris_activ:830451169486700585> Pendant la musique, n'hésitez pas à nous soutenir en [`votant`](https://top.gg/bot/783708073390112830/vote) pour le bot.",
-            "en": "<:nitro_gris_activ:830451169486700585> When listening to the music, please support us by voting for the bot by clicking [`here`](https://top.gg/bot/783708073390112830/vote)."
+            "en": "<:nitro_gris_activ:830451169486700585> When listening to the music, feel free to support us by voting for the bot [`here`](https://top.gg/bot/783708073390112830/vote)."
         },
         "ERROR_CHANNEL": {
             "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon Textuel.",
@@ -107,15 +111,15 @@
 
         "ERROR_CHANNEL_CATEGORY": {
             "fr": "Le salon indiqué est invalide, il faut mettre le nom de la catégorie ou donner son ID et ce doit être une catégorie.",
-            "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be a category."
+            "en": "The indicated channel is invalid, you must give the category ID or name."
         },
         "ERROR_CHANNEL_NEWS": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom de la catégorie ou donner son ID et ce doit être un salon des annonces.",
+            "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon des annonces.",
             "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be an announcement channel."
         },
         "ERROR_CHANNEL_VOICE": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom de la catégorie ou donner son ID et ce doit être un salon vocal.",
-            "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be a voc channel."
+            "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon vocal.",
+            "en": "The indicated channel is invalid, you must ping the channel or give its ID. It must be a voice channel."
         },
         "ERROR_ROLE": {
             "fr": "Veuillez mentionner un rôle valide ou fournir un ID de rôle valide.",
@@ -447,8 +451,8 @@
             "en": "💡 Operation canceled"
         },
         "ARGS_TIP": {
-            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec 📜 pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
-            "en": "You don't need any arguments for this command. **You have to react with 📜 to start the configuration**. \n You can send `cancel` at any time to cancel"
+            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec <:panelconfig:830347712330203146> pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
+            "en": "You don't need any arguments for this command. **You have to react with <:panelconfig:830347712330203146> to start the configuration**. \n You can send `cancel` at any time to cancel"
         },
         "HELP_CAT": {
             "fr": ["Modération", "Musique", "Système de Niveau", "Utilitaires", "Jeux", "Commandes personnalisées"],
@@ -731,7 +735,7 @@
                 "name": "Softban",
                 "desc": "a été softbanni avec succès par",
                 "raison": "Raison",
-                "dm": "`📚` | Bonjour `{member.user.tag}`,\n vous avez été softban de `{message.guild.name}` pour la raison `{reason}`.",
+                "dm": "⛔ | Bonjour `{member.user.tag}`,\n vous avez été softban de `{message.guild.name}` pour la raison `{reason}`.",
                 "by": "softban par"
 
             },
@@ -739,7 +743,7 @@
                 "name": "Softban",
                 "desc": "has been successfully softbanned by",
                 "raison": "Reason",
-                "dm": "`📚` | Hello `{member.user.tag}`,\n you have been softbanned from `{message.guild.name}` for the reason `{reason}`.",
+                "dm": "⛔ | Hello `{member.user.tag}`,\n you have been softbanned from `{message.guild.name}` for the reason `{reason}`.",
                 "by": "softban by"
             }
         },
@@ -748,7 +752,7 @@
                 "name": "Massban",
                 "desc": "a banni tous les utilisateurs avec succès",
                 "raison": "Raison",
-                "dm": "`📚` | Bonjour `{member.user.tag}`,\n vous avez été banni de `{message.guild.name}`.",
+                "dm": "⛔ | Bonjour `{member.user.tag}`,\n vous avez été banni de `{message.guild.name}`.",
                 "by": "commande massban par"
 
             },
@@ -756,14 +760,14 @@
                 "name": "Massban",
                 "desc": "has successfully massbanned the users",
                 "raison": "People banned",
-                "dm": "`📚` | Hello `{member.user.tag}`,\n you have been banned from `{message.guild.name}`.",
+                "dm": "⛔ | Hello `{member.user.tag}`,\n you have been banned from `{message.guild.name}`.",
                 "by": "massban command by"
             }
         },
         "KICK": {
             "fr": {
                 "name": "📚 Expulsion",
-                "desc": "a été banni avec succès par",
+                "desc": "a été expulsé avec succès par",
                 "raison": "Raison",
                 "dm": "`📚` | Bonjour `{member.user.tag}`,\n vous avez été expulsé de `{message.guild.name}` pour la raison `{reason}`.",
                 "by": "Expulsé  par"
@@ -1193,12 +1197,12 @@
         "PREMIUM_REQUIRED": {
             "fr": {
                 "title": "<:nitro_gris_activ:830451169486700585> Vote requis",
-                "err": "Cette commande est réservée à ceux qui ont voté pour le bot. [`Cliquez ici`](https://top.gg/bot/783708073390112830/vote) pour voter."
+                "err": "<:nitro_gris_activ:830451169486700585> Cette commande est réservée à ceux qui ont voté pour le bot. [`Cliquez ici`](https://top.gg/bot/783708073390112830/vote) pour voter."
 
             },
             "en": {
                 "title": "Vote required",
-                "err": "You must vote for the bot to get acces to this command. [`Click here`](https://top.gg/bot/783708073390112830/vote) to vote."
+                "err": "<:nitro_gris_activ:830451169486700585> You must vote for the bot to get acces to this command. [`Click here`](https://top.gg/bot/783708073390112830/vote) to vote."
 
 
 
@@ -1400,7 +1404,7 @@
             "fr": {
                 "admin": "Mute une personne qui a la permission `Administrateur` n'aura aucun effet ! ",
                 "already": "Cette personne est déja réduite au silence sur le serveur.",
-                "role": "Le rôle {role} a bien été crée et les permissions des salons mises à jour.",
+                "role": "Le rôle `{role}` a bien été crée et les permissions des salons mises à jour.",
                 "time": "Veuillez fournir une durée de 14 jours ou moins (s/m/h/d)",
                 "desc": "a été rendu au silence avec succès par",
                 "name": "Mute",
@@ -1411,7 +1415,7 @@
             "en": {
                 "admin": "Muting a person who has `Administrator` permission will have no effect! ",
                 "already": "This person is already silenced on the server.",
-                "role": "The {role} role has been created and the channel permissions have been updated.",
+                "role": "The `{role}` role has been created and the channel permissions have been updated.",
                 "time": "Please provide a duration of 14 days or less (s/m/h/d)",
                 "desc": "has been succesfully muted by",
                 "name": "Mute",
@@ -1431,10 +1435,10 @@
                 "field3D": "Vous devez être sur que Green-bot a la permission `Gérer les rôles` et son rôle le plus haut est au dessus du rôle voulu",
                 "adding1": "<a:green_loading:824308769713815612> Ajout du rôle en cours à tous les membres qui n'ont pas le rôle",
                 "adding2": "<a:green_loading:824308769713815612> Ajout du rôle en cours à tous les membres qui n'ont pas le rôle (**{u}/{count}**)",
-                "addingOK": "<:green_succes:803264399808790529> Le rôle {role} à bien été donné aux **{count}** membres qui n'avaient pas ce rôle, opération réalisée en **{time}** minutes ",
+                "addingOK": "<:green_succes:803264399808790529> Le rôle `{role}` à bien été donné aux **{count}** membres qui n'avaient pas ce rôle, opération réalisée en **{time}** minutes ",
                 "remove1": "<a:green_loading:824308769713815612> Suppression du rôle en cours à tous les membres qui ont le rôle",
                 "remove2": "<a:green_loading:824308769713815612> Suppression du rôle en cours à tous les membres qui ont le rôle (**{u}/{count}**)",
-                "removeOK": "<:green_succes:803264399808790529> Le rôle {role} à bien été enlevé aux **{count}** membres qui avaient ce rôle, opération réalisée en **{time}** minutes "
+                "removeOK": "<:green_succes:803264399808790529> Le rôle `{role}` à bien été enlevé aux **{count}** membres qui avaient ce rôle, opération réalisée en **{time}** minutes "
 
 
 
@@ -1452,15 +1456,27 @@
                 "field3D": "You must be sure that Green-bot has the `Manage Roles' permission and its highest role is above the desired role",
                 "adding1": "<a:green_loading:824308769713815612> Add the current role to all members who do not have the role",
                 "adding2": "<a:green_loading:824308769713815612> Adding the current role to all members who do not have the role (**{u}/{count}**)",
-                "addingOK": "<:green_succes:803264399808790529> The {role} role has been given to the **{count}** members who did not have this role, operation executed in **{time}** minutes ",
+                "addingOK": "<:green_succes:803264399808790529> The `{role}` role has been given to the **{count}** members who did not have this role, operation executed in **{time}** minutes ",
                 "remove1": "<a:green_loading:824308769713815612> Removing the role to all members who have the role",
                 "remove2": "<a:green_loading:824308769713815612> Removing the role to all members who have the role (**{u}/{count}**)",
-                "removeOK": "<:green_succes:803264399808790529> The {role} role has been removed from the **{count}** members who had this role, this was done in **{time}** minutes."
+                "removeOK": "<:green_succes:803264399808790529> The `{role}` role has been removed from the **{count}** members who had this role, this was done in **{time}** minutes."
 
 
 
 
 
+            }
+        },
+        "MASSNICK": {
+            "fr": {
+                "adding1": "<a:green_loading:824308769713815612> Changement du surnom de chaque utilisateur du serveur en cours..",
+                "adding2": "<a:green_loading:824308769713815612> Changement du surnom de chaque utilisateur du serveur en cours.. (**{u}/{count}**)",
+                "addingOK": "<:green_succes:803264399808790529> Le surnom de tous les utilisateurs du serveur a bien été changé, opération réalisée en **{time}** minutes "
+            },
+            "en": {
+                "adding1": "<a:green_loading:824308769713815612> Changing the nickname of every users of the server...",
+                "adding2": "<a:green_loading:824308769713815612> Changing the nickname of every users of the server (**{u}/{count}**)",
+                "addingOK": "<:green_succes:803264399808790529> The nickname of every members of this server has been changed, operation executed in **{time}** minutes "
             }
         },
         "DISCRIM": {
@@ -1935,13 +1951,13 @@
         },
         "HELP_COMMAND": {
             "fr": {
-                "desc": "Vous pouvez trouver la liste des commandes sur le site:\n https://green-bot.app/commands\n\n**Informations sur une commande**\n• Faîtes `{prefix}help <commande>`  Pour plus d'informations sur une commande et `{prefix}help <catégorie>` pour plus d'informations sur une catégorie.\n• Vous pouvez faire `{prefix}help commands` pour voir la liste des commandes sans passer par le site\n\n**Préfixe**\nMon préfixe sur **{guild}** est `{prefix}`.Pour éxécuter des commandes, mettez d'abord le préfixe puis le nom de la commande, exemple: `{prefix}userinfo`.\nFaîtes `{prefix}setprefix <prefix>` pour changer le préfixe",
+                "desc": "Vous pouvez trouver la liste des commandes sur le site:\n https://green-bot.app/commands\n\n**Informations sur une commande**\n• Faîtes `{prefix}help <commande>`  Pour plus d'informations sur une commande et `{prefix}help <catégorie>` pour plus d'informations sur une catégorie.\n**Exemple**: `{prefix}help utilities`\n• Vous pouvez faire `{prefix}help commands` pour voir la liste des commandes sans passer par le site\n\n**Préfixe**\nMon préfixe sur **{guild}** est `{prefix}`.Pour éxécuter des commandes, mettez d'abord le préfixe puis le nom de la commande, exemple: `{prefix}userinfo`.\nFaîtes `{prefix}setprefix <prefix>` pour changer le préfixe",
                 "title": "Commandes de Green-bot",
                 "dm": "`✅` Regardez vos messages privés !"
 
             },
             "en": {
-                "desc": "You can find the command list directly on the website:\n https://green-bot.app/commands\n\n**Details of a command**\n• Use `{prefix}help <command>`  for more information about a command and `{prefix}help <category>` for more informations about a category.\n• You can use `{prefix}help commands` to see the commands list without going through the site\n\n**Prefix**\nMy prefix on **{guild}** is `{prefix}`.To execute commands, first write the prefix and then the command, example: `{prefix}userinfo`.\nDo `{prefix}setprefix <prefix>` to change the prefix",
+                "desc": "You can find the command list directly on the website:\n https://green-bot.app/commands\n\n**Details of a command**\n• Use `{prefix}help <command>`  for more information about a command and `{prefix}help <category>` for more informations about a category.\n**Example**: `{prefix}help utilities`\n• You can use `{prefix}help commands` to see the commands list without going through the site\n\n**Prefix**\nMy prefix on **{guild}** is `{prefix}`.To execute commands, first write the prefix and then the command, example: `{prefix}userinfo`.\nDo `{prefix}setprefix <prefix>` to change the prefix",
                 "title": "Green-bot commands",
                 "dm": "`✅` Check your private messages !"
 
@@ -2028,19 +2044,19 @@
             "fr": {
                 "position": "Ma position dans ce serveur n'est pas assez haute pour ajouter ce rôle",
                 "error": "Une erreur est suvenue, veuillez vérifier les permission",
-                "hasRole": "Cette personne a déja le rôle {role}, je ne peut donc pas lui ajouter.",
-                "notHasRole": "Cette personne n'a pas le rôle {role}, je ne peut donc pas lui enlever.",
-                "added": "J'ai ajouté le rôle {role} à {user} avec succès",
-                "remove": "J'ai enlevé le rôle {role} à {user} avec succès"
+                "hasRole": "Cette personne a déja le rôle `{role}`, je ne peut donc pas lui ajouter.",
+                "notHasRole": "Cette personne n'a pas le rôle `{role}`, je ne peut donc pas lui enlever.",
+                "added": "J'ai ajouté le rôle `{role}` à `{user}` avec succès",
+                "remove": "J'ai enlevé le rôle `{role}` à `{user}` avec succès"
 
             },
             "en": {
                 "position": "My position in this server is not high enough to add this role",
                 "error": "An error occurred, please check the permissions",
-                "hasRole": "This person already has the role {role}, so I cannot add it.",
-                "notHasRole": "This person does not have the role {role}, so I cannot take it away.",
-                "added": "I have successfully added the role {role} to {user}",
-                "remove": "I have successfully removed the role {role} to {user}"
+                "hasRole": "This person already has the role `{role}`, so I cannot add it.",
+                "notHasRole": "This person does not have the role `{role}`, so I cannot take it away.",
+                "added": "I have successfully added the role `{role}` to `{user}`",
+                "remove": "I have successfully removed the role `{role}` to `{user}`"
 
 
 
@@ -2092,7 +2108,7 @@
                 "addAlready": "J'ai déja ce rôle dans ma base de données",
                 "addCustom": "Je ne prend pas en charge les emojis personnalisés",
                 "emojiErr": "Veuillez me fournir un emoji valide.",
-                "AddOK": "Rôle à réaction ajouté avec succès ({role} > `{emoji}`) \nQuand vous avez fini, faîtes `{prefix}rolereact send`",
+                "AddOK": "Rôle à réaction ajouté avec succès (`{role}` > `{emoji}`) \nQuand vous avez fini, faîtes `{prefix}rolereact send`",
                 "deleteOK": "J'ai bien supprimé le rôle du système",
                 "deleteErr": "Je n'ai pas déja ce rôle.",
                 "noRole": "Il n'y a encore aucun rôle à réaction pour ce serveur.\nAjoutez en un avec la commande `{prefix}rolereact add @role`",
@@ -2113,7 +2129,7 @@
                 "addAlready": "I already have this role in my database",
                 "addCustom": "Customs emojis are not suporteds.",
                 "emojiErr": "Please provide a valid emoji.",
-                "AddOK": "Reaction role succesfully added ({role} > `emoji`) \nDo `{prefix}rolereact send` to send the embed",
+                "AddOK": "Reaction role succesfully added (`{role}` > `emoji`) \nDo `{prefix}rolereact send` to send the embed",
                 "deleteOK": "Role succesfully removed from the system",
                 "deleteErr": "I don't have this role.",
                 "noRole": "There isn't any reaction role for this server.\nAdd one with `{prefix}rolereact add @role`",
@@ -2347,7 +2363,7 @@
         },
         "STATS": {
             "fr": {
-                "desc": "Je suis un bot discord multifonctions **entièrement** gratuit et je suis aussi open source sur [Github](https://github.com/Pauldb09/Green-bot) N'hésitez pas à ajouter une étoile ⭐.\n Si vous avez le temps, supportez nous en  [votant](https://top.gg/bot/783708073390112830/vote), C'est gratuit et rapide\nLes emojis viennent de [`Emoji land`](https://discord.gg/vza2E4n6U7)",
+                "desc": "Je suis un bot discord multifonctions **entièrement** gratuit et je suis aussi open source sur [Github](https://github.com/Pauldb09/Green-bot) N'hésitez pas à ajouter une étoile ⭐.\n Si vous avez le temps, supportez nous en  [votant](https://top.gg/bot/783708073390112830/vote), C'est gratuit et rapide\nLes emojis viennent de [`Emoji land`](https://discord.gg/yVRtEyweeC)",
                 "field": "**Serveurs:**\n `{server}`\n**Utilisateurs:**\n `{users}`\n**Commandes:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Owner` : **<@688402229245509844>\n**`Database` : **MongoDB**",
 
@@ -2358,7 +2374,7 @@
             },
             "en": {
 
-                "desc": "I am an **entierly** free multipropose discord bot and i am open source on [Github](https://github.com/Pauldb09/Green-bot) feel free to add a star ⭐.\n Feel free to support us by [Voting for the bot](https://top.gg/bot/783708073390112830/vote)\nThe emojis are from [`Emoji land`](https://discord.gg/vza2E4n6U7)",
+                "desc": "I am an **entierly** free multipropose discord bot and i am open source on [Github](https://github.com/Pauldb09/Green-bot) feel free to add a star ⭐.\n Feel free to support us by [Voting for the bot](https://top.gg/bot/783708073390112830/vote)\nThe emojis are from [`Emoji land`](https://discord.gg/yVRtEyweeC)",
                 "field": "**Guilds:**\n `{server}`\n**Users:**\n `{users}`\n**Commands:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Owner` : **<@688402229245509844>\n**`Database` : **MongoDB**",
 
@@ -2440,7 +2456,7 @@
                 "level": "Niveau",
                 "xp4": "xp pour le niveau {level}",
                 "since": "Statistiques depuis {time}",
-                "next": "`🏆` Rank suivant : {role}"
+                "next": "`🏆` Rank suivant : `{role}`"
 
             },
             "en": {
@@ -2455,7 +2471,7 @@
                 "xp4": "xp for the level {level}",
 
                 "since": "Statistics since {time}",
-                "next": "`🏆` Next rank : {role}"
+                "next": "`🏆` Next rank : `{role}`"
 
 
 
