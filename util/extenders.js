@@ -47,7 +47,7 @@ Guild.prototype.addDB = async function(guildID = {}) {
         lang: "en",
         premium: null,
         premiumUserID: null,
-        color: "#3A871F",
+        color: config.color,
         backlist: null
     }).save()
     this.settings = data
