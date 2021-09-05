@@ -19,8 +19,9 @@ registerFont("./ZenDots-Regular.ttf", { family: "Zen Dots" }), module.exports = 
         }
         const ai = await Welcome.findOne({ serverID: e.guild.id, reason: "verification" });
         if (ai && !e.verified) return
-        const settings = await guildData.findOne({ serverID: e.guild.id })
-        let t, r = await Welcome.findOne({ serverID: e.guild.id, reason: "logs" });
+         const settings = await guildData.findOne({ serverID: e.guild.id })
+if(s.log) console.log(settings)
+         let t, r = await Welcome.findOne({ serverID: e.guild.id, reason: "logs" });
         t = r ? e.guild.channels.cache.get(r.channelID) : null;
         const lang = await e.guild.translatee("WELCOME", settings.lang)
         const a = (new Discord.MessageEmbed).setTitle(lang.title.replace("{username}", e.user.username)).setThumbnail(e.user.displayAvatarURL()).setDescription(lang.desc.replace("{x}", e.guild.memberCount).replace("{date}", moment(e.user.createdTimestamp).locale(settings.lang).format("LL, "))).setFooter(s.footer).setColor("#04781B");
