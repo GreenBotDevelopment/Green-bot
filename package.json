@@ -14,7 +14,7 @@
         "discord-player": "^5.1.0",
         "discord-voice": "^1.0.7",
         "discord-ytdl-core": "^5.0.3",
-        "discord.js": "github:discordjs/discord.js#master",
+        "discord.js": "^13.1.0",
         "discord.js-rate-limiter": "^1.0.7",
         "easy-games-js": "^1.2.1",
         "easy-number-formatter": "^1.0.3",
