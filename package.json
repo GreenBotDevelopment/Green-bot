@@ -34,6 +34,7 @@
         "quickmongo": "^3.0.0",
         "reconlx": "^1.2.41",
         "rss-parser": "^3.12.0",
+        "simple-youtube-api": "^5.2.1",
         "tiktok-scraper": "^1.4.23",
         "topgg-autoposter": "^1.1.10",
         "twemoji-parser": "^13.0.0",

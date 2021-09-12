@@ -1,4 +1,3 @@
-const backup = require("discord-backup");
 const fs = require('fs')
 var backups = JSON.parse(fs.readFileSync("./Data/backups.json", "utf8"));
 const hastebins = require("hastebin-gen");
