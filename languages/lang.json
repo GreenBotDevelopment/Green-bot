@@ -119,7 +119,7 @@
         },
         "ERROR_CHANNEL_VOICE": {
             "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon vocal.",
-            "en": "The indicated channel is invalid, you must ping the channel or give its ID. It must be a voice channel."
+            "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be a voc channel."
         },
         "ERROR_ROLE": {
             "fr": "Veuillez mentionner un rôle valide ou fournir un ID de rôle valide.",
@@ -159,7 +159,7 @@
         },
         "MUSIC_START": {
             "fr": "`🎶` Musique en cours",
-            "en": "`🎶` Currently paying"
+            "en": "`🎶` Currently playing"
         },
         "WELCOME_NAME": {
             "fr": "Bienvenue",
@@ -451,8 +451,8 @@
             "en": "💡 Operation canceled"
         },
         "ARGS_TIP": {
-            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec <:panelconfig:830347712330203146> pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
-            "en": "You don't need any arguments for this command. **You have to react with <:panelconfig:830347712330203146> to start the configuration**. \n You can send `cancel` at any time to cancel"
+            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec 📜 pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
+            "en": "You don't need any arguments for this command. **You have to react with 📜 to start the configuration**. \n You can send `cancel` at any time to cancel"
         },
         "HELP_CAT": {
             "fr": ["Modération", "Musique", "Système de Niveau", "Utilitaires", "Jeux", "Commandes personnalisées"],
@@ -2065,21 +2065,24 @@
         },
         "QUEUE": {
             "fr": {
-                "a": "⏸ En cours :",
-                "b": "🔁 Répétition de la queue:",
+                "a": "__En cours :__",
+                "b": "__Répétition de la queue:__",
                 "c": "musiques",
-                "notHasRole": "Cette personne n'a pas le rôle {role}, je ne peut donc pas lui enlever.",
-                "added": "J'ai ajouté le rôle {role} à {user} avec succès",
-                "remove": "J'ai enlevé le rôle {role} à {user} avec succès"
+                "next": "__Chansons à venir__",
+                "title": "Queue de",
+                "request": "Ajouté par",
+                "no": "Rien à venir dans la queue"
 
             },
             "en": {
-                "a": "⏸ Current song :",
-                "b": "🔁 Loop mode:",
+                "a": "__Now playing:__",
+                "b": "__Loop mode:__",
                 "c": "songs",
-                "notHasRole": "Cette personne n'a pas le rôle {role}, je ne peut donc pas lui enlever.",
-                "added": "J'ai ajouté le rôle {role} à {user} avec succès",
-                "remove": "J'ai enlevé le rôle {role} à {user} avec succès"
+                "next": "__Next songs in the queue__",
+                "title": "Queue for",
+                "request": "Requested by",
+                "no": "Nothing next in the queue"
+
 
 
 
@@ -2374,7 +2377,7 @@
             },
             "en": {
 
-                "desc": "I am an **entierly** free multipropose discord bot and i am open source on [Github](https://github.com/Pauldb09/Green-bot) feel free to add a star ⭐.\n Feel free to support us by [Voting for the bot](https://top.gg/bot/783708073390112830/vote)\nThe emojis are from [`Emoji land`](https://discord.gg/yVRtEyweeC)",
+                "desc": "I am an **entierly** free multipropose discord bot and i am open source on [Github](https://github.com/Pauldb09/Green-bot) feel free to add a star ⭐.\n Feel free to support us by [Voting for the bot](https://top.gg/bot/783708073390112830/vote)\nThe emojis are from [`Emoji land`](https://discord.gg/yVRtEyweeC)\nYou can leave a [Feedback](https://green-bot.app/feedback) to improve me !",
                 "field": "**Guilds:**\n `{server}`\n**Users:**\n `{users}`\n**Commands:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Owner` : **<@688402229245509844>\n**`Database` : **MongoDB**",
 
