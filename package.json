@@ -23,6 +23,7 @@
         "figlet": "^1.5.0",
         "hastebin-gen": "^2.0.5",
         "hex-color-regex": "^1.1.0",
+        "is-url": "^1.2.4",
         "mathjs": "^7.5.1",
         "moment": "^2.29.1",
         "mongoose": "^5.12.8",

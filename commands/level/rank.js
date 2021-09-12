@@ -7,6 +7,7 @@ const { registerFont } = require('canvas');
 registerFont('./ZenDots-Regular.ttf', { family: 'Zen Dots' })
 const rolesReward = require('../../database/models/rolesRewards');
 const premiumDB = require('../../database/models/premium');
+
 const levelModel = require('../../database/models/level');
 module.exports = {
         name: 'rank',
