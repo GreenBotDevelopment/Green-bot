@@ -161,25 +161,7 @@ module.exports = {
                         return e.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
                     }
                 }
-                if (i.cat === "games" && e.guild.settings.games_enabled !== true) {
-                    let language = await e.translate("CAT_DISABLED")
-                    const embed = new Discord.MessageEmbed()
-                        .setAuthor(`${e.member.user.tag}`, e.member.user.displayAvatarURL())
-                        .setDescription(`${language.desc} ${e.member.permissions.has("MANAGE_GUILD") ? `${language.admin.replace("{guildID}", `${e.guild.id}`)}`:""}`)
-                            .setTitle(language.title)
-                            .setColor(e.guild.settings.color)
-                            .setFooter(`${e.client.footer}`, e.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-                        return e.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
-                    } else if (i.cat === "utilities" && !e.guild.settings.util_enabled) {
-                        let language = await e.translate("CAT_DISABLED")
-                        const embed = new Discord.MessageEmbed()
-                            .setAuthor(`${e.member.user.tag}`, e.member.user.displayAvatarURL())
-                            .setDescription(`${language.desc} ${e.member.permissions.has("MANAGE_GUILD") ? `${language.admin.replace("{guildID}", `${e.guild.id}`)}`:""}`)
-                            .setTitle(language.title)
-                            .setColor(e.guild.settings.color)
-                            .setFooter(`${e.client.footer}`, e.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-                        return e.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
-                    }
+               
                     let u = await e.translate("ARGS_REQUIRED");
                     if (i.args && !a.length) {
                         let langUsage;
