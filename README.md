@@ -48,7 +48,7 @@ Note: If you need help with the installation, you can join our [Discord Server](
 
 __Step 1.__
 
-Install NodeJS on your computer or on your vps. https://nodejs.org. You MUST have NodeJs 12 or an higher version.
+Install NodeJS on your computer or on your vps. https://nodejs.org. You MUST have NodeJs 16 or an higher version.
 Then, download the files and open them with Visual Studio code (code.visualstudio.com). Then press `Crtl + shift + ù` or click on "new terminal", on the top bar.
 
 __Step 2.__
