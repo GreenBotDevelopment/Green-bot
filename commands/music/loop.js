@@ -1,9 +1,5 @@
 const Discord = require('discord.js');
-
-const Welcome = require('../../database/models/Welcome');
 const { Player, QueryType, QueueRepeatMode } = require("discord-player");
-
-
 module.exports = {
     name: 'loop',
     description: 'Active /désactive la répetition',
@@ -13,11 +9,8 @@ module.exports = {
     usages: ["loop queue", "loop song"],
     usage: 'queue/song',
     aliases: ['lp', 'repeat'],
-
     botpermissions: ['CONNECT', 'SPEAK'],
-
     async execute(message, args) {
-
         if (message.guild.settings.dj_system) {
             if (!message.member.permissions.has("MANAGE_MESSAGES")) {
                 let MissingRole = await message.translate("MISSING_ROLE");
@@ -26,15 +19,13 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
-
-
         const voice = message.member.voice.channel;
         if (!voice) {
             let err = await message.translate("NOT_VOC")
@@ -56,44 +47,22 @@ module.exports = {
         if (args.join(" ").toLowerCase() === 'queue') {
             if (queue.loopMode) {
                 queue.setRepeatMode(QueueRepeatMode.OFF);
-                return message.mainMessageT(lang.queue.replace("{status}", ena.disable));
+                return message.succesMessage(lang.queue.replace("{status}", ena.disable));
             } else {
                 queue.setRepeatMode(QueueRepeatMode.QUEUE);
-                return message.mainMessageT(lang.queue.replace("{status}", ena.enabled));
+                return message.succesMessage(lang.queue.replace("{status}", ena.enabled));
             };
         } else if (args.join(" ").toLowerCase() === 'song') {
             if (queue.repeatMode) {
                 queue.setRepeatMode(QueueRepeatMode.OFF);
-                return message.mainMessageT(lang.music.replace("{status}", ena.disable));
+                return message.succesMessage(lang.music.replace("{status}", ena.disable));
             } else {
                 queue.setRepeatMode(QueueRepeatMode.TRACK);
-                return message.mainMessageT(lang.music.replace("{status}", ena.enabled));
+                return message.succesMessage(lang.music.replace("{status}", ena.enabled));
             };
         } else {
-            let err = await message.translate("ARGS_REQUIRED")
+            return message.usage()
 
-            const reportEmbed = new Discord.MessageEmbed()
-                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
-
-            .setDescription(`${err.replace("{command}","queue")} \`${message.guild.settings.prefix}loop queue/song\``)
-
-            .setFooter(message.client.footer)
-                .setColor("#F0B02F")
-
-            message.channel.send({ embeds: [reportEmbed] })
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     },
 };

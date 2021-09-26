@@ -9,7 +9,6 @@ module.exports = {
     aliases: ['sound', 'v'],
     cat: 'music',
     args: true,
-
     usage: '<number>',
     exemple: '70',
     botpermissions: ['CONNECT', 'SPEAK'],
@@ -23,10 +22,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -54,7 +53,7 @@ module.exports = {
         const queue = message.client.player.getQueue(message.guild.id);
         queue.setVolume(parseInt(args[0]));
         let a = await message.translate("VOLUME")
-        message.mainMessageT(a.replace("{volume}", args[0]))
+        message.succesMessage(a.replace("{volume}", args[0]))
 
     },
 };

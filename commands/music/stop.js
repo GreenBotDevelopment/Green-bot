@@ -20,10 +20,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -43,15 +43,12 @@ module.exports = {
             return message.errorMessage(err);
         }
         const queue = message.client.player.getQueue(message.guild.id);
+        if (queue.metadata) queue.metadata.guild.stopped = true
         queue.destroy();
         message.client.player.deleteQueue(message.guild.id)
 
         let a = await message.translate("STOP")
-        message.mainMessageT(a)
-
-
-
-
+        message.channel.send(a)
 
 
 

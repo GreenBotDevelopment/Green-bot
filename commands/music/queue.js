@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { Player, QueryType, QueueRepeatMode } = require("discord-player");
 module.exports = {
     name: 'queue',
     description: 'affiche tous les sons dans la queue',
@@ -15,33 +16,50 @@ module.exports = {
             return message.errorMessage(err)
         }
         const lang = await message.translate("QUEUE")
-        const util = await message.translate("DISABLED/ENABLED")
         const queue = message.client.player.getQueue(message.guild.id);
-        if (queue.tracks.length < 8) {
+        const getRepeatMode = function(mode) {
+            let text;
+            if (mode == QueueRepeatMode.AUTOPLAY) {
+                text = lang.autoplay
+            } else if (mode == QueueRepeatMode.QUEUE) {
+                text = lang.queue
+
+            } else if (mode == QueueRepeatMode.TRACK) {
+                text = lang.track
+
+            } else {
+                text = lang.disabled
+            }
+            return text
+        }
+        if (queue.tracks.length < 6) {
             const embed = new Discord.MessageEmbed()
-                .setTitle(`Queue (${queue.tracks.length} ${lang.c})`)
+                .setTitle(`${lang.title} ${message.guild.name} `)
+                .setURL("https://top.gg/bot/783708073390112830/vote")
                 .setColor(message.guild.settings.color)
                 .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-                .addField(`Queue `, queue.tracks.map((m, i) => `**#${i + 1}**  [${m.title}](${m.url})`).join("\n") || "Nothing in the queue")
-                .addField(lang.a, `\`${queue.current.title}\``)
-                .addField(lang.b, `${queue.repeatMode ? util.enabled: util.disable}`)
+                .addField(lang.a, `[${queue.current.title}](${queue.current.url}) | \`${lang.request} ${queue.current.requestedBy.username} ${queue.current.duration} \``)
+
+            .addField(`__${lang.next}__`, queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).join("\n") || lang.no)
+                .addField(lang.b, getRepeatMode(queue.repeatMode))
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
         } else {
             let i0 = 0;
-            let i1 = 8;
+            let i1 = 6;
             let page = 1;
-            let description = `Queue (${queue.tracks.length} ${lang.c}) \n\n` +
-                queue.tracks.map((track, i) => `**#${i + 1}**  [${track.title}](${track.url})`).slice(0, 8).join("\n");
+            let description = queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(0, 6).join("\n");
             const embed = new Discord.MessageEmbed()
+                .setTitle(`${lang.title} ${message.guild.name} `)
+                .setURL("https://top.gg/bot/783708073390112830/vote")
                 .setColor(message.guild.settings.color)
-                .setTitle(`Queue (${page}/${Math.ceil(queue.tracks.length / 8)})`)
-                .setDescription(description)
-                .addField(lang.a, `**${queue.current.title} **
-            `).addField(lang.b, `${queue.repeatMode ? util.enabled: util.disable}
-            `)
                 .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
+                .addField(lang.a, `[${queue.current.title}](${queue.current.url}) | \`${lang.request} ${queue.current.requestedBy.username} ${queue.current.duration} \``)
+
+            .setDescription(description)
+                .addField(lang.b, getRepeatMode(queue.repeatMode))
+
             const msg = await message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
 
             await msg.react("⬅");
@@ -52,34 +70,34 @@ module.exports = {
 
             c.on("collect", async reaction => {
                 if (reaction.emoji.name === "⬅") {
-                    i0 = i0 - 8;
-                    i1 = i1 - 8;
+                    i0 = i0 - 6;
+                    i1 = i1 - 6;
                     page = page - 1
 
                     if (i0 < 0) return;
                     if (page < 1) return;
 
-                    let description = `Queue (${queue.tracks.length} ${lang.c}) \n\n` +
-                        queue.tracks.map((track, i) => `**#${i + 1}**  [${track.title}](${track.url})`).slice(i0, i1).join("\n");
+                    let description =
+                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
 
-                    embed.setTitle(`Queue (${page}/${Math.ceil(queue.tracks.length / 8)})`)
+                    embed
                         .setDescription(description);
 
                     msg.edit({ embeds: [embed] });
                 }
 
                 if (reaction.emoji.name === "➡") {
-                    i0 = i0 + 8;
-                    i1 = i1 + 8;
+                    i0 = i0 + 6;
+                    i1 = i1 + 6;
                     page = page + 1
 
-                    if (i1 > queue.tracks.length + 8) return;
+                    if (i1 > queue.tracks.length + 6) return;
                     if (i0 < 0) return;
 
-                    let description = `Queue (${queue.tracks.length} ${lang.c}) \n\n` +
-                        queue.tracks.map((track, i) => `**#${i + 1}**  [${track.title}](${track.url})`).slice(i0, i1).join("\n");
+                    let description =
+                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
 
-                    embed.setTitle(`Page: ${page}/${Math.ceil(queue.tracks.length / 8)}`)
+                    embed
                         .setDescription(description);
 
                     msg.edit({ embeds: [embed] });

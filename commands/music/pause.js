@@ -20,10 +20,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -51,7 +51,7 @@ module.exports = {
         }
         queue.setPaused(true);
 
-        message.mainMessageT(pause.succes);
+        message.succesMessage(pause.succes);
 
 
 

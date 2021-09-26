@@ -8,9 +8,9 @@ module.exports = {
     description: 'Avance la musique actuelle d\'un temps donné.',
     cat: 'music',
     args: true,
-    aliases: ['s', ],
+    aliases: ['advance', ],
     usage: '<time>',
-    exemple: '10s',
+    exemple: '10',
     botpermissions: ['CONNECT', 'SPEAK'],
 
     async execute(message, args) {
@@ -22,10 +22,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -50,15 +50,6 @@ module.exports = {
         }
 
         await queue.seek(queue.currentStreamTime + time);
-
-        // Send the embed in the current channel
-        message.mainMessageT(lang.ok.replace("{time}", args[0]))
-
-
-
-
-
-
-
+        message.succesMessage(lang.ok.replace("{time}", args[0]))
     },
 };

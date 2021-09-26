@@ -1,12 +1,13 @@
 const Discord = require('discord.js');
-const Welcome = require('../../database/models/Welcome');
-
+const { Player, QueryType, QueueRepeatMode } = require("discord-player");
 module.exports = {
-    name: 'clearqueue',
-    description: 'Supprime la queue du serveur',
-    permissions: false,
-    aliases: ['cq'],
+    name: 'bassboost',
+    description: 'Toggles bassboost filter',
     cat: 'music',
+    exemple: 'enable',
+    args: true,
+    premium: true,
+    usages: ["bassboost enable", "bassboost disable"],
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {
         if (message.guild.settings.dj_system) {
@@ -36,11 +37,34 @@ module.exports = {
         if (!message.client.player.getQueue(message.guild.id) || !message.client.player.getQueue(message.guild.id).playing) {
             let err = await message.translate("NOT_MUSIC")
             return message.errorMessage(err)
+
         }
-        const lang = await message.translate("CLEAR_QUEUE")
-        if (message.client.player.getQueue(message.guild.id).tracks.length <= 1) return message.errorMessage(lang.err);
+
+        const lang = await message.translate("BASSBOOST")
         const queue = message.client.player.getQueue(message.guild.id);
-        queue.clear()
-        message.succesMessage(lang.ok)
+        if (args.join(" ").toLowerCase() === 'enable') {
+            if (!queue.getFiltersEnabled().includes("bassboost")) {
+                await queue.setFilters({
+                    bassboost: true,
+                    normalizer2: true // because we need to toggle it with bass
+                });
+                return message.succesMessage(lang.enabled);
+            } else {
+                return message.errorMessage(lang.enabledSince);
+            };
+        } else if (args.join(" ").toLowerCase() === 'disable') {
+            if (queue.getFiltersEnabled().includes("bassboost")) {
+                await queue.setFilters({
+                    bassboost: false,
+                    normalizer2: false // because we need to toggle it with bass
+                });
+                return message.succesMessage(lang.disabled);
+            } else {
+                return message.errorMessage(lang.disabledSince);
+            };
+        } else {
+            return message.usage()
+
+        }
     },
 };

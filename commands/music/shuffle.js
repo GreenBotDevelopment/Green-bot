@@ -7,6 +7,7 @@ module.exports = {
     permissions: false,
     aliases: ['shufle'],
     cat: 'music',
+    premium: true,
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {
         if (message.guild.settings.dj_system) {
@@ -17,10 +18,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -38,11 +39,11 @@ module.exports = {
 
         }
         const lang = await message.translate("CLEAR_QUEUE")
-        if (message.client.player.getQueue(message.guild.id).tracks.length <= 1) return message.errorMessage(lang.err);
+        if (message.client.player.getQueue(message.guild.id).tracks.length == 1) return message.errorMessage(lang.err);
         let a = await message.translate("SHUFFLE")
 
         queue.shuffle();
-        message.mainMessageT(a.replace("{x}", queue.tracks.length))
+        message.succesMessage(a.replace("{songs}", queue.tracks.length))
 
 
 

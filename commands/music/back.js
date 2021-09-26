@@ -4,9 +4,7 @@ module.exports = {
     name: 'back',
     description: 'Joue la musique précédente',
     cat: 'music',
-
     botpermissions: ['CONNECT', 'SPEAK'],
-
     async execute(message, args) {
         if (message.guild.settings.dj_system) {
             if (!message.member.permissions.has("MANAGE_MESSAGES")) {
@@ -16,10 +14,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }

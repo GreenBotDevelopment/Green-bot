@@ -22,10 +22,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -44,29 +44,47 @@ module.exports = {
         const { player } = message.client
         let queue;
         if (!message.client.player.getQueue(message.guild.id)) {
+
             queue = player.createQueue(message.guild, {
-                metadata: message
+                metadata: message,
+                initialVolume: 60,
+                leaveOnEmptyCooldown: message.guild.h24 ? null : 3000,
+                leaveOnEmpty: message.guild.h24 ? false : true,
+                leaveOnEnd: message.guild.h24 ? false : true,
+                ytdlOptions: {
+                    quality: 'highest',
+                    filter: 'audioonly',
+                    highWaterMark: 1 << 25,
+                    dlChunkSize: 0
+                },
+                fetchBeforeQueued: true,
             });
         } else {
             queue = message.client.player.getQueue(message.guild.id)
         }
+
         const searchResult = await player
             .search(name, {
                 requestedBy: message.author,
                 searchEngine: QueryType.AUTO
             })
-            .catch(() => {});
+            .catch(async() => {
+                let errorM = await message.translate("NO_RESULTS")
+                return message.errorMessage(errorM.replace("{query}", name));
+            });
         if (!searchResult || !searchResult.tracks.length) {
             let errorM = await message.translate("NO_RESULTS")
             return message.errorMessage(errorM.replace("{query}", name));
         }
         try {
             if (!queue.connection) await queue.connect(message.member.voice.channel);
-        } catch {
+        } catch (err) {
+            console.log(err)
             player.deleteQueue(message.guild.id)
             return message.errorMessage(`I am not able to join your voice channel, please check my permissions !`);
         }
         searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
+
         if (!queue.playing) await queue.play();
     },
 };

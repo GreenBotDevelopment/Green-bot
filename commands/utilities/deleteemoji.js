@@ -11,8 +11,8 @@ module.exports = {
     cat: 'utilities',
     args: true,
     guildOnly: true,
-    botpermissions: ['MANAGE_EMOJIS'],
-    permissions: ['MANAGE_EMOJIS'],
+    botpermissions: ['MANAGE_EMOJIS_AND_STICKERS'],
+    permissions: ['MANAGE_EMOJIS_AND_STICKERS'],
     async execute(message, args) {
         const text = args[0]
         if (text.split(':')[2] === undefined) {

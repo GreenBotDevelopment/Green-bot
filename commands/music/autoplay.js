@@ -1,12 +1,14 @@
 const Discord = require('discord.js');
-const Welcome = require('../../database/models/Welcome');
-
+const { Player, QueryType, QueueRepeatMode } = require("discord-player");
 module.exports = {
-    name: 'clearqueue',
-    description: 'Supprime la queue du serveur',
-    permissions: false,
-    aliases: ['cq'],
+    name: 'autoplay',
+    description: 'Enables or disables the autoplay system. If enabled, the bot will play songs like the songs that you listen',
     cat: 'music',
+    exemple: 'enable',
+    args: true,
+    premium: true,
+    usages: ["autoplay enable", "autoplay disable"],
+    usage: 'queue/song',
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {
         if (message.guild.settings.dj_system) {
@@ -36,11 +38,28 @@ module.exports = {
         if (!message.client.player.getQueue(message.guild.id) || !message.client.player.getQueue(message.guild.id).playing) {
             let err = await message.translate("NOT_MUSIC")
             return message.errorMessage(err)
+
         }
-        const lang = await message.translate("CLEAR_QUEUE")
-        if (message.client.player.getQueue(message.guild.id).tracks.length <= 1) return message.errorMessage(lang.err);
+
+        const lang = await message.translate("AUTOPLAYE")
         const queue = message.client.player.getQueue(message.guild.id);
-        queue.clear()
-        message.succesMessage(lang.ok)
+        if (args.join(" ").toLowerCase() === 'enable') {
+            if (queue.repeatMode !== QueueRepeatMode.AUTOPLAY) {
+                queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
+                return message.succesMessage(lang.enabled);
+            } else {
+                return message.errorMessage(lang.enabledSince);
+            };
+        } else if (args.join(" ").toLowerCase() === 'disable') {
+            if (queue.repeatMode == QueueRepeatMode.AUTOPLAY) {
+                queue.setRepeatMode(QueueRepeatMode.OFF);
+                return message.succesMessage(lang.disabled);
+            } else {
+                return message.errorMessage(lang.disabledSince);
+            };
+        } else {
+            return message.usage()
+
+        }
     },
 };

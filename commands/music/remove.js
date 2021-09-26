@@ -21,10 +21,10 @@ module.exports = {
                 if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
                 if (message.member.roles.cache) {
                     if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                     }
                 } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role))
+                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
                 }
             }
         }
@@ -48,17 +48,14 @@ module.exports = {
         const queue = message.client.player.getQueue(message.guild.id);
 
         if (queue.tracks.length < 2) return message.errorMessage(lang.more);
+        if (isNaN(args[0])) return message.errorMessage(lang.num.replace("{x}", queue.tracks.length))
+        const num = args[0] - 1;
+        if (!queue.tracks[num]) return message.errorMessage(lang.no.replace("{x}", queue.tracks.length))
 
-        if (isNaN(args[0])) return message.errorMessage(lang.num.replace("{x}", queue.tracks.length - 1))
+        const song = queue.tracks[num];
 
-        if (Number(args[0]) === 0) return message.errorMessage(lang.current.replace("{x}", queue.tracks.length - 1))
-
-        if (Number(args[0]) >= queue.tracks.length || Number(args[0]) < 1 || !queue.tracks[args[0]]) return message.errorMessage(lang.no.replace("{x}", queue.tracks.length - 1))
-
-        const song = queue.tracks[Number(args[0])];
-
-        queue.remove(Number(args[0]));
-        message.mainMessageT(lang.ok.replace("{title}", song.title))
+        queue.remove(num);
+        message.succesMessage(lang.ok.replace("{title}", song.title))
 
 
 

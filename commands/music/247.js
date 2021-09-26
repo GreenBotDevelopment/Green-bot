@@ -1,12 +1,16 @@
 const Discord = require('discord.js');
-const Welcome = require('../../database/models/Welcome');
+const { Player, QueryType, QueueRepeatMode } = require("discord-player");
+const guildData = require('../../database/models/guildData');
 
 module.exports = {
-    name: 'clearqueue',
-    description: 'Supprime la queue du serveur',
-    permissions: false,
-    aliases: ['cq'],
+    name: '24/7',
+    description: 'Enable/Disable The 24h/7 mode',
     cat: 'music',
+    exemple: 'on',
+    premium: true,
+    args: true,
+    usages: ["24/7 enable", "24/7 disable"],
+    aliases: ['247'],
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {
         if (message.guild.settings.dj_system) {
@@ -36,11 +40,36 @@ module.exports = {
         if (!message.client.player.getQueue(message.guild.id) || !message.client.player.getQueue(message.guild.id).playing) {
             let err = await message.translate("NOT_MUSIC")
             return message.errorMessage(err)
+
         }
-        const lang = await message.translate("CLEAR_QUEUE")
-        if (message.client.player.getQueue(message.guild.id).tracks.length <= 1) return message.errorMessage(lang.err);
+
+        const lang = await message.translate("24/7")
         const queue = message.client.player.getQueue(message.guild.id);
-        queue.clear()
-        message.succesMessage(lang.ok)
+        if (args.join(" ").toLowerCase() === 'enable') {
+            if (queue.options.leaveOnEnd) {
+                message.guild.settings.h24 = true
+                const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id }, { $set: { h24: true } }, { new: true });
+                queue.options.leaveOnEmpty = false;
+                queue.options.leaveOnEnd = false;
+                queue.options.leaveOnEmptyCooldown = null;
+                return message.succesMessage(lang.enabled);
+            } else {
+                return message.errorMessage(lang.enabledSince);
+            };
+        } else if (args.join(" ").toLowerCase() === 'disable') {
+            if (!queue.options.leaveOnEnd) {
+                message.guild.settings.h24 = null
+                const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id }, { $set: { h24: null } }, { new: true });
+                queue.options.leaveOnEmpty = true;
+                queue.options.leaveOnEnd = true;
+                queue.options.leaveOnEmptyCooldown = 3000;
+                return message.succesMessage(lang.disabled);
+            } else {
+                return message.errorMessage(lang.disabledSince);
+            };
+        } else {
+            return message.usage()
+
+        }
     },
 };
