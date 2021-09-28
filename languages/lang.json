@@ -3,7 +3,8 @@
     "translations": {
         "MISSING_PERMISSIONS": {
             "en": "You must have the `{perm}` permission to use this command.",
-            "fr": "Vous devez avoir la permission `{perm}` pour utiliser cette commande"
+            "fr": "Vous devez avoir la permission `{perm}` pour utiliser cette commande",
+"de":"",
         },
         "MISSING_ROLE": {
             "en": "You must have the `{perm}` permission or the `@{role}` role to use this command",
