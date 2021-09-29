@@ -42,9 +42,11 @@
     
  <br>  
  
-**Installation**
+**🖥 Installation**
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
+
+Before starting, make you sure you have a mongoDb database (it's free) and nodejs v16.
 
 __Step 1.__
 
@@ -66,7 +68,7 @@ __Step 5.__
 Enjoy your bot !
 
 
-**Bot features**
+**📚 Bot features**
 
 
 ► Music system
