@@ -9,8 +9,6 @@ module.exports = {
         setInterval(async() => {
             await crons.checkYoutubeVideos(client)
         }, 6e4);
-
-        null === (await client.db.get("giveaways")) && (await client.db.set("giveaways", []));
         if (config.database.cached) {
             const { refreshDB } = require("../../util/crons")
             await refreshDB(client, config.database.delay);
