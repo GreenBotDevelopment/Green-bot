@@ -32,7 +32,7 @@ class GreenBot extends Client {
         this.commands = new Collection()
         this.dbTemps = dbTemps;
       
-        const manager = new GiveawayManagerWithOwnDatabase(this, {  storage: './giveaways.json', updateCountdownEvery: 19e3, default: { botsCanWin: !1, exemptPermissions: [], embedColorEnd: "#ED360E", embedColor: "#3A871F", reaction: "🎁" } });
+        const manager = new GiveawaysManager(this, {  storage: './giveaways.json', updateCountdownEvery: 19e3, default: { botsCanWin: !1, exemptPermissions: [], embedColorEnd: "#ED360E", embedColor: "#3A871F", reaction: "🎁" } });
         this.manager = manager
     }
 }
