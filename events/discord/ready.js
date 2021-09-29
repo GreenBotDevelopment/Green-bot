@@ -18,21 +18,6 @@ module.exports = {
             setInterval(() => {
                 client.user.setActivity(config.game, { type: "WATCHING" });
             }, 60000 * 60);
-        } else {
-            const activities = [
-                { name: '*help • green-bot.app', type: 'WATCHING' },
-                { name: '*help • green-bot.app', type: 'WATCHING' }
-            ]
-            client.user.setActivity(activities[0].name, { type: "WATCHING" });
-            let activity = 1;
-            setInterval(async() => {
-                activities[2] = { name: `green-bot.app`, type: 'WATCHING' };
-                activities[3] = { name: `green-bot.app`, type: 'WATCHING' };
-                if (activity > 3) activity = 0;
-                client.user.setActivity(activities[activity].name, { type: "WATCHING" });
-                activity++;
-            }, 30000);
-        }
-
+        } 
     }
 };
