@@ -149,7 +149,7 @@ module.exports = {
                 }
                 if (i.owner && e.author.id !== e.client.owner.id) return;
                 if (i.premium) {
-                    const premiumDB = require("../database/models/premium")
+                    const premiumDB = require("../../database/models/premium")
                     const premium = await premiumDB.findOne({ userID: e.author.id })
                     if (!premium) {
                         let language = await e.translate("PREMIUM_REQUIRED")
