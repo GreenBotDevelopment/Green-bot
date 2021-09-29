@@ -41,14 +41,14 @@ module.exports = {
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .addField(lang.a, `[${queue.current.title}](${queue.current.url}) | \`${lang.request} ${queue.current.requestedBy.username} ${queue.current.duration} \``)
 
-            .addField(`__${lang.next}__`, queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).join("\n") || lang.no)
+            .addField(`__${lang.next}__`, queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).join("\n") || lang.no)
                 .addField(lang.b, getRepeatMode(queue.repeatMode))
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
         } else {
             let i0 = 0;
             let i1 = 6;
             let page = 1;
-            let description = queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(0, 6).join("\n");
+            let description = queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(0, 6).join("\n");
             const embed = new Discord.MessageEmbed()
                 .setTitle(`${lang.title} ${message.guild.name} `)
                 .setURL("https://top.gg/bot/783708073390112830/vote")
@@ -78,7 +78,7 @@ module.exports = {
                     if (page < 1) return;
 
                     let description =
-                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
+                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
 
                     embed
                         .setDescription(description);
@@ -95,7 +95,7 @@ module.exports = {
                     if (i0 < 0) return;
 
                     let description =
-                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
+                        queue.tracks.map((m, i) => `\`#${i + 1}.\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(i0, i1).join("\n");
 
                     embed
                         .setDescription(description);
