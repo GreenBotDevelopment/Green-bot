@@ -29,6 +29,8 @@ module.exports = {
     logAll: true,
     // If you want to test your configuration before starting the bot
     checkConfig: null,
+//The number of shards. Leave blank for auto
+shards: 1,
     // The categories. Put null to enabled to disable a category
     categories: {
         configuration: { enabled: true, name: "Configuration", desc: "Setup the bot with the configuration commands" },
