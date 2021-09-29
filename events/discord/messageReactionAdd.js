@@ -7,7 +7,7 @@ const Discord = require("discord.js"),
     Welcome = require("../../database/models/Welcome");
 module.exports = {
         async execute(e, t, s) {
-            e.message.partial && await e.message.fetch(), e.partial && await e.fetch();
+            e.message.partial && await e.message.fetch().catch((err)), e.partial && await e.fetch().catch((err));
             let r = e.message;
             if (!r) return;
             const i = await Welcome.findOne({ serverID: r.guild.id, reason: "verification", channelID: r.id, message: e.emoji.name });
