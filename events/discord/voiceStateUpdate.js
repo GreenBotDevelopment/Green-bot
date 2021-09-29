@@ -5,6 +5,9 @@ const Temps = require('../../database/models/Temps');
 
 module.exports = {
     async execute(oldState, newState, client) {
+  if (!oldState || !newState) return
+        if (!oldState.user || !newState.user) return
+
         oldMember = oldState.member;
         newMember = newState.member;
         await newState.guild.members.fetch()

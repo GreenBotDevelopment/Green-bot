@@ -1,15 +1,14 @@
-const { Message, MessageEmbed, Channel, Guild, Util } = require("discord.js");
+const { Message, MessageEmbed, Channel, Guild, Util, Interaction } = require("discord.js");
 const lang = require('../languages/lang.json')
 const translate = require("@vitalets/google-translate-api");
 const guildData = require('../database/models/guildData');
 const Case = require("../database/models/case")
 const Warn = require("../database/models/warn")
 const Welcome = require("../database/models/Welcome");
-const config = require("../config")
-    /**
-     * Create an uniq ID
-     * @param {string} Charlength The size of the uniq ID
-     */
+/**
+ * Create an uniq ID
+ * @param {string} Charlength The size of the uniq ID
+ */
 const uniqID = async function(Charlength = {}) {
     if (!Charlength) {
         if (!lang.translations[text]) {
@@ -43,11 +42,11 @@ Guild.prototype.addDB = async function(guildID = {}) {
     }
     const data = await new guildData({
         serverID: guildID,
-        prefix: config.prefix,
+        prefix: "*",
         lang: "en",
         premium: null,
         premiumUserID: null,
-        color: config.color,
+        color: "#3A871F",
         backlist: null
     }).save()
     this.settings = data
@@ -83,6 +82,14 @@ Guild.prototype.updateDB = async function(guildID, data = {}) {
     await config.updateOne(data)
 };
 Message.prototype.translate = async function(text, client = {}) {
+    if (!text || !lang.translations[text]) {
+        throw new Error(`Translate: Params error: Unknow text ID or missing text`)
+        return;
+    }
+    let target = this.guild.settings.lang
+    return lang.translations[text][target]
+};
+Interaction.prototype.translate = async function(text, client = {}) {
     if (!text || !lang.translations[text]) {
         throw new Error(`Translate: Params error: Unknow text ID or missing text`)
         return;
@@ -242,7 +249,9 @@ Message.prototype.gg = async function(text, args, options = {}) {
 
 Message.prototype.errorMessage = async function(text, args, options = {}) {
         if (text) {
-            this.reply({ content: `${Util.removeMentions(`\`❌\` ${text}`)}`, allowedMentions: { repliedUser: false } })
+            this.reply({ content: `${Util.removeMentions(`\`❌\` ${text}`)}`, allowedMentions: { repliedUser: false } }).catch(err=>{
+                this.channel.send({ content: `${Util.removeMentions(`\`❌\` ${text}`)}`})
+               })
         } else {
             this.errorOccurred ("No text provided")
             throw new Error(`Error: No text provided`)
@@ -360,12 +369,28 @@ Channel.prototype.mainMessage = async function(text, color = {}) {
 Message.prototype.succesMessage = async function(text, args, options = {}) {
 
         if (text) {
-       this.reply({ content: `${Util.removeMentions(`\`✅\` ${text}`)}`, allowedMentions: { repliedUser: false } })
+       this.reply({ content: `${Util.removeMentions(`\`✅\` ${text}`)}`, allowedMentions: { repliedUser: false } }).catch(err=>{
+        this.channel.send({ content: `${Util.removeMentions(`\`✅\` ${text}`)}`})
+       })
                
         } else {
             this.errorOccurred ("No text provided")
             throw new Error(`Error: No text provided`)
         }
+    };
+Message.prototype.usage = async function(args = {}) {
+    if(!this.command) return this.errorOccurred("No command")
+    let langUsage;
+    if(this.command.usages){
+        langUsage = await this.translate("USES")
+    }else{
+        langUsage = await this.translate("USES_SING")
+
+    }
+    const read = await this.translate("READ")
+    let u = await this.translate("ARGS_REQUIRED");
+    const t = (new MessageEmbed).setAuthor(`${this.author.username}`, this.author.displayAvatarURL({ dynamic: !0, size: 512 })).setDescription(`${u.replace("{command}",this.command.name)}\n${read}\n\n**${langUsage}**\n${this.command.usages ? `${this.command.usages.map(x=>`\`${this.guild.settings.prefix}${x}\``).join("\n")}` : ` \`${this.guild.settings.prefix}${this.command.name} ${this.command.usage} \``}`).setFooter(this.client.footer, this.client.user.displayAvatarURL()).setColor("#F0B02F");
+    return void this.reply({ embeds: [t], allowedMentions: { repliedUser: false } })
     };
 Message.prototype.mainMessage = async function(text, args, options = {}) {
     if (text) {
@@ -375,8 +400,8 @@ Message.prototype.mainMessage = async function(text, args, options = {}) {
             .setColor(this.guild.settings.color)
             .setFooter(this.client.footer, this.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
             this.reply({ embeds: [embed1], allowedMentions: { repliedUser: false } }).then(m=>{
-            m.react("🗑")
-            const filter = (reaction, user) => reaction.emoji.name === "🗑" && user.id === this.member.id;
+            m.react("<:delete:830790543659368448>")
+            const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === this.member.id;
             const collector = m.createReactionCollector({ filter, time: 11000, max: 1 });
             collector.on('collect', async r => {
                 m.delete()
@@ -396,8 +421,8 @@ Message.prototype.mainMessageT = async function(text, args, options = {}) {
             .setFooter(this.client.footer, this.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
         this.channel.send({ embeds: [embed1] })
             .then((m) => {
-                m.react("🗑")
-                const filter = (reaction, user) => reaction.emoji.name === "🗑" && user.id === this.member.id;
+                m.react("<:delete:830790543659368448>")
+                const filter = (reaction, user) => reaction.emoji.id === '830790543659368448' && user.id === this.member.id;
                 const collector = m.createReactionCollector({ filter, time: 110000, max: 1 });
                 collector.on('collect', async r => {
                     m.delete()
