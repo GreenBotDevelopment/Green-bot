@@ -148,30 +148,18 @@ module.exports = {
                         }
                 }
                 if (i.owner && e.author.id !== e.client.owner.id) return;
-                if (i.premium) {
-                    const premiumDB = require("../database/models/premium")
-                    const premium = await premiumDB.findOne({ userID: e.author.id })
-                    if (!premium) {
-                        let language = await e.translate("PREMIUM_REQUIRED")
-                        const embed = new Discord.MessageEmbed()
-                            .setAuthor(`${e.member.user.tag}`, e.member.user.displayAvatarURL())
-                            .setDescription(language.err)
-                            .setColor(e.guild.settings.color)
-                            .setFooter(`${e.client.footer}`, e.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-                        return e.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
+
+
+                let u = await e.translate("ARGS_REQUIRED");
+                if (i.args && !a.length) {
+                    let langUsage;
+                    if (i.usages) {
+                        langUsage = await e.translate("USES")
+                    } else {
+                        langUsage = await e.translate("USES_SING")
+
                     }
-                }
-               
-                    let u = await e.translate("ARGS_REQUIRED");
-                    if (i.args && !a.length) {
-                        let langUsage;
-                        if(i.usages){
-                            langUsage = await e.translate("USES")
-                        }else{
-                            langUsage = await e.translate("USES_SING")
-   
-                        }
-                        const t = (new Discord.MessageEmbed).setAuthor(`${e.author.username}`, e.author.displayAvatarURL({ dynamic: !0, size: 512 })).setDescription(`${u.replace("{command}",r)}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${n}${x}\``).join("\n")}` : ` \`${n}${r} ${i.usage} \``}`).setFooter(e.client.footer, e.client.user.displayAvatarURL()).setColor("#F0B02F");
+                    const t = (new Discord.MessageEmbed).setAuthor(`${e.author.username}`, e.author.displayAvatarURL({ dynamic: !0, size: 512 })).setDescription(`${u.replace("{command}",r)}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${n}${x}\``).join("\n")}` : ` \`${n}${r} ${i.usage} \``}`).setFooter(e.client.footer, e.client.user.displayAvatarURL()).setColor("#F0B02F");
                         return void e.reply({ embeds: [t], allowedMentions: { repliedUser: false } })
                     }
                     cooldowns.has(i.name) || cooldowns.set(i.name, new Discord.Collection);
