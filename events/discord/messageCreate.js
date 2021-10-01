@@ -7,12 +7,10 @@ const guild = require("../../database/models/guild"),
     CmdModel = require("../../database/models/cmd"),
     Welcome = require("../../database/models/Welcome"),
     Discord = require("discord.js"),
-    { RateLimiter: RateLimiter } = require("discord.js-rate-limiter"),
     rolesRewards = require("../../database/models/rolesRewards"),
     AutoResponders = require('../../database/models/AutoResponders'),
     AutoReactions = require('../../database/models/AutoReactions');
 const permes = require("../../util/permissions.json")
-let rateLimiter = new RateLimiter(1, 2e3);
 const cooldowns = new Discord.Collection;
 require("../../util/extenders.js");
 let _users = new Map;
@@ -40,12 +38,12 @@ module.exports = {
                 if (!e.guild.me.permissions.has("ADMINISTRATOR")) {
                     if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("SEND_MESSAGES")) {
                         if (!e.guild.members.cache.get(t.user.id).permissions.has("ADMINISTRATOR")) {
-                            return e.member.send(s.replace("{perm}", "SEND_MESSAGES"));
+                            return e.member.send(`\`❌\` ${s.replace("{perm}", "Send messages")}`)
                         }
                     }
                     if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("EMBED_LINKS")) {
                         if (!e.guild.members.cache.get(t.user.id).permissions.has("ADMINISTRATOR")) {
-                            return e.reply(`\`❌\` ${a.replace("{perm}", "EMBED_LINKS")}`)
+                            return e.reply(`\`❌\` ${s.replace("{perm}", "EMBED_LINKS")}`)
                         }
                     }
                     if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("READ_MESSAGE_HISTORY")) {
@@ -55,12 +53,13 @@ module.exports = {
                     }
                 }
                 let a = await e.translate("HELLO_NEED_HELP");
-                e.mainMessage(a.replace("{prefix}", n).replace("{prefix}", n))
+                e.channel.send(a.replace("{prefix}", n).replace("{prefix}", n))
                 console.log("[32m%s[0m", "PING OF THE BOT ", "[0m", `${e.author.tag} pinged the bot succesfully on ${e.guild.name}`);
                 return
             }
             if (e.guild.memberCount !== e.guild.members.cache.size && await e.guild.members.fetch(), e.content.startsWith(n) || e.content.startsWith("green ") || e.content.startsWith("<@!783708073390112830>")) {
                 let a;
+                if (e.content.endsWith("*") && e.guild.settings.chatbot !== e.channel.id) return
                 e.content.startsWith(n) && (a = e.content.slice(n.length).trim().split(/ +/)), e.content.startsWith("green ") && (a = e.content.slice(6).trim().split(/ +/)), e.content.startsWith("<@!783708073390112830>") && (a = e.content.slice(22).trim().split(/ +/));
                 const r = a.shift().toLowerCase(),
                     i = t.commands.get(r) || t.commands.find(e => e.aliases && e.aliases.includes(r));
@@ -98,7 +97,7 @@ module.exports = {
                     if (!e.guild.me.permissions.has("ADMINISTRATOR")) {
                         if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("SEND_MESSAGES")) {
                             if (!e.guild.members.cache.get(t.user.id).permissions.has("ADMINISTRATOR")) {
-                                return e.member.send(a.replace("{perm}", "SEND_MESSAGES"));
+                                return e.member.send(`\`❌\` ${a.replace("{perm}", "Send messages")}`)
                             }
                         }
                         if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("EMBED_LINKS")) {
@@ -114,7 +113,6 @@ module.exports = {
                         }
                     }
                 }
-                if (rateLimiter.take(e.author.id)) return e.react("<:horloge3:830440548053024789>");
                 const o = e => {
                     const t = ["CREATE_INSTANT_INVITE", "KICK_MEMBERS", "BAN_MEMBERS", "ADMINISTRATOR", "MANAGE_CHANNELS", "MANAGE_GUILD", "ADD_REACTIONS", "VIEW_AUDIT_LOG", "PRIORITY_SPEAKER", "STREAM", "VIEW_CHANNEL", "SEND_MESSAGES", "SEND_TTS_MESSAGES", "MANAGE_MESSAGES", "EMBED_LINKS", "ATTACH_FILES", "READ_MESSAGE_HISTORY", "MENTION_EVERYONE", "USE_EXTERNAL_EMOJIS", "VIEW_GUILD_INSIGHTS", "CONNECT", "SPEAK", "MUTE_MEMBERS", "DEAFEN_MEMBERS", "MOVE_MEMBERS", "USE_VAD", "CHANGE_NICKNAME", "MANAGE_NICKNAMES", "MANAGE_ROLES", "MANAGE_WEBHOOKS", "MANAGE_EMOJIS_AND_STICKERS"];
                     for (const s of e)
@@ -149,16 +147,21 @@ module.exports = {
                 }
                 if (i.owner && e.author.id !== e.client.owner.id) return;
 
-
-
-                let u = await e.translate("ARGS_REQUIRED");
                 if (i.args && !a.length) {
+                    let u = await e.translate("ARGS_REQUIRED");
+                    const read = await e.translate("READ")
                     let langUsage;
                     if (i.usages) {
                         langUsage = await e.translate("USES")
                     } else {
                         langUsage = await e.translate("USES_SING")
-                    const t = (new Discord.MessageEmbed).setAuthor(`${e.author.username}`, e.author.displayAvatarURL({ dynamic: !0, size: 512 })).setDescription(`${u.replace("{command}",r)}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${n}${x}\``).join("\n")}` : ` \`${n}${r} ${i.usage} \``}`).setFooter(e.client.footer, e.client.user.displayAvatarURL()).setColor("#F0B02F");
+
+                    }
+                    const t = (new Discord.MessageEmbed)
+                        .setAuthor(`${e.author.username}`, e.author.displayAvatarURL({ dynamic: !0, size: 512 }))
+                        .setDescription(`${u.replace("{command}",r)}\n${read}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${n}${x}\``).join("\n")}` : ` \`${n}${r} ${i.usage}\``}`)
+                        .setFooter(e.client.footer, e.client.user.displayAvatarURL())
+                        .setColor("#F0B02F");
                         return void e.reply({ embeds: [t], allowedMentions: { repliedUser: false } })
                     }
                     cooldowns.has(i.name) || cooldowns.set(i.name, new Discord.Collection);
@@ -169,7 +172,11 @@ module.exports = {
                     g.set(e.author.id, m), setTimeout(() => g.delete(e.author.id), h);
                     e.command = i
                     try {
-                        i.execute(e, a, t, guildDB), await guild.findOne({ serverID: e.guild.id, reason: "delete_msg" }) && setTimeout(() => { e.delete() }, 1200)
+                        i.execute(e, a, t, guildDB);
+                        if (await guild.findOne({ serverID: e.guild.id, reason: "delete_msg" })) {
+                            e.guild.settings.delete = true
+                            setTimeout(() => { e.delete() }, 1200)
+                        }
                         return
                     } catch (s) {
                         return e.errorOccurred(s)
@@ -200,13 +207,14 @@ module.exports = {
                 let s = await e.translate("BOT_PERMISSIONS");
                 if (!e.channel.permissionsFor(e.guild.members.cache.get(t.user.id)).has("SEND_MESSAGES")) return e.member.send(s.replace("{perm}", "SEND_MESSAGES"));
                 const a = await fetch(`https://api.udit.gq/api/chatbot?message=${encodeURIComponent(e.content)}&gender=${encodeURIComponent("male")}&name=${encodeURIComponent("Green-bot")}`).catch(async s => {
-                    return e.errorOccurred(s)
+                    return console.log(s)
                 });
                 let r = (await a.json().catch(async s => {
                         return e.errorOccurred(s)
                     })).message.replace("CleverChat", "Green-bot").replace("male", "male"),
                     n = await e.gg(r);
                 e.channel.send(Discord.Util.removeMentions(n));
+                console.log("[32m%s[0m", "CHATBOT", "[0m", `${e.author.tag} used the chatbot on ${e.guild.name}`);
             }
             if (e.guild.settings.count === e.channel.id) {
                 if (!e.content && !e.author.bot || e.author.bot && e.author.id !== t.user.id) return e.delete().catch(() => {});
@@ -363,7 +371,66 @@ module.exports = {
                         }
                     }
                 }
-              
+                if (!e.content.startsWith(n) || e.content.startsWith("!") || e.content.startsWith("^^") || e.content.startsWith(".")) {
+                    const t = await levelModel.findOne({ serverID: e.guild.id, userID: e.author.id });
+                    let s = await rolesRewards.findOne({ serverID: e.guild.id, reason: "messages", level: t ? t.messagec + 1 : 1 });
+                    if (s) {
+                        let t = e.guild.roles.cache.get(s.roleID);
+                        t && e.member.roles.add(t);
+                        const a = await guild.findOne({ serverID: e.guild.id, reason: "old_role_m" });
+                     if(t)    a ? (e.member.roles.remove(a.description), await guild.findOneAndUpdate({ serverID: e.guild.id, content: e.author.id, reason: "old_role_m" }, { $set: { description: `${t.id}` } }, { new: !0 })) : new guild({ serverID: `${e.guild.id}`, content: `${e.author.id}`, description: `${t.id}`, reason: "old_role_m" }).save()
+                    }
+                    if (t)
+                        if (t.xp + 5 > 100) {
+                            let s = await rolesRewards.findOne({ serverID: e.guild.id, reason: "level", level: t.level + 1 });
+                            if (s) {
+                                let t = e.guild.roles.cache.get(s.roleID);
+                                if(t){
+                                t && e.member.roles.add(t);
+                                const a = await guild.findOne({ serverID: e.guild.id, reason: "old_role" });
+                                a ? (e.member.roles.remove(a.description), await guild.findOneAndUpdate({ serverID: e.guild.id, content: e.author.id, reason: "old_role" }, { $set: { description: `${t.id}` } }, { new: !0 })) : new guild({ serverID: `${e.guild.id}`, content: `${e.author.id}`, description: `${t.id}`, reason: "old_role" }).save()
+                            }
+                            }
+                            if (await guild.findOne({ serverID: e.guild.id, reason: "level" })) {
+                                const s = require("canvas"),
+                                    { registerFont: a } = require("canvas");
+                                a("./ZenDots-Regular.ttf", { family: "Zen Dots" });
+                                let r = e.member;
+                                const n = s.createCanvas(400, 100),
+                                    i = n.getContext("2d");
+                                i.beginPath(), i.lineWidth = 1.5, i.fillStyle = "#3A871F", i.moveTo(80, 40), i.lineTo(330, 40), i.quadraticCurveTo(340, 40, 340, 50), i.quadraticCurveTo(340, 60, 330, 60), i.lineTo(80, 60), i.lineTo(80, 40), i.fill(), i.stroke(), i.font = '13px "Zen Dots"', i.fillStyle = "#fff", i.fillText(`Level ${t.level+1} !`, 100, 55), i.closePath(), i.beginPath(), i.fillStyle = "#fff", i.arc(60, 50, 32, 0, 2 * Math.PI), i.fill(), i.beginPath(), i.arc(60, 50, 30, 0, 2 * Math.PI, !0), i.closePath(), i.clip();
+                                const o = await s.loadImage(r.user.displayAvatarURL({ format: "jpg" }));
+                                i.drawImage(o, 30, 20, 60, 60);
+                                const l = new Discord.MessageAttachment(n.toBuffer(), `newlevel-${r.id}.png`),
+                                    d = await guild.findOne({ serverID: e.guild.id, reason: "levelChannel" });
+                                if (d) {
+                                    const s = await guild.findOne({ serverID: e.guild.id, reason: "levelMessage" });
+                                    if (s) {
+                                        let a = `${s.content}`.replace("{user}", e.author).replace("{level}", `${t.level+1}`).replace("{username}", e.author.username).replace("{tag}", e.author.tag).replace("{server}", e.guild.name).replace("{messagesCount}", t.messagec + 1);
+                                        if ("current" === d.content) {
+                                            let t = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
+                                            e.channel.send({ content: a, embeds: [t], files: [l] })
+                                        } else {
+                                            let t = e.guild.channels.cache.get(d.content),
+                                                s = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
+                                            t && t.send({ content: a, embeds: [s], files: [l] })
+                                        }
+                                    } else if ("current" === d.content) {
+                                        let t = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
+                                        e.channel.send({ embeds: [t], files: [l] })
+                                    } else {
+                                        let t = e.guild.channels.cache.get(d.content);
+                                        if (t) {
+                                            let s = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).attachFiles(l).setColor(e.guild.settings.color);
+                                            t.send({ embeds: [s] })
+                                        }
+                                    }
+                                }
+                                await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: "0", level: t.level + 1, messagec: t.messagec + 1 } }, { new: !0 })
+                            } else await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: "0", level: t.level + 1, messagec: t.messagec + 1 } }, { new: !0 })
+                        } else await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: `${t.xp+5}`, messagec: t.messagec + 1 } }, { new: !0 });
+                    else new levelModel({ serverID: `${e.guild.id}`, userID: `${e.author.id}`, xp: 5, level: 0, messagec: 1 }).save()
+                }
               const  message = e
                 const list = await AutoResponders.find({ serverID: message.guild.id })
                 if(list.length !== 0) {
@@ -373,6 +440,7 @@ module.exports = {
                     if (!respondera[0] || !respondera) {
                     } else {
                         const finded = respondera[0]
+                        if(finded){ 
                         if(finded.message) {
                         if (finded.message_reaction === "every") {
                             message.channel.send(finded.message.replace("{user}", message.member).replace("@everyone", "everyone").replace("@here", "here")).then(m => {
@@ -395,10 +463,12 @@ module.exports = {
                         }
                      }
                     }
+                    }
                 } else {
                     if (responder.length > 1 || responder.length !== 0 || responder.length !== 1) {
                         const findeda = responder.filter(r => r.message_reaction === message.content)
                         const finded = findeda[0]
+                        if(finded) {
                         if(finded.message){
                         message.channel.send(finded.message.replace("{user}", message.member).replace("@everyone", "everyone").replace("@here", "here")).then(m => {
                             if (finded.inv === "yes") {
@@ -408,9 +478,10 @@ module.exports = {
                                 setTimeout(() => { m.delete() }, finded.del)
                             }
                         })
-                    }
+                    }}
                     } else {
                         const finded = responder[0]
+                        if(finded) {
                         if(finded.message){
                         if (finded.message_reaction === "every") {
                             message.channel.send(finded.message.replace("{user}", message.member).replace("@everyone", "everyone").replace("@here", "here")).then(m => {
@@ -430,6 +501,7 @@ module.exports = {
                                     setTimeout(() => { m.delete() }, finded.del)
                                 }
                             })
+                        }
                         }
                     }
                     }
@@ -441,96 +513,52 @@ module.exports = {
                 if (!responder[0] || !responder) {
                     let respondera = liste.filter(r => r.channelID === "all")
                     if (!respondera[0] || !respondera) {
-                        return
+                        
                     } else {
                         const finded = respondera[0]
-                        if(!finded || !finded.reaction) return
+                        if(finded ){
+                           
                         if (finded.message_reaction === "every") {
-                           message.react(finded.reaction)
-                        } else if (finded.message_reaction.toLowerCase() === message.content.toLowerCase()) {
                             message.react(finded.reaction)
-                        }
+
+                        } else if (finded.message_reaction.toLowerCase() === message.content.toLowerCase()) {
+                          
+                            if(finded.reaction.length){
+                                finded.reaction.forEach(r=>message.react(r))
+                            }else{
+                                message.react(finded.reaction)
+
+                            }                        }
+                    }
                     }
                 } else {
                     if (responder.length > 1 || responder.length !== 0 || responder.length !== 1) {
                         const findeda = responder.filter(r => r.message_reaction === message.content)
                         const finded = findeda[0]
                         if(!finded || !finded.reaction) return
-                        message.react(finded.reaction)
+                       
+                            message.react(finded.reaction)
+
                     } else {
                         const finded = responder[0]
                         if(!finded || !finded.reaction) return
+                       
                         if (finded.message_reaction === "every") {
-                            message.react(finded.reaction)
-                        } else if (finded.message_reaction.toLowerCase() === message.content.toLowerCase()) {
-                            message.react(finded.reaction)
-                        }
+                         
+                                message.react(finded.reaction)
+
+                                          } else if (finded.message_reaction.toLowerCase() === message.content.toLowerCase()) {
+                              
+                                    message.react(finded.reaction)
+    
+                                                       }
                     }
 
                 }
             }
     
           
-            if (!e.content.startsWith(n) || e.content.startsWith("!") || e.content.startsWith("^^") || e.content.startsWith(".")) {
-                const t = await levelModel.findOne({ serverID: e.guild.id, userID: e.author.id });
-                let s = await rolesRewards.findOne({ serverID: e.guild.id, reason: "messages", level: t ? t.messagec + 1 : 1 });
-                if (s) {
-                    let t = e.guild.roles.cache.get(s.roleID);
-                    t && e.member.roles.add(t);
-                    const a = await guild.findOne({ serverID: e.guild.id, reason: "old_role_m" });
-                    a ? (e.member.roles.remove(a.description), await guild.findOneAndUpdate({ serverID: e.guild.id, content: e.author.id, reason: "old_role_m" }, { $set: { description: `${t.id}` } }, { new: !0 })) : new guild({ serverID: `${e.guild.id}`, content: `${e.author.id}`, description: `${t.id}`, reason: "old_role_m" }).save()
-                }
-                if (t)
-                    if (t.xp + 5 > 100) {
-                        let s = await rolesRewards.findOne({ serverID: e.guild.id, reason: "level", level: t.level + 1 });
-                        if (s) {
-                            let t = e.guild.roles.cache.get(s.roleID);
-                            if(t){
-                            t && e.member.roles.add(t);
-                            const a = await guild.findOne({ serverID: e.guild.id, reason: "old_role" });
-                            a ? (e.member.roles.remove(a.description), await guild.findOneAndUpdate({ serverID: e.guild.id, content: e.author.id, reason: "old_role" }, { $set: { description: `${t.id}` } }, { new: !0 })) : new guild({ serverID: `${e.guild.id}`, content: `${e.author.id}`, description: `${t.id}`, reason: "old_role" }).save()
-                        }
-                        }
-                        if (await guild.findOne({ serverID: e.guild.id, reason: "level" })) {
-                            const s = require("canvas"),
-                                { registerFont: a } = require("canvas");
-                            a("./ZenDots-Regular.ttf", { family: "Zen Dots" });
-                            let r = e.member;
-                            const n = s.createCanvas(400, 100),
-                                i = n.getContext("2d");
-                            i.beginPath(), i.lineWidth = 1.5, i.fillStyle = "#3A871F", i.moveTo(80, 40), i.lineTo(330, 40), i.quadraticCurveTo(340, 40, 340, 50), i.quadraticCurveTo(340, 60, 330, 60), i.lineTo(80, 60), i.lineTo(80, 40), i.fill(), i.stroke(), i.font = '13px "Zen Dots"', i.fillStyle = "#fff", i.fillText(`Level ${t.level+1} !`, 100, 55), i.closePath(), i.beginPath(), i.fillStyle = "#fff", i.arc(60, 50, 32, 0, 2 * Math.PI), i.fill(), i.beginPath(), i.arc(60, 50, 30, 0, 2 * Math.PI, !0), i.closePath(), i.clip();
-                            const o = await s.loadImage(r.user.displayAvatarURL({ format: "jpg" }));
-                            i.drawImage(o, 30, 20, 60, 60);
-                            const l = new Discord.MessageAttachment(n.toBuffer(), `newlevel-${r.id}.png`),
-                                d = await guild.findOne({ serverID: e.guild.id, reason: "levelChannel" });
-                            if (d) {
-                                const s = await guild.findOne({ serverID: e.guild.id, reason: "levelMessage" });
-                                if (s) {
-                                    let a = `${s.content}`.replace("{user}", e.author).replace("{level}", `${t.level+1}`).replace("{username}", e.author.username).replace("{tag}", e.author.tag).replace("{server}", e.guild.name).replace("{messagesCount}", t.messagec + 1);
-                                    if ("current" === d.content) {
-                                        let t = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
-                                        e.channel.send({ content: a, embeds: [t], files: [l] })
-                                    } else {
-                                        let t = e.guild.channels.cache.get(d.content),
-                                            s = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
-                                        t && t.send({ content: a, embeds: [s], files: [l] })
-                                    }
-                                } else if ("current" === d.content) {
-                                    let t = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).setColor(e.guild.settings.color);
-                                    e.channel.send({ embeds: [t], files: [l] })
-                                } else {
-                                    let t = e.guild.channels.cache.get(d.content);
-                                    if (t) {
-                                        let s = (new Discord.MessageEmbed).setImage(`attachment://newlevel-${r.id}.png`).attachFiles(l).setColor(e.guild.settings.color);
-                                        t.send({ embeds: [s] })
-                                    }
-                                }
-                            }
-                            await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: "0", level: t.level + 1, messagec: t.messagec + 1 } }, { new: !0 })
-                        } else await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: "0", level: t.level + 1, messagec: t.messagec + 1 } }, { new: !0 })
-                    } else await levelModel.findOneAndUpdate({ serverID: e.guild.id, userID: e.author.id }, { $set: { xp: `${t.xp+5}`, messagec: t.messagec + 1 } }, { new: !0 });
-                else new levelModel({ serverID: `${e.guild.id}`, userID: `${e.author.id}`, xp: 5, level: 0, messagec: 1 }).save()
-            }
+          
         if(!e.author.bot){
                 const a = await Welcome.findOne({ serverID: e.guild.id, reason: "interchat" });
                 if (a && a.channelID === e.channel.id) {
