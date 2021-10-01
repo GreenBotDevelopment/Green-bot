@@ -150,6 +150,7 @@ module.exports = {
                 if (i.owner && e.author.id !== e.client.owner.id) return;
 
 
+
                 let u = await e.translate("ARGS_REQUIRED");
                 if (i.args && !a.length) {
                     let langUsage;
@@ -157,8 +158,6 @@ module.exports = {
                         langUsage = await e.translate("USES")
                     } else {
                         langUsage = await e.translate("USES_SING")
-
-                    }
                     const t = (new Discord.MessageEmbed).setAuthor(`${e.author.username}`, e.author.displayAvatarURL({ dynamic: !0, size: 512 })).setDescription(`${u.replace("{command}",r)}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${n}${x}\``).join("\n")}` : ` \`${n}${r} ${i.usage} \``}`).setFooter(e.client.footer, e.client.user.displayAvatarURL()).setColor("#F0B02F");
                         return void e.reply({ embeds: [t], allowedMentions: { repliedUser: false } })
                     }
