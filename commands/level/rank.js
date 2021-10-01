@@ -4,7 +4,7 @@ const moment = require('moment')
 const Guild = require('../../database/models/guild');
 const Canvas = require('canvas')
 const { registerFont } = require('canvas');
-registerFont('./ZenDots-Regular.ttf', { family: 'Zen Dots' })
+registerFont('./util/fonts/ZenDots-Regular.ttf', { family: 'Zen Dots' })
 const rolesReward = require('../../database/models/rolesRewards');
 const premiumDB = require('../../database/models/premium');
 

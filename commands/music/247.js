@@ -7,7 +7,6 @@ module.exports = {
     description: 'Enable/Disable The 24h/7 mode',
     cat: 'music',
     exemple: 'on',
-    premium: true,
     args: true,
     usages: ["24/7 enable", "24/7 disable"],
     aliases: ['247'],

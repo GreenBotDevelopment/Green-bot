@@ -6,7 +6,6 @@ module.exports = {
     cat: 'music',
     exemple: 'enable',
     args: true,
-    premium: true,
     usages: ["bassboost enable", "bassboost disable"],
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {

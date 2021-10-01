@@ -7,7 +7,6 @@ module.exports = {
     permissions: false,
     aliases: ['shufle'],
     cat: 'music',
-    premium: true,
     botpermissions: ['CONNECT', 'SPEAK'],
     async execute(message, args) {
         if (message.guild.settings.dj_system) {

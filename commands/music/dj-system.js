@@ -5,7 +5,6 @@ module.exports = {
         name: 'dj-system',
         description: 'Active ou désactive le mode dj sur le serveur',
         cat: 'music',
-        premium: true,
         aliases: ["djsystem"],
         permissions: ['MANAGE_GUILD'],
         async execute(message, args) {

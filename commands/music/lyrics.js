@@ -9,7 +9,6 @@ module.exports = {
     description: 'Donne les paroles de la musique indiquée.',
     cat: 'music',
     usage: '<music>',
-    premium: true,
     exemple: 'Never gonna give you up',
 
     async execute(message, args) {

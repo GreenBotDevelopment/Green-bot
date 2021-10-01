@@ -9,7 +9,6 @@ module.exports = {
     args: true,
     usage: '<track number>',
     cat: 'music',
-    premium: true,
     botpermissions: ['CONNECT', 'SPEAK'],
 
     async execute(message, args) {

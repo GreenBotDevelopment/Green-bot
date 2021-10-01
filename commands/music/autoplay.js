@@ -6,7 +6,6 @@ module.exports = {
     cat: 'music',
     exemple: 'enable',
     args: true,
-    premium: true,
     usages: ["autoplay enable", "autoplay disable"],
     usage: 'queue/song',
     botpermissions: ['CONNECT', 'SPEAK'],
