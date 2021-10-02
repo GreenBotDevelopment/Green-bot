@@ -32,7 +32,7 @@
     "DEAFEN_MEMBERS": { "en": "Deafen Members", "fr": "Mettre en sourdine des membres", "de": " Ein- und Ausgabe von Mitglieder deaktivieren" },
     "MOVE_MEMBERS": { "en": "Move Members", "fr": "Délpacer des membres", "de": "Mitglieder verschieben" },
     "REQUEST_TO_SPEAK": { "en": "Request to Speak", "fr": "Demande de prise de parole", "de": "Anfragen zum Sprechen" },
-    "MANAGE_THREADS": { "en": "Manage Threads", "fr": "Gérer les threads", "de": "Threads Verwalten" },
+    "MANAGE_THREADS": { "en": "Manage Threads", "fr": "Gérer les threads", "de": "Threads verwalten" },
     "USE_PUBLIC_THREADS": { "en": "Use Publics Threads", "fr": "Utiliser les threads publics", "de": "Öffentliche Threads benutzen" },
     "USE_PRIVATE_THREADS": { "en": "Use Private Threads", "fr": "Utiliser les threads privés", "de": "Private Threads benutzen" },
     "ADMINISTRATOR": { "en": "Administrator", "fr": "Administrateur", "de": "Administrator" }
