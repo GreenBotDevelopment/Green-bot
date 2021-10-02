@@ -4,10 +4,10 @@ module.exports = {
     description: 'Change la langue dans lequel le bot parle',
     cat: 'configuration',
     args: true,
-    usage: 'fr/en',
+    usage: 'fr/en/de',
     exemple: 'fr',
     aliases: ["setlang", "lang"],
-    usages: ['language fr', "language en"],
+    usages: ['language fr', "language en", "language de"],
     permissions: ['MANAGE_GUILD'],
     async execute(message, args) {
         const no = await message.translate("LANG_NO_CORRECT")
@@ -29,6 +29,17 @@ module.exports = {
             } else {
                 const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id, }, { $set: { lang: "en" } }, { new: true });
                 message.guild.settings.lang = "en";
+                let x = await message.translate("LANGUAGE_GOOD_SET")
+                return message.reply({ content: x, allowedMentions: { repliedUser: false } })
+            }
+        }
+        if (args[0] === 'de' || args[0] === 'deutsch' || args[0] === 'german' || args[0] === 'allemand ') {
+            if (message.guild.settings.lang === 'de') {
+                message.errorMessage(`Meine Sprache auf diesem Server ist bereits Deutsch`)
+                return;
+            } else {
+                const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id, }, { $set: { lang: "de" } }, { new: true });
+                message.guild.settings.lang = "de";
                 let x = await message.translate("LANGUAGE_GOOD_SET")
                 return message.reply({ content: x, allowedMentions: { repliedUser: false } })
             }
