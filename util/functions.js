@@ -117,7 +117,7 @@ const checkConfig = async config => {
         }
     }
     if (!config.defaultLanguage || (config.defaultLanguage.toLowerCase() !== "fr" && config.defaultLanguage.toLowerCase() !== "en")) {
-        console.error('✗ The defaultLanguage parameter is missing or is not supported. Langages: fr, en');
+        console.error('✗ The default Language parameter is missing or is not supported. Langages: fr, en, de');
         error = true;
     }
     if (!config.devMode || typeof config.devMode !== Boolean) {
