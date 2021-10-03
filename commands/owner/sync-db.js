@@ -11,7 +11,8 @@ module.exports = {
             let left = 0
             const locales = {
                 fr: 0,
-                en: 0
+                en: 0,
+                de: 0
             }
             let realized = 0
             const guilds = await getServersList(client)
@@ -22,11 +23,12 @@ module.exports = {
                     else left++, g.addDB()
                 if (settings && settings.lang === "fr") locales.fr++
                     else if (settings && settings.lang === "en") locales.en++
+                    else if (settings && settings.lang === "de") locales.de++
             });
             let guildsCounts = await message.client.shard.fetchClientValues("guilds.cache.size");
             let guildsCount = guildsCounts.reduce((p, count) => p + count);
             if (realized === guildsCount) {
-                message.channel.send("**__Test Done__**\nTest done succesfully on " + guildsCount + " guilds (Operation realized in **" + Date.now() - m.createdTimestamp + "** ms).\n\n**Results:**\nGood guilds: " + good + "\nGuilds missing (fixed): " + left + "\n__**Bot usage**__\n:flag_fr: French servers: **" + locales.fr + "**\n:flag_gb: English servers: **" + locales.en + "**")
+                message.channel.send("**__Test Done__**\nTest done succesfully on " + guildsCount + " guilds (Operation realized in **" + Date.now() - m.createdTimestamp + "** ms).\n\n**Results:**\nGood guilds: " + good + "\nGuilds missing (fixed): " + left + "\n__**Bot usage**__\n:flag_fr: French servers: **" + locales.fr + "**\n:flag_gb: English servers: **" + locales.en + "**\n:flag_de: German servers: **" * locales)
             }
         });
 
