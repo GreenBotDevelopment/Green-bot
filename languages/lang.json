@@ -40,8 +40,8 @@
 
         },
         "LANG_NO_CORRECT": {
-            "fr": "Veuillez fournir une langue valide , **fr** (pour français) ou **en** (pour anglais)",
-            "en": "Please provide a valid language.\n__**Supported languages**__ \n:flag_fr: French (fr)\n:flag_gb: English (en)",
+            "fr": "Veuillez fournir une langue valide , **fr** (pour français) ou **en** (pour anglais) ou **de** (pour Allemand)",
+            "en": "Please provide a valid language.\n__**Supported languages**__ \n:flag_fr: French (fr)\n:flag_gb: English (en)\n:flag_de: German (de)",
             "de": "Bitte gib eine gültige Sprache an.\n__**Unterstützte Sprachen**__ \n:flag_fr: Französisch (fr)\n:flag_gb: Englisch (en)\n:flag_de: Deutsch (de)"
 
         },
