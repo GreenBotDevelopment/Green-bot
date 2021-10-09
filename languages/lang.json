@@ -40,8 +40,8 @@
 
         },
         "LANG_NO_CORRECT": {
-            "fr": "Veuillez fournir une langue valide , **fr** (pour français) ou **en** (pour anglais) ou **de** (pour Allemand)",
-            "en": "Please provide a valid language.\n__**Supported languages**__ \n:flag_fr: French (fr)\n:flag_gb: English (en)\n:flag_de: German (de)",
+            "fr": "Veuillez fournir une langue valide , **fr** (pour français) ou **en** (pour anglais)",
+            "en": "Please provide a valid language.\n__**Supported languages**__ \n:flag_fr: French (fr)\n:flag_gb: English (en)",
             "de": "Bitte gib eine gültige Sprache an.\n__**Unterstützte Sprachen**__ \n:flag_fr: Französisch (fr)\n:flag_gb: Englisch (en)\n:flag_de: Deutsch (de)"
 
         },
@@ -58,15 +58,15 @@
 
         },
         "HELLO_NEED_HELP": {
-            "en": "👋🏼 My prefix on this server is `{prefix}`\nDo `{prefix}help` to see the available commands",
-            "fr": "👋🏼 Mon préfixe sur ce serveur est `{prefix}`\nFaîtes `{prefix}help` pour voir les commandes disponibles",
-            "de": "👋🏼 Mein Prefix auf diesem Server ist `{prefix}`\nSchreibe `{prefix}help` um die verfügbaren Befehle zu sehen"
+            "en": "The prefix is set to `{prefix}`\nServer ID: `{id}`\n\nDo `{prefix}help` to see the available commands\nTo play a music, join a voice channel and do `{prefix}play`\n[Dashboard](https://green-bot.app/) | [Invite](https://green-bot.app/invite) | [Commands](https://green-bot.app/commands) | [Support](https://green-bot.app/discord)",
+            "fr": "Le préfixe est défini sur `{prefix}`\nID du serveur: `{id}`\n\nFaîtes `{prefix}help` pour voir les commandes disponibles\nPour jouer une musique, rejoignez un salon vocal et faîtes `{prefix}play`\n[Dashboard](https://green-bot.app/) | [Invitation](https://green-bot.app/invite) | [Commandes](https://green-bot.app/commands) | [Support](https://green-bot.app/discord)",
+            "de": "Mein Prefix auf diesem Server ist `{prefix}`\nSchreibe `{prefix}help` um die verfügbaren Befehle zu sehen\n[Dashboard](https://green-bot.app/) | [Invite](https://green-bot.app/invite) | [Commands](https://green-bot.app/commands) | [Support](https://green-bot.app/discord)"
 
         },
         "HELP_TIP": {
-            "en": "`📚` My language on this server is `English` (`{prefix}setlang fr/en/de`)\n`📜` You can check the commandd list on the [`Website`](https://green-bot.app/commands)",
-            "fr": "`📚` Ma langue sur ce serveur est le `Français` (`{prefix}setlang fr/en/de`)\n`📜` Vous pouvez aller voir la liste des commandes sur le [`site`](https://green-bot.app/commands)",
-            "de": "`📚` Meine Sprache auf diesem Server ist `Deutsch` (`{prefix}setlang fr/en/de`)\n`📜` Sie können die Befehlsliste auf der [`Website`](https://green-bot.app/commands)"
+            "en": "`📚` My language on this server is `English` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` You can check the commandd list on the [`Website`](https://green-bot.app/commands)",
+            "fr": "`📚` Ma langue sur ce serveur est le `Français` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` Vous pouvez aller voir la liste des commandes sur le [`site`](https://green-bot.app/commands)",
+            "de": "`📚` Meine Sprache auf diesem Server ist `Deutsch` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` Sie können die Befehlsliste auf der [`Website`](https://green-bot.app/commands)"
 
         },
         "NO_VIDEO_FOUND": {
@@ -145,9 +145,9 @@
 
         },
         "VOTE": {
-            "fr": "<:nitro_gris_activ:830451169486700585> Pendant la musique, n'hésitez pas à nous soutenir en [`votant`](https://top.gg/bot/783708073390112830/vote) pour le bot.",
-            "en": "<:nitro_gris_activ:830451169486700585> When listening to the music, feel free to support us by voting for the bot [`here`](https://top.gg/bot/783708073390112830/vote).",
-            "de": "<:nitro_gris_activ:830451169486700585> Wenn du Musik hörst, kannst du uns gerne unterstützen, indem Sie für den Bot [`hier`](https://top.gg/bot/783708073390112830/vote) stimmen."
+            "fr": "⭐ Pendant que vous écoutez la musique, n'hésitez pas à voter pour le bot [`ici`](https://top.gg/bot/783708073390112830/vote).",
+            "en": "⭐ If you want to get a 24/7 playback, please upvote the bot [here](https://top.gg/bot/783708073390112830/vote).",
+            "de": "⭐ Wenn du Musik hörst, kannst du uns gerne unterstützen, indem Sie für den Bot [`hier`](https://top.gg/bot/783708073390112830/vote) stimmen."
 
         },
         "ERROR_CHANNEL": {
@@ -206,9 +206,9 @@
 
         },
         "CHEARCHING": {
-            "fr": "`▶` **Recherche de la musique en cours... Veuillez patienter**",
-            "en": "`▶` **Searching the music... Please wait**",
-            "de": "`▶` **Suche nach Musik... Bitte warten**"
+            "fr": "🎵 **Recherche en cours** 🔍 `{title}`",
+            "en": "🎵 **Searching** 🔍 `{title}`",
+            "de": "🎵 **Suche nach Musik** 🔍 `{title}`"
 
         },
         "CONFIG_OK": {
@@ -224,15 +224,15 @@
 
         },
         "MUSIC_ADDED": {
-            "fr": "`🎶` Musique ajoutée",
-            "en": "`🎶` Music added",
-            "de": "`🎶` Musik hinzugefügt"
+            "fr": "Ajouté à la file d'attente",
+            "en": "Added to queue",
+            "de": "Musik hinzugefügt"
 
         },
         "MUSIC_START": {
-            "fr": "`🎶` Musique en cours",
-            "en": "`🎶` Currently playing",
-            "de": "`🎶` Spielt gerade"
+            "fr": "Musique en cours",
+            "en": "Now playing",
+            "de": "Spielt gerade"
 
         },
         "WELCOME_NAME": {
@@ -532,9 +532,9 @@
 
         },
         "SHUFFLE": {
-            "fr": "`🔀` La queue du serveur a bien été mélangée. ",
-            "en": "`🔀` The server queue has been mixed successfully.",
-            "de": "`🔀` Die Serverwarteschlange wurde erfolgreich gemischt."
+            "fr": "La queue du serveur a bien été mélangée (`{songs}` chansons).",
+            "en": "The server queue has been mixed succesfully (`{songs}` songs).",
+            "de": "Die Serverwarteschlange wurde erfolgreich gemischt."
 
         },
         "DJ_MODE": {
@@ -639,7 +639,7 @@
         },
         "NOT_SAME_CHANNEL": {
             "fr": "Nous ne sommes pas dans le même salon vocal.",
-            "en": "We are not in the same voc channel.",
+            "en": "We are not in the same voice channel.",
             "de": "Wir sind nicht im selben Sprachkanal."
 
         },
@@ -662,15 +662,24 @@
 
         },
         "ARGS_TIP": {
-            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec 📜 pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
-            "en": "You don't need any arguments for this command. **You have to react with 📜 to start the configuration**. \n You can send `cancel` at any time to cancel",
-            "de": "Du benötigst keine Argumente für diesen Befehl. **Sie müssen mit 📜 reagieren, um die Konfiguration zu starten**. \n Sie können jederzeit `cancel` senden, um abzubrechen"
+            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec <:panelconfig:830347712330203146> pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
+            "en": "You don't need any arguments for this command. **You have to react with <:panelconfig:830347712330203146> to start the configuration**. \n You can send `cancel` at any time to cancel",
+            "de": "Du benötigst keine Argumente für diesen Befehl. **Sie müssen mit <:panelconfig:830347712330203146> reagieren, um die Konfiguration zu starten**. \n Sie können jederzeit `cancel` senden, um abzubrechen"
 
         },
         "HELP_CAT": {
             "fr": ["Modération", "Musique", "Système de Niveau", "Utilitaires", "Jeux", "Commandes personnalisées"],
             "en": ["Moderation", "Music", "Levelling", "General", "Games", "Custom commands"],
             "de": ["Moderation", "Musik", "Levelling", "Allgemein", "Spiele", "Benutzerdefinierte Befehle"]
+        },
+        "ADDS": {
+            "en": "`✅` Succesfully added **{tracks}** tracks.",
+            "fr": "`✅` **{tracks}** musiques ont été ajoutées à la queue.",
+            "de": "`✅` Erfolgreich **{tracks}** Spuren hinzugefügt."
+        },
+        "JOINED": {
+            "en": "**:thumbsup: Sucessfully joined {channel}.**",
+            "fr": "**:thumbsup: J'ai bien rejoint {channel}.**"
         },
         "GIVEAWAY_END": {
             "fr": {
@@ -848,8 +857,8 @@
                 "all_ok": "Votre participation pour [`ce giveaway`]({url}) a été acceptée. Bonne chance! \nSi vous voulez **25%** d'entrée supplémentaires, [`votez`](https://top.gg/bot/783708073390112830/vote) pour le bot.",
                 "all_ok_logs": "La participation de {member} pour [ce giveaway]({url}) a été acceptée.",
                 "denied": "Votre participation pour [`ce giveaway`]({url}) a été refusée.",
-                "deniedMsg": "Votre participation pour [`ce giveaway`]({url}) a été refusée.\n\n__`📜` Conditions__\n• Vous devez envoyer **{count}** messages.",
-                "deniedDouble": "Votre participation pour [`ce giveaway`]({url}) a été refusée.\n\n__`📜` Conditions__\n• Vous devez envoyer **{count}** messages.\n• Vous devez inviter **{invites}** personnes",
+                "deniedMsg": "Votre participation pour [`ce giveaway`]({url}) a été refusée.\n\n__`<:panelconfig:830347712330203146>` Conditions__\n• Vous devez envoyer **{count}** messages.",
+                "deniedDouble": "Votre participation pour [`ce giveaway`]({url}) a été refusée.\n\n__`<:panelconfig:830347712330203146>` Conditions__\n• Vous devez envoyer **{count}** messages.\n• Vous devez inviter **{invites}** personnes",
                 "hoist": "Rôle qui donne la couleur:",
                 "none": "Aucun",
                 "rest": "Et **{rest}** autres.."
@@ -861,8 +870,8 @@
                 "all_ok": "Your entry for [`this giveaway`]({url}) has been accepted. Good luck!\nIf you want **25%** Entry Boost, [`vote`](https://top.gg/bot/783708073390112830/vote) for the bot.",
                 "all_ok_logs": "{member}'s entry for [`this giveaway`]({url}) has been accepted.",
                 "denied": "Your entry [`this giveaway`]({url}) has been denied.",
-                "deniedMsg": "Your entry [`this giveaway`]({url}) has been denied.\n\n__`📜`Requirements__\n• You must have **{count}** messages.",
-                "deniedDouble": "Your entry [`this giveaway`]({url}) has been denied.\n\n__`📜`Requirements__\n• You must have **{count}** messages.\n• You must invite **{invites}** persons",
+                "deniedMsg": "Your entry [`this giveaway`]({url}) has been denied.\n\n__`<:panelconfig:830347712330203146>`Requirements__\n• You must have **{count}** messages.",
+                "deniedDouble": "Your entry [`this giveaway`]({url}) has been denied.\n\n__`<:panelconfig:830347712330203146>`Requirements__\n• You must have **{count}** messages.\n• You must invite **{invites}** persons",
                 "hoist": "Hoist Rolle:",
                 "none": "None",
                 "rest": "And **{rest}** others.."
@@ -874,8 +883,8 @@
                 "all_ok": "Deine Teilnahme für [`diese Verlosung`]({url}) wurde akzeptiert. Viel Glück!\nFalls du **25%** Eintrittsboost magst, [`vote`](https://top.gg/bot/783708073390112830/vote) für den bot.",
                 "all_ok_logs": "{member}'s Teilnahme dür [`diese Verlosung`]({url}) wurde akzeptiert.",
                 "denied": "Deine Teilnahme [`diese Verlosung`]({url}) wurde verweigert.",
-                "deniedMsg": "Deine Teilnahme [`diese Verlosung`]({url}) wurde verweigert.\n\n__`📜`Anforderungens__\n• Du brauchst **{count}** Nachrichten.",
-                "deniedDouble": "Deine Teilnahme [`diese Verlosung`]({url}) wurde verweigert.\n\n__`📜`Anforderungen__\n• Du brauchst **{count}** Nachrichten.\n• Du musst **{invites}** Personen einladen",
+                "deniedMsg": "Deine Teilnahme [`diese Verlosung`]({url}) wurde verweigert.\n\n__`<:panelconfig:830347712330203146>`Anforderungens__\n• Du brauchst **{count}** Nachrichten.",
+                "deniedDouble": "Deine Teilnahme [`diese Verlosung`]({url}) wurde verweigert.\n\n__`<:panelconfig:830347712330203146>`Anforderungen__\n• Du brauchst **{count}** Nachrichten.\n• Du musst **{invites}** Personen einladen",
                 "hoist": "Hoist Rolle:",
                 "none": "Nichts",
                 "rest": "Und **{rest}** andere.."
@@ -960,6 +969,26 @@
                 "title": "{username} verließ",
                 "kick": "{user} wurde gerade **{a}** vom Server gekickt."
             }
+        },
+        "SONG": {
+            "fr": {
+                "title": "❌ Musique non disponible",
+                "desc": "Cette musique n'est pas disponible pour le moment"
+
+            },
+            "en": {
+                "title": "❌ Song unavailable",
+                "desc": "Sorry but this music is not available for the moment. Try to try again."
+
+
+
+
+
+            }
+        },
+        "BYE": {
+            "fr": "Au revoir",
+            "en": "Goodbye"
         },
         "WELCOME": {
             "fr": {
@@ -1259,26 +1288,26 @@
 
         },
         "SKIP": {
-            "fr": "`▶` **Je passe la musique actuelle...**",
-            "en": "`▶` **Skipping the music...**",
-            "de": "`▶` **Die Musik überspringen...**"
+            "fr": "**⏩ *Passage de la musique* 👍**",
+            "en": "**⏩ *Skipping* 👍**",
+            "de": "**⏩ *Die Musik überspringen...* 👍 **"
 
         },
         "STOP": {
             "fr": "`⏹` J'ai arrété la musique avec succès dans ce serveur !",
-            "en": "`⏹` Music successfully stopped!",
+            "en": "**⏹ Music stopped!**",
             "de": "`⏹` Musik erfolgreich gestoppt!"
 
         },
         "VOLUME": {
-            "fr": "`🔊` Volume défini sur **{volume}%** !",
-            "en": "`🔊` Volume set to **{volume}%** !",
-            "de": "`🔊` Lautstärke auf **{volume}%** gesetzt!"
+            "fr": "Volume défini sur **{volume}%** !",
+            "en": "Volume set to **{volume}%** !",
+            "de": "Lautstärke auf **{volume}%** gesetzt!"
 
         },
         "QUEUE_END": {
             "fr": "Il n'y a plus de musique dans la queue.",
-            "en": "There is no music left in the queue.",
+            "en": "The queue has ended.",
             "de": "Es ist keine Musik mehr in der Warteschlange."
 
         },
@@ -1286,6 +1315,12 @@
             "fr": "Emoji ajouté au serveur avec succès. ({emoji})",
             "en": "Emoji successfully added to the server. ({emoji})",
             "de": "Emoji wurde erfolgreich zum Server hinzugefügt. ({emoji})"
+
+        },
+        "READ": {
+            "en": "Hooks such as [] or <> must not be used when executing commands.",
+            "fr": "Les crochets tels que [] ou <> ne sont pas à utiliser lors de l'exécution des commandes.",
+            "de": "Hooks such as [] or <> must not be used when executing commands."
 
         },
         "ALREADY": {
@@ -1449,12 +1484,12 @@
         "RESUME": {
             "fr": {
                 "err": "La musique n'est pas en pause.",
-                "ok": "`⏸` La musique reprend sur le serveur !"
+                "ok": "La musique reprend sur le serveur !"
 
             },
             "en": {
                 "err": "The music isn't paused.",
-                "ok": "`⏸` The music is resuming !"
+                "ok": "The music is resuming !"
 
 
 
@@ -1463,7 +1498,7 @@
             },
             "de": {
                 "err": "Die Musik ist nicht angehalten.",
-                "ok": "`⏸` Die Musik wird fortgesetzt !"
+                "ok": "Die Musik wird fortgesetzt !"
 
 
 
@@ -1503,7 +1538,7 @@
                 "current": "Je ne peux pas supprimer la chanson actuelle. Veuillez utiliser un numéro de file d'attente compris entre 1 et {x}.",
                 "no": "Aucune chanson trouvée. Veuillez utiliser un numéro de file d'attente compris entre 1 et {x}.",
 
-                "ok": "`✅` J'ai bien enlevé **{title}** de la queue."
+                "ok": "J'ai bien enlevé **{title}** de la queue."
 
             },
             "en": {
@@ -1512,7 +1547,7 @@
                 "current": "I can't remove the current song. Please use queue number between 1 to {x}.",
                 "no": "No songs found. Please use queue number between 1 to {x}.",
 
-                "ok": "`✅` successfully removed **{title}** from the queue."
+                "ok": "Successfully removed **{title}** from the queue."
 
 
 
@@ -1525,7 +1560,31 @@
                 "current": "Ich kann das aktuelle Lied nicht entfernen. Bitte verwende eine Warteschlangennummer zwischen 1 und {x}.",
                 "no": "Keine Lieder gefunden. Bitte verwende eine Warteschlangennummer zwischen 1 und {x}.",
 
-                "ok": "`✅` **{title}** erfolgreich aus der Warteschlange entfernt."
+                "ok": "**{title}** erfolgreich aus der Warteschlange entfernt."
+
+
+
+
+
+            }
+        },
+        "JUMP": {
+            "fr": {
+                "more": "Plus de musique à supprimer dans la file d'attente",
+                "num": "Numéro non valide. Veuillez utiliser un numéro de file d'attente compris entre 1 et **{x}**.",
+                "current": "Je ne peux pas supprimer la chanson actuelle. Veuillez utiliser un numéro de file d'attente compris entre 1 et **{x}**.",
+                "no": "Aucune chanson trouvée. Veuillez utiliser un numéro de file d'attente compris entre 1 et **{x}**.",
+
+                "ok": "Je passe à  **{title}** ..."
+
+            },
+            "en": {
+                "more": "No more music in the queue to remove",
+                "num": "Invalid number. Please use queue number between 1 to **{x}**.",
+                "current": "I can't remove the current song. Please use queue number between 1 to **{x}**.",
+                "no": "No songs found. Please use queue number between 1 to **{x}**.",
+
+                "ok": "Skipping the music to **{title}**."
 
 
 
@@ -1724,12 +1783,12 @@
         "SEEK": {
             "fr": {
                 "err": "Veuillez fournir un temps valide.",
-                "ok": "`☑` J'avance la musique de **{time}**."
+                "ok": "Temps de la musique définie `{time}`"
 
             },
             "en": {
                 "err": "Please provide a valid time.",
-                "ok": "`☑` I advance the music of **{time}**."
+                "ok": "Time set on the current song `{time}`."
 
 
 
@@ -1749,12 +1808,12 @@
         "PREMIUM_REQUIRED": {
             "fr": {
                 "title": "<:nitro_gris_activ:830451169486700585> Vote requis",
-                "err": "<:nitro_gris_activ:830451169486700585> Cette commande est réservée à ceux qui ont voté pour le bot. [`Cliquez ici`](https://top.gg/bot/783708073390112830/vote) pour voter."
+                "err": "Cette commande est réservée à ceux qui ont voté pour le bot. [Cliquez ici](https://top.gg/bot/783708073390112830/vote) pour voter."
 
             },
             "en": {
                 "title": "Vote required",
-                "err": "<:nitro_gris_activ:830451169486700585> You must vote for the bot to get acces to this command. [`Click here`](https://top.gg/bot/783708073390112830/vote) to vote."
+                "err": "This is a premium command but don't worry you can unlock it by voting our bot on Top.gg.\n[Click here](https://top.gg/bot/783708073390112830/vote) to vote."
 
 
 
@@ -1763,7 +1822,7 @@
             },
             "de": {
                 "title": "Vote erforderlich",
-                "err": "<:nitro_gris_activ:830451169486700585> Du musst für den Bot stimmen, um Zugriff auf diesen Befehl zu erhalten. [`Klicke hier`](https://top.gg/bot/783708073390112830/vote) um abzustimmen."
+                "err": "Du musst für den Bot stimmen, um Zugriff auf diesen Befehl zu erhalten. [`Klicke hier`](https://top.gg/bot/783708073390112830/vote) um abzustimmen."
 
 
 
@@ -2283,6 +2342,31 @@
 
             }
         },
+        "DJMODE": {
+            "fr": {
+                "succes": "Le rôle DJ a bien été défini pour ce serveur: `@{role}`",
+                "disable": "Le rôle DJ a bien été désactivé !"
+
+            },
+            "en": {
+                "succes": "The DJ role has been defined for this server: `@{role}`",
+                "disable": "The DJ role has been disabled!"
+
+
+
+
+
+            },
+            "de": {
+                "succes": "Die DJ-Role wurde für diesen Server definiert: `@{role}`",
+                "disable": "Die DJ-Role wurde deaktiviert!"
+
+
+
+
+
+            }
+        },
 
         "SLOWMODE": {
             "fr": {
@@ -2555,13 +2639,13 @@
                 "succes": "The auto music system has been successfully set. When someone will join {channel}, i will play music !",
                 "disable": "The auto music system has been successfully disabled.",
                 "already": "This channel is already set as autoplay channel",
-                "args:": "Please provide the music name"
+                "args": "Please provide the music name"
             },
             "de": {
                 "succes": "Das automatische Musiksystem wurde erfolgreich eingestellt. Wenn jemand {channel} beitritt, wird Musik abgespielt!",
                 "disable": "Das Auto Music System wurde erfolgreich deaktiviert.",
                 "already": "Dieser Kanal ist bereits als Autoplay-Kanal eingestellt",
-                "args:": "Bitte gib den Musiknamen an"
+                "args": "Bitte gib den Musiknamen an"
             }
         },
         "SET_COUNT": {
@@ -2710,7 +2794,7 @@
                 "name": "Veuillez fournir le nom du rappel à supprimer.",
                 "exist": "Aucun rappel trouvé pour `{text}`. Vérifiez l'orthographe",
                 "del": "Le rappel `{text}` a bien été supprimé.",
-                "found": "`🔍` J'ai trouvé un rappel pour `{text}`.\n`📜`**Informations sur le rappel**\n**Message**: {msg}\n**Temps**: {time}\n\n Veuillez confirmer la suppression de ce rappel ou annuler avec les boutons."
+                "found": "`🔍` J'ai trouvé un rappel pour `{text}`.\n`<:panelconfig:830347712330203146>`**Informations sur le rappel**\n**Message**: {msg}\n**Temps**: {time}\n\n Veuillez confirmer la suppression de ce rappel ou annuler avec les boutons."
 
 
 
@@ -2725,7 +2809,7 @@
                 "name": "Please provide the name of the reminder that you want delete.",
                 "exist": "No reminder found for `{text}`. Check spelling",
                 "del": "The `{text}` reminder has been successfully deleted.",
-                "found": "`🔍` I have found one reminder for `{text}`.\n`📜`**Reminder information**\n**Message**: {msg}\n**Time**: {time}\n\n Please confirm the deletion of this reminder or cancel with the buttons"
+                "found": "`🔍` I have found one reminder for `{text}`.\n`<:panelconfig:830347712330203146>`**Reminder information**\n**Message**: {msg}\n**Time**: {time}\n\n Please confirm the deletion of this reminder or cancel with the buttons"
 
 
 
@@ -2741,7 +2825,7 @@
                 "name": "Bitte gib den Namen der Erinnerung an, die du löschen magst.",
                 "exist": "Keine Erinnerung für `{text}` gefunden. Überprüfe die Schreibweise",
                 "del": "Die `{text}` Erinnerung wurde erfolgreich gelöscht.",
-                "found": "`🔍`Ich habe eine Erinnerung für `{text}` gefunden.\n`📜`**Erinnerungsinformationen**\n**Nachricht**: {msg}\n**Zeit**: {time}\n\n Bitte Bestätige das Löschen dieser Erinnerung oder brechen Sie mit den Tasten ab"
+                "found": "`🔍`Ich habe eine Erinnerung für `{text}` gefunden.\n`<:panelconfig:830347712330203146>`**Erinnerungsinformationen**\n**Nachricht**: {msg}\n**Zeit**: {time}\n\n Bitte Bestätige das Löschen dieser Erinnerung oder brechen Sie mit den Tasten ab"
 
 
 
@@ -2841,14 +2925,14 @@
         },
         "SET_COLOR": {
             "fr": {
-                "ok": "The color of the bot embeds has been updated to: `{prefix}`.",
+                "ok": "`✅` The color of the bot embeds has been updated to: `{prefix}`.",
                 "already": "Le préfixe actuel est déja celui çi.",
 
                 "err": "La couleur fournie n'est pas une couleur hexadécimale valide.\nListe des couleurs: **https://htmlcolorcodes.com/**"
 
             },
             "en": {
-                "ok": "The color of the bot embeds has been updated to: `{prefix}`.",
+                "ok": "`✅` The color of the bot embeds has been updated to: `{prefix}`.",
                 "already": "The current prefix is already this one.",
                 "err": "The provided color is not a valid hexadecimal color.\nAvailable colors: **https://htmlcolorcodes.com/**"
 
@@ -2858,7 +2942,7 @@
 
             },
             "de": {
-                "ok": "Die Farbe der Bot-Einbettungen wurde aktualisiert auf: `{prefix}`.",
+                "ok": "`✅` Die Farbe der Bot-Einbettungen wurde aktualisiert auf: `{prefix}`.",
                 "already": "TDas aktuelle Prefix ist bereits dieses.",
                 "err": "Die angegebene Farbe ist keine gültige hexadezimale Farbe.\nVerfügbare Farben: **https://htmlcolorcodes.com/**"
 
@@ -3043,7 +3127,11 @@
                 "next": "__Chansons à venir__",
                 "title": "Queue de",
                 "request": "Ajouté par",
-                "no": "Rien à venir dans la queue"
+                "no": "Rien à venir dans la queue",
+                "disabled": "`Désactivée`",
+                "queue": "`Activée`",
+                "track": "`Répétition de la chanson`",
+                "autoplay": "`Autoplay`"
 
             },
             "en": {
@@ -3053,7 +3141,11 @@
                 "next": "__Next songs in the queue__",
                 "title": "Queue for",
                 "request": "Requested by",
-                "no": "Nothing next in the queue"
+                "no": "Nothing next in the queue",
+                "disabled": "`Disabled`",
+                "queue": "`Enabled`",
+                "track": "`Rehearsal of the song`",
+                "autoplay": "`Autoplay`"
 
 
 
@@ -3066,7 +3158,11 @@
                 "next": "__Nächste Songs in der Warteschlange__",
                 "title": "Warteschlange für",
                 "request": "Angefordert von",
-                "no": "Nichts als nächstes in der Warteschlange"
+                "no": "Nichts als nächstes in der Warteschlange",
+                "disabled": "`Disabled`",
+                "queue": "`Enabled`",
+                "track": "`Rehearsal of the song`",
+                "autoplay": "`Autoplay`"
 
 
 
@@ -3477,8 +3573,8 @@
         },
         "STATS": {
             "fr": {
-                "desc": "Je suis un bot discord multifonctions **entièrement** gratuit et je suis aussi open source sur [Github](https://github.com/Pauldb09/Green-bot) N'hésitez pas à ajouter une étoile ⭐.\n Si vous avez le temps, supportez nous en  [votant](https://top.gg/bot/783708073390112830/vote), C'est gratuit et rapide\nLes emojis viennent de [`Emoji land`](https://discord.gg/yVRtEyweeC)",
-                "field": "**Serveurs:**\n `{server}`\n**Utilisateurs:**\n `{users}`\n**Commandes:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)",
+                "desc": "",
+                "field": "**Serveurs:**\n `{server}`\n**Utilisateurs:**\n `{users}`\n**Commandes:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)\n squarfiuz#7137 (`757309249440186460`)\nFBI~007#4878 (`772850214318768138`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Owner` : **<@688402229245509844>\n**`Database` : **MongoDB**",
 
                 "links": "Liens"
@@ -3488,8 +3584,8 @@
             },
             "en": {
 
-                "desc": "I am an **entierly** free multipropose discord bot and i am open source on [Github](https://github.com/Pauldb09/Green-bot) feel free to add a star ⭐.\n Feel free to support us by [Voting for the bot](https://top.gg/bot/783708073390112830/vote)\nThe emojis are from [`Emoji land`](https://discord.gg/yVRtEyweeC)\nYou can leave a [Feedback](https://green-bot.app/feedback) to improve me !",
-                "field": "**Guilds:**\n `{server}`\n**Users:**\n `{users}`\n**Commands:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)",
+                "desc": "",
+                "field": "**Guilds:**\n `{server}`\n**Users:**\n `{users}`\n**Commands:**\n `92`\n**Version:**\n `5.1`\n**Owner:**\n Pauldb09#0001 (`688402229245509844`)\n squarfiuz#7137 (`757309249440186460`)\nFBI~007#4878 (`772850214318768138`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Owner` : **<@688402229245509844>\n**`Database` : **MongoDB**",
 
                 "links": "Links"
@@ -3501,7 +3597,7 @@
             "de": {
 
                 "desc": "Ich bin ein **vollständig** kostenloser Multipropose Discord-Bot und bin Open Source auf [Github](https://github.com/Pauldb09/Green-bot) füge gerne einen Stern hinzu ⭐. Unterstütze uns gerne durch [Stimmen für den Bot](https://top.gg/bot/783708073390112830/vote)\nDie Emojis stammen aus dem [`Emoji-Land`](https://discord.gg/yVRtEyweeC)\nDu kannst ein [Feedback](https://green-bot.app/feedback) um mich zu verbessern!",
-                "field": "**Server:**\n `{server}`\n**Benutzer:**\n `{users}`\n**Befehle:**\n `92`\n**Version:**\n `5.1`\n**Besitzer:**\n Pauldb09#0001 (`688402229245509844`)",
+                "field": "**Server:**\n `{server}`\n**Benutzer:**\n `{users}`\n**Befehle:**\n `92`\n**Version:**\n `5.1`\n**Besitzer:**\n Pauldb09#0001 (`688402229245509844`)\n squarfiuz#7137 (`757309249440186460`)\nFBI~007#4878 (`772850214318768138`)",
                 "field1": "`Discord.js` : **v13-dev**\n`Besitzer` : **<@688402229245509844>\n**`Datenbank` : **MongoDB**",
 
                 "links": "Links"
@@ -3513,15 +3609,15 @@
         },
         "LOOP": {
             "fr": {
-                "music": "`🔂` Répétition de la musique **{status}**",
-                "queue": "`🔂` Répétition de la queue **{status}**",
+                "music": "Répétition de la musique **{status}**",
+                "queue": "Répétition de la queue **{status}**",
 
                 "err": "L'autorole a bien été désactivé !"
 
             },
             "en": {
-                "music": "`🔂` Loop mode for song **{status}**",
-                "queue": "`🔂` Loop mode for queue **{status}**",
+                "music": "Loop mode for song **{status}**",
+                "queue": "Loop mode for queue **{status}**",
                 "err": "The autorole has been disabled!"
 
 
@@ -3530,14 +3626,88 @@
 
             },
             "de": {
-                "music": "`🔂` Loop-Modus für Song **{status}**",
-                "queue": "`🔂` Schleifenmodus für Warteschlange **{status}**",
+                "music": "Loop-Modus für Song **{status}**",
+                "queue": "Schleifenmodus für Warteschlange **{status}**",
                 "err": "Die Autorole wurde deaktiviert!"
 
 
 
 
 
+            }
+        },
+        "24/7": {
+            "fr": {
+                "enabled": "Le mode 24/7 a bien été activé.",
+                "disabled": "Le mode 24/7 a bien été désaactivé.",
+                "enabledSince": "Le mode 24/7 est déja activé.",
+                "disabledSince": "Le mode 24/7 est déja désactivé."
+            },
+            "en": {
+                "enabled": "The 24/7 mode has been succesfully enabled for this server.",
+                "disabled": "The 24/7 mode has been succesfully disabled.",
+                "enabledSince": "The 24/7 mode is already enabled.",
+                "disabledSince": "The 24/7 mode is already disabled."
+            },
+            "de": {
+                "enabled": "The 24/7 mode has been succesfully enabled.",
+                "disabled": "The 24/7 mode has been succesfully disabled.",
+                "enabledSince": "The 24/7 mode is already enabled.",
+                "disabledSince": "The 24/7 mode is already disabled."
+            }
+        },
+        "ANNOUNCE": {
+            "fr": {
+                "enabled": "Je vais maintenant cacher les messages annonçant une nouvelle chanson.",
+                "disabled": "Je vais maintenant montrer les messages annonçant une nouvelle chanson..",
+                "enabledSince": "Le mode annonce est déja activé.",
+                "disabledSince": "Le mode annonce est déja désactivé."
+            },
+            "en": {
+                "enabled": "I will now hide the messages announcing a new song.",
+                "disabled": "I will now show the messages announcing a new song.",
+                "enabledSince": "The announce mode is already enabled.",
+                "disabledSince": "The announce mode is already disabled."
+            },
+            "de": {
+                "enabled": "I will now hide the messages announcing a new song.",
+                "disabled": "I will now show the messages announcing a new song.",
+                "enabledSince": "The announce mode is already enabled.",
+                "disabledSince": "The announce mode is already disabled."
+            }
+        },
+        "AUTOPLAYE": {
+            "fr": {
+                "enabled": "L'autoplay a bien été activé.",
+                "disabled": "L'autoplay a bien été désaactivé.",
+                "enabledSince": "L'autoplay est déja activé.",
+                "disabledSince": "L'autoplay est déja désactivé."
+            },
+            "en": {
+                "enabled": "The autoplay mode has been succesfully enabled.",
+                "disabled": "The autoplay mode has been succesfully disabled.",
+                "enabledSince": "The autoplay mode is already enabled.",
+                "disabledSince": "The autoplay mode is already disabled."
+            },
+            "de": {
+                "enabled": "The autoplay mode has been succesfully enabled.",
+                "disabled": "The autoplay mode has been succesfully disabled.",
+                "enabledSince": "The autoplay mode is already enabled.",
+                "disabledSince": "The autoplay mode is already disabled."
+            }
+        },
+        "BASSBOOST": {
+            "fr": {
+                "enabled": "Le filtre bassboost a bien été activé.",
+                "disabled": "Le filtre bassboost a bien été désaactivé.",
+                "enabledSince": "Le filtre bassboost est déja activé.",
+                "disabledSince": "Le filtre bassboost est déja désactivé."
+            },
+            "en": {
+                "enabled": "The bassboost filter has been succesfully enabled.",
+                "disabled": "The bassboost filter has been succesfully disabled.",
+                "enabledSince": "The bassboost filter is already enabled.",
+                "disabledSince": "The bassboost filter is already disabled."
             }
         },
         "LEADERBOARD": {
@@ -3658,13 +3828,13 @@
         },
         "PAUSE": {
             "fr": {
-                "succes": "`▶` La musique a été mise en pause sur le serveur  !",
+                "succes": "La musique a été mise en pause sur le serveur  !",
 
                 "err": "La musique est déja en pause sur ce serveur"
 
             },
             "en": {
-                "succes": "`▶` Music successfully paused",
+                "succes": "Music successfully paused",
                 "err": "Music is already paused on this server"
 
 
@@ -3673,7 +3843,7 @@
 
             },
             "de": {
-                "succes": "`▶` Musik erfolgreich pausiert",
+                "succes": "Musik erfolgreich pausiert",
                 "err": "Musik ist auf diesem Server bereits pausiert"
 
 
