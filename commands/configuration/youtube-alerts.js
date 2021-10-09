@@ -23,7 +23,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Alertes youtube":"Youtube Notifications"}`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled} ${youtubeDB ? youtubeDB.status ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>" : "<:icon_SwitchIconOff:825378603252056116>"}\n Youtubeur: ${youtubeDB ? youtubeDB.youtuberName ? youtubeDB.youtuberName : cfg.no :cfg.no}\n${cfg.channel}  ${ youtubeDB ? youtubeDB.channelID ? `<#${youtubeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ youtubeDB ? youtubeDB.message ? `${youtubeDB.message.length > 500 ? youtubeDB.message.slice(0, 500) + '...': youtubeDB.message}` : cfg.no : cfg.no }\`\`\``)
+                .addField(cfg.title, `${cfg.enabled} ${youtubeDB ? youtubeDB.status ? "✅": "❌" : "❌"}\n Youtubeur: ${youtubeDB ? youtubeDB.youtuberName ? youtubeDB.youtuberName : cfg.no :cfg.no}\n${cfg.channel}  ${ youtubeDB ? youtubeDB.channelID ? `<#${youtubeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ youtubeDB ? youtubeDB.message ? `${youtubeDB.message.length > 500 ? youtubeDB.message.slice(0, 500) + '...': youtubeDB.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
                 .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

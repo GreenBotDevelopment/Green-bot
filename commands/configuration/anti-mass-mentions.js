@@ -29,7 +29,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`Anti mass mentions`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${verify ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\n Mentions/message : ${verify ? verify.image ? `${verify.image}` : cfg.no: cfg.no}\n ${message.guild.settings.lang === "fr" ? "Avertisements avant le ban":"Pre-ban warnings"}: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ verify ? verify.message ? `${verify.message}` : cfg.no : cfg.no }\`\`\``)
+                .addField(cfg.title, `${cfg.enabled}${verify ? "✅": "❌"}\n Mentions/message : ${verify ? verify.image ? `${verify.image}` : cfg.no: cfg.no}\n ${message.guild.settings.lang === "fr" ? "Avertisements avant le ban":"Pre-ban warnings"}: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ verify ? verify.message ? `${verify.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
 
 

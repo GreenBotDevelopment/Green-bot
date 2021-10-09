@@ -20,7 +20,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Messages lors d'un boost":"Boost messages"}`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>" : "<:icon_SwitchIconOff:825378603252056116>"}\n Role : ${welcomeDB ? `<@&${welcomeDB.image}>` :cfg.no}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
+                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? "✅": "❌" : "❌"}\n Role : ${welcomeDB ? `<@&${welcomeDB.image}>` :cfg.no}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
         .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
         .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

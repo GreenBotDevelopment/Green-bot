@@ -21,7 +21,7 @@ module.exports = {
                     .setColor("#F0B02F")
                     .setTitle(`${message.guild.settings.lang === "fr" ? "Protections du serveur":"Server protections"}`)
                     .setDescription(tip)
-                    .addField(cfg.title, `Anti DC : ${verifydc ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\nAnti Pub : ${verifyPub ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\nAnti Spam : ${verifySpam ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\nAnti Majs : ${verifyMaj ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\nAnti Mentions : ${verifyMention ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}`)
+                    .addField(cfg.title, `Anti DC : ${verifydc ? "✅": "❌"}\nAnti Pub : ${verifyPub ? "✅": "❌"}\nAnti Spam : ${verifySpam ? "✅": "❌"}\nAnti Majs : ${verifyMaj ? "✅": "❌"}\nAnti Mentions : ${verifyMention ? "✅": "❌"}`)
                     .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, `\`${message.guild.settings.prefix}protect enableAll\` : ${message.guild.settings.lang === "fr" ? "Pour activer toutes les protections.":"To enable every protection"} \n\`${message.guild.settings.prefix}protect disableAll\` : ${message.guild.settings.lang === "fr" ? "Pour désactiver toutes les protections":"To disable every protection"}`)
                     .setURL("https://top.gg/bot/783708073390112830/vote")
                     .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

@@ -21,7 +21,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Salons vocaux temporaires":"Temps voc channels"}`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\n \n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\n${message.guild.settings.lang === "fr" ? "Taille":"Size"} : ${ welcomeDB ? welcomeDB.size : cfg.no }`)
+                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? "✅": "❌"}\n \n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\n${message.guild.settings.lang === "fr" ? "Taille":"Size"} : ${ welcomeDB ? welcomeDB.size : cfg.no }`)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
                 .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
