@@ -51,8 +51,8 @@ module.exports = {
             winnerCount: parseInt(response.winners, 10),
             embedColorEnd: "#ED360E",
             messages: {
-                giveaway: "\n\n<:greenbotsourire1:811148362526883860> **GIVEAWAY** <:greenbotsourire1:811148362526883860>",
-                giveawayEnded: "\n\n<:greenbotsourire1:811148362526883860> **GIVEAWAY ENDED** <:greenbotsourire1:811148362526883860>",
+                giveaway: "\n\n🎉🎉 **GIVEAWAY** 🎉🎉",
+                giveawayEnded: "\n\n🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
                 timeRemaining: "• " + infos.rest + ": \`{duration}\`!\n" + condition + "[" + infos.invite + "](https://discord.com/oauth2/authorize?client_id=" + message.client.user.id + "&scope=bot&permissions=8) • [" + infos.vote + "](https://top.gg/bot/783708073390112830/vote)",
                 inviteToParticipate: "• " + infos.enter + "\n \n • " + infos.host + " \`" + message.author.username + "\`\n•\`" + response.winners + "\` " + infos.winners + "",
                 winMessage: infos.congrats,
