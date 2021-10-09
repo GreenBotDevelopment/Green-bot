@@ -47,6 +47,9 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/lightjsbot/light.git"
+     },
+    "engines": {
+        "node": ">=17"
     },
     "keywords": [],
     "author": "",

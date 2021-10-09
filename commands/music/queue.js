@@ -18,7 +18,7 @@ module.exports = {
         const lang = await message.translate("QUEUE")
         const queue = message.client.player.getQueue(message.guild.id);
         const getRepeatMode = function(mode) {
-            let text;
+            let text = "Can't find";
             if (mode == QueueRepeatMode.AUTOPLAY) {
                 text = lang.autoplay
             } else if (mode == QueueRepeatMode.QUEUE) {
