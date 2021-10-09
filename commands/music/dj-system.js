@@ -17,7 +17,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`DJ System`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${message.guild.settings.dj_role ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\n Role : ${message.guild.settings.dj_role ? `<@&${message.guild.settings.dj_role}>` : cfg.no}`)
+                .addField(cfg.title, `${cfg.enabled}${message.guild.settings.dj_role ? "✅": "❌"}\n Role : ${message.guild.settings.dj_role ? `<@&${message.guild.settings.dj_role}>` : cfg.no}`)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
                 .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

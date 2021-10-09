@@ -24,7 +24,7 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`Verification system`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${verify ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\n Role : ${verify ? verify.image ? `<@&${verify.image}>` : cfg.no: cfg.no}\nMessage ID: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nReaction : ${ verify ? verify.message ? `${verify.message}` : cfg.no: cfg.no}`)
+                .addField(cfg.title, `${cfg.enabled}${verify ? "✅": "❌"}\n Role : ${verify ? verify.image ? `<@&${verify.image}>` : cfg.no: cfg.no}\nMessage ID: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nReaction : ${ verify ? verify.message ? `${verify.message}` : cfg.no: cfg.no}`)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
                 .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

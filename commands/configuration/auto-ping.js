@@ -26,7 +26,7 @@ module.exports = {
             .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Ping automatique des nouveaux membres":"Auto ghost ping"}`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>" : "<:icon_SwitchIconOff:825378603252056116>"}\n ${message.guild.settings.lang === "fr" ? "Temps":"Time"}: ${welcomeDB ? welcomeDB.image ? welcomeDB.image : cfg.no : cfg.no}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
+                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? "✅": "❌" : "❌"}\n ${message.guild.settings.lang === "fr" ? "Temps":"Time"}: ${welcomeDB ? welcomeDB.image ? welcomeDB.image : cfg.no : cfg.no}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
 
 

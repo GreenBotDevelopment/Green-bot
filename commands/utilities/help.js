@@ -209,7 +209,7 @@ module.exports = {
                     .setColor(e.guild.settings.color)
                     .addField("> Usage", `${link(`\`${e.guild.settings.prefix}${u.name} ${u.usage || ""}\``)}`, !0)
                     .addField("> Example", `${link(`\`${u.exemple ? `${e.guild.settings.prefix}${u.name} ${u.exemple}` : "No example"}\``)}`, !0)
-                    .addField("> Statut", ""+lang.s+": "+u.disabled ? "<:IconSwitchIconOn:825378657287274529>" : "<:icon_SwitchIconOff:825378603252056116>"+"\n Dm: " + `${u.guildOnly ? "<:icon_SwitchIconOff:825378603252056116>" : "<:IconSwitchIconOn:825378657287274529>"}`, !0)
+                    .addField("> Statut", ""+lang.s+": "+u.disabled ? "✅" : "❌"+"\n Dm: " + `${u.guildOnly ? "❌" : "✅"}`, !0)
                     .addField("> Aliases", `${link(`\`${u.aliases ? u.aliases.map((e) => `${e}`).join(", ") || "No aliases" : "No aliases"}\``)}`, !0)
                     .addField("> Cooldown", `${link(`${u.cooldown ? `\`${u.cooldown}s\`` : "`3s`"}`)}`, !0)
                     .addField("> Permissions", `${link(`\`${u.permissions ? u.permissions.map((c) => `${a[c][e.guild.settings.lang]}`)||lang.perms : lang.perms}\``)}`)

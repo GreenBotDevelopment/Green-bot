@@ -29,7 +29,7 @@ module.exports = {
                 .setURL("https://top.gg/bot/783708073390112830/vote")
                 .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Anti majusules exessives":"Anti exessive capital letters"}`)
-                .setDescription(tip).addField(cfg.title, `${cfg.enabled}${verify ? "<:IconSwitchIconOn:825378657287274529>": "<:icon_SwitchIconOff:825378603252056116>"}\n Pourcentage de majuscules : ${verify ? verify.image ? `**${verify.image}**%` : cfg.no: cfg.no}\n ${message.guild.settings.lang === "fr" ? "Avertisements avant le ban":"Pre-ban warnings"}: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ verify ? verify.message ? `${verify.message}` : cfg.no : cfg.no }\`\`\``)
+                .setDescription(tip).addField(cfg.title, `${cfg.enabled}${verify ? "✅": "❌"}\n Pourcentage de majuscules : ${verify ? verify.image ? `**${verify.image}**%` : cfg.no: cfg.no}\n ${message.guild.settings.lang === "fr" ? "Avertisements avant le ban":"Pre-ban warnings"}: ${verify ? verify.channelID ? `${verify.channelID}` : cfg.no: cfg.no}\nMessage: \n\`\`\`${ verify ? verify.message ? `${verify.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
 
     .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
