@@ -1,7 +1,7 @@
 {
     "name": "GreenBot",
     "description": "Green-bot is a powerfull open source discord bot. Free feel to add a ⭐ to support us.",
-    "main": "index.js",
+    "main": "sharder.js",
     "dependencies": {
         "@discord-player/extractor": "^2.0.2",
         "@discordjs/opus": "^0.5.0",
@@ -32,7 +32,7 @@
         "ytdl-core": "^4.7.0"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "node sharder.js"
     },
     "repository": {
         "type": "git",
