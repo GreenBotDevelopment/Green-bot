@@ -40,7 +40,7 @@ module.exports = {
             return message.errorMessage(err);
         }
         let ok = await message.translate("CHEARCHING")
-        message.channel.send(ok)
+        message.channel.send(ok.replace("{title}",name))
         const { player } = message.client
         let queue;
         if (!message.client.player.getQueue(message.guild.id)) {
