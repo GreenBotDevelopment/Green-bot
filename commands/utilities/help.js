@@ -60,7 +60,7 @@ module.exports = {
                     .setColor(e.guild.settings.color)
                     .setAuthor(e.author.username, e.author.displayAvatarURL({ dynamic: !0, size: 512 }))
                     .setFooter(client.footer, e.client.user.displayAvatarURL({ dynamic: !0, size: 512 }))
-                    .setDescription(lang.desc.replace("{guild}", e.guild.name).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix))
+                    .setDescription(lang.desc.replace("{guild}", e.guild.name).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix).replace("{prefix}", e.guild.settings.prefix))
                     .addField(`${r[0]}`, `[\`${l}\`](${client.links.website})`, !0)
                     .addField(`${r[1]}`, `[\`${l}\`](${client.links.support})`, !0)
                     .addField(`${r[2]}`, `[\`${l}\`](${client.links.invite})`, !0);
