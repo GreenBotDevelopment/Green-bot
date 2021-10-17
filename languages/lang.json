@@ -64,9 +64,9 @@
 
         },
         "HELP_TIP": {
-            "en": "`📚` My language on this server is `English` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` You can check the commandd list on the [`Website`](https://green-bot.app/commands)",
-            "fr": "`📚` Ma langue sur ce serveur est le `Français` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` Vous pouvez aller voir la liste des commandes sur le [`site`](https://green-bot.app/commands)",
-            "de": "`📚` Meine Sprache auf diesem Server ist `Deutsch` (`{prefix}setlang fr/en/de`)\n`<:panelconfig:830347712330203146>` Sie können die Befehlsliste auf der [`Website`](https://green-bot.app/commands)"
+            "en": "`📚` My language on this server is `English` (`{prefix}setlang fr/en/de`)\n`📜` You can check the commandd list on the [`Website`](https://green-bot.app/commands)",
+            "fr": "`📚` Ma langue sur ce serveur est le `Français` (`{prefix}setlang fr/en/de`)\n`📜` Vous pouvez aller voir la liste des commandes sur le [`site`](https://green-bot.app/commands)",
+            "de": "`📚` Meine Sprache auf diesem Server ist `Deutsch` (`{prefix}setlang fr/en/de`)\n`📜` Sie können die Befehlsliste auf der [`Website`](https://green-bot.app/commands)"
 
         },
         "NO_VIDEO_FOUND": {
@@ -662,9 +662,9 @@
 
         },
         "ARGS_TIP": {
-            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec <:panelconfig:830347712330203146> pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
-            "en": "You don't need any arguments for this command. **You have to react with <:panelconfig:830347712330203146> to start the configuration**. \n You can send `cancel` at any time to cancel",
-            "de": "Du benötigst keine Argumente für diesen Befehl. **Sie müssen mit <:panelconfig:830347712330203146> reagieren, um die Konfiguration zu starten**. \n Sie können jederzeit `cancel` senden, um abzubrechen"
+            "fr": "Vous n'avez pas besoin d'arguments pour cette commande. **Il faut  réagir avec📜 pour débuter la configuration **. \n Vous pouvez mettre `cancel` à tout moment pour annuler ",
+            "en": "You don't need any arguments for this command. **You have to react with 📜 to start the configuration**. \n You can send `cancel` at any time to cancel",
+            "de": "Du benötigst keine Argumente für diesen Befehl. **Sie müssen mit 📜 reagieren, um die Konfiguration zu starten**. \n Sie können jederzeit `cancel` senden, um abzubrechen"
 
         },
         "HELP_CAT": {
