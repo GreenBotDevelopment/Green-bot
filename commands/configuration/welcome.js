@@ -47,8 +47,8 @@ module.exports = {
                                 channelID: response.channel.id,
                                 reason: 'welcome',
                                 message: response.message,
-                                status:  response.status,
-                                image:  response.image,
+                                status: response.status,
+                                image: response.image,
                             }).save();
                             message.succesMessage(config_ok.replace('{x}', welcome_messages));
                         }
