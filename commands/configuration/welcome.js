@@ -23,7 +23,7 @@ module.exports = {
                                 description: dashboard,
                                 thumbnail: { url: client.user.displayAvatarURL({ format: 'png' }) },
                                 fields: [
-                                        { name: cgf.title, description: cfg.enabled + (welcomeDB && welcomeDB.status ? '✅' : '❌') + '\nImage: ' + (welcomeDB && welcomeDB.image ? '✅'  : '❌') + '\n' + cfg.channel + ' ' + (welcomeDB && welcomeDB.channelID ? '<#' + welcomeDB.channelID + '>' : cfg.no) + '\nMessage: \n```' + (welcomeDB && welcomeDB.message ? (welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...' : welcomeDB.message) : cfg.no) + '```' },
+                                        { name: cfg.title, description: cfg.enabled + (welcomeDB && welcomeDB.status ? '✅' : '❌') + '\nImage: ' + (welcomeDB && welcomeDB.image ? '✅'  : '❌') + '\n' + cfg.channel + ' ' + (welcomeDB && welcomeDB.channelID ? '<#' + welcomeDB.channelID + '>' : cfg.no) + '\nMessage: \n```' + (welcomeDB && welcomeDB.message ? (welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...' : welcomeDB.message) : cfg.no) + '```' },
                                         { name: message.guild.settings.lang == 'fr' ? '`📜` Utilisation' : '`📜` Use', description: args_tip }
                                 ],
                                 footer: { text: client.footer, icon_url: client.user.displayAvatarURL() }
