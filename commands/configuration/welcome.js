@@ -3,11 +3,11 @@ const Welcome = require('../../database/models/Welcome');
 module.exports = {
         name: 'welcome',
         description: 'Configure le système de bienvenue . Cette commande inclut un collecteur de messages , vous n\'avez donc pas besoin d\'arguments.',
-        aliases: ['bienvenue', 'bvn', ],
+        aliases: ['bienvenue', 'bvn'],
         guildOnly: true,
         cat: 'configuration',
         permissions: ['MANAGE_GUILD'],
-        botpermissions: ["SEND_MESSAGES", "EMBED_LINKS", ],
+        botpermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
         async execute(message, args, client) {
             const ID = message.member.id;
             const prompts = await message.translate("WELCOME_PROMPTS")
@@ -20,29 +20,28 @@ module.exports = {
                 .setColor("#F0B02F")
                 .setTitle(`${message.guild.settings.lang === "fr" ? "Messages de bienvenue":"Welcome messages"}`)
                 .setDescription(tip)
-                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? "✅": "❌" : "❌"}\n image: ${welcomeDB ? welcomeDB.image ? "✅" : "❌" : "❌"}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
+                .addField(cfg.title, `${cfg.enabled}${welcomeDB ? welcomeDB.status ? '✅' : '❌' : '❌'}\n image: ${welcomeDB ? welcomeDB.image ? '✅' : '❌' : '❌'}\n${cfg.channel}  ${ welcomeDB ? welcomeDB.channelID ? `<#${welcomeDB.channelID}>` : cfg.no : cfg.no }\nMessage: \n\`\`\`${ welcomeDB ? welcomeDB.message ? `${welcomeDB.message.length > 500 ? welcomeDB.message.slice(0, 500) + '...':welcomeDB.message}` : cfg.no : cfg.no }\`\`\``)
                 .addField(`${message.guild.settings.lang === "fr" ? "`📜` Utilisation":"`📜` Use"}`, second)
         .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
         .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-        message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } }).then((m) => {
-            m.react("📜")
-            const filter = (reaction, user) => reaction.emoji.name === "📜" && user.id === message.author.id;
-            const collector = m.createReactionCollector({ filter, time: 11000000,max:1 });
-            collector.on('collect', async r =>{
+        message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } }).then(m => {
+            m.react('📜');
+            const collector = m.createReactionCollector({ filter: (reaction, user) => reaction.emoji.name === "📜" && user.id === message.author.id, max:1 });
+            collector.on('collect', async r => {
                 const response = await getResponses(message)
                 if (!response || response.cancelled) return message.client.log ? console.log(`Command ${message.content} | Cancelled`) : null
-                const a = await message.translate("CONFIG_OK")
-                let b = `${message.guild.settings.lang === "fr" ? "les messages de bienvenue":"the welcome messages"}`
-                const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `welcome` })
-                    if (verify) {
+                const a = await message.translate("CONFIG_OK");
+                let b = message.guild.settings.lang === 'fr' ? 'les messages de bienvenue' : 'the welcome messages';
+                const verify = await Welcome.findOne({ serverID: message.guild.id, reason: 'welcome' });
+                if (verify) {
                         const newchannel = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `welcome` }, { $set: { channelID: response.channel.id, reason: `welcome `, message: response.message, status: response.status, image: response.image ? true : false, } }, { new: true });
-                        message.succesMessage(a.replace("{x}",b));
+                        message.succesMessage(a.replace('{x}', b));
                 } else {
                     const verynew = new Welcome({
-                        serverID: `${message.guild.id}`,
-                        channelID: `${response.channel.id}`,
+                        serverID: message.guild.id,
+                        channelID: response.channel.id,
                         reason: 'welcome',
-                        message: `${response.message}`,
+                        message: response.message,
                         status:  response.status,
                         image:  response.image,
                     }).save();
@@ -64,25 +63,24 @@ module.exports = {
             const { content } = response.first();
             const m = response.first();
             if (content.toLowerCase() === "cancel") {
-                let okk = await message.translate("CANCELED")
+                const okk = await message.translate("CANCELED");
                 responses.cancelled = true;
 
-         message.channel.send(`**${okk}**`)
+                message.channel.send('**' + okk + '**');
                 return responses;
-
                 break;
             }
             if (i === 0) {
-                const ll = await message.translate("ENA/DISA")
+                const ll = await message.translate('ENA/DISA');
 
                 if (content.toLowerCase() === 'enable') {
                     responses.status = true;
                 } else if (content.toLowerCase() === 'disable') {
                     responses.status = null;
 
-                    const verify = await Welcome.findOne({ serverID: message.guild.id, reason: `welcome` })
+                    const verify = await Welcome.findOne({ serverID: message.guild.id, reason: 'welcome' });
                     if (verify) {
-                        const newchannel = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: `welcome` }, { $set: { status: null } }, { new: true });
+                        const newchannel = await Welcome.findOneAndUpdate({ serverID: message.guild.id, reason: 'welcome' }, { $set: { status: null } }, { new: true });
 
                         return message.succesMessage(ll.succes);
 
@@ -90,7 +88,7 @@ module.exports = {
                     return message.succesMessage(ll.disable);
 
                 } else {
-                    return m.errorMessage(ll.err)
+                    return m.errorMessage(ll.err);
                 }
 
             }
@@ -98,21 +96,21 @@ module.exports = {
                 let channel = m.mentions.channels.first() || message.guild.channels.cache.get(content) || message.guild.channels.cache.filter(m => m.type === "GUILD_TEXT" && m.name.includes(args.join(" "))).first();
                     if (channel && channel.type === 'GUILD_TEXT' && channel.guild.id === message.guild.id) {
                     if (!channel.viewable||!channel.permissionsFor(message.guild.me).has('SEND_MESSAGES') || !channel.permissionsFor(message.guild.me).has('EMBED_LINKS') ) {
-                        let a = await message.translate("CHANNEL_PERMS")
-                        return m.errorMessage(a)
+                        const a = await message.translate('CHANNEL_PERMS');
+                        return m.errorMessage(a);
                         break;
                     }
                     responses.channel = channel;
                 } else {
-                    let errorChannel = await message.translate("ERROR_CHANNEL")
-                    return m.errorMessage(errorChannel)
+                    const errorChannel = await message.translate('ERROR_CHANNEL');
+                    return m.errorMessage(errorChannel);
                     break;
                 }
             }
             if (i === 2) {
                 if (content.length > 2000 || content.length < 1) {
-                    let numberErr = await message.translate("MESSAGE_ERROR")
-                return m.errorMessage(numberErr.replace("{amount}", "2").replace("{range}", "2000"))
+                    let numberErr = await message.translate('MESSAGE_ERROR');
+                return m.errorMessage(numberErr.replace('{amount}', '2').replace('{range}', '2000'));
                     break;
                 } else {
                     responses.message = content;
@@ -124,7 +122,7 @@ module.exports = {
                 } else if (content.toLowerCase() === 'text') {
                     responses.image = null;
                 } else {
-                    return m.errorMessage(`${message.guild.settings.lang === "fr" ? "Veuillez fournir l'argument attendu: **image** ou **text**.":"Please provide the expected argument: **image** or **text**."}`)
+                    return m.errorMessage(message.guild.settings.lang === 'fr' ? 'Veuillez fournir l\'argument attendu: **image** ou **text**.' : 'Please provide the expected argument: **image** or **text**.');
                 }
 
             }
