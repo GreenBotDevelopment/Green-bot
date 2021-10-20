@@ -2,7 +2,7 @@ const Welcome = require('../../database/models/Welcome');
 
 module.exports = {
         name: 'welcome',
-        description: 'Configure le système de bienvenue . Cette commande inclut un collecteur de messages , vous n\'avez donc pas besoin d\'arguments.',
+        description: 'Configure le système de bienvenue.',
         aliases: ['bienvenue', 'bvn'],
         guildOnly: true,
         cat: 'configuration',
