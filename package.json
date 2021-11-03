@@ -7,6 +7,7 @@
         "@discordjs/opus": "^0.5.0",
         "@vitalets/google-translate-api": "^5.0.0",
         "canvas": "^2.7.0",
+        "play-dl":"^1.2.2",
         "discord-giveaways": "^4.5.1",
         "discord-player": "^5.1.0",
         "discord-voice": "^1.0.7",
