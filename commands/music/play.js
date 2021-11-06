@@ -81,7 +81,6 @@ module.exports = {
         if (queue.metadata.controller) return message.errorMessage(`Use the music controller to play music. `)
         let ok = await message.translate("CHEARCHING", guildDB.lang)
         message.channel.send(ok.replace("{title}", name.slice(0.200))).then(m => setTimeout(() => m.delete(), 4000))
-        if (name === "music") name = "Random music"
         if (queue.metadata.channel.id !== message.channel.id) queue.metadata.channel = message.channel
         const searchResult = await client.player
             .search(name, {
