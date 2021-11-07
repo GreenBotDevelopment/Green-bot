@@ -9,6 +9,13 @@ const channeldb = new mongoose.Schema({
     chatbot: { type: String, required: false, default: null },
     ignored_channel: { type: String, required: false, default: null },
     admin_role: { type: String, required: false, default: null },
+    goodPremium: { type: String, required: false, default: null },
+    requestChannel: { type: String, required: false, default: null },
+    requestMessage: { type: String, required: false, default: null },
+    defaultVolume: { type: String, required: false, default: 60 },
+    vc: { type: String, required: false, default: null },
+    clearing: { type: String, required: false, default: null },
+    auto_shuffle: { type: String, required: false, default: null },
     games_enabled: { type: Boolean, required: false, default: null },
     util_enabled: { type: Boolean, required: false, default: true },
     autorole: { type: String, required: false, default: null },
@@ -23,6 +30,9 @@ const channeldb = new mongoose.Schema({
     autonick_bot: { type: String, required: false, default: null },
     autoplay: { type: String, required: false, default: null },
     song: { type: String, required: false, default: null },
+    h24: { type: String, required: false, default: null },
+    announce: { type: String, required: false, default: true },
+
     plugins: {
         type: Object,
         default: {

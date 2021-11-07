@@ -9,5 +9,7 @@ const channeldb = new mongoose.Schema({
     status: { type: String, required: false },
     embed: { type: String, required: false },
     reason: { type: String, required: true },
+    color: { type: String, required: false },
+
 })
 const Welcome = module.exports = mongoose.model('welcome', channeldb)
