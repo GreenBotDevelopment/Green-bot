@@ -42,6 +42,23 @@
     
  <br>  
  
+**📚 Bot features**
+
++ Dj system <br>
++ Unlimited use of audio filters<br>
+  + Bassboost, nightcore, karaoke, vaporwave, earrape & More
++ Easy to use<br>
++ Easy configuration<br>
++ Autoplay<br>
++ 24/7 music<br>
++ Songs request channel<br>
++ Highly configurable<br>
++ YouTube and YouTube Music<br>
++ Spotify & Soundcloud<br> 
++ Remove duplicates tracks<br>
++ Easy to setup<br>
+ <br>  
+ 
 **🖥 Installation**
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
@@ -69,19 +86,3 @@ Now, you can start the bot by pressing `F5` or putting `node sharder.js` in the 
 __Step 5.__
 Enjoy your bot !
 
-
-**📚 Bot features**
-
-+ Dj system <br>
-+ Unlimited use of audio filters<br>
-  + Bassboost, nightcore, karaoke, vaporwave, earrape & More
-+ Easy to use<br>
-+ Easy configuration<br>
-+ Autoplay<br>
-+ 24/7 music<br>
-+ Songs request channel<br>
-+ Highly configurable<br>
-+ YouTube and YouTube Music<br>
-+ Spotify & Soundcloud<br> 
-+ Remove duplicates tracks<br>
-+ Easy to setup<br>
