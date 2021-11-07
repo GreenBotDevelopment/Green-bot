@@ -1,8 +1,5 @@
 const Welcome = require("../../database/models/Welcome"),
-    counter = require("../../database/models/counter"),
-    guild = require("../../database/models/guild"),
     guildData = require("../../database/models/guildData"),
-    config = require("../../config.js"),
     Discord = require("discord.js"),
     moment = require("moment"),
     Canvas = require("canvas"),
@@ -17,8 +14,6 @@ registerFont("./util/fonts/ZenDots-Regular.ttf", { family: "Zen Dots" }), module
                 setTimeout(() => { m.delete() }, ping.image)
             })
         }
-        const ai = await Welcome.findOne({ serverID: e.guild.id, reason: "verification" });
-        if (ai && !e.verified) return
         const settings = await guildData.findOne({ serverID: e.guild.id })
         if (s.log) console.log(settings)
         let t, r = await Welcome.findOne({ serverID: e.guild.id, reason: "logs" });
@@ -26,30 +21,17 @@ registerFont("./util/fonts/ZenDots-Regular.ttf", { family: "Zen Dots" }), module
         const lang = await e.guild.translatee("WELCOME", settings.lang)
         const a = (new Discord.MessageEmbed).setTitle(lang.title.replace("{username}", e.user.username)).setThumbnail(e.user.displayAvatarURL()).setDescription(lang.desc.replace("{x}", e.guild.memberCount).replace("{date}", moment(e.user.createdTimestamp).locale(settings.lang).format("LL, "))).setFooter(s.footer).setColor("#04781B");
         if (t) t.send({ embeds: [a] })
-        if (e.user.bot) {
-            if (settings.autonick_bot) {
-                let t = s.content ? s.content.replace("{username}", e.user.username) : e.user.username;
-                await e.setNickname(t, "Auto nick for bots")
+        if (e.user.bot && settings.autorole_bot) {
+            let s = e.guild.roles.cache.get(settings.autorole_bot);
+            if (s) try { e.roles.add(s, "Bot Autorole plugin") } catch (e) {}
+            else return
+        } else if (settings.autorole) {
+            let s = e.guild.roles.cache.get(settings.autorole);
+            if (s) try { e.roles.add(s, "Autorole plugin") } catch (e) {
+                t && t.mainMessage("**Autorole error**\nI couldn't give the role, check my permissions", "#EADEDB")
             }
-            if (settings.autorole_bot) {
-                let s = e.guild.roles.cache.get(settings.autorole_bot);
-                if (s) try { e.roles.add(s, "Bot Autorole plugin") } catch (e) {
-                    t && t.mainMessage("**Bot autorole**\nI couldn't give the role, check my permissions", "#EADEDB")
-                }
-                else t && t.mainMessage("**Bot autorole**\nI couldn't give the role, check my permissions", "#EADEDB")
-            }
-        } else {
-            if (settings.autonick) {
-                let t = settings.autonick ? settings.autonick.replace("{username}", e.user.username) : e.user.username;
-                await e.setNickname(t, "Auto nick system")
-            }
-            if (settings.autorole) {
-                let s = e.guild.roles.cache.get(settings.autorole);
-                if (s) try { e.roles.add(s, "Autorole plugin") } catch (e) {
-                    t && t.mainMessage("**Autorole error**\nI couldn't give the role, check my permissions", "#EADEDB")
-                }
-                else t && t.mainMessage("**Autorole error**\nI couldn't give the role, check my permissions", "#EADEDB")
-            }
+            else t && t.mainMessage("**Autorole error**\nI couldn't give the role, check my permissions", "#EADEDB")
+
         }
         const unknow = await e.guild.translatee("UNKNOW_INVITE", settings.lang)
         const l = await Welcome.findOne({ serverID: e.guild.id, reason: "welcome" });
@@ -124,30 +106,6 @@ registerFont("./util/fonts/ZenDots-Regular.ttf", { family: "Zen Dots" }), module
         }
 
 
-        const i = await counter.findOne({ serverID: e.guild.id });
-        if (i) {
-            e.guild.memberCount !== e.guild.members.cache.size && await e.guild.members.fetch();
-            let la = await e.guild.translatee("COUNTER", settings.lang)
-            const s = e.guild.members.cache;
-            let r = 0,
-                a = e.guild.channels.cache.get(i.MembersID);
-            a && (r += 1, a.edit({ name: `👦 ${la.a} : ${s.filter(e=>!e.user.bot).size}` }));
-            let n = e.guild.channels.cache.get(i.totalID);
-            n && (r += 1, n.edit({ name: `🌎 ${la.c} : ${e.guild.memberCount}` }));
-            let l = e.guild.channels.cache.get(i.BotsID);
-            l && (r += 1, l.edit({ name: `🤖 Bots : ${s.filter(e=>e.user.bot).size}` }))
-        }
-        const n = await guild.findOne({ serverID: e.guild.id, reason: "joindm" });
-        if (n && !e.user.bot) {
-            let s = `${n.content}\n\n-Sent from ${e.guild.name}`.replace(/{user}/g, e).replace(/{member}/g, e).replace(/{server}/g, e.guild.name).replace(/{username}/g, e.user.username).replace(/{tag}/g, e.user.tag).replace(/{membercount}/g, e.guild.memberCount);
-            e.send(s)
-        }
 
-        const RaidLogs = settings.protections.antiraid_logs ? e.guild.channels.cache.get(settings.protections.antiraid_logs) : null
-        const g = await Welcome.findOne({ serverID: e.guild.id, reason: "anti_dc" });
-        if (g) {
-            const lang = await e.guild.translatee("ANTI_DC", settings.lang)
-            e.user.createdTimestamp > Date.now() - 864e5 * g.image && (e.send(g.message.replace("{user}", e).replace("{tag}", e.user.tag).replace("{username}", e.user.username).replace("{server}", e.guild.name).replace("{days}", g.image)), await e.kick({ reason: lang.title }), RaidLogs && RaidLogs.send({ embeds: [(new Discord.MessageEmbed).setAuthor(lang.title, e.user.displayAvatarURL()).setDescription(lang.desc.replace("{date}", moment(e.user.createdTimestamp).locale(settings.lang).fromNow()).replace("{tag}", e.user.tag)).setColor(s.color).setFooter(s.footer, s.user.displayAvatarURL())] }))
-        }
     }
 };

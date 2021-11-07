@@ -1,45 +1,35 @@
-const Discord = require('discord.js');
-const Welcome = require('../../database/models/Welcome');
-
 module.exports = {
     name: 'clearqueue',
-    description: 'Supprime la queue du serveur',
+    description: 'Clear the music queue, does not stop the current song if there is one.',
     permissions: false,
-    aliases: ['cq'],
+    aliases: [, "cq", "clearqueue"],
     cat: 'music',
     botpermissions: ['CONNECT', 'SPEAK'],
-    async execute(message, args) {
-        if (message.guild.settings.dj_system) {
-            if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-                let MissingRole = await message.translate("MISSING_ROLE");
-                let Missingperm = await message.translate("MISSING_PERMISSIONS");
-                let role = message.guild.roles.cache.get(message.guild.settings.dj_system)
-                if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'MANAGE_MESSAGES'))
-                if (message.member.roles.cache) {
-                    if (!message.member.roles.cache.has(role.id)) {
-                        return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
-                    }
-                } else {
-                    return message.errorMessage(MissingRole.replace("{perm}", 'MANAGE_MESSAGES').replace("{role}", role.name))
-                }
-            }
-        }
+    async execute(message, args, client, guildDB) {
         const voice = message.member.voice.channel;
         if (!voice) {
-            let err = await message.translate("NOT_VOC")
-            return message.errorMessage(err)
+            return message.errorMessage(message.translate("NOT_VOC", guildDB.lang))
+        }
+        const queue = message.client.player.getQueue(message.guild.id)
+        if (!queue || !queue.playing) {
+            return message.errorMessage(message.translate("NOT_MUSIC", guildDB.lang))
         }
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) {
-            let err = await message.translate("NOT_SAME_CHANNEL")
-            return message.errorMessage(err);
+            return message.errorMessage(message.translate("NOT_SAME_CHANNEL", guildDB.lang));
         }
-        if (!message.client.player.getQueue(message.guild.id) || !message.client.player.getQueue(message.guild.id).playing) {
-            let err = await message.translate("NOT_MUSIC")
-            return message.errorMessage(err)
+        if (guildDB.dj_role && queue.metadata.dj.id !== message.author.id) {
+            if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+                let MissingRole = await message.translate("MISSING_ROLE", guildDB.lang);
+                let Missingperm = await message.translate("MISSING_PERMISSIONS", guildDB.lang);
+                let role = message.guild.roles.cache.get(guildDB.dj_role)
+                if (!role) return message.errorMessage(Missingperm.replace("{perm}", 'Manage messages'))
+                if (message.member.roles.cache) {
+                    if (!message.member.roles.cache.has(role.id)) return message.errorMessage(MissingRole.replace("{perm}", 'Manage messages').replace("{role}", role.name))
+                } else return message.errorMessage(MissingRole.replace("{perm}", 'Manage messages').replace("{role}", role.name))
+            }
         }
-        const lang = await message.translate("CLEAR_QUEUE")
-        if (message.client.player.getQueue(message.guild.id).tracks.length <= 1) return message.errorMessage(lang.err);
-        const queue = message.client.player.getQueue(message.guild.id);
+        const lang = await message.translate("CLEAR_QUEUE", guildDB.lang)
+        if (queue.tracks.length <= 1) return message.errorMessage(lang.err);
         queue.clear()
         message.succesMessage(lang.ok)
     },

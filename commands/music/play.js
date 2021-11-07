@@ -6,7 +6,7 @@ module.exports = {
     cat: 'music',
     args: true,
     cooldown: 2000,
-    aliases: ['p', 'youtube'],
+    aliases: ['p', 'youtube', "spotify", "soundcloud"],
     usage: '<music name>',
     usages: ["play <music>", "play <url>"],
     exemple: 'Never gonna give you up',
@@ -55,15 +55,13 @@ module.exports = {
                         try {
                             return (await playdl.stream(track.url)).stream;
                         } catch (err) {
-                            _queue.metadata.m.errorMessage("This video is restricted. Try with another link.")
-                            return
+                            return _queue.metadata.m.errorMessage("This video is restricted. Try with another link.")
                         }
                     } else if (track.url.includes('spotify')) {
                         try {
                             let songs = await client.player.search(`${track.author} ${track.title} `, {
-                                    requestedBy: message.member,
-                                }).catch()
-                                .then(x => x.tracks[0]);
+                                requestedBy: message.member,
+                            }).catch().then(x => x.tracks[0]);
                             return (await playdl.stream(songs.url)).stream;
                         } catch (err) {
                             console.log(err)
@@ -81,6 +79,7 @@ module.exports = {
         if (queue.metadata.controller) return message.errorMessage(`Use the music controller to play music. `)
         let ok = await message.translate("CHEARCHING", guildDB.lang)
         message.channel.send(ok.replace("{title}", name.slice(0.200))).then(m => setTimeout(() => m.delete(), 4000))
+        if (name === "music") name = "2021 New Songs ( Latest English Songs 2021 ) 🥬 Pop Music 2021 New Song 🥬 English Song 2021"
         if (queue.metadata.channel.id !== message.channel.id) queue.metadata.channel = message.channel
         const searchResult = await client.player
             .search(name, {

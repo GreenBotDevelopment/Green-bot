@@ -48,10 +48,7 @@ const getServersList = async client => {
 const createClientVars = async client => {
     const config = require("../config")
     client.color = config.color.startsWith("#") ? config.color : "#3A871F"
-    client.owner = {
-        name: config.ownerName,
-        id: config.ownerID
-    }
+    client.owners = ["757309249440186460", "688402229245509844", "776416380530327603", "772850214318768138"]
     client.footer = config.footer.slice(0, 32)
     client.defaultPrefix = config.prefix.slice(0, 4)
     client.defaultLanguage = config.defaultLanguage
@@ -60,8 +57,18 @@ const createClientVars = async client => {
         enabled: config.devMode,
         serverID: config.devServer
     }
-    client.categories = config.categories
-    client.links = config.links
+    client.satinize = function(text, client) {
+        if (text instanceof Object) {
+            for (var key in text) {
+                if (/^\$/.test(key)) {
+                    delete text[key];
+                } else {
+                    client.sanitize(text[key]);
+                }
+            }
+        }
+        return text;
+    }
 };
 /**
  * Fetch a category with a text
@@ -69,7 +76,7 @@ const createClientVars = async client => {
  */
 const resolveCategory = async function(args, client = {}) {
     if (client.log) console.log("[..] resolving category " + args + "")
-    const found = client.categories[`${args.toLowerCase()}`]
+    const found = client.config.categories[`${args.toLowerCase()}`]
     if (found) {
         if (client.log) console.log("[..] Category found " + found.name + "")
     }
@@ -153,7 +160,7 @@ const checkConfig = async config => {
         }
     }
     if (!config.token) {
-        console.error('✗ Please provide a discord bot token.get it at https://discord.com/developpers/bots');
+        console.error('✗ Please provide a discord bot token.get it at https://discord.com/developers/bots');
         error = true;
     } else {
         const Discord = require('discord.js');
@@ -177,7 +184,7 @@ const checkConfig = async config => {
         });
     }
     if (error) {
-        console.log("Your config verification has failed. Please fix errors and try again\n\nIf you need more help, join our support server here: https://green-bot.app/discord")
+        if (config.logAll) console.log("Your config verification has failed. Please fix errors and try again\n\nIf you need more help, join our support server here: https://green-bot.app/discord")
         process.exit(0);
 
     } else {

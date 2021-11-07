@@ -1,6 +1,4 @@
 const discord = require('discord.js');
-const fetch = require("node-fetch");
-const { parse } = require("twemoji-parser");
 const TikTokScraper = require('tiktok-scraper');
 const number = require('easy-number-formatter')
 module.exports = {
@@ -10,10 +8,10 @@ module.exports = {
     usage: '<username>',
     exemple: 'test',
     cat: 'utilities',
-    guildOnly: true,
+    premium: true,
     args: true,
-    async execute(message, args) {
-        const lang = await message.translate("TIKTOK")
+    async execute(message, args, client, guildDB) {
+        const lang = message.translate("TIKTOK", guildDB.lang)
         try {
             const user = await TikTokScraper.getUserProfileInfo(args[0]);
             if (!user) {
@@ -40,9 +38,9 @@ module.exports = {
                 .addField(lang.f, number.formatNumber(`${user.stats.heartCount}`), true)
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 
-            message.reply({ embeds: [userbe], allowedMentions: { repliedUser: false } })
+            message.channel.send({ embeds: [userbe], allowedMentions: { repliedUser: false } })
         } catch (error) {
-            if (message.client.log) console.log(error)
+            console.log(error)
             return message.errorMessage(lang.error.replace("{text}", args[0]))
         }
     },
