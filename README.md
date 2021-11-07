@@ -42,7 +42,7 @@
     
  <br>  
  
-**📚 Bot features**
+**🚀 Bot features**
 
 + Dj system <br>
 + Unlimited use of audio filters<br>
@@ -59,7 +59,7 @@
 + Easy to setup<br>
  <br>  
  
-**🖥 Installation**
+**📁 Installation**
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
 
