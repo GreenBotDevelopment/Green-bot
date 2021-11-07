@@ -70,15 +70,16 @@ Enjoy your bot !
 
 **📚 Bot features**
 
-  + Dj system <br>
-   + Unlimited use of audio filters<br>
-    + Easy to use<br>
-     + Easy configuration<br>
-      + Autoplay<br>
-       + 24/7 music<br>
-        + Songs request channel<br>
-         + Highly configurable<br>
-          + YouTube and YouTube Music<br>
-           + Spotify & Soundcloud<br> 
-                      + Remove duplicates tracks<br>
-                            + Easy to setup<br>
++ Dj system <br>
++ Unlimited use of audio filters<br>
+  + Bassboost, nightcore, karaoke, vaporwave, earrape & More
++ Easy to use<br>
++ Easy configuration<br>
++ Autoplay<br>
++ 24/7 music<br>
++ Songs request channel<br>
++ Highly configurable<br>
++ YouTube and YouTube Music<br>
++ Spotify & Soundcloud<br> 
++ Remove duplicates tracks<br>
++ Easy to setup<br>
