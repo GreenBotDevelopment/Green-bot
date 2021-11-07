@@ -19,10 +19,8 @@ module.exports = {
             `, true)
             .setColor(guildDB.color)
             .setThumbnail(url = message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-            .setURL("https://green-bot.app/")
-            .addField("Website", "https://green-bot.app/")
-            .addField("Premium", "https://patreon.com/GreenBotDiscord")
-            .addField("Vote", "https://top.gg/bot/783708073390112830/vote")
+            .addField("Website", client.config.links.website)
+            .addField("Vote", "" + client.config.links.topgg + "/vote")
             .setFooter(`${message.client.footer}`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
 
         message.channel.send({ embeds: [embed], allowedMentions: { repliedUser: false } }).catch(err => {

@@ -33,7 +33,7 @@ module.exports = {
         if (queue.tracks.length < 6) {
             const embed = new Discord.MessageEmbed()
                 .setTitle(`${lang.title} ${message.guild.name} `)
-                .setURL("https://green-bot.app")
+                .setURL(client.config.links.invite)
                 .setColor(guildDB.color)
                 .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), client.config.links.invite)
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
@@ -49,7 +49,7 @@ module.exports = {
             let description = queue.tracks.map((m, i) => `\`#${i + 1}\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).slice(0, 6).join("\n");
             const embed = new Discord.MessageEmbed()
                 .setTitle(`${lang.title} ${message.guild.name} `)
-                .setURL("https://green-bot.app")
+                .setURL(client.config.links.invite)
                 .setColor(guildDB.color)
                 .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }))
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))

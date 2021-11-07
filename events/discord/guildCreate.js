@@ -17,29 +17,29 @@ module.exports = {
                 description: `Hey thanks for adding me to **${e.name}**!`,
                 fields: [{
                     name: "Getting Started",
-                    value: `You can check the [Command list](https://green-bot.app/commands) for more information. To change my prefix, use \`*prefix\`
+                    value: `You can check the [Command list](${client.config.links.website}/commands) for more information. To change my prefix, use \`*prefix\`
         Not English? Change the language using \`*language\``
                 }, {
                     name: "Support",
-                    value: `Join the [Support server](https://discord.gg/SQsBWtjzTv) if you need help with anything, the support team is here to answer all your questions! You can also use \`*help\` for alternative support methods and more information.`
+                    value: `Join the [Support server](${client.config.links.support}) if you need help with anything, the support team is here to answer all your questions! You can also use \`*help\` for alternative support methods and more information.`
 
                 }, {
                     name: "How to play music ?",
                     value: `Join a voice channel and then type \`*play music\`.Don't forget to replace **music** name by the music that you want.`
                 }, {
                     name: "Premium",
-                    value: `Unlock exclusive benefits by purchasing a premium membership: \nhttps://green-bot.app/premium`
+                    value: `Unlock exclusive benefits by purchasing a premium membership: \n${client.config.links.website}/premium`
                 }, {
                     name: "Dashboard",
-                    value: `[Click here](https://green-bot.app)`,
+                    value: `[Click here](${client.config.links.website})`,
                     inline: !0
                 }, {
                     name: "Discord",
-                    value: `[Click here](https://discord.gg/SQsBWtjzTv)`,
+                    value: `[Click here](${client.config.links.support})`,
                     inline: !0
                 }, {
                     name: "Premium",
-                    value: `[Click here](https://green-bot.app/premium)`,
+                    value: `[Click here](${client.config.links.website}/premium)`,
                     inline: !0
                 }],
 

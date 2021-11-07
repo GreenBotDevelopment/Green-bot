@@ -37,7 +37,7 @@ module.exports = {
         guildDB.requestChannel = channel.id
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.guild.name, message.guild.icon ? message.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", client.config.links.invite)
-            .setDescription(`Send a music name/link bellow this message to play music.\n[Invite me](https://green-bot.app/invite) | [Premium](https://green-bot.app/premium) | [Dashboard](https://green-bot.app) | [Commands](https://green-bot.app/commands)`)
+            .setDescription(`Send a music name/link bellow this message to play music.\n[Invite me](${client.config.links.invite}) | [Dashboard](${client.config.links.website}) | [Commands]${client.config.links.website}/commands)`)
             .addField("Now playing", "__**Nothing playing**__")
             .setImage(url = "https://cdn.discordapp.com/attachments/893185846876975104/900453806549127229/green_bot_banner.png")
             .setFooter(`${message.client.footer}`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
