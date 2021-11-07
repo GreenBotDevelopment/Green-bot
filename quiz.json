@@ -1,0 +1,48 @@
+[{
+        "question": "Quel est le plus long mot français ?",
+        "reponses": ["Intergouvernementalisations"]
+    },
+    {
+        "question": "Quand a commencée la seconde guerre mondiale ?",
+        "reponses": ["1939"]
+    },
+    {
+        "question": "Quel est le 45ème président des Etats-Unis ?",
+        "reponses": ["Donald Trump", "Trump"]
+    },
+    {
+        "question": "Quelle est la vidéo la plus regardée au monde sur YouTube ?",
+        "reponses": ["Despacito"]
+    },
+    {
+        "question": "Quelle est la plus grosse planète du système solaire ?",
+        "reponses": ["Jupiter"]
+    },
+    {
+        "question": "Je suis fraiche chez le boulanger et magique chez le magicien, qui suis-je ?",
+        "reponses": ["Baguette"]
+    },
+
+    {
+        "question": "Quelle est la plus grande tour du monde ?",
+        "reponses": ["Burj Khalifa"]
+    },
+    {
+        "question": "En quelle année a été créé YouTube ?",
+        "reponses": ["2005"]
+    },
+    {
+        "question": "En quelle année a été créé Discord ?",
+        "reponses": ["2015"]
+    },
+    {
+        "question": "En quelle année a été créé Discord ?",
+        "reponses": ["2015"]
+    },
+    {
+        "question": "Dans quelle ville les premiers cas de Covid-19 sont-ils apparus ?",
+        "reponses": ["Wuhan"]
+    }
+
+
+]

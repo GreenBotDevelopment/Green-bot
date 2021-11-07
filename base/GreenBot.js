@@ -1,11 +1,6 @@
 const { createClientVars } = require("../util/functions")
 const { Player } = require("discord-player");
 const util = require("util")
-const { GiveawaysManager } = require("discord-giveaways");
-const vvoice = require("discord-voice");
-const config = require("../config")
-const dbTemps = require("quick.db");
-
 const { Client, Collection } = require("discord.js")
 class GreenBot extends Client {
     constructor(options) {

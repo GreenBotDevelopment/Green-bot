@@ -103,5 +103,6 @@ module.exports = {
         if (!message.guild.me.voice.channel) await queue.connect(message.member.voice.channel);
         searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
         if (!queue.playing) await queue.play();
+
     },
 };

@@ -41,6 +41,17 @@ module.exports = {
                 let x = await message.translate("LANGUAGE_GOOD_SET", "de")
                 return message.channel.send({ content: x, allowedMentions: { repliedUser: false } })
             }
+        }
+        if (args[0] === 'de' || args[0] === 'deutsch' || args[0] === 'german' || args[0] === 'allemand ') {
+            if (message.guild.settings.lang === 'de') {
+                message.errorMessage(`Meine Sprache auf diesem Server ist bereits Deutsch`)
+                return;
+            } else {
+                const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id, }, { $set: { lang: "de" } }, { new: true });
+                message.guild.settings.lang = "de";
+                let x = await message.translate("LANGUAGE_GOOD_SET")
+                return message.reply({ content: x, allowedMentions: { repliedUser: false } })
+            }
         } else {
             const no = await message.translate("LANG_NO_CORRECT", guildDB.lang)
             message.errorMessage(no)
