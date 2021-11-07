@@ -2,7 +2,7 @@
     <h3>Green-bot</h3>
         If you liked this repository, feel free to leave a star ⭐ , it supports us a lot! Thanks you!
     <br><br>
-    <p>Green-bot is a Free Discord Music bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites
+    <p>Green-bot is a Free Discord Music bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites. 
         many more <br> <br><strong>Use <code class= "code" style="color:#4B67F4!important">*help</code> or <code class= "code" style="color:#4B67F4!important">green help</code> for a full list of commands </strong>
     </p>
     <br>
@@ -45,6 +45,8 @@
 **🖥 Installation**
 
 Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
+
+You are looking for the All-in-One bot? [Click here](https://github.com/GreenBotDeveloppement/Green-bot/tree/f6fe240fd58d7f37edee4083c161899d8c3cba59)
 
 Before starting, make you sure you have a mongoDB database (it's free) and nodejs v16.
 
