@@ -2,9 +2,8 @@ const Welcome = require("../../database/models/Welcome"),
     guildData = require("../../database/models/guildData"),
     Discord = require("discord.js"),
     moment = require("moment"),
-    Canvas = require("canvas"),
-    { registerFont: registerFont } = require("canvas");
-registerFont("./util/fonts/ZenDots-Regular.ttf", { family: "Zen Dots" }), module.exports = {
+    Canvas = require("canvas");
+module.exports = {
     async execute(e, s) {
         const ping = await Welcome.findOne({ serverID: e.guild.id, reason: "autoping" });
         if (ping && ping.status) {
