@@ -1,8 +1,8 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
     <h3>Green-bot</h3>
-        If you liked this repository, feel free to leave a star ⭐ and follow me, it actually means a lot.
+        If you liked this repository, feel free to leave a star ⭐ , it supports us a lot! Thanks you!
     <br><br>
-    <p>Green-bot is a Free Discord bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites
+    <p>Green-bot is a Free Discord Music bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites
         many more <br> <br><strong>Use <code class= "code" style="color:#4B67F4!important">*help</code> or <code class= "code" style="color:#4B67F4!important">green help</code> for a full list of commands </strong>
     </p>
     <br>
