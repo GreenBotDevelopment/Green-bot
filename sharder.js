@@ -6,4 +6,4 @@ const manager = new ShardingManager("./index.js", {
     totalShards: config.shards ? config.shards : "auto",
 });
 console.log("[Shards] Starting spawn");
-manager.spawn();
+manager.spawn({ timeout: -1 });

@@ -25,7 +25,7 @@ module.exports = {
                 const x = await res.json();
                 if (!x.title) return message.usage(guildDB, cmd)
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+                    .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), client.config.links.invite)
                     .setTitle(`${x.title ? x.title : songName}`)
                     .setColor(guildDB.color)
                     .setDescription(`\`\`\`diff\n${x.lyrics.slice(0,4000)}\`\`\``)
@@ -46,7 +46,7 @@ module.exports = {
             const x = await res.json();
             if (!x.title) return message.errorMessage(err.replace("{songName}", songName))
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), client.config.links.invite)
                 .setTitle(`${x.title ? x.title : songName}`)
                 .setColor(guildDB.color)
                 .setDescription(`\`\`\`diff\n${x.lyrics.slice(0,4000)}\`\`\``)

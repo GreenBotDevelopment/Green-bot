@@ -4,7 +4,7 @@ module.exports = {
     // Your discord bot token. https://discord.com/developpers/bots
     token: "TOKEN",
     // Your ID
-    ownerID: "688402229245509844",
+    ownerID: "XXXXXXXXXXXX",
     // Your name/tag
     ownerName: "Pauldb09",
     //The footer of the embeds that the bot will send
@@ -29,17 +29,13 @@ module.exports = {
     logAll: true,
     // If you want to test your configuration before starting the bot
     checkConfig: null,
-//The number of shards. Leave blank for auto
-shards: 1,
+    //The number of shards. Leave blank for auto
+    shards: 1,
     // The categories. Put null to enabled to disable a category
     categories: {
         configuration: { enabled: true, name: "Configuration", desc: "Setup the bot with the configuration commands" },
-        moderation: { enabled: true, name: "Moderation", desc: "Moderate your server easylly with {botName}" },
-        levelling: { enabled: true, name: "Levelling", desc: "Creates a rank in your server" },
         utilities: { enabled: true, name: "Utilities", desc: "Some usefull commands", aliases: ["general"] },
         music: { enabled: true, name: "Music", desc: "Listen music with Green-bot" },
-        games: { enabled: null, name: "Games", desc: "Have fun with friends using Green-bot" },
-        antiraid: { enabled: true, name: "Antiraid", desc: "Protect your server against raiders", aliases: ["protections"] },
         owner: { hide: true, enabled: true, name: "Owner", desc: "Manage your bot with the owner commands" }
     },
     // some usefull links about your bot, if you don't have an information, put null.
@@ -57,5 +53,4 @@ shards: 1,
         cached: false,
         delay: 300000 * 4,
     },
-
 }

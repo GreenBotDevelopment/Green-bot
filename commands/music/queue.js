@@ -35,7 +35,7 @@ module.exports = {
                 .setTitle(`${lang.title} ${message.guild.name} `)
                 .setURL("https://green-bot.app")
                 .setColor(guildDB.color)
-                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), client.config.links.invite)
                 .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
                 .addField(lang.a, `[${queue.current.title}](${queue.current.url}) | \`${lang.request} ${queue.current.requestedBy.username} ${queue.current.duration} \``)
                 .addField(`__${lang.next}__`, queue.tracks.map((m, i) => `\`#${i + 1}\`  [${m.title.slice(0,80)}](${m.url}) \`${lang.request} ${m.requestedBy.username} ${m.duration}\``).join("\n") || lang.no)

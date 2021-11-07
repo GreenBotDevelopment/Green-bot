@@ -12,7 +12,7 @@ module.exports = {
         let b = a.reduce((p, count) => p + count);
         console.log(client.users.cache.size * 4)
         const embed = new Discord.MessageEmbed()
-            .setAuthor(`${message.client.user.tag}`, message.client.user.displayAvatarURL(), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+            .setAuthor(`${message.client.user.tag}`, message.client.user.displayAvatarURL(), client.config.links.invite)
             .addField(`__Informations__`, `
             \n\n
             ${lang.field.replace("{server}",guildsCount.toLocaleString()).replace("{users}",(b *29 ).toLocaleString())}

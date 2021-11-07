@@ -8,12 +8,12 @@ module.exports = {
                 author: {
                     name: "Green-bot Premium",
                     icon_url: message.client.user.displayAvatarURL({ dynamic: true, size: 512 }),
-                    url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456"
+                    url: client.config.links.invite
                 },
                 description: "Unlock more of Green-bot with the premium!",
                 fields: [{
                         name: "How can I buy Green-bot Premium ?",
-                        value: "To buy the premium version of [Green-bot](https://green-bot.app), first join the [Support server](https://discord.gg/SQsBWtjzTv). If you are not in the server, you won't be able to redeem your premium !\n Then go on the [Patreon page](https://green-bot.app/premium/buy) to subscribe Green-bot"
+                        value: "To buy the premium version of [" + client.user.username + "](" + client.config.links.website + "), first join the [Support server](" + client.config.links.support + "). If you are not in the server, you won't be able to redeem your premium !\n Then go on the [Patreon page](https://green-bot.app/premium/buy) to subscribe Green-bot"
                     },
                     {
                         name: "What gives Green-bot premium ?",

@@ -21,7 +21,7 @@ module.exports = {
                 author: {
                     name: `${a}${member.user.tag}`,
                     icon_url: member.user.displayAvatarURL({ dynamic: true, size: 512 }),
-                    url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456"
+                    url: client.config.links.invite
                 },
                 color: guildDB.color,
                 image: {

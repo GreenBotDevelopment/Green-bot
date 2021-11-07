@@ -51,7 +51,7 @@ module.exports = {
                 author: {
                     name: `${message.author.username}`,
                     icon_url: message.author.displayAvatarURL({ dynamic: true, size: 512 }),
-                    url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456"
+                    url: client.config.links.invite
                 }
             }]
         })

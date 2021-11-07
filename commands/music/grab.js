@@ -16,7 +16,7 @@ module.exports = {
             .setTitle(queue.current.title)
             .setColor(guildDB.color)
             .setFooter(message.client.footer, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
-            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, size: 512 }), client.config.links.invite)
             .addField(`Autor`, `\`${queue.current.author || "Nothing playing"}\``, true)
             .addField("Added by", `\`${queue.current.requestedBy.tag}\``, true)
             .addField("Url", `[Click here](${queue.current.url})`, true)

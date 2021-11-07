@@ -50,7 +50,7 @@ Guild.prototype.translate = async function(text = {}) {
             return;
         }
     } else {
-        throw new Error(`Aucun texte indiqué `)
+        throw new Error(`Not text Provided`)
         return;
     }
     const langbd = await guildData.findOne({ serverID: this.id })
@@ -78,7 +78,7 @@ Guild.prototype.translatee = async function(text, target = {}) {
 
 Message.prototype.gg = async function(text, args, options = {}) {
     if (!text) {
-        this.errorOccurred("No text provided")
+        this.errorOccurred("No text provided", "en")
         throw new Error(`Aucun texte indiqué `)
     }
     let target = this.guild.lang
@@ -92,11 +92,11 @@ Message.prototype.errorMessage = function(text, cooldown = {}) {
             embeds: [{
                 description: text,
                 color: "#C73829",
-                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456" },
+                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: this.client.links.invite },
             }]
         })
     } else {
-        this.errorOccurred("No text provided")
+        this.errorOccurred("No text provided", "en")
         throw new Error(`Error: No text provided`)
     }
 };
@@ -110,7 +110,7 @@ Message.prototype.succesMessage = function(text, noAutor = {}) {
         })
         return
     } else {
-        this.errorOccurred("No text provided")
+        this.errorOccurred("No text provided", "en")
         throw new Error(`Error: No text provided`)
     }
 };
@@ -127,7 +127,7 @@ Message.prototype.usage = async function(guildDB, cmd = {}) {
                     embeds: [{
                                 description: `${u.replace("{command}",cmd.name)}\n${read}\n\n**${langUsage}**\n${cmd.usages ? `${cmd.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${cmd.name} ${cmd.usage} \``}`,
         color: "#C73829",
-        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456" },
+        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: this.client.links.invite },
     }]})
     };
 Message.prototype.mainMessage = function(text, args, options = {}) {
@@ -154,9 +154,9 @@ Message.prototype.mainMessage = function(text, args, options = {}) {
  * Send an error message in the current channel
  * @param {string} error the code of the error
  */
- Message.prototype.errorOccurred = async function(err = {}) {
+ Message.prototype.errorOccurred = async function(err,guildDB = {}) {
  console.log("[32m%s[0m", "ERROR", "[0m", `${cmd ? `Command ${cmd.name}` : "System"} has error: \n\n${err}`)
-const lang = await this.translate("ERROR")
+const lang = await this.translate("ERROR",guildDB.lang)
 const r = new MessageEmbed()
     .setColor("#F0B02F")
     .setTitle(lang.title)

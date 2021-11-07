@@ -36,7 +36,7 @@ module.exports = {
         }
         guildDB.requestChannel = channel.id
         const embed = new Discord.MessageEmbed()
-            .setAuthor(message.guild.name, message.guild.icon ? message.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+            .setAuthor(message.guild.name, message.guild.icon ? message.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", client.config.links.invite)
             .setDescription(`Send a music name/link bellow this message to play music.\n[Invite me](https://green-bot.app/invite) | [Premium](https://green-bot.app/premium) | [Dashboard](https://green-bot.app) | [Commands](https://green-bot.app/commands)`)
             .addField("Now playing", "__**Nothing playing**__")
             .setImage(url = "https://cdn.discordapp.com/attachments/893185846876975104/900453806549127229/green_bot_banner.png")
@@ -122,7 +122,7 @@ module.exports = {
         guildDB.requestMessage = msg.id;
         guildDB.save()
         const embede = new Discord.MessageEmbed()
-            .setAuthor(message.author.username, message.member.user.displayAvatarURL(), "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456")
+            .setAuthor(message.author.username, message.member.user.displayAvatarURL(), client.config.links.invite)
             .setDescription(lang.succes.replace("{channel}", channel))
             .setFooter(`${message.client.footer}`, message.client.user.displayAvatarURL({ dynamic: true, size: 512 }))
             .setColor("#3A871F")

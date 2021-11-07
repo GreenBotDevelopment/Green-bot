@@ -71,7 +71,7 @@
                                               author: {
                                                   name: e.author.username,
                                                   icon_url: e.author.displayAvatarURL({ dynamic: !0, size: 512 }),
-                                                  url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456"
+                                                  url: client.config.links.invite
                                               },
                                               description: `${u.replace("{command}",r)}\n${read}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${r} ${i.usage}\``}`,
                             footer: {
@@ -86,7 +86,7 @@
                         i.execute(e, a, t, guildDB,i );
                         return
                     } catch (s) {
-                        return e.errorOccurred(s)
+                        return e.errorOccurred(s,guildDB)
                     }
                
             }else if(guildDB.requestChannel !== null || guildDB.autopost !== null){
