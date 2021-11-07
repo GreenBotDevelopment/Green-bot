@@ -6,11 +6,12 @@ module.exports = {
         aliases: ['e', 'evaluate'],
         usage: '<code>',
         cooldown: 5,
-        guildOnly: true,
         owner: true,
         args: true,
         cat: 'owner',
         async execute(message, args, client, guildDB) {
+            if (!client.config.owners.includes(message.author.id)) return
+
             var code = args.join(" ");
             try {
                 const ev = eval(code);
@@ -29,24 +30,24 @@ module.exports = {
 				code = "Bruh, your code is very long.";
 			}
             const embed = new Discord.MessageEmbed()
-            .setColor(message.guild.settings.color)
+            .setColor(guildDB.color)
             .setDescription(`\`\`\`js\n${clean(str)}\n\`\`\``)
             .addField("Code", `\`\`\`js\n${code}\n\`\`\``)
             .addField("Type of:", typeof(str))
 
             .setFooter(message.client.footer)
-        message.reply({ embeds: [embed],allowedMentions: { repliedUser: false }
+        message.channel.send({ embeds: [embed],allowedMentions: { repliedUser: false }
  })
 		}
 		catch (error) {
 			const embed = new Discord.MessageEmbed()
-            .setColor(message.guild.settings.color)
+            .setColor(guildDB.color)
             .setDescription(`\`\`\`js\n${error}\n\`\`\``)
             .addField("Code", `\`\`\`js\n${code}\n\`\`\``)
             .addField("Type of:", typeof(str))
 
             .setFooter(message.client.footer)
-        message.reply({ embeds: [embed],allowedMentions: { repliedUser: false }
+        message.channel.send({ embeds: [embed],allowedMentions: { repliedUser: false }
  })
 		}
 

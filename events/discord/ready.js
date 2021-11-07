@@ -1,23 +1,21 @@
-const config = require("../../config.js");
+const config = require('../../config.js');
 module.exports = {
     async execute(client) {
-        console.log("[Bot] Ready")
-        const crons = require("../../util/crons")
-        crons.handleReminds(client)
-        crons.checkBirthdays(client)
-        crons.checkYoutubeVideos(client)
+        console.log('[Bot] Ready');
+        const DBL = require('dblapi.js');
+        client.dbl = new DBL(config.topgg.token, client);
+        const activities = [
+            { name: 'green-bot.app • *help', type: 'WATCHING' },
+            { name: 'green-bot.app • *help', type: 'WATCHING' }
+        ];
+        client.user.setActivity(activities[0].name, { type: 'WATCHING' });
+        let activity = 1;
         setInterval(async() => {
-            await crons.checkYoutubeVideos(client)
-        }, 6e4);
-        if (config.database.cached) {
-            const { refreshDB } = require("../../util/crons")
-            await refreshDB(client, config.database.delay);
-        }
-        if (config.game) {
-            client.user.setActivity(config.game, { type: "WATCHING" });
-            setInterval(() => {
-                client.user.setActivity(config.game, { type: "WATCHING" });
-            }, 60000 * 60);
-        } 
+            activities[2] = { name: 'green-bot.app', type: 'WATCHING' };
+            activities[3] = { name: 'green-bot.app', type: 'WATCHING' };
+            if (activity > 3) activity = 0;
+            client.user.setActivity(activities[activity].name, { type: 'WATCHING' });
+            activity++;
+        }, 30000);
     }
 };

@@ -1,7 +1,6 @@
-const guildData = require('../../database/models/guildData');
 module.exports = {
     name: 'setprefix',
-    description: 'Change le préfixe du bot',
+    description: 'Sets the bot prefix',
     usage: '<prefix>',
     args: true,
     cat: 'configuration',
@@ -9,13 +8,15 @@ module.exports = {
     cooldown: 15,
     aliases: ["prefix"],
     permissions: ['MANAGE_GUILD'],
-    async execute(message, args) {
-        const lang = await message.translate("SET_PREFIX")
+    async execute(message, args, client, guildDB) {
+        const lang = await message.translate("SET_PREFIX", guildDB.lang)
         let prefix = args.join("")
-        if (prefix.length > 4 || prefix.length < 0 || prefix.search(/[.?[\]\\/<>\-=+*^$!]/g) === -1) return message.errorMessage(lang.err);
-        if (prefix === message.guild.settings.prefix) return message.errorMessage(lang.already)
-        const newchannel = await guildData.findOneAndUpdate({ serverID: message.guild.id, }, { $set: { prefix: args[0] } }, { new: true });
-        message.guild.settings.prefix = args[0]
+        if (prefix === "default" || prefix === "reset") prefix = "*"
+        if (prefix.length > 4 || prefix.length < 0) return message.errorMessage(lang.err.replace("{prefix}", prefix));
+        if (prefix.startsWith("<") && prefix.endsWith(">")) return message.errorMessage("Hooks such as `[]` or `<>` must not be used when executing commands. Ex: `" + guildDB.prefix + "setprefix !`")
+        if (prefix === guildDB.prefix) return message.errorMessage(lang.already)
+        guildDB.prefix = prefix;
+        guildDB.save()
         return message.succesMessage(lang.ok.replace("{prefix}", args[0]).replace("{prefix}", args[0]))
     },
 };
