@@ -24,10 +24,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lightjsbot/light.git"
+        "url": "git+httpsgithub.com/GreenBotDeveloppement/Green-bot/Green-bot.git"
     },
     "engines": {
-        "node": ">=17"
+        "node": ">=16"
     },
     "keywords": [],
     "author": "",
