@@ -1,36 +1,27 @@
 {
     "name": "GreenBot",
-    "description": "Green-bot is a powerfull open source discord bot. Free feel to add a ⭐ to support us.",
+    "description": "Green-bot is a powerfull open source discord bot. Feel free to add a ⭐ to support us.",
     "main": "sharder.js",
     "dependencies": {
-        "@discord-player/extractor": "^2.0.2",
         "@discordjs/opus": "^0.5.0",
         "@vitalets/google-translate-api": "^5.0.0",
         "canvas": "^2.7.0",
-        "play-dl":"^1.2.2",
-        "discord-giveaways": "^4.5.1",
+        "play-dl": "^1.2.2",
         "discord-player": "^5.1.0",
-        "discord-voice": "^1.0.7",
         "discord-ytdl-core": "^5.0.3",
         "discord.js": "^13.1.0",
-        "easy-number-formatter": "^1.0.3",
         "emoji-api": "^1.0.2",
         "ffmpeg-static": "^4.2.8",
         "hastebin-gen": "^2.0.5",
         "hex-color-regex": "^1.1.0",
         "is-url": "^1.2.4",
-        "mathjs": "^7.5.1",
         "moment": "^2.29.1",
         "mongoose": "^5.12.8",
         "ms": "^2.1.2",
-        "node-cron": "^3.0.0",
         "node-fetch": "^2.6.1",
-        "rss-parser": "^3.12.0",
-        "simple-youtube-api": "^5.2.1",
         "tiktok-scraper": "^1.4.23",
         "topgg-autoposter": "^1.1.10",
-        "twemoji-parser": "^13.0.0",
-        "ytdl-core": "^4.7.0"
+        "twemoji-parser": "^13.0.0"
     },
     "scripts": {
         "start": "node sharder.js"
@@ -38,7 +29,7 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/lightjsbot/light.git"
-     },
+    },
     "engines": {
         "node": ">=17"
     },
