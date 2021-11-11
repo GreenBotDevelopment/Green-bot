@@ -1,7 +1,7 @@
 const { Message, MessageEmbed, Guild, } = require("discord.js");
 const lang = require('../languages/lang.json')
 const translate = require("@vitalets/google-translate-api");
-const guildData = require('../database/models/guildData');
+const guildData = require('../models/guildData');
 /**
  * Add a guild in the database
  * @param {number} guildID The ID of the guild
