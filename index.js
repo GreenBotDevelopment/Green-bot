@@ -40,9 +40,8 @@ const client = new GreenBot({
 });
 const util = require("util");
 require("./util/extenders.js");
-const readdir = util.promisify(fs.readdir),
-
-    const init = async() => {
+const readdir = util.promisify(fs.readdir);
+const init = async() => {
         fs.readdirSync("./commands").filter((e) => e.endsWith(".js"));
         const e = await readdir("./commands/");
         console.log(`[Commands] ${e.length} Categories loaded.`),
