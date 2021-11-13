@@ -49,23 +49,6 @@
                               }
                           }
                   }
-                  if (i.premium && !guildDB.goodPremium) {
-                      const voted = await e.client.dbl.hasVoted(e.member.id);
-                      if (!voted) {
-                          const a = await e.translate("PREMIUM_REQUIRED", guildDB.lang);
-                          return e.channel.send(a.err);
-                      }
-                  }
-                  if (i.Rpremium && !guildDB.goodPremium) {
-                      const lang = await e.translate("PREMIUM_NEED", guildDB.lang)
-                      return e.channel.send({
-                          embeds: [{
-                              color: "#C73829",
-                              author: { name: e.guild.name, icon_url: e.guild.icon ? e.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456" },
-                              description: lang.desc
-                          }]
-                      })
-                  }
                   if (i.args && !a.length) {
                       let u = await e.translate("ARGS_REQUIRED", guildDB.lang);
                       const read = await e.translate("READ", guildDB.lang)
