@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Prefix, Color, defaultLanguage, categories } = require('../../config');
+const { Prefix, Color, defaultLanguage, categories } = require('../../config.js');
 const channeldb = new mongoose.Schema({
     serverID: { type: String, required: true },
     prefix: { type: String, required: true, default: Prefix },
