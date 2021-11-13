@@ -1,6 +1,6 @@
 const fs = require("fs"),
     { getFreeClientID: getFreeClientID, setToken: setToken } = require("play-dl"),
-    { Client: Client, Intents: Intents, Collection: Collection, MessageEmbed } = require("discord.js"),
+    { Client: Client, Intents: Intents, Collection: Collection, MessageEmbed: MessageEmbed  } = require("discord.js"),
     client = new Client({
         messageCacheMaxSize: 20,
         intents: [Intents.FLAGS.GUILDS,
