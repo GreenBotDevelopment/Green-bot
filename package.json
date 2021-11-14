@@ -1,5 +1,5 @@
 {
-    "name": "GreenBot",
+    "name": "greenbot",
     "description": "Green-bot is a powerfull open source discord bot. Feel free to add a ⭐ to support us.",
     "main": "sharder.js",
     "dependencies": {
@@ -29,11 +29,11 @@
     "engines": {
         "node": ">=16"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": ["Music", "discord music bot"],
+    "author": "Green-bot's developpers",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/lightjsbot/light/issues"
+        "url": "https://github.com/GreenBotDeveloppement/Green-bot/issues"
     },
-    "homepage": "https://github.com/lightjsbot/light#readme"
+    "homepage": "https://green-bot.app"
 }
