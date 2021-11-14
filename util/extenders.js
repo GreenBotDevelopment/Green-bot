@@ -92,7 +92,7 @@ Message.prototype.errorMessage = function(text, cooldown = {}) {
             embeds: [{
                 description: text,
                 color: "#C73829",
-                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: this.client.config.links.invite },
+                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128" },
             }]
         })
     } else {
