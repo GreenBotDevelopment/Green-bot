@@ -11,3 +11,8 @@ Format:
 -On which version it's working (if you tested the code)
 
 **Please respect the format**
+
+- Use `camelCase` for `Function names`, `Variables`, etc. and `PascalCase` for `Class name`
+- Do not make unused variables/imports
+- Use English language
+- For embeds, don't use the MessageEmbed import but in json

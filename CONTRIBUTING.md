@@ -16,7 +16,7 @@ We are using **[Prettier](https://prettier.io)** to format the code.
 - Use `camelCase` for `Function names`, `Variables`, etc. and `PascalCase` for `Class name`
 - Do not make unused variables/imports
 - Use English language
-- For embeds, don't use the MessageEmbed import but in jso
+- For embeds, don't use the MessageEmbed import but in json
 
 # Pull Requests
 - Use English language
