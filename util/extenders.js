@@ -127,7 +127,7 @@ Message.prototype.usage = async function(guildDB, cmd = {}) {
                     embeds: [{
                                 description: `${u.replace("{command}",cmd.name)}\n${read}\n\n**${langUsage}**\n${cmd.usages ? `${cmd.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${cmd.name} ${cmd.usage} \``}`,
         color: "#C73829",
-        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: this.client.config.links.invite },
+        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }) },
     }]})
     };
 Message.prototype.mainMessage = function(text, args, options = {}) {
