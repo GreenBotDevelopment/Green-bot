@@ -92,7 +92,7 @@ Message.prototype.errorMessage = function(text, cooldown = {}) {
             embeds: [{
                 description: text,
                 color: "#C73829",
-                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: this.client.links.invite },
+                author: { name: this.guild.name, icon_url: this.guild.icon ? this.guild.iconURL({ dynamic: true }) : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128", url: this.client.config.links.invite },
             }]
         })
     } else {
@@ -127,7 +127,7 @@ Message.prototype.usage = async function(guildDB, cmd = {}) {
                     embeds: [{
                                 description: `${u.replace("{command}",cmd.name)}\n${read}\n\n**${langUsage}**\n${cmd.usages ? `${cmd.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${cmd.name} ${cmd.usage} \``}`,
         color: "#C73829",
-        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: this.client.links.invite },
+        author: { name: this.author.username, icon_url: this.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: this.client.config.links.invite },
     }]})
     };
 Message.prototype.mainMessage = function(text, args, options = {}) {
