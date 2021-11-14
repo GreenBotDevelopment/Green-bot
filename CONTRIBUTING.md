@@ -1,4 +1,4 @@
-# Hello
+# Contributing
 This document is for people who want to contribute to this project!
 
 # How it works
