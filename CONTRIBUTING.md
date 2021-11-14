@@ -1,7 +1,10 @@
 # Hello
 This document is for people who want to contribute to this project!
 
-# Code Style
+# How it works
+To contribute to Green-bot, start with [Forking the repo](https://github.com/GreenBotDeveloppement/Green-bot/fork).
+Then make your changes and Create a pull request.
+We can help you on the [Discord Server](https://green-bot.app/discord)
 
 ## Formatting
 We are using **[Prettier](https://prettier.io)** to format the code.

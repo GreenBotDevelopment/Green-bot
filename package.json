@@ -20,7 +20,8 @@
         "twemoji-parser": "^13.0.0"
     },
     "scripts": {
-        "start": "node sharder.js"
+        "start": "node sharder.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
