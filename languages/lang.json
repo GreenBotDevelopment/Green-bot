@@ -176,7 +176,7 @@
 
         },
         "ERROR_ROLE": {
-            "fr": "Veuillez mentionner un rôle valide ou fournir un ID de rôle valide.",
+            "fr": "Veuillez mentionner ou fournir l'ID d'un rôle valide.",
             "en": "Please provide a valid role or a valid role ID.",
             "de": "Gib eine gültige Rolle oder eine gültige Rollen-ID an."
 
