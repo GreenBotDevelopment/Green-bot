@@ -8,7 +8,7 @@
         },
         "MISSING_ROLE": {
             "en": "You must have the `{perm}` permission or the `@{role}` role to use this command",
-            "fr": "Vous devez avoir la permission `{perm}` our le rôle `@{role}` pour utiliser cette commande",
+            "fr": "Vous devez avoir la permission `{perm}` ou le rôle `@{role}` pour utiliser cette commande",
             "de": "Du brauchst die `{perm}` Berechtigung oder die `@{role}` Rolle um den Befehl aus zu führen"
         },
         "BOT_PERMISSIONS": {
@@ -18,7 +18,7 @@
         },
         "ARGS_REQUIRED": {
             "en": "You must provide args for the `{command}` command .",
-            "fr": "Il vous faut des arguments pour la commande `{command}`.",
+            "fr": "Il vous faut renseigner des arguments pour la commande `{command}`.",
             "de": "Du musst ein Argument für den Befehl `{command}` angeben"
         },
         "USES": {
@@ -70,7 +70,7 @@
 
         },
         "NO_VIDEO_FOUND": {
-            "fr": "Désolé , je n'ai trouvé aucunne vidéo sur youtube , veuillez fournir une autre recherche.",
+            "fr": "Désolé , je n'ai trouvé aucune vidéo sur youtube , veuillez fournir une autre recherche.",
             "en": "Sorry , no videos found , please try again",
             "de": "Entschuldigung , keine Videos gefunden , bitte versuchen Sie es erneut"
 
@@ -151,26 +151,26 @@
 
         },
         "ERROR_CHANNEL": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon Textuel.",
-            "en": "The indicated channel is invalid, you must ping the channel or give its ID. It must be a text channel.",
+            "fr": "Le salon indiqué est invalide, il vous faut donner le nom ou l'ID d'un salon Textuel.",
+            "en": "The indicated channel is invalid, you must give the text channel ID or name.",
             "de": "Der angegebene Kanal ist ungültig, du musst den Kanal anpingen oder seine ID angeben. Es muss ein Textkanal sein."
 
         },
 
         "ERROR_CHANNEL_CATEGORY": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom de la catégorie ou donner son ID et ce doit être une catégorie.",
+            "fr": "La catégorie indiquée est invalide, il vous faut donner le nom ou l'ID d'une catégorie.",
             "en": "The indicated channel is invalid, you must give the category ID or name.",
             "de": "Der angegebene Kanal ist ungültig, du musst die Kategorie-ID oder den Namen angeben."
 
         },
         "ERROR_CHANNEL_NEWS": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon des annonces.",
+            "fr": "Le salon indiqué est invalide, il vous faut donner le nom ou l'ID d'un salon des annonces.",
             "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be an announcement channel.",
             "de": "Der angegebene Kanal ist ungültig, du musst den Kanal anpingen oder seinen Namen oder seine ID angeben. Es muss ein Ansagekanal sein."
 
         },
         "ERROR_CHANNEL_VOICE": {
-            "fr": "Le salon indiqué est invalide, il faut mettre le nom du salon ou donner son ID et ce doit être un salon vocal.",
+            "fr": "Le salon indiqué est invalide, il vous faut donner le nom ou l'ID d'un salon vocal.",
             "en": "The indicated channel is invalid, you must ping the channel or give its name, ID. It must be a voice channel.",
             "de": "Der angegebene Kanal ist ungültig, du musst den Kanal anpingen oder seinen Namen oder seine ID angeben. Es muss ein Sprachkanal sein."
 
