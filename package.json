@@ -3,7 +3,6 @@
     "description": "Green-bot is a powerfull open source discord bot. Feel free to add a ⭐ to support us.",
     "main": "sharder.js",
     "dependencies": {
-        "@discordjs/opus": "^0.5.0",
         "@vitalets/google-translate-api": "^5.0.0",
         "play-dl": "^1.2.2",
         "discord-player": "^5.1.0",
