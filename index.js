@@ -18,6 +18,7 @@ const fs = require("fs"),
 client.config = require("./config.js"),
     client.footer =
     client.config.footer,
+client.owners = [""],
     client.commands = new Collection,
     client.player = new Player(client, client.config.player),
     getFreeClientID().then(e => { setToken({ soundcloud: { client_id: e } }) }),
