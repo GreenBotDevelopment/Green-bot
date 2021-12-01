@@ -4,9 +4,8 @@ module.exports = {
     // Your discord bot token. https://discord.com/developpers/bots
     token: "TOKEN",
     // Your ID
-    ownerID: "XXXXXXXXXXXX",
     // Your name/tag
-    ownerName: "Pauldb09",
+     owners: ["XXXXXXXXXXXX"],
     //The footer of the embeds that the bot will send
     footer: "Green-bot | green-bot.app ",
     // The id of the support
