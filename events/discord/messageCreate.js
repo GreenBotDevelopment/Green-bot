@@ -100,7 +100,7 @@
                         if (!e.client.player.getQueue(e.guild.id)) {
                             queue = player.createQueue(e.guild, {
                                 metadata: { controller: true, message: messageController, dj: e.author, guildDB: guildDB,m:e },
-                                initialVolume: 60,
+                                initialVolume: guildDB.defaultVolume
                                 leaveOnEmptyCooldown: guildDB.h24 ? null : 3000,
                                 leaveOnEmpty: guildDB.h24 ? false : true,
                                 leaveOnEnd: guildDB.h24 ? false : true,
