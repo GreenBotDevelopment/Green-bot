@@ -40,7 +40,7 @@ module.exports = {
         let lang = await message.translate("LOOP", guildDB.lang)
         let ena = await message.translate("DISABLED/ENABLED", guildDB.lang)
         if (args.join(" ").toLowerCase() === 'queue' || args.join(" ").toLowerCase() === 'q' || args.join(" ").toLowerCase() === 'all') {
-            if (queue.loopMode) {
+            if (queue.repeatMode) {
                 queue.setRepeatMode(QueueRepeatMode.OFF);
                 return message.succesMessage(lang.queue.replace("{status}", ena.disable));
             } else {

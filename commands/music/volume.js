@@ -32,7 +32,8 @@ module.exports = {
             let numberErr = await message.translate("NUMBER_ERROR", guildDB.lang)
             return message.errorMessage(numberErr.replace("{amount}", "1").replace("{range}", "200"))
         }
-        if (message.content.includes('-') || message.content.includes('+') || message.content.includes(',') || message.content.includes('.')) {
+        let strippedContent = message.content.replace(guildDB.prefix,'')
+        if (strippedContent.includes('-') || strippedContent.includes('+') || strippedContent.includes(',') || strippedContent.includes('.')) {
             let numberErr = await message.translate("NUMBER_ERROR", guildDB.lang)
             return message.errorMessage(numberErr.replace("{amount}", "1").replace("{range}", "200"))
         }

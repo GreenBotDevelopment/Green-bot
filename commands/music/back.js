@@ -31,7 +31,7 @@ module.exports = {
             }
         }
         const lang = await message.translate("BACK", guildDB.lang)
-        if (!queue.previousTracks[0] || queue.previousTracks.lenght == 0) return message.errorMessage(lang.err)
+        if (!queue.previousTracks[0] || queue.previousTracks.length == 0) return message.errorMessage(lang.err)
         if (queue.previousTracks.length > 1) {
             const backed = queue.back();
             if (backed) {
