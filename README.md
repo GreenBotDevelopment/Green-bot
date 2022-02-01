@@ -120,4 +120,4 @@ Logs discord events (joins, leaves, message modifications, attachments, nickname
 Let players assign (and unassign) themselves ranks just by reacting to a specific message!
 
 ► Unique features
-Green-Bot has unique features too like auto publishing system (auto-publish) or ghost ping the new users (autoping)
+Green-Bot has unique features too like auto publishing system (auto-publish) or ghost ping the new users (autoping) 
