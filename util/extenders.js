@@ -1,6 +1,6 @@
 const { Message, MessageEmbed, Channel, Guild, Util, Interaction } = require("discord.js");
 const lang = require('../languages/lang.json')
-const config = require('../config.json')
+const config = require('../../config.js')
 const translate = require("@vitalets/google-translate-api");
 const guildData = require('../database/models/guildData');
 const Case = require("../database/models/case")
