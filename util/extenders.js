@@ -1,5 +1,6 @@
 const { Message, MessageEmbed, Channel, Guild, Util, Interaction } = require("discord.js");
 const lang = require('../languages/lang.json')
+const config = require('../config.json')
 const translate = require("@vitalets/google-translate-api");
 const guildData = require('../database/models/guildData');
 const Case = require("../database/models/case")
@@ -42,7 +43,7 @@ Guild.prototype.addDB = async function(guildID = {}) {
     }
     const data = await new guildData({
         serverID: guildID,
-        prefix: "*",
+        prefix:config.prefix,
         lang: "en",
         premium: null,
         premiumUserID: null,
