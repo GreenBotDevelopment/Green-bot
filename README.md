@@ -12,7 +12,7 @@
     </p>
     <br>
     <center>
-If you need any help, join <a href="https://discord.gg/Wkbpa4y8JW">this server and i'll help you!</a>
+If you need any help, join <a href="https://discord.gg/Wkbpa4y8JW">this server</a> and i'll help you!
         <h2>🧷 Links</h2>
         <div class="flex" style="display: flex;justify-content: center;flex-wrap: wrap;">
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" style="  margin: 2px 5px;
