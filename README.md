@@ -1,4 +1,4 @@
-[![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](https://green-bot.app/discord)
+[![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](https://discord.gg/Wkbpa4y8JW)
 [![](https://discordbots.org/api/widget/status/783708073390112830.svg)](https://discordbots.org/bot/783708073390112830)
 [![](https://img.shields.io/badge/discord.js-v13-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
@@ -67,7 +67,7 @@ If you need any help while installing it, join <a href="https://discord.gg/Wkbpa
  
 **📁 Installation**
 
-Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
+Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Wkbpa4y8JW).
 
 You are looking for the All-in-One bot? [Click here](https://github.com/GreenBotDeveloppement/Green-bot/tree/multipropose)
 
