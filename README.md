@@ -1,5 +1,9 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
     <h3>Green-bot</h3>
+[![](https://img.shields.io/discord/784773050956513290.svg?logo=discord&colorB=7289DA)](https://green-bot.app/discord)
+[![](https://discordbots.org/api/widget/status/783708073390112830.svg)](https://discordbots.org/bot/783708073390112830)
+[![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
+[![](https://www.codefactor.io/repository/github/pauldb09/Green-bot/badge)](https://www.codefactor.io/repository/pauldb09/Green-bot/)
         If you liked this repository, feel free to leave a star ⭐ , it supports us a lot! Thanks you!
     <br><br>
     <p>Green-bot is a Free Discord Music bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites. 
