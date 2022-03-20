@@ -5,7 +5,7 @@ module.exports = {
         client.dbl = new DBL(config.topgg.token, client);
         const activities = [
             { name: 'green-bot.app • *help', type: 'WATCHING' }, // 0
-            { name: 'green-bot.app • *help', type: 'WATCHING' }, // 1
+            { name: 'Rich quality music', type: 'PLAYING' }, // 1
             { name: 'green-bot.app', type: 'WATCHING' }, // 2
         ];
         client.user.setActivity(activities[0].name, {
