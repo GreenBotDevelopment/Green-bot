@@ -8,17 +8,17 @@ module.exports = {
             { name: 'Rich quality music', type: 'PLAYING' }, // 1
             { name: 'green-bot.app', type: 'WATCHING' }, // 2
         ];
-        client.user.setActivity(activities[0].name, {
-            type: activities[0].type
+        let activity = 0; // default activity
+        client.user.setActivity(activities[activity].name, {
+            type: activities[activity].type
         });
-        let activity = 0;
         setInterval(async() => {
-            if (activity >= 2) activity = 0;
+            if (activity > activities.length) activity = 0; // Reset activity
             client.user.setActivity(activities[activity].name, {
                 type: activities[activity].type
             });
             activity++;
         }, 30000);
-        console.log('[Bot] Bot is ready!');
+        return console.log('[Bot] Bot is ready!');
     },
 };
