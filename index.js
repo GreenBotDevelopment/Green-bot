@@ -17,7 +17,7 @@ client.config = require("./config.js"),
     client.footer =
     client.config.footer,
 client.owners = client.config.owners,
-    client.commands = new Collection,
+    client.commands = new Collection(),
     client.player = new Player(client, client.config.player),
     getFreeClientID().then(e => { setToken({ soundcloud: { client_id: e } }) }),
     mongoose.connect(client.config.database.MongoURL, client.config.database.options).then(() => { console.log("[MongoDB]: Ready") })
