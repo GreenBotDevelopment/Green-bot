@@ -34,8 +34,8 @@ module.exports = {
         if (name.includes("https://open.spotify.com/episode")) return message.errorMessage(`Sorry but i don't support spotify episodes. You can try with a spotify playlist`);
         if (name.includes("soundcloud") && name.includes("?si")) name = name.split('?')[0]
         if (name.includes("soundcloud") && name.includes("?in_system_playlist")) name = name.split('?in_system_playlist')[0]
-        let queue;
-        if (!message.client.player.getQueue(message.guild.id)) {
+        let queue = message.client.player.getQueue(message.guild.id);
+        if (!queue) {
             queue = client.player.createQueue(message.guild, {
                 metadata: { channel: message.channel, m: message, guildDB: guildDB, dj: message.author, },
                 initialVolume: guildDB.defaultVolume,
@@ -75,12 +75,12 @@ module.exports = {
                     }
                 }
             });
-        } else queue = message.client.player.getQueue(message.guild.id)
-        if (queue.metadata.controller) return message.errorMessage(`Use the music controller to play music. `)
+        };
+        if (queue.metadata.controller) return message.errorMessage(`Use the music controller to play music.`);
         let ok = await message.translate("CHEARCHING", guildDB.lang)
         message.channel.send(ok.replace("{title}", name.slice(0.200))).then(m => setTimeout(() => m.delete(), 4000))
         if (name === "music") name = "2021 New Songs ( Latest English Songs 2021 ) 🥬 Pop Music 2021 New Song 🥬 English Song 2021"
-        if (queue.metadata.channel.id !== message.channel.id) queue.metadata.channel = message.channel
+        if (queue.metadata.channel.id !== message.channel.id) queue.metadata.channel = message.channel;
         const searchResult = await client.player
             .search(name, {
                 requestedBy: message.author,
