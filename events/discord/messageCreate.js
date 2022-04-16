@@ -23,8 +23,7 @@
                       }).catch(() => {
                           e.member.send("❌ Please give me the `Send messages` and `Embed links` permission.")
                       });
-                      console.log("[32m%s[0m", "PING OF THE BOT ", "[0m", `${e.author.tag} pinged the bot succesfully on ${e.guild.name}`);
-                      return
+                      return console.log("[32m%s[0m", "PING OF THE BOT ", "[0m", `${e.author.tag} pinged the bot succesfully on ${e.guild.name}`);
                   }
                   e.content.startsWith(guildDB.prefix) && (a = e.content.slice(guildDB.prefix.length).trim().split(/ +/)), e.content.startsWith("green ") && (a = e.content.slice(6).trim().split(/ +/)), e.content.startsWith("<@!783708073390112830>") && (a = e.content.slice(22).trim().split(/ +/));
                   const r = a.shift().toLowerCase(),
@@ -51,21 +50,19 @@
                   }
                   if (i.args && !a.length) {
                       let u = await e.translate("ARGS_REQUIRED", guildDB.lang);
-                      const read = await e.translate("READ", guildDB.lang)
-                      let langUsage;
-                      if (i.usages) {
-                          langUsage = await e.translate("USES", guildDB.lang)
-                      } else {
-                          langUsage = await e.translate("USES_SING", guildDB.lang)
-                      }
-                      e.channel.send({
-                                  embeds: [{
-                                              color: "#C73829",
-                                              description: `${u.replace("{command}",r)}\n${read}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${r} ${i.usage}\``}`,
+                      const read = await e.translate("READ", guildDB.lang);
+                      let langUsage = await e.translate("USES_SING", guildDB.lang);
+                      if (i.usages) langUsage = await e.translate("USES", guildDB.lang);
+                      return e.channel.send({
+                            embeds: [
+                              {
+                            color: "#C73829",
+                            description: `${u.replace("{command}",r)}\n${read}\n\n**${langUsage}**\n${i.usages ? `${i.usages.map(x=>`\`${guildDB.prefix}${x}\``).join("\n")}` : ` \`${guildDB.prefix}${r} ${i.usage}\``}`,
                             footer: { text: e.client.footer, iconURL: e.client.user.displayAvatarURL() },
                             author: { name: e.author.username, icon_url: e.author.displayAvatarURL({ dynamic: !0, size: 512 }), url: "https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=bot&permissions=19456" },
-                        }]})
-                        return;
+                              }
+                            ]
+                        });
                     }
                     try {
                         i.execute(e, a, t, guildDB,i );
@@ -95,11 +92,11 @@
         
                         const { player } = e.client;
                         let name = e.content;
-                        let queue;
+                        let queue = e.client.player.getQueue(e.guild.id) || {};
                         const messageController = await e.guild.channels.cache.get(e.channel.id).messages.fetch(guildDB.requestMessage);
                         if (!e.client.player.getQueue(e.guild.id)) {
                             queue = player.createQueue(e.guild, {
-                                metadata: { controller: true, message: messageController, dj: e.author, guildDB: guildDB,m:e },
+                                metadata: { controller: true, message: messageController, dj: e.author, guildDB: guildDB, m:e },
                                 initialVolume: guildDB.defaultVolume,
                                 leaveOnEmptyCooldown: guildDB.h24 ? null : 3000,
                                 leaveOnEmpty: guildDB.h24 ? false : true,
@@ -134,7 +131,6 @@
                                 }
                             });
                         } else {
-                            queue = e.client.player.getQueue(e.guild.id);
                             if (queue.metadata.channel) return e.errorMessage("Another queue is running and not started with the controller.");
                         }
                         if (name === 'music') name = '2021 New Songs ( Latest English Songs 2021 ) 🥬 Pop Music 2021 New Song 🥬 English Song 2021';
@@ -167,11 +163,7 @@
                         searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
                         if (!queue.playing) await queue.play();
                 }
-                if(guildDB.autopost === e.channel.id && e.crosspostable) {
-                        e.crosspost().then(() => console.log('Crossposted message')).catch(() => null);
-                    
-                    }
+                if(guildDB.autopost === e.channel.id && e.crosspostable)  e.crosspost().then(() => console.log('Crossposted message')).catch(() => null);
             }
-
     }
 };
