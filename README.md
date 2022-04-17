@@ -60,7 +60,6 @@ If you need any help while installing it, join <a href="https://discord.gg/Wkbpa
 + Songs request channel<br>
 + Highly configurable<br>
 + YouTube and YouTube Music<br>
-+ Spotify & Soundcloud<br> 
 + Remove duplicates tracks<br>
 + Easy to setup<br>
  <br>  
