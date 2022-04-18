@@ -2,7 +2,7 @@
 description: >-
   Here's a quick getting started guide just to get you on your feet and explain
   how to get the best experience you can.
-cover: .gitbook/assets/green_bot_banner.png
+cover: .gitbook/assets/unknown (36).png
 coverY: 0
 ---
 
