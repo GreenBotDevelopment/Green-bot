@@ -37,4 +37,5 @@
 * [Playlists](playlists/README.md)
   * [Create a playlist](playlists/create-a-playlist.md)
 * [Features](features/README.md)
+  * [Changing Volume](features/changing-volume.md)
   * [Loop Mode](features/loop-mode.md)
