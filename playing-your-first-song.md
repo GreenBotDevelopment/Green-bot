@@ -9,7 +9,7 @@ Once you've made your search, Green-bot will search your song and add it to the 
 
 Should'nt Green-bot give any results, or not the results you were looking for, then please give in a more specific search term or the direct link to the song instead.
 
-![Playing music with Green-bot](<.gitbook/assets/image (31).png>)
+![Playing music with Green-bot](<.gitbook/assets/image (36).png>)
 
 ### Youtube video
 

@@ -35,7 +35,13 @@
 ***
 
 * [Playlists](playlists/README.md)
+  * [Saving a queue to a playlist](playlists/saving-a-queue-to-a-playlist.md)
   * [Create a playlist](playlists/create-a-playlist.md)
+  * [Adding songs to a playlist](playlists/adding-songs-to-a-playlist.md)
+  * [Play a playlist](playlists/play-a-playlist.md)
+  * [Delete a playlist](playlists/delete-a-playlist.md)
+  * [Edit a playlist](playlists/edit-a-playlist.md)
+  * [View your playlists](playlists/view-your-playlists.md)
 * [Features](features/README.md)
   * [Changing Volume](features/changing-volume.md)
   * [Loop Mode](features/loop-mode.md)

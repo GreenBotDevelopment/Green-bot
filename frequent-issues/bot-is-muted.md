@@ -5,7 +5,7 @@ Note that you only need to do that one time.
 
 Step 1: Right click on the bot profile
 
-<img src="../.gitbook/assets/image (5) (1).png" alt="" data-size="original">You will get something like that\
+<img src="../.gitbook/assets/image (5).png" alt="" data-size="original">You will get something like that\
 \
 Step 2: Uncheck the "Server Mute" box\
 

@@ -18,13 +18,13 @@ Click [here](https://green-bot.app/invite) to invite Green-bot on your server. Y
 
 By default, Green-bot is asking Administrator permissions. If you don't want to give Administrator permissions to Green-bot, you can find a link [here](https://discord.com/oauth2/authorize?client\_id=783708073390112830\&scope=bot\&permissions=20016336) with basic permissions.
 
-![](<.gitbook/assets/image (28).png>)
+![](<.gitbook/assets/image (33).png>)
 
 ### 2. Receiving instructions
 
 0nce you've added Green-bot, It will send a message in the system channel of your server about how to get started
 
-![](<.gitbook/assets/image (3) (1).png>)
+![](<.gitbook/assets/image (3).png>)
 
 To learn how to use Green-bot, you can check to following sections:
 

@@ -2,7 +2,7 @@
 
 You can hide the message on the now playing messages. The buttons are enabled by default
 
-![](<../.gitbook/assets/image (24).png>)
+![](<../.gitbook/assets/image (12).png>)
 
 #### Enable the plugin.
 

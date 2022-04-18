@@ -12,19 +12,19 @@ If you don't want to do that, it doesn't matter.
 
 Click on the edit button behind your voice channel
 
-![](<../.gitbook/assets/image (6) (1).png>)
+![](<../.gitbook/assets/image (6).png>)
 
 Then, click on permissions
 
-![](<../.gitbook/assets/image (27).png>)
+![](<../.gitbook/assets/image (32).png>)
 
 Click on the "+" and add Green-bot
 
-![](<../.gitbook/assets/image (10).png>)
+![](<../.gitbook/assets/image (11).png>)
 
 Scroll down and check "Speak" & "Connect"
 
-![](<../.gitbook/assets/image (13) (1).png>)
+![](<../.gitbook/assets/image (14).png>)
 
 Your problem may be fixed!
 
