@@ -31,3 +31,8 @@
 * [Bot is Muted](frequent-issues/bot-is-muted.md)
 * [Permissions](frequent-issues/permissions.md)
 * [Other](frequent-issues/other.md)
+
+***
+
+* [Playlists](playlists.md)
+* [Features](features.md)

@@ -2,7 +2,7 @@
 
 You can disable the following message if you don't want that your channel goes spammed
 
-![](<../.gitbook/assets/image (20).png>)
+![](<../.gitbook/assets/image (20) (1).png>)
 
 #### Enable the plugin.
 
