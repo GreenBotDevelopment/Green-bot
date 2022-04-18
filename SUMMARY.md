@@ -36,4 +36,5 @@
 
 * [Playlists](playlists/README.md)
   * [Create a playlist](playlists/create-a-playlist.md)
-* [Features](features.md)
+* [Features](features/README.md)
+  * [Loop Mode](features/loop-mode.md)
