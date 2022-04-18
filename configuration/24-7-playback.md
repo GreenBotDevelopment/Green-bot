@@ -1,11 +1,11 @@
 # 24/7 playback
 
-If you don't want Green-bot to leave your voice channel when it's empty, you can enable the 24/7 mode.
+If you want your green-bot to stay on your voice channel even when no songs are being played, you can enable this 24/7 mode.
 
 You can enable it by using the 24/7 command: `*24/7`
 
-Don't forget to use your right prefix
+Don't forget to use your prefix which is set in your server.
 
-If the 24/7 mode is already enabled, it will disable it. Else it will enable it
+You can use this same command to enable or disable the 24/7 mode
 
-When you enable the 24/7 mode, it's for all the next queues.
+When you enable the 24/7 mode, it will work from the next queue.
