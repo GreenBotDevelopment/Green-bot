@@ -2,13 +2,9 @@
 
 If you don't want Green-bot to leave your voice channel when it's empty, you can enable the 24/7 mode.
 
-The 24/7 mode is entirely free. You just need to vote to access the command.&#x20;
+You can enable it by using the 24/7 command: `*24/7`
 
-Vote link: [https://green-bot.app/vote](https://green-bot.app/vote)
-
-Command: `{prefix}24/7`
-
-Don't forget to replace {prefix} by your prefix
+Don't forget to use your right prefix
 
 If the 24/7 mode is already enabled, it will disable it. Else it will enable it
 
