@@ -34,5 +34,6 @@
 
 ***
 
-* [Playlists](playlists.md)
+* [Playlists](playlists/README.md)
+  * [Page 2](playlists/page-2.md)
 * [Features](features.md)
