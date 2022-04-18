@@ -35,5 +35,5 @@
 ***
 
 * [Playlists](playlists/README.md)
-  * [Page 2](playlists/page-2.md)
+  * [Create a playlist](playlists/create-a-playlist.md)
 * [Features](features.md)
