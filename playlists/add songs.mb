@@ -1,7 +1,7 @@
 #Add songs to your playlist
 
 You can add songs to the playlist you created by typing the command: `*pl-add name song`
-(change name to your playlists name) (change song to the songs name you want to add or the spotify / youtube link)
+(change name to your playlists name) (change song to the songs name you want to add, or the spotify / youtube / soundcloud link)
 
 After typing the above command the bot should say "Successfully added 1 track(s) to name"
 
