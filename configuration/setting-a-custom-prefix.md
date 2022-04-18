@@ -1,6 +1,6 @@
 # Setting a custom prefix
 
-You can custom Green-bot's prefix by using the following command:
+You can custom Green-bot's prefix by using the prefix command:
 
 `green prefix <prefix>`
 
