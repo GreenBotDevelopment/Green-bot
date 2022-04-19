@@ -1,19 +1,15 @@
 ---
 description: >-
   The vote skip system consists in making users vote when there are 2 or more
-  people in the voice room. It is activated by default
+  people in the voice room.
 ---
 
 # Vote Skip system
 
-#### Enable the plugin.
+### Enable or Disable the plugin:
 
-Just run the following command replacing `{prefix}`by your prefix. The system must be disabled, else the command won't work
+The vote skip system is enabled by default.
 
-`{prefix}voteskip`
+You can use the command: `*voteskip` (replace `*` with your server prefix, if you have changed it)
 
-#### Disable the plugin.
-
-Just run the following command replacing `{prefix}`by your prefix.The system must be enabled, else the command won't work
-
-`{prefix}voteskip`
+If it is enabled- this command will disable it and if it is disabled- this command will enable it
