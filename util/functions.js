@@ -88,21 +88,18 @@ const resolveCategory = async function(args, client = {}) {
  */
 const checkConfig = async config => {
     if (!config) return console.error('✗ The provided config is not an object.');
-    if (config.logAll) console.log("Starting the verification of the configuration")
-    let error;
+    if (config.logAll) console.log("Starting the verification of the configuration...");
+    let error = false;
     if (process.version.slice(1).split('.')[0] < 12) {
         console.error('✗ NodeJs 12 or higher is required.');
         error = true;
-    }
-    if (!config.ownerID || config.ownerID.length !== 18) {
+    } else if (!config.ownerID || config.ownerID.length !== 18) {
         console.error('✗ The ownerID is missing or is not a real Discord ID.');
         error = true;
-    }
-    if (!config.footer) {
+    } else if (!config.footer) {
         console.error('✗ Please provide a footer.');
         error = true;
-    }
-    if (!config.color) {
+    } else if (!config.color) {
         console.error('✗ Please provide the embeds color.');
         error = true;
     } else {
@@ -148,16 +145,12 @@ const checkConfig = async config => {
     if (!config.database) {
         console.error('✗ Your config.js file looks broken. Please reinstall it');
         error = true;
-    } else {
-        if (!config.database.cached || typeof config.database.cached !== Boolean) {
+    } else if (!config.database.cached || typeof config.database.cached !== Boolean) {
             console.error('✗ The database.cache parameter is missing or is not a bolean value');
             error = true;
-        } else {
-            if (!config.database.delay || isNaN(config.database.delay)) {
-                console.error('✗ The database.delay parameter is missing or is not a number');
-                error = true;
-            }
-        }
+    } else if (!config.database.delay || isNaN(config.database.delay)) {
+            console.error('✗ The database.delay parameter is missing or is not a number');
+             error = true;
     }
     if (!config.token) {
         console.error('✗ Please provide a discord bot token.get it at https://discord.com/developers/bots');
@@ -183,14 +176,10 @@ const checkConfig = async config => {
             error = true;
         });
     }
-    if (error) {
-        if (config.logAll) console.log("Your config verification has failed. Please fix errors and try again\n\nIf you need more help, join our support server here: https://green-bot.app/discord")
+    if (error && config.logAll) {
+        console.log("Your config verification has failed. Please fix errors and try again\n\nIf you need more help, join our support server here: https://green-bot.app/discord")
         process.exit(0);
-
-    } else {
-        if (config.logAll) console.log("Your config is correct. Good game 🥳")
-
-    }
+    } else if (config.logAll) console.log("Your config is correct. Good game 🥳");
     return error;
 
 };
