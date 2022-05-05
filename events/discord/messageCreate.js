@@ -1,12 +1,13 @@
   const permes = require("../../util/permissions.json");
   require("../../util/extenders.js");
   const { Permissions } = require("discord.js");
+  const { QueryType } = require('discord-player');
   module.exports = {
           async execute(e) {
               const { client: t } = e;
               if (e.author.bot || !e.guild) return;
               let guildDB = await e.guild.fetchDB();
-              if (e.content.startsWith(guildDB.prefix) || e.content.startsWith("green ") || e.content.startsWith("<@!783708073390112830>")) {
+              if (e.content.startsWith(guildDB.prefix) || e.content.startsWith("green ") || e.content.startsWith(`<@!${e.client.user.id}>`)) {
                   if (e.content.endsWith("*") && !e.content.includes("prefix")) return;
                   if (e.content.match(new RegExp(`^<@!?${e.client.user.id}>( |)$`))) {
                       let a = await e.translate("HELLO_NEED_HELP", guildDB.lang);
@@ -21,10 +22,10 @@
                               color: guildDB.color
                           }]
                       }).catch(() => {
-                          e.member.send("❌ Please give me the `Send messages` and `Embed links` permission.")
+                          e.member.send("❌ Please give me the `Send messages` and `Embed links` permission.");
                       });
                       return console.log("[32m%s[0m", "PING OF THE BOT ", "[0m", `${e.author.tag} pinged the bot succesfully on ${e.guild.name}`);
-                  }
+                  };
                   e.content.startsWith(guildDB.prefix) && (a = e.content.slice(guildDB.prefix.length).trim().split(/ +/)), e.content.startsWith("green ") && (a = e.content.slice(6).trim().split(/ +/)), e.content.startsWith("<@!783708073390112830>") && (a = e.content.slice(22).trim().split(/ +/));
                   const r = a.shift().toLowerCase(),
                       i = t.commands.get(r) || t.commands.find(e => e.aliases && e.aliases.includes(r));
@@ -45,9 +46,9 @@
                                   if (AdminRole = e.guild.roles.cache.get(guildDB.admin_role), !AdminRole) return e.errorMessage(d.replace("{perm}", permes[t] ? permes[t][guildDB.lang] : t));
                                   if (!e.member.roles.cache) return e.errorMessage(a.replace("{perm}", permes[t] ? permes[t][guildDB.lang] : t).replace("{role}", AdminRole));
                                   if (!e.member.roles.cache.has(AdminRole.id)) return e.errorMessage(a.replace("{perm}", permes[t] ? permes[t][guildDB.lang] : t).replace("{role}", AdminRole))
-                              }
-                          }
-                  }
+                              };
+                          };
+                  };
                   if (i.args && !a.length) {
                       let u = await e.translate("ARGS_REQUIRED", guildDB.lang);
                       const read = await e.translate("READ", guildDB.lang);
@@ -65,12 +66,11 @@
                         });
                     }
                     try {
-                        i.execute(e, a, t, guildDB,i );
-                        return
+                        return i.execute(e, a, t, guildDB, i);
                     } catch (s) {
-                        return e.errorOccurred(s)
-                    }
-            }else if(guildDB.requestChannel !== null || guildDB.autopost !== null){
+                        return e.errorOccurred(s);
+                    };
+            } else if(guildDB.requestChannel !== null || guildDB.autopost !== null){
                 if(guildDB.requestChannel === e.channel.id){
                         e.delete();
                         const voice = e.member.voice.channel;
@@ -80,22 +80,19 @@
                             return setTimeout(() => {
                                 noVoiceMsg.delete();
                             }, 5000);
-                        }
-        
+                        };
                         if (e.guild.me.voice.channel && e.guild.me.voice.channel.id !== voice.id) {
                             let err = await e.translate("NOT_SAME_CHANNEL", guildDB.lang)
                             const noVoiceMsg = await e.errorMessage(err);
                             return setTimeout(() => {
                                 noVoiceMsg.delete();
                             }, 5000);
-                        }
-        
-                        const { player } = e.client;
+                        };
                         let name = e.content;
-                        let queue = e.client.player.getQueue(e.guild.id) || {};
+                        let queue = e.client.player.getQueue(e.guild.id);
                         const messageController = await e.guild.channels.cache.get(e.channel.id).messages.fetch(guildDB.requestMessage);
-                        if (!e.client.player.getQueue(e.guild.id)) {
-                            queue = player.createQueue(e.guild, {
+                        if (!queue) {
+                            queue = e.client.player.createQueue(e.guild, {
                                 metadata: { controller: true, message: messageController, dj: e.author, guildDB: guildDB, m:e },
                                 initialVolume: guildDB.defaultVolume,
                                 leaveOnEmptyCooldown: guildDB.h24 ? null : 3000,
@@ -130,13 +127,10 @@
                                     }
                                 }
                             });
-                        } else {
-                            if (queue.metadata.channel) return e.errorMessage("Another queue is running and not started with the controller.");
-                        }
+                        } else if (queue.metadata.channel) return e.errorMessage("Another queue is running and not started with the controller.");
                         if (name === 'music') name = '2021 New Songs ( Latest English Songs 2021 ) 🥬 Pop Music 2021 New Song 🥬 English Song 2021';
                         if (name === 'lofi') name = '1 A.M Study Session 📚 - [lofi hip hop/chill beats]';
-                        const { QueryType } = require('discord-player');
-                        const searchResult = await player.search(name, {
+                        const searchResult = await e.client.player.search(name, {
                             requestedBy: e.author,
                             searchEngine: QueryType.AUTO
                         }).catch(async() => {
@@ -147,23 +141,23 @@
                             }, 5000);
                         });
                         if (!searchResult || !searchResult.tracks.length) {
-                            let err = await e.translate("NO_RESULTS", guildDB.lang)
-                            const noVoiceMsg = await e.errorMessage(err.replace("{query}", name));
+                            const error = await e.translate("NO_RESULTS", guildDB.lang)
+                            const noVoiceMsg = await e.errorMessage(error.replace("{query}", name));
                             return setTimeout(() => {
                                 noVoiceMsg.delete();
                             }, 5000);                        
-                        }
+                        };
                         try {
                             if (!queue.connection) await queue.connect(e.member.voice.channel);
                         } catch {
-                            player.deleteQueue(e.guild.id);
+                            e.client.player.deleteQueue(e.guild.id);
                             return e.errorMessage("I can't join your voice channel. Please check my permissions.");
-                        }
+                        };
                         if (!e.guild.me.voice.channel) await queue.connect(e.member.voice.channel);
                         searchResult.playlist ? queue.addTracks(searchResult.tracks) : queue.addTrack(searchResult.tracks[0]);
                         if (!queue.playing) await queue.play();
-                }
-                if(guildDB.autopost === e.channel.id && e.crosspostable)  e.crosspost().then(() => console.log('Crossposted message')).catch(() => null);
-            }
-    }
+                };
+            if(guildDB.autopost === e.channel.id && e.crosspostable) e.crosspost().then(() => console.log('Crossposted message')).catch(() => null);
+        };
+    };
 };
