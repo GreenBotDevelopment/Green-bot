@@ -37,6 +37,52 @@ class BaseClient extends Client {
             this.on("voiceStateUpdate", (e, i) => {
                 this.voiceService.handle(e, i);
             });
+
+            ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"].forEach((event) => {
+                process.on(event, (e) => {
+                    this.error({
+                        error: e,
+                        location: {
+                            type: "PROCESS",
+                            file: "BaseClient",
+                            event: event
+                        }
+                    })
+                });
+            });
+            
+    }
+
+      /**
+     * @description Starts the client.
+     * @param {object} options
+     * @returns {BaseClient}
+     */
+       async start(options) {
+        if (!options) throw new ClientError("No options provided.");
+        this.login(options.token).catch(err => {
+            this._ready = false
+            console.log(err)
+        })
+        if (this._ready) return this
+        else throw new ClientError("Client can't enter ready do to some errors;")
+    }
+
+    /**
+     * @description Registers an error
+     * @param {objet} options
+     * @returns {Boolean}
+     */
+    async error(options) {
+        if (options.error === undefined || options.error === null) throw new ClientError("No error provided.");
+        if (options.crash) new ClientError(error);
+        console.log(options.error);
+        this._errors.push({
+            error: options.error,
+            date: new Date(),
+            location: options.location
+        })
+        return true
     }
 }
 module.exports = BaseClient;
