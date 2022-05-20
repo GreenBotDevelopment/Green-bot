@@ -58,7 +58,7 @@ class BaseClient extends Client {
      * @param {object} options
      * @returns {BaseClient}
      */
-       async start(options) {
+    async start(options) {
         if (!options) throw new ClientError("No options provided.");
         this.login(options.token).catch(err => {
             this._ready = false
