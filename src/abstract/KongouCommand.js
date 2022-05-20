@@ -1,0 +1,1 @@
+class KongouCommand{constructor(o){if(this.client=o,this.constructor===KongouCommand)throw new TypeError('Abstract class "KongouCommand" cannot be instantiated directly.')}get permissions(){return null}}module.exports=KongouCommand;

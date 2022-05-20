@@ -1,0 +1,1 @@
+const mongoose=require("mongoose"),channeldb=new mongoose.Schema({userID:{type:String,required:!0},tier:{type:String,required:!0},guildsleft:{type:Number,required:!0},expires:{type:Date,required:!1},premiumGuilds:{type:Array,require:!1}}),premiumUser=module.exports=mongoose.model("premiumUser",channeldb);
