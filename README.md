@@ -2,8 +2,8 @@
     <h3>Green-bot</h3>
         If you liked this repository, feel free to leave a star ⭐ , it supports us a lot! Thanks you!
     <br><br>
-    <p>Green-bot is a Free Discord Music bot who support Youtube, Spotify, Soundcloud, Vimeo, Facebook and 700 + websites. 
-        many more <br> <br>
+    <p>Green-bot is a Free Discord Music bot who supports EpidemicSounds, Freesounds and http links!
+  <br> <br>
     </p>
     <br>
     <center>
@@ -53,15 +53,13 @@
 + 24/7 music<br>
 + Songs request channel<br>
 + Highly configurable<br>
-+ YouTube and YouTube Music<br>
-+ Spotify & Soundcloud<br> 
 + Remove duplicates tracks<br>
 + Easy to setup<br>
  <br>  
  
 **📁 Installation**
 
-Note: If you need help with the installation, you can join our [Discord Server](https://green-bot.app/discord).
+Note: If you need help with the installation, you can join our [Discord Server]([https://green-bot.app/discord](https://discord.gg/Q5QSbAHaXB)).
 
 You are looking for the All-in-One bot? [Click here](https://github.com/GreenBotDeveloppement/Green-bot/tree/multipropose)
 
