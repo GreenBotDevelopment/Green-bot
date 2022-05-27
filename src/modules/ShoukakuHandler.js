@@ -43,7 +43,7 @@ class ShoukakuHandler extends Shoukaku {
         if (!c || !c.data) return console.log(`Not found for ${t}`);
         switch (((c.data.type = c.data.type.toLowerCase()), c.data.type)) {
             case "track":
-                s = (await a.rest.resolve(`${c.sc ? c.data.name : c.data.tracks[0].title} ${c.sc ? c.data.artists[0].name : c.data.tracks[0].artists}`, "youtubemusic")).tracks.shift();
+                s = (await a.rest.resolve(`${c.sc ? c.data.name : c.data.tracks[0].title} ${c.sc ? c.data.artists[0].name : c.data.tracks[0].artists}`, "soundcloud")).tracks.shift();
                 break;
             case "playlist":
             case "album":
@@ -56,7 +56,7 @@ class ShoukakuHandler extends Shoukaku {
     }
     async search(t, a, e, s) {
         if (this.cache.find((t) => t.uri === a)) return this.cache.find((t) => t.uri === a).data;
-        const c = this.checkURL(a) && a.includes("spotify") ? await this.spotify(a, t, e.client.spotify) : await t.rest.resolve(a, this.checkURL(a) ? null : `${s || "youtube"}`);
+        const c = this.checkURL(a) && a.includes("spotify") ? await this.spotify(a, t, e.client.spotify) : await t.rest.resolve(a, this.checkURL(a) ? null : `${s || "epidemicsounds"}`);
         return this.cache.find((t) => t.uri === a) || this.cache.push({ uri: a, data: c }), c;
     }
 }
