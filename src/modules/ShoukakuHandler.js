@@ -2,7 +2,7 @@ const { Shoukaku: Shoukaku, Connectors: Connectors } = require("shoukaku"),
     config = require("../../config"), { getData: getData } = require("spotify-url-info");
 class ShoukakuHandler extends Shoukaku {
     constructor(t) {
-        super(new Libraries.DiscordJS(t), config.lavalink, config.shoukaku),
+        super(new Connectors.DiscordJS(t), config.lavalink, config.shoukaku),
             this.on("error", (t, a) => {
                 console.log(a);
             }),
