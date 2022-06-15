@@ -58,13 +58,13 @@ class BaseClient extends Client {
      * @returns {BaseClient}
      */
     async start(options) {
-        if (!options) throw new ClientError("No options provided.");
+        if (!options) throw new Error("No options provided.");
         this.login(options.token).catch(err => {
             this._ready = false
             console.log(err)
         })
         if (this._ready) return this
-        else throw new ClientError("Client can't enter ready do to some errors;")
+        else throw new Error("Client can't enter ready do to some errors;")
     }
 
     /**
@@ -73,8 +73,8 @@ class BaseClient extends Client {
      * @returns {Boolean}
      */
     async error(options) {
-        if (options.error === undefined || options.error === null) throw new ClientError("No error provided.");
-        if (options.crash) new ClientError(error);
+        if (options.error === undefined || options.error === null) throw new Error("No error provided.");
+        if (options.crash) new Error(error);
         console.log(options.error);
         this._errors.push({
             error: options.error,
