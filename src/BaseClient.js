@@ -19,7 +19,7 @@ class BaseClient extends Client {
             (this.mongoDB = new MongoDB(this)),
             (this.shoukaku = new ShoukakuHandler(this)),
             (this.queue = new Queue(this)),
-            (this.spotify = new Spotify({ clientId: "1e9c2ae3711b48b4a4c857ee73fc569f", clientSecret: "743b7c2b874546dabfda5855dc099b8c", cacheResults: !0, cacheLifetime: 36e5 })),
+            (this.spotify = e ? new Spotify(e) : null),
             (this.commmands = new CommandHandler(this).build()),
             new EventHandler(this).build(),
             new buttonHandler(this).build(),

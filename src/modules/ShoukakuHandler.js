@@ -9,7 +9,8 @@ class ShoukakuHandler extends Shoukaku {
             this.on("disconnect", (t, a, e) => {
                 e || (a.map((t) => t.connection.disconnect()), console.warn(`Lavalink ${t}: Disconnected`));
             }),
-            (this.cache = []);
+            this.client = t;
+        (this.cache = []);
     }
     checkURL(t) {
         try {
@@ -20,9 +21,13 @@ class ShoukakuHandler extends Shoukaku {
     }
     async fetchSp(t, a) {
         let e, s;
-        try {
-            await a.renewToken(), (e = await a.search(t));
-        } catch (a) {
+        if (this.client.spotify) {
+            try {
+                await a.renewToken(), (e = await a.search(t));
+            } catch (a) {
+
+            }
+        } else {
             (e = await getData(t)), (s = !0);
         }
         return (e && e.tracks.length) || ((e = await getData(t)), (s = !0)), { data: e, sc: s };

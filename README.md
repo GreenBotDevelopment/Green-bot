@@ -67,7 +67,7 @@ You are looking for the All-in-One bot? [Click here](https://github.com/GreenBot
 
 Before starting, make you sure you have a mongoDB database (it's free) and nodejs v16.
 
-You will already need to start a lavalink server and complete the informations in the config.js files. 
+You will need to start a lavalink server and complete the informations in the config.js files. 
 
 [Guide: How to start and create a lavalink server](https://dsharpplus.github.io/articles/audio/lavalink/setup.html)
 
