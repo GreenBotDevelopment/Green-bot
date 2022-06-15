@@ -2,9 +2,9 @@ module.exports = {
 
     // Complete it carefuly else it won't work, check the readme for more informations
     lavalink: [
-            { name: "1", url: "LAVALINK_IP:PORT", auth: "LAVALINK_AUTH" },
-        ]
-        // Optional, for loading playlists with more than 100 tracks ( Else using a scaper )
+        { name: "1", url: "LAVALINK_IP:PORT", auth: "LAVALINK_AUTH" },
+    ],
+    // Optional, for loading playlists with more than 100 tracks ( Else using a scaper )
     spotify: { clientId: "", clientSecret: "", cacheResults: !0, cacheLifetime: 36e5 },
     // The wrapper used to connect to the lavalink server: https://deivu.github.io/Shoukaku
     shoukaku: { moveOnDisconnect: !0, resumable: !0, closedEventDelay: 1e3, resumableTimeout: 500, reconnectTries: 5, restTimeout: 3e4 },
