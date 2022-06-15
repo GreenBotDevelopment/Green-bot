@@ -67,7 +67,7 @@ class KongouDispatcher {
             this.stopped ?
             (this.stopped = null) :
             void("song" === this.repeat ?
-                (this.lastMessage && this.lastMessage.delete().catch((t) => {}), (this.playing = !0), this.current ? this.player.playTrack(this.current.track) : this.skip(), this.started()) :
+                (this.lastMessage && this.lastMessage.delete().catch((t) => {}), (this.playing = !0), this.current ? this.player.playTrack({ track: this.current.track }) : this.skip(), this.started()) :
                 (this.lastMessage && this.lastMessage.delete().catch((t) => {}),
                     (this.playing = !1),
                     this.backed ? (this.backed = !1) : this.previousTracks.push(this.current),
@@ -312,8 +312,9 @@ class KongouDispatcher {
 					data: i
 				});
 			}
-		return this.previousTracks.push(this.current), (this.current = e), this.lastMessage && this.lastMessage.delete(), this.current ? this.player.playTrack(this.current.track, {
-			noReplace: t || !1
+		return this.previousTracks.push(this.current), (this.current = e), this.lastMessage && this.lastMessage.delete(), this.current ? this.player.playTrack( {
+			noReplace: t || !1,
+            track: this.current.track,
 		}) && this.started() : this.skip(!0);
 	}
 	async play() {
@@ -358,7 +359,7 @@ class KongouDispatcher {
 					data: i
 				});
 			}
-		return (this.current = e || t || this.queue[0]), this.current ? ((this.playing = !0), this.player.playTrack(this.current.track), this.started()) : this.skip(!0);
+		return (this.current = e || t || this.queue[0]), this.current ? ((this.playing = !0), this.player.playTrack({track:this.current.track}), this.started()) : this.skip(!0);
 	}
 	async handleAutoplay(t) {
 		if (!t.info) return console.log(t);
