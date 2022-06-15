@@ -1,4 +1,4 @@
-const { Shoukaku: Shoukaku, Libraries: Libraries } = require("shoukaku"),
+const { Shoukaku: Shoukaku, Connectors: Connectors } = require("shoukaku"),
     config = require("../../config"), { getData: getData } = require("spotify-url-info");
 class ShoukakuHandler extends Shoukaku {
     constructor(t) {
