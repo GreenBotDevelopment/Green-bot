@@ -21,7 +21,7 @@ class Skip extends BaseCommand {
             n = Number(e.dispatcher.node.name) > 6 ? Number(e.dispatcher.node.name) - 1 : Number(e.dispatcher.node.name) + 1;
         return (
             n ?
-            (r ? r.moveNode(n) : e.dispatcher ? e.dispatcher.player.moveNode(n) : e.errorMessage("No player found for this server"), e.successMessage("Moved your player to a closer node!")) :
+            (r ? r.move(n) : e.dispatcher ? e.dispatcher.player.move(n) : e.errorMessage("No player found for this server"), e.successMessage("Moved your player to a closer node!")) :
             e.errorMessage("Please return a node name (1-4)"),
             e.dispatcher.player.connection && 3 != e.dispatcher.player.connection.state ?
             "rotterdam" !== e.member.voice.channel.rtcRegion ?
