@@ -8,11 +8,11 @@ class Queue extends Map {
         return this._sockets.find((e) => e.id === i.id) || this._sockets.push(i), this._waiting.find((e) => e.id === i.id) || this._waiting.push(i), !0;
     }
     async addWaitingUser(i, e, t, n) {
-        return this.inVoice.find((i) => i.id === e && i.serverId === i)
-            ? { error: !0, message: "Already connected" }
-            : this.waitingConnect.find((i) => i.id === e && i.serverId === i)
-            ? { error: !0, message: "Already in waiting list " }
-            : (n ? this.inVoice.push({ serverId: i, userId: t, id: e }) : this.waitingConnect.push({ serverId: i, userId: t, id: e }), !0);
+        return this.inVoice.find((i) => i.id === e && i.serverId === i) ?
+            { error: !0, message: "Already connected" } :
+            this.waitingConnect.find((i) => i.id === e && i.serverId === i) ?
+            { error: !0, message: "Already in waiting list " } :
+            (n ? this.inVoice.push({ serverId: i, userId: t, id: e }) : this.waitingConnect.push({ serverId: i, userId: t, id: e }), !0);
     }
     async removeWaitingUser(i) {
         return this._waiting.find((e) => e.id === i) && (this._waiting = this._waiting.filter((e) => e.id !== i)), !0;
@@ -25,8 +25,7 @@ class Queue extends Map {
             this._sockets.find((e) => e.id === i) && (this._sockets = this._sockets.filter((e) => e.id !== i)),
             this._waiting.find((e) => e.id === i) && (this._waiting = this._waiting.filter((e) => e.id !== i)),
             this.inVoice.find((e) => e.id === i) && (this.inVoice = this.inVoice.filter((e) => e.id !== i)),
-            this.waitingConnect.find((e) => e.id === i) && (this.waitingConnect = this.waitingConnect.filter((e) => e.id !== i)),
-            !0
+            this.waitingConnect.find((e) => e.id === i) && (this.waitingConnect = this.waitingConnect.filter((e) => e.id !== i)), !0
         );
     }
     async emitOp(i) {
@@ -42,13 +41,12 @@ class Queue extends Map {
             if (t && i.guild.me.voice.channelId) return t;
             if (
                 await e
-                    .joinChannel({ guildId: i.guild.id, shardId: i.guild.shardId || 0, channelId: i.member.voice.channelId, deaf: !0 })
-                    .catch((e) => (i.errorMessage("Could not connect to your voice channel. Please try again." + e), this.get(i.guild.id) && this.delete(i.guild.id)))
+                .joinChannel({ guildId: i.guild.id, shardId: i.guild.shardId || 0, channelId: i.member.voice.channelId, deaf: !0 })
+                .catch((e) => (i.errorMessage("Could not connect to your voice channel. Please try again." + e), this.get(i.guild.id) && this.delete(i.guild.id)))
             )
                 return;
             return i.dispatcher;
-        }
-        {
+        } {
             let t;
             const n = await e.joinChannel({ guildId: i.guild.id, shardId: i.guild.shardId || 0, channelId: i.member.voice.channelId, deaf: !0 }).catch((e) => (console.log(e), (t = !0), this.get(i.guild.id) && this.delete(i.guild.id)));
             if (t) return;
@@ -74,11 +72,11 @@ class Queue extends Map {
                 i.guildDB.auto_autoplay && (s.repeat = "autoplay"),
                 this.set(i.guild.id, s),
                 this._waiting.find((e) => e.serverId === i.guild.id) &&
-                    this._waiting
-                        .filter((e) => e.serverId === i.guild.id)
-                        .forEach((e) => {
-                            this.client.queue.emitOp({ changes: ["PLAYER_READY"], socketId: e.id, serverId: i.guild.id, queueData: {} }), this.removeWaiting(e.id);
-                        }),
+                this._waiting
+                .filter((e) => e.serverId === i.guild.id)
+                .forEach((e) => {
+                    this.client.queue.emitOp({ changes: ["PLAYER_READY"], socketId: e.id, serverId: i.guild.id, queueData: {} }), this.removeWaiting(e.id);
+                }),
                 s
             );
         }

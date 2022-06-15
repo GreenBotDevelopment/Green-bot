@@ -1,10 +1,8 @@
-const { Client: Client, Intents: Intents } = require("discord.js"),
-    { GUILDS: GUILDS, GUILD_VOICE_STATES: GUILD_VOICE_STATES, GUILD_MESSAGES: GUILD_MESSAGES } = Intents.FLAGS,
+const { Client: Client, Intents: Intents } = require("discord.js"), { GUILDS: GUILDS, GUILD_VOICE_STATES: GUILD_VOICE_STATES, GUILD_MESSAGES: GUILD_MESSAGES } = Intents.FLAGS,
     dbl = require("dblapi.js"),
     ShoukakuHandler = require("./modules/ShoukakuHandler.js"),
     Queue = require("./modules/Queue.js"),
-    EventHandler = require("./modules/EventHandler.js"),
-    { Spotify: Spotify } = require("@tuneorg/spotify"),
+    EventHandler = require("./modules/EventHandler.js"), { Spotify: Spotify } = require("@tuneorg/spotify"),
     CommandHandler = require("./modules/CommandHandler.js"),
     MongoDB = require("./modules/MongoDB"),
     server = require("./modules/server"),
@@ -39,22 +37,22 @@ class BaseClient extends Client {
                 this.voiceService.handle(e, i);
             });
 
-            ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"].forEach((event) => {
-                process.on(event, (e) => {
-                    this.error({
-                        error: e,
-                        location: {
-                            type: "PROCESS",
-                            file: "BaseClient",
-                            event: event
-                        }
-                    })
-                });
+        ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"].forEach((event) => {
+            process.on(event, (e) => {
+                this.error({
+                    error: e,
+                    location: {
+                        type: "PROCESS",
+                        file: "BaseClient",
+                        event: event
+                    }
+                })
             });
-            
+        });
+
     }
 
-      /**
+    /**
      * @description Starts the client.
      * @param {object} options
      * @returns {BaseClient}

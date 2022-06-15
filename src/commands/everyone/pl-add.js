@@ -1,6 +1,6 @@
-const KongouCommand = require("../../abstract/KongouCommand.js"),
+const BaseCommand = require("../../abstract/BaseCommand.js"),
     userData = require("../../models/user");
-class Queue extends KongouCommand {
+class Queue extends BaseCommand {
     get name() {
         return "pl-add";
     }
@@ -34,7 +34,7 @@ class Queue extends KongouCommand {
         if (u)
             if (n.includes("spotify")) {
                 if (!u || !u.raw) return s.delete(), e.errorMessage("No results found for your query");
-                if ("track" === u.sp.type) (u.raw.info.requester = { name: e.author.username, id: e.author.id }), t.push(u.raw);
+                if ("track" === u.sp.type)(u.raw.info.requester = { name: e.author.username, id: e.author.id }), t.push(u.raw);
                 else if ("playlist" === u.sp.type)
                     for (const r of u.raw) {
                         if (u.scraped && !r.track) return s.delete(), e.errorMessage("No results found for your query");
@@ -45,7 +45,7 @@ class Queue extends KongouCommand {
                                 uri: u.scraped ? r.track.external_urls.spotify : r.originURL,
                                 sp: !0,
                                 author: r.scraped ? null : r.artists,
-                                requester: { name: e.author.username, avatar:e.author.displayAvatarURL({ dynamic: !0 }),id: e.author.id },
+                                requester: { name: e.author.username, avatar: e.author.displayAvatarURL({ dynamic: !0 }), id: e.author.id },
                             },
                         };
                         t.push(a);
@@ -72,9 +72,10 @@ class Queue extends KongouCommand {
                     if (!u.tracks.length) return s.delete(), e.errorMessage("No results found for your query");
                     let r = u.tracks[0];
                     (r.info.requester = { name: e.author.username, id: e.author.id, avatar: e.author.displayAvatarURL({ dynamic: !0 }) }), t.push(r);
-                } else for (let r of a) (r.info.requester = { name: e.author.username, id: e.author.id }), t.push(r);
+                } else
+                    for (let r of a)(r.info.requester = { name: e.author.username, id: e.author.id }), t.push(r);
             }
-        setTimeout(async () => {
+        setTimeout(async() => {
             s.delete(), e.successMessage(`Successfully added ${t.length} track(s) to **${r}** `);
             const o = a.playlists.find((e) => e.name === r);
             return t.forEach((e) => o.tracks.push(e)), (a.playlists = a.playlists.filter((e) => e.name !== r)), a.playlists.push(o), a.save();

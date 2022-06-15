@@ -1,5 +1,5 @@
-const KongouCommand = require("../../abstract/KongouCommand.js");
-class Play extends KongouCommand {
+const BaseCommand = require("../../abstract/BaseCommand.js");
+class Play extends BaseCommand {
     get name() {
         return "play";
     }
@@ -35,8 +35,8 @@ class Play extends KongouCommand {
                 );
             if (e.guildDB.vcs.length && !e.guildDB.vcs.includes(e.member.voice.channelId))
                 return e.errorMessage(
-                    e.guildDB.vcs.length > 1
-                        ? `I am not allowed to play music in your voice channel.\n Please join one of the following channels: ${e.guildDB.vcs.map((e) => `<#${e}>`).join(",")}`
+                        e.guildDB.vcs.length > 1 ?
+                        `I am not allowed to play music in your voice channel.\n Please join one of the following channels: ${e.guildDB.vcs.map((e) => `<#${e}>`).join(",")}`
                         : `I can only play music in the <#${e.guildDB.vcs[0]}> channel.`
                 );
         }

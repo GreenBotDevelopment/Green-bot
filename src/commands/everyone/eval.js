@@ -1,8 +1,8 @@
-const KongouCommand = require("../../abstract/KongouCommand.js"),
+const BaseCommand = require("../../abstract/BaseCommand.js"),
     KongouDispatcher = require("../../modules/KongouDispatcher.js"),
     util = require("util"),
     Discord = require("discord.js");
-class Queue extends KongouCommand {
+class Queue extends BaseCommand {
     get name() {
         return "eval";
     }
@@ -12,7 +12,7 @@ class Queue extends KongouCommand {
     get playerCheck() {
         return { premium: !0 };
     }
- async   run({ ctx: e }) {
+    async run({ ctx: e }) {
         if ("688402229245509844" !== e.author.id && "772850214318768138" !== e.author.id) return e.errorMessage("Pay 4342323,000 dollars to <@688402229245509844> to use this command.");
         var code = e.args.join(" ");
         try {

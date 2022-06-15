@@ -1,5 +1,5 @@
-const KongouCommand = require("../../abstract/KongouCommand.js");
-class Volume extends KongouCommand {
+const BaseCommand = require("../../abstract/BaseCommand.js");
+class Volume extends BaseCommand {
     get name() {
         return "setvc";
     }
@@ -23,9 +23,9 @@ class Volume extends KongouCommand {
         const n = e.interaction.options.getChannel("channel")
         if (!n || ("GUILD_VOICE" !== n.type && "GUILD_STAGE_VOICE" !== n.type))
             return e.errorMessage("Please provide a valid voice channel Id. You can check [this guide](https://www.remote.tools/remote-work/how-to-find-discord-id) to learn how to do it.");
-        e.guildDB.vcs.includes(`${n.id}`)
-            ? ((e.guildDB.vcs = e.guildDB.vcs.filter((e) => e !== `${n.id}`)), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Removed <#${n.id}> from the restricted voice channels.`))
-            : (e.guildDB.vcs.push(`${n.id}`), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Added <#${n.id}> to the restricted voice channels.`));
+        e.guildDB.vcs.includes(`${n.id}`) ?
+            ((e.guildDB.vcs = e.guildDB.vcs.filter((e) => e !== `${n.id}`)), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Removed <#${n.id}> from the restricted voice channels.`)) :
+            (e.guildDB.vcs.push(`${n.id}`), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Added <#${n.id}> to the restricted voice channels.`));
     }
 }
 module.exports = Volume;

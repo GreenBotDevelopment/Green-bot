@@ -1,8 +1,5 @@
-const { readdirSync: readdirSync } = require("fs"),
-    { MessageEmbed: MessageEmbed } = require("discord.js"),
-    { Collection: Collection } = require("@discordjs/collection"),
-    EventEmitter = require("events"),
-    SlashContext = require("./SlashContext");
+const { readdirSync: readdirSync } = require("fs"), { Collection: Collection } = require("@discordjs/collection"),
+    EventEmitter = require("events");
 class InteractionHandler extends EventEmitter {
     constructor(e) {
         super(), (this.client = e), (this.commands = new Collection()), (this.built = !1);
@@ -15,7 +12,7 @@ class InteractionHandler extends EventEmitter {
             const e = readdirSync(`${this.client.location}/src/interactions/${t.name}`, { withFileTypes: !0 });
             for (const i of e) {
                 if (!i.isFile()) continue;
-                const e = new (require(`${this.client.location}/src/interactions/${t.name}/${i.name}`))(this.client);
+                const e = new(require(`${this.client.location}/src/interactions/${t.name}/${i.name}`))(this.client);
                 this.commands.set(e.name, e);
             }
         }

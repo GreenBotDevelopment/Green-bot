@@ -1,5 +1,5 @@
-const KongouCommand = require("../../abstract/KongouCommand.js");
-class Volume extends KongouCommand {
+const BaseCommand = require("../../abstract/BaseCommand.js");
+class Volume extends BaseCommand {
     get name() {
         return "textchannels";
     }
@@ -22,9 +22,9 @@ class Volume extends KongouCommand {
         if ("reset" === e.args[0].value) return (e.guildDB.txts = []), e.client.mongoDB.handleCache(e.guildDB), e.successMessage("The bot is now allowed to answer commands in every single text channel!");
         const t = e.interaction.options.getChannel("channel")
         if (!t || "GUILD_TEXT" !== t.type) return e.errorMessage("Please provide a valid text channel.");
-        e.guildDB.txts.includes(`${t.id}`)
-            ? ((e.guildDB.txts = e.guildDB.txts.filter((e) => e !== `${t.id}`)), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Removed <#${t.id}> from the restricted text channels.`))
-            : (e.guildDB.txts.push(`${t.id}`), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Added <#${t.id}> to the restricted text channels.\nThe bot won't reply to command anymore in this channel!`));
+        e.guildDB.txts.includes(`${t.id}`) ?
+            ((e.guildDB.txts = e.guildDB.txts.filter((e) => e !== `${t.id}`)), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Removed <#${t.id}> from the restricted text channels.`)) :
+            (e.guildDB.txts.push(`${t.id}`), e.client.mongoDB.handleCache(e.guildDB), e.successMessage(`Added <#${t.id}> to the restricted text channels.\nThe bot won't reply to command anymore in this channel!`));
     }
 }
 module.exports = Volume;

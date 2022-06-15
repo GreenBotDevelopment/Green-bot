@@ -25,14 +25,14 @@ class CommandService {
                 if (e.channelId && !n.channelId && !i.stopped) return i.delete(!0);
                 e.channelId === n.channelId &&
                     e.member.id === n.guild.me.id &&
-                    (e.serverMute !== n.serverMute
-                        ? n.serverMute
-                            ? i.metadata.channel.send({
-                                  embeds: [{ color: "#3A871F", author: { name: "Someone muted me for everyone so I paused the player!", icon_url: this.client.user.displayAvatarURL({ size: 512, format: "png" }) } }],
-                              }) && i.player.setPaused(n.serverMute)
-                            : i.metadata.channel.send({ embeds: [{ color: "#3A871F", author: { name: "Yay! You unmuted me! The music is now resuming!", icon_url: this.client.user.displayAvatarURL({ size: 512, format: "png" }) } }] }) &&
-                              i.player.setPaused(n.serverMute)
-                        : e.suppress !== n.suppress && (n.suppress && n.guild.me.voice.setRequestToSpeak(!0).catch({}), i.player.setPaused(n.suppress)));
+                    (e.serverMute !== n.serverMute ?
+                        n.serverMute ?
+                        i.metadata.channel.send({
+                            embeds: [{ color: "#3A871F", author: { name: "Someone muted me for everyone so I paused the player!", icon_url: this.client.user.displayAvatarURL({ size: 512, format: "png" }) } }],
+                        }) && i.player.setPaused(n.serverMute) :
+                        i.metadata.channel.send({ embeds: [{ color: "#3A871F", author: { name: "Yay! You unmuted me! The music is now resuming!", icon_url: this.client.user.displayAvatarURL({ size: 512, format: "png" }) } }] }) &&
+                        i.player.setPaused(n.serverMute) :
+                        e.suppress !== n.suppress && (n.suppress && n.guild.me.voice.setRequestToSpeak(!0).catch({}), i.player.setPaused(n.suppress)));
             } else {
                 if (e.channelId && e.channelId === i.player.connection.channelId && n.channelId && e.channelId !== n.channelId) {
                     if (!this.isVoiceEmpty(e.member.guild.channels.cache.get(i.player.connection.channelId))) return;

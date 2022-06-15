@@ -1,23 +1,21 @@
-const KongouCommand = require("../../abstract/KongouCommand.js"),
+const BaseCommand = require("../../abstract/BaseCommand.js"),
     fetch = require("node-fetch");
-class Premium extends KongouCommand {
+class Premium extends BaseCommand {
     get name() {
         return "premium";
     }
     get arguments() {
-        return [
-            {
-                name: "action",
-                type: 3,
-                required: !0,
-                choices: [
-                    { name: "activate", value: "activate" },
-                    { name: "deactivate", value: "deactivate" },
-                    { name: "status", value: "status" },
-                ],
-                description: "The action you want to do: status, activate or deactivate",
-            },
-        ];
+        return [{
+            name: "action",
+            type: 3,
+            required: !0,
+            choices: [
+                { name: "activate", value: "activate" },
+                { name: "deactivate", value: "deactivate" },
+                { name: "status", value: "status" },
+            ],
+            description: "The action you want to do: status, activate or deactivate",
+        }, ];
     }
     get category() {
         return "Everyone Commands";
@@ -44,14 +42,12 @@ class Premium extends KongouCommand {
             if ("status" === r) {
                 if (!o) return e.errorMessage("You don't have a premium subscribtion yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
                 e.reply({
-                    embeds: [
-                        {
-                            author: { name: "Green-Bot Premium", icon_url: e.client.user.displayAvatarURL({ dynamic: !0, size: 512 }), url: "https://discord.com/oauth2/authorize?client_id=901466922820988968&scope=bot&permissions=19456" },
-                            description: "Your Premium Subscribtion Status",
-                            fields: [
-                                {
-                                    name: "Status",
-                                    value: `${
+                            embeds: [{
+                                        author: { name: "Green-Bot Premium", icon_url: e.client.user.displayAvatarURL({ dynamic: !0, size: 512 }), url: "https://discord.com/oauth2/authorize?client_id=901466922820988968&scope=bot&permissions=19456" },
+                                        description: "Your Premium Subscribtion Status",
+                                        fields: [{
+                                                    name: "Status",
+                                                    value: `${
                                         o
                                             ? "✅ You currently have the premium\n\n**Tier**: " + o.tier + "\n**Guilds left**: " + o.guildsLeft + `${o.expires?`\n**Expiration**: ${o.expires}`:""}`+ "\n**Premium Server**: " + o.premiumGuilds + "\n\n"
                                             : " You don't have the premium yet. Buy the premium on the [Patreon page](https://green-bot.app/premium/buy)"
