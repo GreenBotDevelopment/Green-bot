@@ -21,7 +21,7 @@
         "opusscript": "^0.0.8",
         "play-dl": "^1.2.2",
         "tiktok-scraper": "^1.4.23",
-        "topgg-autoposter": "^1.1.10",
+        "topgg-autoposter": "^2.0.1",
         "twemoji-parser": "^13.0.0"
     },
     "scripts": {
