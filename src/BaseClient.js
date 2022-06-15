@@ -28,6 +28,7 @@ class BaseClient extends Client {
             (this.interactions = new interactions(this).build()),
             this.mongoDB.connect(),
             (this.cluster = new Cluster.Client(this)),
+            (this._errors = []),
             (this.cmds = new CommandService(this)),
             (this.voiceService = new VoiceService(this)),
             (this.server = new server(this)),
