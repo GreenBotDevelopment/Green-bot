@@ -7,6 +7,7 @@ class Ready extends BaseEvent {
         return !0;
     }
     async run() {
+        this.client._ready = true;
         this.client.user.setActivity({ name: "*help - green-bot.app", type: "WATCHING" });
     }
 }

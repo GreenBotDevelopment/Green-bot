@@ -5,6 +5,7 @@ class CommandService {
         (this.client = e), (this.commands = e.commmands.commands);
     }
     handle(e) {
+            if (!this.client._ready) return;
             return (!e.author.bot &&
                     e.channel &&
                     this.client.mongoDB.getServer(e.guild.id).then(async(t) => {

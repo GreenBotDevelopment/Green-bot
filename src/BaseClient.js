@@ -62,9 +62,8 @@ class BaseClient extends Client {
         this.login(options.token).catch(err => {
             this._ready = false
             console.log(err)
+            throw new Error("Client can't enter ready due to some errors;")
         })
-        if (this._ready) return this
-        else throw new Error("Client can't enter ready do to some errors;")
     }
 
     /**

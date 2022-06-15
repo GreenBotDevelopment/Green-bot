@@ -1,6 +1,5 @@
 const { Shoukaku: Shoukaku, Libraries: Libraries } = require("shoukaku"),
-    config = require("../../config"),
-    { getData: getData } = require("spotify-url-info");
+    config = require("../../config"), { getData: getData } = require("spotify-url-info");
 class ShoukakuHandler extends Shoukaku {
     constructor(t) {
         super(new Libraries.DiscordJS(t), config.lavalink, config.shoukaku),
@@ -29,13 +28,11 @@ class ShoukakuHandler extends Shoukaku {
         return (e && e.tracks.length) || ((e = await getData(t)), (s = !0)), { data: e, sc: s };
     }
     async checkSpotify(t) {
-        return (
-            !!(
-                /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:track\/|\?uri=spotify:track:)((\w|-){22})/.test(t) ||
-                /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:playlist\/|\?uri=spotify:playlist:)((\w|-){22})/.test(t) ||
-                /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:album\/|\?uri=spotify:album:)((\w|-){22})/.test(t)
-            ) || null
-        );
+        return (!!(
+            /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:track\/|\?uri=spotify:track:)((\w|-){22})/.test(t) ||
+            /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:playlist\/|\?uri=spotify:playlist:)((\w|-){22})/.test(t) ||
+            /https?:\/\/(?:embed\.|open\.)(?:spotify\.com\/)(?:album\/|\?uri=spotify:album:)((\w|-){22})/.test(t)
+        ) || null);
     }
     async spotify(t, a, e) {
         let s,
@@ -43,7 +40,7 @@ class ShoukakuHandler extends Shoukaku {
         if (!c || !c.data) return console.log(`Not found for ${t}`);
         switch (((c.data.type = c.data.type.toLowerCase()), c.data.type)) {
             case "track":
-                s = (await a.rest.resolve(`${c.sc ? c.data.name : c.data.tracks[0].title} ${c.sc ? c.data.artists[0].name : c.data.tracks[0].artists}`, "soundcloud")).tracks.shift();
+                s = (await a.rest.resolve(`ytsearch:${c.sc ? c.data.name : c.data.tracks[0].title} ${c.sc ? c.data.artists[0].name : c.data.tracks[0].artists}`)).tracks.shift();
                 break;
             case "playlist":
             case "album":
@@ -55,9 +52,7 @@ class ShoukakuHandler extends Shoukaku {
         return { raw: s, sp: c.data, scraped: c.sc };
     }
     async search(t, a, e, s) {
-        if (this.cache.find((t) => t.uri === a)) return this.cache.find((t) => t.uri === a).data;
-        const c = this.checkURL(a) && a.includes("spotify") ? await this.spotify(a, t, e.client.spotify) : await t.rest.resolve(a, this.checkURL(a) ? null : `${s || "epidemicsounds"}`);
-        return this.cache.find((t) => t.uri === a) || this.cache.push({ uri: a, data: c }), c;
+        return this.checkURL(a) && a.includes("spotify") ? await this.spotify(a, t, e.client.spotify) : await t.rest.resolve(this.checkURL(a) ? a : `ytsearch:${a}`);
     }
 }
 module.exports = ShoukakuHandler;
