@@ -25,15 +25,7 @@ class MongoDB {
         );
     }
     async checkPremiumUser(e) {
-        try {
-            if (this.premiums.includes(e)) return !0;
-            const s = config.premiumUrl + "premiumUser?userId=" + e,
-                t = await fetch(s).catch((e) => console.error(e)),
-                r = await t.json();
-            return this.premiums.push(e), !!r;
-        } catch (e) {
-            return !1;
-        }
+        return true
     }
     searchReq(e) {
         let s = e.guild.id,
@@ -108,14 +100,7 @@ class MongoDB {
         });
     }
     async checkPremium(e, s) {
-        if (s && (await this.checkPremiumUser(s))) return !0;
-        try {
-            const s = config.premiumUrl + "premiumGuild?guildId=" + e,
-                t = await fetch(s).catch((e) => console.error(e));
-            return await t.json();
-        } catch (e) {
-            return !1;
-        }
+        return true
     }
 }
 module.exports = MongoDB;

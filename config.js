@@ -12,5 +12,8 @@ module.exports = {
     mongo: { url: "mongodb://localhost:27017/test", options: { maxPoolSize: 200, useNewUrlParser: !0, useUnifiedTopology: !0, autoIndex: !0, serverSelectionTimeoutMS: 45e3, socketTimeoutMS: 8e5, keepAlive: !0, connectTimeoutMS: 5e5 } },
     // The discord bot token for discord developers: https://discord.com/developpers/bots
     token: "DISCORD_BOT_TOKEN",
-    premiumUrl: "", // Let this blank because this github is for non-commercial use 
+    slashCommands: {
+        load: true,
+        clientId: ""
+    }
 };

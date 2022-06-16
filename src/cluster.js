@@ -1,8 +1,8 @@
 const client = require("./BaseClient");
-const { token, spotify } = require("../config.js");
-let client_1 = new client(spotify);
+const config = require("../config.js");
+let client_1 = new client(config);
 
 client_1.start({
-    token: token,
+    token: config.token,
     devMode: false
 })
