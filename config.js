@@ -2,7 +2,7 @@ module.exports = {
 
     // Complete it carefuly else it won't work, check the readme for more informations
     lavalink: [
-        { name: "1", url: "LAVALINK_IP:PORT", auth: "LAVALINK_AUTH" },
+        { name: "1", url: "LAVALINK_IP:PORT", auth: "LAVALINK_AUTH", secure: null },
     ],
     // Optional, for loading playlists with more than 100 tracks ( Else using a scaper )
     spotify: { clientId: "", clientSecret: "", cacheResults: !0, cacheLifetime: 36e5 },
