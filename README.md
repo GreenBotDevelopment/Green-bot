@@ -59,7 +59,7 @@
  
 **📁 Installation**
 
-Note: If you need help with the installation, you can join our [Discord Server]([https://green-bot.app/discord](https://discord.gg/Q5QSbAHaXB)).
+Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
 
 And yes, it's same for replit.
 
