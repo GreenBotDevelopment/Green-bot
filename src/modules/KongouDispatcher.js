@@ -269,7 +269,7 @@ class KongouDispatcher {
 			}
 		);
 	}
-	async skip(t) {
+	async skip(e) {
 		this.skipped = !0;
 		let t = this.queue.shift(),
 			i = t;
