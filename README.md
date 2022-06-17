@@ -1,6 +1,6 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
     <h3>Green-bot</h3>
-        If you liked this repository, feel free to leave a star ⭐ , it supports us a lot! Thanks you!
+        If you liked this repository, feel free to leave a star ⭐ and follow me, it supports me a lot! Thanks you!
     <br><br>
     <p>Green-bot is a Free Discord Music bot who supports EpidemicSounds, Freesounds and http links!
   <br> <br>
