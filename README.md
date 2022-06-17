@@ -22,7 +22,7 @@
                 color: black;
                 border-radius: 8px;
                 font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/discord"> Support server •</a>
+                font-weight: bold;" href="https://discord.gg/Q5QSbAHaXB"> Support server •</a>
             <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
                 padding: 8px 15px;
                 background-color: #3A871F;
