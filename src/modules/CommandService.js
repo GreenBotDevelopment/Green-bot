@@ -32,12 +32,12 @@ class CommandService {
                                     }, ],
                                 });
                             const s = e.content.toLowerCase();
-                            if (s.startsWith(t.prefix.toLowerCase()) || s.startsWith("<@!783708073390112830>") || s.startsWith("<@783708073390112830>") || s.startsWith("green")) {
+                            if (s.startsWith(t.prefix.toLowerCase()) || s.startsWith("<@!" + this.client.user.id + ">") || s.startsWith("<@" + this.client.user.id + ">") || s.startsWith(`${this.client.user.username}`)) {
                                 let a;
                                 s.startsWith(t.prefix.toLowerCase()) && (a = e.content.slice(t.prefix.length).trim().split(/ +/)),
-                                    s.startsWith("<@!783708073390112830>") && (a = e.content.slice(22).trim().split(/ +/)),
-                                    s.startsWith("<@783708073390112830>") && (a = e.content.slice(21).trim().split(/ +/)),
-                                    s.startsWith("green") && (a = e.content.slice(5).trim().split(/ +/));
+                                    s.startsWith("<@!" + this.client.user.id + ">") && (a = e.content.slice(22).trim().split(/ +/)),
+                                    s.startsWith("<@" + this.client.user.id + ">") && (a = e.content.slice(21).trim().split(/ +/)),
+                                    s.startsWith(`${this.client.user.username}`) && (a = e.content.slice(5).trim().split(/ +/));
                                 let r = a.shift().toLowerCase();
                                 if (!this.commands.has(r) && !this.commands.find((e) => e.aliases && e.aliases.includes(r))) return;
                                 r = this.commands.get(r) || this.commands.find((e) => e.aliases && e.aliases.includes(r));

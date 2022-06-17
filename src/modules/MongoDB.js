@@ -18,7 +18,7 @@ class MongoDB {
     }
     async connect() {
         return (
-            mongoose.connect(config.mongo.url, config.mongo.options).catch((e) => {
+            mongoose.connect(config.database.url, config.database.options).catch((e) => {
                 console.error("MongoDB:`, `Error\n", e);
             }),
             mongoose
@@ -79,7 +79,7 @@ class MongoDB {
         });
         return s ? (this.knowGuilds[e] = s) : (s = await new guildData({
             serverID: e,
-            prefix: "*",
+            prefix: config.prefix,
             lang: "en",
             color: "#3A871F"
         }).save()), s;
