@@ -40,8 +40,6 @@ class Play extends BaseCommand {
                         : `I can only play music in the <#${e.guildDB.vcs[0]}> channel.`
                 );
         }
-        if(t.includes("youtube" || t.includes("soundcloud")) return e.errorMessage("As of recents events, Green-bot stopped supporting youtube and soundcloud.\nBut you can try to give a song name and the will search it!")
-        if (t.includes("pornhub") && !e.channel.nsfw) return e.errorMessage("Please mark this channel as NSFW channel before being able to play this type of videos.\nRemember that this content is 18+ and could cause grave addictions.");
         const a = e.client.shoukaku.getNode();
         if (!a) return e.errorMessage("No nodes are available yet! You can report this error is [Green bot Server](https://discord.gg/greenbot)");
         let s = await e.client.queue.create(e, a);
