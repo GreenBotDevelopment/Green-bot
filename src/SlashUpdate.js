@@ -39,4 +39,4 @@ const load = async function() {
     })();
 }
 load()
-module.exports ={load()}
+module.exports ={load}
