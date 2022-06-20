@@ -47,7 +47,26 @@ class KongouDispatcher {
                     this.errored = "No";
                 }),
                 this.player.on("closed", (t) => {
-                    this.exists && ((4006 != t.code && 4014 != t.code) || this.delete());
+
+                    if (!this.exists) return this.delete();
+                    if (1006 === e.code || 1000 == e.code) {
+                        setTimeout(() => {
+                            this.player.connection.resendServerUpdate(),
+                                setTimeout(() => { this.player.resume(); }, 2000);
+                        }, 2000);
+                    } else {
+                        if (e.code === 4014) {
+                            // Most of time that's because shard lost connection
+                            // Check: https://github.com/discordjs/discord.js/pull/7626
+                            console.log(e)
+
+                            setTimeout(() => {
+                                this.player.connection.resendServerUpdate(),
+                                    setTimeout(() => { this.player.resume(); }, 2000);
+                            }, 2000);
+                        }
+                        console.log("unknow closure " + e.code + "")
+                    }
                 }));
     }
     static humanizeTime(t) {

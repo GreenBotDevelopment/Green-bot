@@ -108,8 +108,8 @@ class Play extends BaseCommand {
             }
             return;
         }
-        const { type: n, tracks: i, playlistName: o } = r;
-        if ("PLAYLIST" !== n) {
+        const { loadType: n, tracks: i, playlistInfo: o } = r;
+        if ("PLAYLIST_LOADED" !== n) {
             if (!r.tracks.length) return e.errorMessage("I didn't find any song on the query you provided!");
             const t = r.tracks[0];
             let a = t;
@@ -124,7 +124,7 @@ class Play extends BaseCommand {
                 setTimeout(() => {
                     e.dispatcher.queue = e.dispatcher.queue.sort(() => Math.random() - 0.5);
                 }, 2e3),
-                e.channel.send({ embeds: [{ description: `Added [${o.slice(0, 50)}](${t}) with ${i.length} tracks ${e.guildDB.auto_shuffle ? "🔀 And automatically shuffled" : ""}`, color: "#3a871f" }] }).catch(() => null),
+                e.channel.send({ embeds: [{ description: `Added [${o.name.slice(0, 50)}](https://green-bot.app) with ${i.length} tracks ${e.guildDB.auto_shuffle ? "🔀 And automatically shuffled" : ""}`, color: "#3a871f" }] }).catch(() => null),
                 s.playing || s.play(),
                 s.tracksAdded();
         }
