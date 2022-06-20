@@ -1,6 +1,6 @@
 {
     "name": "greenbot",
-    "version": "8.0.0",
+    "version": "9.0.0",
     "description": "🎧 Green-bot is a powerfull discord music bot used by 12M users and more than 100,000 servers",
     "scripts": {
         "start": "node index.js",
@@ -15,7 +15,9 @@
     },
     "keywords": [
         "Music",
-        "discord music bot"
+        "discord",
+        "bot",
+        "music"
     ],
     "author": "Pauldb09",
     "license": "MIT",
@@ -49,6 +51,6 @@
         "zlib-sync": "^0.1.7"
     },
     "devDependencies": {
-        "eslint": "^8.1.0"
+        "eslint": "^8.18.0"
     }
 }
