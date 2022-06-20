@@ -10,7 +10,7 @@ const { Client: Client, Intents: Intents } = require("discord.js"), { GUILDS: GU
     CommandService = require("./modules/CommandService"),
     VoiceService = require("./modules/voiceService"),
     Cluster = require("discord-hybrid-sharding"),
-    slashUpdate = require("./SlashUpdate.js"),
+      {load} = require("./SlashUpdate.js"),
     buttonHandler = require("./modules/buttonHandler");
 class BaseClient extends Client {
     constructor(config) {
@@ -68,7 +68,7 @@ class BaseClient extends Client {
             throw new Error("Client can't enter ready due to some errors;")
         })
         setTimeout(() => {
-            this._ready && this.config.slashCommands.load ? slashUpdate.load() : console.log("[INFO] Loading slash commands in not enabled")
+            this._ready && this.config.slashCommands.load ? load() : console.log("[INFO] Loading slash commands in not enabled")
         }, 20000)
     }
 
