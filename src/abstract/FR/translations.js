@@ -1,6 +1,6 @@
 module.exports={
     language:"FR",
-    aliases: ["fr","french","francais","français","Fr","Français","françai"],
+    aliases: ["fr","french","francais","français","Fr","Français","françai", "francés"],
     mainName:"Français",
     keys:{
     NO_VOICE_CHANNEL: "Vous devez être dans un salon vocal pour utiliser cette commande.",
