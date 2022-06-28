@@ -1,6 +1,6 @@
 module.exports = {
     language: "EN",
-    aliases: ["en", "english", "anglais"],
+    aliases: ["en", "english", "anglais", "inglés"],
     mainName: "English",
     keys: {
         LANGUAGE_SET: "The bot language has been succesfully set to ** :flag_gb: English**",
