@@ -43,7 +43,7 @@
         "petitio": "^1.4.0",
         "shoukaku": "^3.1.0",
         "spotify-url-info": "^2.2.5",
-        "uuid": "^8.3.2",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "eslint": "^8.18.0"
