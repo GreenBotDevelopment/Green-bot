@@ -92,11 +92,11 @@ When your terminal is created, write `npm install` in your terminal to download 
 If you encounter any error, make you sure that you have the latest version of nodejs or ask in the discord server.
 
 __Step 3.__
-When the modules have been downloaded and a `node-modules` directory has been created, go to the `config.js` file and setup the bot.
+When the modules have been downloaded and a `node-modules` directory has been created, go to the `config.ts` file in the `src` folder and setup the bot.
 You can find some comments about every setting.
 
 __Step 4.__
-Now, you can start the bot by pressing `F5` or putting `node index.js` in the terminal.
+Now, you can start the bot by pressing `F5` or putting `npm run start` in the terminal.
 
 __Step 5.__
 Enjoy your bot !

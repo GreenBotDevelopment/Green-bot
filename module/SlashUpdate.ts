@@ -1,5 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+import config from "./config"
 import { readdirSync } from "fs";
 
 const { token } = require('./config.js');
@@ -31,12 +32,12 @@ files.forEach(cat => {
 setTimeout(()=>{
     console.log(`• Loaded ${commands.length} slash commands to refresh`);
 // as per d.js guide, create a rest client
-const rest = new REST({ version: '9' }).setToken("NzgzNzA4MDczMzkwMTEyODMw.GekgyO.rkJFM0HE9PjWfuz11HlJVK4S49FM4jg_tZ5A3I");
+const rest = new REST({ version: '9' }).setToken(config.token);
 // start the load up process
 (async () => {
     try {
         console.log(`• Refreshing client "946414667436269579" slash commands. Developer Mode? `);
-            await rest.put(Routes.applicationCommands("783708073390112830"), { body: commands });
+            await rest.put(Routes.applicationCommands(config.botId), { body: commands });
         console.log(`• Success! Refreshed client "946414667436269579" slash commands`);
     } catch (error) {
         console.error(error);
