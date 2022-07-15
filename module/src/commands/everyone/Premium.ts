@@ -17,7 +17,7 @@ export default class Premium extends Command {
         return `https://discord.com/api/oauth2/authorize?client_id=${e}&permissions=139623484672&scope=bot%20applications.commands`;
     }
     async run({ ctx: e }) {
-        let t = e.args[0];
+        const t = e.args[0];
         if (t) {
             const r = e.premiumlink("premiumUser") + "userId=" + e.member.id,
                 i = await fetch(r).catch((e) => console.error(e)),

@@ -19,8 +19,8 @@ export class voiceService {
         if (!this.client.cluster.ready && this.client.cluster.maintenance) return
         if (type === "join") {
             if (this.client.queue.waitingConnect.find((n) => n.userId === member.id && n.serverId === member.guild.id)) {
-                let n = this.client.queue.waitingConnect.find((n) => n.userId === member.id && n.serverId === member.guild.id);
-                let socketId = this.client.queue._sockets.find(s=>s.serverId === member.guild.id).id
+                const n = this.client.queue.waitingConnect.find((n) => n.userId === member.id && n.serverId === member.guild.id);
+                const socketId = this.client.queue._sockets.find(s=>s.serverId === member.guild.id).id
 
                 this.client.queue.emitOp({ socketId: socketId, serverId: member.guild.id, changes: ["JOINED_VC"], queueData: {} });
                 this.client.queue.waitingConnect = this.client.queue.waitingConnect.filter((e) => e.id !== n.id);
@@ -29,8 +29,8 @@ export class voiceService {
         } else if (type === "leave") {
             const queue = this.client.queue.get(member.guild.id);
             if (this.client.queue.inVoice.find((n) => n.userId === member.id)) {
-                let n = this.client.queue.inVoice.find((n) => n.userId === member.id);
-                let socketId = this.client.queue._sockets.find(s=>s.serverId === member.guild.id).id
+                const n = this.client.queue.inVoice.find((n) => n.userId === member.id);
+                const socketId = this.client.queue._sockets.find(s=>s.serverId === member.guild.id).id
                 this.client.queue.emitOp({ socketId: socketId, serverId: member.guild.id, changes: ["LEFT_VC"], queueData: {} });
                 this.client.queue.inVoice = this.client.queue.inVoice.filter((e) => e.id !== n.id);
                 this.client.queue.waitingConnect.push(n);

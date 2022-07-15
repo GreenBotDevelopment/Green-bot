@@ -52,7 +52,7 @@ export class CommandManager {
                     },
                 ],
             });
-        let cleanedContent = message.content.toLowerCase();
+        const cleanedContent = message.content.toLowerCase();
         if (cleanedContent.startsWith(data.prefix.toLowerCase()) || cleanedContent.startsWith("<@!" + this.client.user.id + ">") || cleanedContent.startsWith("<@" + this.client.user.id + ">") || cleanedContent.startsWith("green")) {
             let args;
             cleanedContent.startsWith(data.prefix.toLowerCase()) && (args = message.content.slice(data.prefix.length).trim().split(/ +/))
@@ -63,7 +63,7 @@ export class CommandManager {
             if (!command) return this.client.config.debug && console.log(`[Message not handled ()] Content ${message.content} has been ignored. Potential aliase?`);
             const { channel, guild, member, me } = await this.resolvePartials(message)
 
-            let context = new Context(this.client, message, args, data, me, member);
+            const context = new Context(this.client, message, args, data, me, member);
             if (!this.client.hasBotPerm(context, "sendMessages")) {
                 const dmChannel = await message.author.getDMChannel();
                 return dmChannel.createMessage(
@@ -81,7 +81,7 @@ export class CommandManager {
                 return context.errorMessage(`I am not allowed to answer to commands in this channel.
                 ${data.txts.length > 1 ? `Please use one of the following channels: ${data.txts.map((a) => `<#${a}>`).join(",")}` : `Please use the <#${data.txts[0]}> channel`}`)
             }
-            let eligigle = this.client.shoukaku.checkEligible(context)
+            const eligigle = this.client.shoukaku.checkEligible(context)
             if(!eligigle && !(await this.client.database.checkPremium(message.guildID, message.author.id, true))){
                 return context.errorMessage("**Oops!** You need to wait 1.5 seconds before each command! \n\n Want to bypass this? Become a [Premium](https://green-bot.app/premium) user or switch to [slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ)!")
             }
@@ -159,7 +159,7 @@ export class CommandManager {
 
     }
     async checkVoted(userId: string) {
-        let voted = false;;
+        let voted = false;
         try {
             voted = await this.client.dbl.hasVoted(userId);
         } catch (err) {

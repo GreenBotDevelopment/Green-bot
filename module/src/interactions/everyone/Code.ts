@@ -22,7 +22,7 @@ export default class Premium extends Command {
         return `https://discord.com/api/oauth2/authorize?client_id=${e}&permissions=139623484672&scope=bot%20applications.commands`;
     }
     async run({ ctx: e }) {
-        let t = e.args[0].value;
+        const t = e.args[0].value;
         if (t) {
             if (!["redeem"].includes(t)) return e.reply({
                 embeds: [

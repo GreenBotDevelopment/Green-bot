@@ -91,7 +91,7 @@ export default class Queue extends Command {
                         if ("back_queue" === t.data.custom_id) {
                             if (((a -= 6), (n -= 1), (u -= 6) < 0)) return;
                             if (n < 1) return;
-                            let t = e.dispatcher.queue
+                            const t = e.dispatcher.queue
                                 .map((e, t) => `**${t + 1})** [${e.info.title.slice(0, 40)}](https://green-bot.app) (Requested by \`${e.info.requester ? e.info.requester.name : "Unknow"}\`)`)
                                 .slice(u, a)
                                 .join("\n");
@@ -123,7 +123,7 @@ export default class Queue extends Command {
                         if ("next_queue" === t.data.custom_id) {
                             if (((u += 6), (n += 1), (a += 6) > e.dispatcher.queue.length + 6)) return;
                             if (u < 0) return;
-                            let t = e.dispatcher.queue
+                            const t = e.dispatcher.queue
                                 .map((e, t) => `**${t + 1})** [${e.info.title.slice(0, 40)}](https://discord.gg/greenbot) (Requested by \`${e.info.requester ? e.info.requester.name : "Unknow"}\`)`)
                                 .slice(u, a)
                                 .join("\n");

@@ -30,7 +30,7 @@ export class SlashManager {
 
         const { channel, guild, member, me } = await this.resolvePartials(e)
         if (e.type === 3) {
-            let eligigle = this.client.shoukaku.checkEligible({ author: { id: e.member.id } })
+            const eligigle = this.client.shoukaku.checkEligible({ author: { id: e.member.id } })
             if (!eligigle && !(await this.client.database.checkPremium(e.guildID, e.member.id, true))) {
                 return e.editOriginalMessage({
                     embeds: [{ description: "**Oops!** You need to wait 2 seconds beetween each button click! \n\n Want to bypass this? Become a [Premium](https://green-bot.app/premium) user " }],
@@ -45,7 +45,7 @@ export class SlashManager {
             }
             if (e.data && "back_queue" === e.data.custom_id || "next_queue" === e.data.custom_id) return;
             if ("edit_pl" === e.data.custom_id) {
-                let t = await this.client.database.getUser(e.member.id)
+                const t = await this.client.database.getUser(e.member.id)
                 return void (t
                     ? e
                         .editOriginalMessage({
@@ -80,7 +80,7 @@ export class SlashManager {
                                                     ephemeral: true,
                                                 })
                                                 .then(async (s) => {
-                                                    let n = e.channel.createMessageCollector({ filter: (t) => t.author.id === e.member.id, time: 6e4 });
+                                                    const n = e.channel.createMessageCollector({ filter: (t) => t.author.id === e.member.id, time: 6e4 });
                                                     n.on("collect", async (s) => {
                                                         "cancel" === s.content.toLowerCase() && (n.stop(), e.deleteOriginalMessage()),
                                                             (a.name = s.content),
@@ -114,7 +114,7 @@ export class SlashManager {
                         })
                         .catch((e) => { }));
             }
-            let t: ExtendedDispatcher = this.client.queue.get(e.guildID);
+            const t: ExtendedDispatcher = this.client.queue.get(e.guildID);
             if (!t || !t.queue || !t.playing)
                 return e
                     .editOriginalMessage({ embeds: [{ description: "No music is being playing on this server", color: 0xC73829 }] })
@@ -125,7 +125,7 @@ export class SlashManager {
                     })
                     .catch((e) => { });
             if ("like" === e.data.custom_id) {
-                let s = await this.client.database.getUser(e.member.id);
+                const s = await this.client.database.getUser(e.member.id);
 
                 if (s.songs.find((e) => e.info.uri === t.current.info.uri))
                     return (
@@ -171,7 +171,7 @@ export class SlashManager {
                         }, 6000);
                     })
                     .catch((e) => { });
-            let s = await this.client.database.resolve(e.guildID);
+            const s = await this.client.database.resolve(e.guildID);
             if ("save_pl" === e.data.custom_id) {
                 if (0 == t.queue.length)
                     return e
@@ -185,13 +185,13 @@ export class SlashManager {
                 let s = await this.client.database.getUser(e.member.id),
                     a = `${guild.name}'s queue | #0`;
                 if (s.playlists.find((e) => e.name === a)) {
-                    let t = s.playlists.find((e) => e.name === a).name,
+                    const t = s.playlists.find((e) => e.name === a).name,
                         n = Number(t.charAt(t.length - 1));
                     if (((a = `${guild.name}'s queue | #${n + 1}`), s.playlists.find((e) => e.name === a))) {
-                        let t = s.playlists.find((e) => e.name === a).name,
+                        const t = s.playlists.find((e) => e.name === a).name,
                             n = Number(t.charAt(t.length - 1));
                         if (((a = `${guild.name}'s queue | #${n + 1}`), s.playlists.find((e) => e.name === a))) {
-                            let t = s.playlists.find((e) => e.name === a).name,
+                            const t = s.playlists.find((e) => e.name === a).name,
                                 n = Number(t.charAt(t.length - 1));
                             a = `${guild.name}'s queue | #${n + 1}`;
                         }
@@ -257,7 +257,7 @@ export class SlashManager {
                     : e.deleteOriginalMessage()
             }
             if ("seek_back_button" === e.data.custom_id) {
-                let s = 10000
+                const s = 10000
                 t.player.seekTo(t.player.position - s)
                 e
                     .editOriginalMessage({ embeds: [{ color: 0x3A871F, author: { name: `${e.member.username} has forwarded the current song of 15s!`, icon_url: e.member.avatarURL } }] })
@@ -267,7 +267,7 @@ export class SlashManager {
                     .catch((e) => { });
             }
             if ("seek_button" === e.data.custom_id) {
-                let s = 10000
+                const s = 10000
                 t.player.seekTo(t.player.position + s),
                     e
                         .editOriginalMessage({ embeds: [{ color: 0x3A871F, author: { name: `${e.member.username} has advanced the current song of 15s!`, icon_url: e.member.avatarURL } }] })
@@ -504,9 +504,9 @@ export class SlashManager {
 
                 if (!e.channel || "DM" === e.channel.type || !e.guildID)
                     return e.editOriginalMessage("You can't use slash commands on private messages!\n\nYou need to invite me to a discord server to get started!\nJoin our discord server for more help: discord.gg/greenbot");
-                let t = this.client.commands.getSlash(e.data.name)
+                const t = this.client.commands.getSlash(e.data.name)
                 if (!t) return console.log(e.data)
-                let s = await this.client.database.resolve(e.guildID),
+                const s = await this.client.database.resolve(e.guildID),
                     a = new SlashContext(this.client, e, e.data.options || [], s, me, member);
                 if (this.client.config.premiumCmd.includes(t.name) && !(await this.client.database.checkPremium(e.guildID, e.member.id, true))) {
                     return a.reply({
@@ -523,7 +523,7 @@ export class SlashManager {
                 }
 
                 if (this.client.config.voteLocks.includes(t.name)) {
-                    let t = await this.client.database.checkPremium(e.guildID, e.member.id, true),
+                    const t = await this.client.database.checkPremium(e.guildID, e.member.id, true),
                         s = await this.checkVoted(e.member.id);
                     if (!t && !s)
                         return e.editOriginalMessage({

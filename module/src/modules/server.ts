@@ -13,7 +13,7 @@ export class Server {
         if (!spawn) this.startServer(client)
     }
     async startServer(e) {
-        let r = this.app;
+        const r = this.app;
         r.use(urlencoded({ extended: false })),
             r.use(json()),
             r.listen((8000), function () {
@@ -21,12 +21,12 @@ export class Server {
             }),
             r.get("/fetchserver", async function (r, s) {
                 try {
-                    let t = r.query.server,
+                    const t = r.query.server,
                         a = r.query.asking,
                         n = (
                             await e.cluster.broadcastEval(
                                 async (e, r) => {
-                                    let s = e.guilds.get(r.serv);
+                                    const s = e.guilds.get(r.serv);
                                     if (!s) return null;
                                     let t = await e.database.resolve(s.id),
                                         a = e.queue.get(s.id),
@@ -54,18 +54,18 @@ export class Server {
                 }
             }),
             r.get("/removeSong", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.shard,
                     n = r.query.songId,
                     u = r.query.user,
                     o = r.query.avatar;
                 await e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return;
-                        let a = t.queue.find((e) => e.info.uri == r.songId);
+                        const a = t.queue.find((e) => e.info.uri == r.songId);
                         t.remove(a, true);
                         const channel = s.channels.get(t.player.connection.channelId);
                         if (channel && channel.type !== 2) return null
@@ -79,30 +79,30 @@ export class Server {
                     s.send({ done: true });
             }),
             r.post("/remove_pl_track", async function (r, s) {
-                let { song: t, playlist: a } = r.body,
+                const { song: t, playlist: a } = r.body,
                     n = await e.database.getUser(r.query.user);
                 if ("Liked Song" === a) (n.songs = n.songs.filter((e) => e.info.uri !== t)), n.save();
                 else {
-                    let e = n.playlists.find((e) => e.name === a);
+                    const e = n.playlists.find((e) => e.name === a);
                     if (!e) return console.log("No pl found");
                     (e.tracks = e.tracks.filter((e) => e.info.uri !== t)), (n.playlists = n.playlists.filter((e) => e.name !== a)), n.playlists.push(e), n.save();
                 }
                 s.send({ msg: "Done", code: 404 });
             }),
             r.post("/handle_like", async function (r, s) {
-                let { song: t } = r.body,
+                const { song: t } = r.body,
                     a = await e.database.getUser(r.query.user);
                 a.songs.find((e) => e.info.uri === t.info.uri) ? (a.songs = a.songs.filter((e) => e.info.uri !== t.info.uri)) : a.songs.push(t), a.save(), s.send({ msg: "Done", code: 404 });
             }),
             r.get("/addServer", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.socket,
                     n = r.query.voice,
                     u = r.query.shard,
                     o = r.query.userId;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         s && (e.queue.addWaiting({ serverId: r.serv, id: r.socket, userId: r.userId }), e.queue.addWaitingUser(s.id, r.socket, r.userId, r.voice));
                     },
                     { context: { socket: a, serv: t, userId: o, voice: n }, cluster: u }
@@ -110,14 +110,14 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/cleanSocket", async function (r, s) {
-                let t = r.query.socket,
+                const t = r.query.socket,
                     a = r.query.shard;
                 if (!t) return s.send({ error: true, message: "No socket option provided" });
                 await e.cluster.broadcastEval(async (e, r) => e.queue.cleanSocket(r.socket), { context: { socket: t }, cluster: a }), s.send({ done: true });
             }),
             r.get("/exists", async function (r, s) {
                 try {
-                    let t = r.query.server,
+                    const t = r.query.server,
                         a = (
                             await e.cluster.broadcastEval(
                                 async (e, r) => {
@@ -133,7 +133,7 @@ export class Server {
             }),
             r.get("/on_db", async function (r, s) {
                 try {
-                    let t = r.query.server,
+                    const t = r.query.server,
                         a = await e.client.database.resolve(t);
                     s.send(a ? { exists: true } : { exists: false });
                 } catch (e) {
@@ -142,7 +142,7 @@ export class Server {
             }),
             r.get("/del_db", async function (r, s) {
                 try {
-                    let t = r.query.server,
+                    const t = r.query.server,
                         a = await e.client.database.suppr(t);
                     s.send(a ? { exists: true } : { exists: false });
                 } catch (e) {
@@ -150,15 +150,15 @@ export class Server {
                 }
             }),
             r.get("/pause", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return
                         t.pause(!t.player.paused);
                         t.lastMessage &&
@@ -192,15 +192,15 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/skip", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return null;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return null
                         t.skip()
                         const channel = s.channels.get(t.player.connection.channelId);
@@ -218,17 +218,17 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/back", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return
-                        let song = t.previousTracks[t.previousTracks.length - 1];
+                        const song = t.previousTracks[t.previousTracks.length - 1];
                         t.queue.unshift(song);
                         t.previousTracks = t.previousTracks.filter((r) => r.info.uri !== song.info.uri);
                         t.backed = true;
@@ -249,15 +249,15 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/shuffle", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return null;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return
                         t.queue = t.queue.sort(() => Math.random() - 0.5);
                         const channel = s.channels.get(t.player.connection.channelId);
@@ -274,15 +274,15 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/loop", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return null;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return
                         t.repeat = "queue" === t.repeat ? "off" : "queue";
                         const channel = s.channels.get(t.player.connection.channelId);
@@ -300,18 +300,18 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/recent", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.songId,
                     o = r.query.avatar;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return null;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return null;
-                        let a = t.previousTracks.find((e) => e.info.uri === r.songId);
+                        const a = t.previousTracks.find((e) => e.info.uri === r.songId);
                         t.previousTracks = t.previousTracks.filter((e) => e.info.uri !== a.info.uri);
                         t.queue.splice(0, 0, a);
                         t.playing ? t.skip() : t.play();
@@ -331,18 +331,18 @@ export class Server {
                     s.send({ done: true });
             }),
             r.get("/jump", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar,
                     o = r.query.songId;
                 e.cluster.broadcastEval(
                     async (e, r) => {
-                        let s = e.guilds.get(r.serv);
+                        const s = e.guilds.get(r.serv);
                         if (!s) return;
-                        let t = e.queue.get(r.serv);
+                        const t = e.queue.get(r.serv);
                         if (!t) return;
-                        let a = t.queue.find((e) => e.info.uri === r.songId);
+                        const a = t.queue.find((e) => e.info.uri === r.songId);
                         t.remove(a, true);
                         t.queue.splice(0, 0, a);
                         t.skip();
@@ -361,7 +361,7 @@ export class Server {
                     s.send({ done: true });
             }),
             r.post("/add_result", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = "null" !== r.query.top || null,
                     u = r.query.shard,
@@ -370,12 +370,12 @@ export class Server {
                     l = r.body.name,
                     userId = r.body.userId;
                 if (o) {
-                    let r = e.client.shoukaku.getNode();
+                    const r = e.client.shoukaku.getNode();
                     await r.rest.resolve();
                 } else
                     e.cluster.broadcastEval(
                         async (e: BaseDiscordClient, r) => {
-                            let s = e.guilds.get(r.serv);
+                            const s = e.guilds.get(r.serv);
                             if (!s) return;
                             let t = e.queue.get(r.serv);
                             if (!t) {
@@ -395,8 +395,8 @@ export class Server {
                                     e.shoukaku.getNode())
                             }
                             let tr;
-                            let node = e.shoukaku.getNode("search");
-                            let a = (await node.rest.resolve(`${r.song}`))
+                            const node = e.shoukaku.getNode("search");
+                            const a = (await node.rest.resolve(`${r.song}`))
                             if(!a || !a.tracks) return console.log("hahdzhdazhd")
                             tr = a.tracks[0];
                             tr.info.requester = { name: r.user, avatar: r.avatar, id: r.userId };
@@ -420,7 +420,7 @@ export class Server {
                 s.send({ done: true });
             }),
             r.post("/add_pl_track", async function (r, s) {
-                let t = r.query.server,
+                const t = r.query.server,
                     a = r.query.user,
                     n = r.query.shard,
                     u = r.query.avatar,
@@ -429,10 +429,10 @@ export class Server {
                     console.log(o),
                     e.cluster.broadcastEval(
                         async (e, r) => {
-                            let s = e.guilds.get(r.serv);
+                            const s = e.guilds.get(r.serv);
                             if (!s) return null;
                             console.log(r.song);
-                            let t = e.queue.get(r.serv);
+                            const t = e.queue.get(r.serv);
                             if (!t) return
 
                             t.addTrack(r.song);

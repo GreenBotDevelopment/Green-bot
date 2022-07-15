@@ -44,7 +44,7 @@ export default class Queue extends Command {
                             : `I can only play music in the <#${e.guildDB.vcs[0]}> channel.`
                     );
             }
-            let a = await e.client.queue.create(e, t);
+            const a = await e.client.queue.create(e, t);
             
             e.successMessage(`Added [Your liked songs](https://green-bot.app) to the queue with **${s.songs.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""}`),
                 s.songs.forEach((e) => {
@@ -78,7 +78,7 @@ export default class Queue extends Command {
             if (!a || 0 == a.tracks.length) return e.errorMessage("Your playlist is empty! Add some songs before playing it!");
             const n = e.client.shoukaku.getNode();
             if (!n) return e.errorMessage("No nodes are available yet! You can report this error in [Green bot Server](https://discord.gg/greenbot)");
-            let r = await e.client.queue.create(e, n);
+            const r = await e.client.queue.create(e, n);
             e.successMessage(`Added [${a.name}](https://green-bot.app) to the queue with **${a.tracks.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""}`),
                 a.tracks.forEach((e) => {
                     r.queue.push(e);

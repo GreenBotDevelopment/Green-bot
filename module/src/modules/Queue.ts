@@ -47,8 +47,8 @@ export class QueueManager extends Map {
     async addWaiting(socket: socketData) {
         return this._sockets.find((sk) => sk.id === socket.id) || this._sockets.push(socket), this._waiting.find((sk) => sk.id === socket.id) || this._waiting.push(socket);
     }
-    async addWaitingUser(serverId: string, socketId: string, userId: string, isInVoice: string | Boolean) {
-        let data = new socketData({ serverId: serverId, userId: userId, id: socketId })
+    async addWaitingUser(serverId: string, socketId: string, userId: string, isInVoice: string | boolean) {
+        const data = new socketData({ serverId: serverId, userId: userId, id: socketId })
         if ("true" === isInVoice) {
             this.inVoice.find((sk) => sk.id === socketId) || this.inVoice.push(data)
         } else {
@@ -75,18 +75,18 @@ export class QueueManager extends Map {
     async emitOp(data: emitData) {
         const fetched = await fetch(this.dashURL, { method: "post", body: JSON.stringify(data), headers: { "Content-Type": "application/json" } });
         if (!fetched || !fetched.ok) return console.log("Something when wrong while sending an op");
-        let result = await fetched.json();
+        const result = await fetched.json();
         return result.outdated ? (this.cleanSocket(data.socketId), console.log("[Ghot socket] A socket has been just killed"), false) : true;
     }
     async create(context: Context | any, audioNode: Node) {
 
-        let queueData = this.get(context.guild.id);
+        const queueData = this.get(context.guild.id);
         if (!context.member.voiceState.channelID) return (context.errorMessage("You need to be in a voice channel to use this command"), null)
         if (queueData) {
             if (queueData && context.me.voiceState.channelID) return queueData;
-            let k = this.client.shoukaku.players.get(context.guild.id)
+            const k = this.client.shoukaku.players.get(context.guild.id)
             if(k) k.connection.disconnect()
-            let errored: Boolean = false;
+            let errored: boolean = false;
             const node = this.client.shoukaku.getNode()
             const player = await node.joinChannel({
                 guildId: context.guild.id,
@@ -107,7 +107,7 @@ export class QueueManager extends Map {
             return queueData;
         } else {
             if (this.client.shoukaku.players.get(context.guild.id)) {
-                let player = this.client.shoukaku.players.get(context.guild.id)
+                const player = this.client.shoukaku.players.get(context.guild.id)
 
                 let textChannelId = context.channel.id;
                 context.guildDB.textchannel && context.guild.channels.get(context.guildDB.textchannel) && (textChannelId = context.guildDB.textchannel);
@@ -144,7 +144,7 @@ export class QueueManager extends Map {
                 return false
             }
             context.guild.creating = true;
-            let errored: Boolean = false;
+            let errored: boolean = false;
             if (this.client.shoukaku.players.get(context.guild.id)) return (context.errorMessage("It seems that another player is already created or creating!"), null)
             if (!context.member.voiceState.channelID) return;
             const player: any = await audioNode.joinChannel({

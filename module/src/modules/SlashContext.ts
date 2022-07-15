@@ -7,12 +7,12 @@ import { ExtendedDispatcher } from "./ExtendedDispatcher";
 export class SlashContext {
     client: BaseDiscordClient;
     interaction: CommandInteraction<any>;
-    args: Array<String>;
+    args: Array<string>;
     guildDB: any;
     voice: any;
     me: Member;
     member: Member;
-    constructor(client: BaseDiscordClient, interaction: CommandInteraction<any>, args: Array<String>, data: any, me: Member, member: Member) {
+    constructor(client: BaseDiscordClient, interaction: CommandInteraction<any>, args: Array<string>, data: any, me: Member, member: Member) {
         this.client = client;
         this.interaction = interaction;
         this.args = args;

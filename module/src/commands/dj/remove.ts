@@ -20,7 +20,7 @@ export default class Volume extends Command {
     }
     run({ ctx: e }) {
         if (isNaN(e.args[0])) {
-            let r = e.dispatcher.queue.find((r) => r.info.title.toLowerCase().includes(e.args.join(" ")));
+            const r = e.dispatcher.queue.find((r) => r.info.title.toLowerCase().includes(e.args.join(" ")));
             if (!r) return e.errorMessage("No tracks");
             e.dispatcher.remove(r), e.successMessage(`Removed [${r.info.title}](https://discord.gg/greenbot) from the queue`);
         } else if (e.args.length > 1) {
@@ -28,7 +28,7 @@ export default class Volume extends Command {
                 t = [];
             if (
                 (e.args.forEach((o) => {
-                    let s = o.replace("#", "") - 1;
+                    const s = o.replace("#", "") - 1;
                     if (!e.dispatcher.queue[s]) return console.log(`${o} not found`);
                     r++, t.push(e.dispatcher.queue[s]);
                 }),
@@ -40,7 +40,7 @@ export default class Volume extends Command {
             }),
                 e.successMessage(`Removed ${r} songs from the queue!`);
         } else {
-            let r = e.args[0].replace("#", "") - 1;
+            const r = e.args[0].replace("#", "") - 1;
             const t = e.dispatcher.queue[r];
             if (!t) return e.errorMessage("There is no track with this number in your queue.");
             e.dispatcher.remove(r), e.successMessage(`Removed [${t.info.title}](https://discord.gg/greenbot) from the queue`);

@@ -30,7 +30,7 @@ export default class play extends Command {
             a.client.database.handleCache(a.guildDB)
         } 
         let d = a.args.join(" ");
-        let create = a.dispatcher ? false : true;
+        const create = a.dispatcher ? false : true;
         if (!d && a.dispatcher && a.dispatcher.player.paused) return a.dispatcher.pause(false), a.successMessage("\u23F8 Music unpaused!");
         d.includes("soundcloud") && d.includes("?si") && (d = d.split("?")[0]), d.includes("soundcloud") && d.includes("?in_system_playlist") && (d = d.split("?in_system_playlist")[0])
         if (!a.me.voiceState.channelID) {
@@ -52,9 +52,9 @@ export default class play extends Command {
                 );
         }
         if (d.includes("pornhub") && !a.channel.nsfw) return a.errorMessage("Please mark this channel as NSFW channel before being able to play this type of videos.\nRemember that this content is 18+ and could cause grave addictions.");
-        let h = a.client.shoukaku.getNode();
+        const h = a.client.shoukaku.getNode();
         if (!h) return a.errorMessage("No nodes are available yet! You can report this error in [Green bot Server](https://discord.gg/greenbot)");
-        let c = await a.client.queue.create(a, h);
+        const c = await a.client.queue.create(a, h);
         if (!c) return a.errorMessage("**Uh Oh..**! Something went wrong while joining your voice channel.\nYou can do the command again or use the `" + a.guildDB.prefix + "forcejoin` command to solve the issue");
         if (!d) {
             if (create) return
@@ -65,7 +65,7 @@ export default class play extends Command {
                     : a.send(`Queue is empty! Do \`${a.guildDB.prefix}play <music>\` to add something to the queue.`);
             return
         }
-        let b = await a.client.shoukaku.search(h, d, a);
+        const b = await a.client.shoukaku.search(h, d, a);
         if (!b) return;
         if (c.channelId !== a.channel.id && !a.guildDB.textchannel) a.channelId = a.channel.id
 
@@ -78,11 +78,11 @@ export default class play extends Command {
                 c.addTrack(b.raw, a.author),
                     c.queue.length && a.send({ embeds: [{ description: `Enqueued **[${b.sp.tracks[0].title.slice(0, 100)}](${b.sp.tracks[0].originURL})** at position **${c.queue.length + 1}**`, color: 0x3a871f }] });
             else if ("playlist" === b.sp.type) {
-                for (let e of (a.send({ embeds: [{ description: `Added [${b.sp.name.slice(0, 50)}](${d}) with ${b.raw.length} tracks ${a.guildDB.auto_shuffle ? "\u{1F500} And automatically shuffled" : ""}`, color: 0x3a871f }] })
+                for (const e of (a.send({ embeds: [{ description: `Added [${b.sp.name.slice(0, 50)}](${d}) with ${b.raw.length} tracks ${a.guildDB.auto_shuffle ? "\u{1F500} And automatically shuffled" : ""}`, color: 0x3a871f }] })
                     .catch(() => null),
                     b.raw)) {
                     if (b.scraped && !e.track) return;
-                    let l = {
+                    const l = {
                         info: {
                             title: b.scraped ? e.name : e.title,
                             uri: b.scraped ? e.track.external_urls.spotify : e.originURL,
@@ -104,8 +104,8 @@ export default class play extends Command {
                     return a.errorMessage(
                         "No results found on spotify for your query!\nIf that's a playlist, it's maybe private! [How to make a spotify playlist public?](https://www.androidauthority.com/make-spotify-playlist-public-3075538/)"
                     );
-                for (let f of b.raw) {
-                    let m = {
+                for (const f of b.raw) {
+                    const m = {
                         info: {
                             title: b.scraped ? f.name : f.title,
                             author: b.scraped ? f.artists[0].name : f.artists,
@@ -128,10 +128,10 @@ export default class play extends Command {
             }
             return;
         }
-        let { loadType: n, tracks: i, playlistInfo: o } = b;
+        const { loadType: n, tracks: i, playlistInfo: o } = b;
         if ("PLAYLIST_LOADED" !== n) {
             if (!b.tracks.length) return a.errorMessage("I didn't find any song on the query you provided!");
-            let j = b.tracks[0],
+            const j = b.tracks[0],
                 k = j;
             if (c.queue.filter((a) => a.info.uri === j.info.uri).length > 5){
                 return a.errorMessage("**Calm Down!** This song is already in the queue, if you want to play it alot of times, just enable the [loop mode](https://guide.green-bot.app/features/loop-mode) with the `loop` command!");
@@ -154,7 +154,7 @@ export default class play extends Command {
         }
     }
     checkPl(b) {
-        var a = b.match(/^.*(youtu.be\/|list=)([^#\&\?]*).*/);
+        const a = b.match(/^.*(youtu.be\/|list=)([^#\&\?]*).*/);
         return !(!a || !a[2]);
     }
 }

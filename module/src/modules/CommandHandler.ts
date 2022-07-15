@@ -50,7 +50,7 @@ export class CommandLoader {
     }
 
     removeCommand(commandName: string) {
-        let index = this.commands.findIndex(cmd => cmd.name === commandName)
+        const index = this.commands.findIndex(cmd => cmd.name === commandName)
         if (!index || index == -1) return new Error("[CommandHandler] Requested to remove command but the name was not found: " + commandName + "");
         this.commands.slice(index, 1);
         return true

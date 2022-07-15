@@ -22,10 +22,10 @@ export default class Stop extends Command {
         return new Promise((t) => setTimeout(t, e).unref());
     }
     async run({ ctx: e }) {
-        let t = e.args[0].value;
+        const t = e.args[0].value;
         const a = e.client.shoukaku.getNode();
         if (!a) return e.errorMessage("No nodes are available yet! You can report this error is [Green bot Server](https://discord.gg/greenbot)");
-        let r = await e.client.queue.create(e, a);
+        const r = await e.client.queue.create(e, a);
         if (!r) return e.errorMessage("Something went wrong while joining your voice channel.\nPlease do the command again to fix it.");
         const s = await e.client.shoukaku.search(a, t, e);
         if (t.includes("spotify")) {
@@ -41,7 +41,7 @@ export default class Stop extends Command {
                     .catch(() => null);
                 for (const t of s.raw) {
                     if (s.scraped && !t.track) return;
-                    let a = {
+                    const a = {
                         info: {
                             title: s.scraped ? t.name : t.title,
                             uri: s.scraped ? t.track.external_urls.spotify : t.originURL,
@@ -64,7 +64,7 @@ export default class Stop extends Command {
                         "No results found on spotify for your query!\nIf that's a playlist, it's maybe private! [How to make a spotify playlist public?](https://www.androidauthority.com/make-spotify-playlist-public-3075538/)"
                     );
                 for (const t of s.raw) {
-                    let a = {
+                    const a = {
                         info: {
                             title: s.scraped ? t.name : t.title,
                             author: s.scraped ? t.artists[0].name : t.artists,

@@ -18,7 +18,7 @@ export default class Stop extends Command {
         return { voice: true,  };
     }
     async run({ ctx: e }) {
-        let n = e.args.join(" ");
+        const n = e.args.join(" ");
         if (!e.dispatcher || !e.dispatcher.player.connection) {
             const channel = await e.getVoiceChannel();
             if (!e.client.hasBotPerm(e, "voiceConnect", channel))
@@ -41,7 +41,7 @@ export default class Stop extends Command {
         if (!o) return e.errorMessage("I'm not able to join your voice channel. Please try again");
         t.rest.resolve(`ytmsearch:${n}`).then((t) => {
             if (!t.tracks.length || 0 == t.tracks.length) return e.errorMessage("I didn't find any song on the query you provided!");
-            let r = t.tracks
+            const r = t.tracks
                 .map((e, n) => `**${n + 1}**. [${e.info.title.slice(0, 100)}](https://discord.gg/greenbot)`)
                 .slice(0, 10)
                 .join("\n");

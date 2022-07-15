@@ -93,7 +93,7 @@ export default class Queue extends Command {
                         if ("back_queue" === a.data.custom_id) {
                             if (((o -= 6), (s -= 1), (t -= 6) < 0)) return;
                             if (s < 1) return;
-                            let a = n.songs
+                            const a = n.songs
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, o)
                                 .join("\n");
@@ -120,7 +120,7 @@ export default class Queue extends Command {
                         if ("next_queue" === a.data.custom_id) {
                             if (((t += 6), (s += 1), (o += 6) > n.songs.length + 6)) return;
                             if (t < 0) return;
-                            let a = n.songs
+                            const a = n.songs
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, o)
                                 .join("\n");
@@ -241,7 +241,7 @@ export default class Queue extends Command {
                         if ("back_queue" === u.data.custom_id) {
                             if ((console.log("got back"), (n -= 6), (i -= 1), (t -= 6) < 0)) return;
                             if (i < 1) return;
-                            let u = s
+                            const u = s
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, n)
                                 .join("\n");
@@ -268,7 +268,7 @@ export default class Queue extends Command {
                         if ("next_queue" === u.data.custom_id) {
                             if ((console.log("got next"), (t += 6), (i += 1), (n += 6) > s.length + 6)) return console.log(n), console.log(s.length + 6);
                             if (t < 0) return;
-                            let u = s
+                            const u = s
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, n)
                                 .join("\n");

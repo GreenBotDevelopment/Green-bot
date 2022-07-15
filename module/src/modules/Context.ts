@@ -8,13 +8,13 @@ import { ExtendedDispatcher } from "./ExtendedDispatcher";
 export class Context {
     client: BaseDiscordClient;
     message: Message<any>;
-    args: Array<String>;
+    args: Array<string>;
     guildDB: any;
     me: Member;
     voice: any;
     member: Member;
     messageController?: Message;
-    constructor(client: BaseDiscordClient, message: Message<any>, args: Array<String>, data: any, me: Member, member: Member) {
+    constructor(client: BaseDiscordClient, message: Message<any>, args: Array<string>, data: any, me: Member, member: Member) {
         this.client = client;
         this.message = message;
         this.args = args;

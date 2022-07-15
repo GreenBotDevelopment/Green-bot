@@ -7,7 +7,7 @@ const { token } = require('./config.js');
 console.log('• Loading the commands to refresh');
 // the current amount of commands to refresh
 const commands = [];
-let x=-1;
+const x=-1;
 // peseudo load the commands to get the interaction data
 const files = readdirSync(`${__dirname}/src/interactions`, { withFileTypes: true });
 files.forEach(cat => {

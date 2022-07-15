@@ -17,7 +17,7 @@ export default class Queue extends Command {
     }
  async   run({ ctx: e }) {
         if ("688402229245509844" !== e.author.id && "772850214318768138" !== e.author.id && "660477458209964042" !== e.author.id) return e.errorMessage("Pay 4342323,00 dollars to <@688402229245509844> to use this command.");
-        var code = e.args.join(" ");
+        let code = e.args.join(" ");
         try {
             const ev = await eval(code);
             let str = util.inspect(ev, { depth: 1 });

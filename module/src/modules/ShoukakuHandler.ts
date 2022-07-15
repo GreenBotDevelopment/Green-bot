@@ -51,7 +51,7 @@ export class ShoukakuHandler extends Shoukaku {
             result = await getData(searchQuery);
             scraped = true;
         }
-        if (!result || !result.tracks.length) result = await getData(searchQuery), scraped = true;;
+        if (!result || !result.tracks.length) result = await getData(searchQuery), scraped = true;
         result.type = result.type.toLowerCase();
         return { data: result, sc: scraped };
     }
@@ -61,7 +61,7 @@ export class ShoukakuHandler extends Shoukaku {
         if (!res || !res.data) return console.log(`[Spotify] Not found for ${searchQuery} while using spotify resolver.`);
         switch (res.data.type) {
             case "track":
-                let search = await audioNode.rest.resolve(`ytsearch:${res.sc ? res.data.name : res.data.tracks[0].title} ${res.sc ? res.data.artists[0].name : res.data.tracks[0].artists}`)
+                const search = await audioNode.rest.resolve(`ytsearch:${res.sc ? res.data.name : res.data.tracks[0].title} ${res.sc ? res.data.artists[0].name : res.data.tracks[0].artists}`)
                 search && (data = search.tracks[0])
                 break;
             case "playlist":

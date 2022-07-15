@@ -20,13 +20,13 @@ export default class Volume extends Command {
     run({ ctx: e }) {
         let r = e.args[0];
         if (r.includes(":")) {
-            let t = parseInt(r.split(":")[0]);
+            const t = parseInt(r.split(":")[0]);
             if (isNaN(t) || t < 0) return e.errorMessage("Please provide a valid number of minutes");
-            let s = parseInt(r.replace(`${t}:`, "").replace("s", ""));
+            const s = parseInt(r.replace(`${t}:`, "").replace("s", ""));
             if (isNaN(s) || s < 0) return e.errorMessage("Please provide a valid number of seconds");
             r = 6e4 * t + 1e3 * s;
         } else r.includes("s") || r.includes("h") || r.includes("m") ? (r = ms(r)) : (r *= 1e3);
-        let t = humanizeTime(r);
+        const t = humanizeTime(r);
         if (r > e.dispatcher.current.info.length) return e.errorMessage("Your provided a duration higher than the current song duration");
         e.dispatcher.player.seekTo(r), e.successMessage(`➡ Playback set to \`${t}\``);
     }

@@ -68,7 +68,7 @@ class Song implements Track {
 }
 
 export class ExtendedDispatcher {
-    private importantCodes: Array<Number>;
+    private importantCodes: Array<number>;
     private client: BaseDiscordClient;
     public metadata: dispatcherMetadata;
     public player: Player;
@@ -483,13 +483,13 @@ export class ExtendedDispatcher {
             } else {
                 if (!nextTrack.info.author) {
                     if (!nextTrack.info.uri) return this.skip(true);
-                    let scrapedData = await getData(nextTrack.info.uri);
+                    const scrapedData = await getData(nextTrack.info.uri);
                     if (!scrapedData) return this.skip(true);
                     nextTrackTemp = { author: scrapedData.artists[0].name, title: scrapedData.name, url: nextTrack.info.uri, requester: nextTrack.info.requester, image: scrapedData.image };
                 }
                 const resolve = await this.node.rest.resolve(`ytsearch:${nextTrackTemp ? nextTrackTemp.title : nextTrack.info.title} ${nextTrackTemp ? nextTrackTemp.author : nextTrack.info.author}`);
                 if (!resolve || !resolve.tracks.length) return this.skip(true)
-                let finnal_track = new Song(resolve.tracks[0]);
+                const finnal_track = new Song(resolve.tracks[0]);
                 finnal_track.info.title = nextTrackTemp ? nextTrackTemp.title : nextTrack.info.title;
                 finnal_track.info.image = nextTrack.info.image;
                 finnal_track.info.author = nextTrackTemp ? nextTrackTemp.author : nextTrack.info.author;
@@ -529,13 +529,13 @@ export class ExtendedDispatcher {
             } else {
                 if (!nextTrack.info.author) {
                     if (!nextTrack.info.uri) return this.skip(true);
-                    let scrapedData = await getData(nextTrack.info.uri);
+                    const scrapedData = await getData(nextTrack.info.uri);
                     if (!scrapedData) return this.skip(true);
                     nextTrackTemp = { author: scrapedData.artists[0].name, title: scrapedData.name, url: nextTrack.info.uri, requester: nextTrack.info.requester, image: scrapedData.image };
                 }
                 const resolve = await this.node.rest.resolve(`ytsearch:${nextTrackTemp ? nextTrackTemp.title : nextTrack.info.title} ${nextTrackTemp ? nextTrackTemp.author : nextTrack.info.author}`);
                 if (!resolve || !resolve.tracks.length) return this.skip(true)
-                let finnal_track = new Song(resolve.tracks[0]);
+                const finnal_track = new Song(resolve.tracks[0]);
                 finnal_track.info.title = nextTrackTemp ? nextTrackTemp.title : nextTrack.info.title;
                 finnal_track.info.image = nextTrack.info.image;
                 finnal_track.info.author = nextTrackTemp ? nextTrackTemp.author : nextTrack.info.author;
@@ -569,7 +569,7 @@ export class ExtendedDispatcher {
         )
             this.queue = this.queue.filter((t) => t.info.uri !== e.info.uri);
         else {
-            let t = this.queue[e];
+            const t = this.queue[e];
             t && (this.queue = this.queue.filter((e) => e.info.uri !== t.info.uri));
         }
         return true;

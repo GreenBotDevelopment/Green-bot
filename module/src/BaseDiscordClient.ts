@@ -154,7 +154,7 @@ export class BaseDiscordClient extends Eris.Client {
         })
     }
     listenners(debug: boolean) {
-        let _list = debug ? ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection", "warning"] : ["uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"];
+        const _list = debug ? ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection", "warning"] : ["uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"];
         _list.forEach((event) => {
             process.on(event, new BaseError(event).handler)
         })
@@ -163,7 +163,7 @@ export class BaseDiscordClient extends Eris.Client {
 
     hasBotPerm(context: Context | SlashContext, perm: any, channelVoice?: Eris.TextVoiceChannel) {
         if (context.me.permissions.has("administrator")) return true;
-        let channel = channelVoice || context.channel;
+        const channel = channelVoice || context.channel;
         let hasPerm = false;
         if (perm === "voiceConnect" && !this.hasBotPerm(context, "viewChannel", channelVoice)) return false
         const owerwrites = channel.permissionOverwrites.filter(ow => ow.id === this.user.id || context.me.roles.includes(ow.id))

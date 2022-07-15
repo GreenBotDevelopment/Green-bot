@@ -38,7 +38,7 @@ export default class Queue extends Command {
                 else if ("playlist" === u.sp.type)
                     for (const a of u.raw) {
                         if (u.scraped && !a.track) return s.delete(), e.errorMessage("No results found for your query");
-                        let r = {
+                        const r = {
                             info: {
                                 title: u.scraped ? a.name : a.title,
                                 image: u.scraped ? a.image : a.thumbnail,
@@ -53,7 +53,7 @@ export default class Queue extends Command {
                 else {
                     if ("album" !== u.sp.type) return s.delete(), e.errorMessage("No results found for your query");
                     for (const a of u.raw) {
-                        let r = {
+                        const r = {
                             info: {
                                 title: u.scraped ? a.name : a.title,
                                 author: u.scraped ? a.artists[0].name : a.artists,
@@ -70,9 +70,9 @@ export default class Queue extends Command {
                 const { loadType: a, tracks: r, playlistInfo: o } = u;
                 if ("PLAYLIST_LOADED" !== a) {
                     if (!u.tracks.length) return s.delete(), e.errorMessage("No results found for your query");
-                    let a = u.tracks[0];
+                    const a = u.tracks[0];
                     (a.info.requester = { name: e.author.username, id: e.author.id, avatar: e.author.dynamicAvatarURL() }), t.push(a);
-                } else for (let a of r) (a.info.requester = { name: e.author.username, id: e.author.id }), t.push(a);
+                } else for (const a of r) (a.info.requester = { name: e.author.username, id: e.author.id }), t.push(a);
             }
         setTimeout(async () => {
             s.delete(), e.successMessage(1 == t.length ? `Successfully added [${t[0].info.title}](${t[0].info.uri}) to **${a}**` : `Successfully added ${t.length} track(s) to **${a}** `);
