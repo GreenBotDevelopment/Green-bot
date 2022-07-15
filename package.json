@@ -29,14 +29,12 @@
         "@discordjs/collection": "^0.3.2",
         "@discordjs/rest": "^0.5.0",
         "@tuneorg/spotify": "^1.5.0",
-        "binarytf": "^2.1.1",
         "body-parser": "^1.19.2",
-        "bufferutil": "^4.0.6",
         "dblapi.js": "^2.4.1",
         "discord-api-types": "^0.26.1",
         "discord-hybrid-sharding": "^1.4.3",
         "discord.js": "^13.8.0",
-        "erlpack": "github:discord/erlpack",
+        "eris-utils": "^0.2.8",
         "express": "^4.17.3",
         "moment": "^2.29.1",
         "mongoose": "^6.2.4",
@@ -46,9 +44,7 @@
         "petitio": "^1.4.0",
         "shoukaku": "^3.1.0",
         "spotify-url-info": "^2.2.5",
-        "utf-8-validate": "^5.0.8",
-        "uuid": "^8.3.2",
-        "zlib-sync": "^0.1.7"
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "eslint": "^8.1.0"
