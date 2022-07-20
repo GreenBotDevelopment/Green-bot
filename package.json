@@ -17,7 +17,7 @@
         "commit": "cz"
     },
     "dependencies": {
-        "@tuneorg/spotify": "^1.5.0",
+        "@tuneorg/spotify": "^2.0.1",
         "body-parser": "^1.19.2",
         "dblapi.js": "^2.4.1",
         "discord-hybrid-sharding": "github:meister03/discord-hybrid-sharding",
