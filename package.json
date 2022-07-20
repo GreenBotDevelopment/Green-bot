@@ -17,7 +17,7 @@
     "commit": "cz"
   },
   "dependencies": {
-    "@discordjs/collection": "^0.3.2",
+    "@discordjs/collection": "^1.0.0",
     "@discordjs/rest": "^0.5.0",
     "@godaddy/terminus": "^4.9.0",
     "@tuneorg/spotify": "^1.5.0",
