@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const QuickCommand_1 = require("../../abstract/QuickCommand");
+class Pitch extends QuickCommand_1.Command {
+    get name() { return "pitch"; }
+    get description() { return "Sets the pitch of the playback"; }
+    get category() { return "Queue Management"; }
+    get arguments() { return [{ name: "time", description: "The pitch", required: true }]; }
+    get checks() { return { voice: true, dispatcher: true, channel: true, premium: true }; }
+    async run({ ctx: e }) { const t = e.args[0]; return !t || isNaN(t) || t > 5 || t < 0 ? e.successMessage("The duration you provided is incorrect. It must be a number beetwen **1** and **5**") : (e.dispatcher.player.setTimescale({ pitch: t, rate: 1, speed: 1 }), e.successMessage(`➡ Pitch of the playback set to \`${t}\``)); }
+}
+exports.default = Pitch;
