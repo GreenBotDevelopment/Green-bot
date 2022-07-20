@@ -1,42 +1,41 @@
 {
-  "name": "greenbot",
-  "version": "10.0.0",
-  "description": "A nice discord music bot",
-  "main": "dist/index.js",
-  "author": "Pauldb09",
-  "private": false,
-  "homepage": "https://github.com/pauldb09/Green-bot#readme",
-  "bugs": "https://github.com/pauldb09/Green-bot/issues",
-  "engines": {
-    "node": ">=16.11.0"
-  },
-  "scripts": {
-    "dev": "nodemon index.ts",
-    "start": "tsc --build && node dist/index.js",
-    "build": "tsc --build",
-    "commit": "cz"
-  },
-  "dependencies": {
-    "@tuneorg/spotify": "^1.5.0",
-    "binarytf": "^2.1.1",
-    "body-parser": "^1.19.2",
-    "dblapi.js": "^2.4.1",
-    "discord-hybrid-sharding": "github:meister03/discord-hybrid-sharding",
-    "discord.js": "^13.8.0",
-    "eris": "^0.17.1",
-    "eris-utilities": "^0.1.5",
-    "express": "^4.17.3",
-    "moment": "^2.29.1",
-    "mongoose": "^6.2.4",
-    "ms": "^2.1.3",
-    "node-fetch": "^2.6.7",
-    "petitio": "^1.4.0",
-    "shoukaku": "^3.1.0",
-    "spotify-url-info": "^2.2.5",
-    "tsc": "^2.0.4",
-    "typescript": "^4.7.4",
-  },
-  "devDependencies": {
-    "eslint": "^8.1.0"
-  }
+    "name": "greenbot",
+    "version": "10.0.0",
+    "description": "A nice discord music bot",
+    "main": "dist/index.js",
+    "author": "Pauldb09",
+    "private": false,
+    "homepage": "https://github.com/pauldb09/Green-bot#readme",
+    "bugs": "https://github.com/pauldb09/Green-bot/issues",
+    "engines": {
+        "node": ">=16"
+    },
+    "scripts": {
+        "dev": "nodemon index.ts",
+        "start": "tsc --build && node dist/index.js",
+        "build": "tsc --build",
+        "commit": "cz"
+    },
+    "dependencies": {
+        "@tuneorg/spotify": "^1.5.0",
+        "body-parser": "^1.19.2",
+        "dblapi.js": "^2.4.1",
+        "discord-hybrid-sharding": "github:meister03/discord-hybrid-sharding",
+        "discord.js": "^13.8.0",
+        "eris": "^0.17.1",
+        "eris-utilities": "^0.1.5",
+        "express": "^4.17.3",
+        "moment": "^2.29.1",
+        "mongoose": "^6.2.4",
+        "ms": "^2.1.3",
+        "node-fetch": "^2.6.7",
+        "petitio": "^1.4.0",
+        "shoukaku": "^3.1.0",
+        "spotify-url-info": "^2.2.5",
+        "tsc": "^2.0.4",
+        "typescript": "^4.7.4"
+    },
+    "devDependencies": {
+        "eslint": "^8.1.0"
+    }
 }
