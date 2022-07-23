@@ -96,6 +96,9 @@ When the modules have been downloaded and a `node-modules` directory has been cr
 You can find some comments about every setting.
 
 __Step 4.__
+
+re open your terminal and send `tsc --build` to build the files, you need to do it for every change.
+
 Now, you can start the bot by pressing `F5` or putting `npm run start` in the terminal.
 
 __Step 5.__
