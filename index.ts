@@ -28,7 +28,7 @@ manager.on("clusterCreate", (cluster) => {
     cluster.on('message', message => {
         console.log(message);
        if(message === "restart"){
-        manager.recluster.start(  {
+        manager.recluster && manager.recluster.start(  {
             delay: 2000,
             timeout: -1,
             shardsPerClusters: 15,
