@@ -8,7 +8,7 @@ export default {
     debug: false,
     botId: "",
     premiumCmd: [],
-    voteLock: [],
+    voteLocks: [],
     // The prefix used to answer to commands
     prefix: "*",
     // Optional, for loading playlists with more than 100 tracks ( Else using a scaper )
