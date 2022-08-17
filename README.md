@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://tools.bananonz.dev/av?id=783708073390112830">
     <h3>Green-bot</h3>
         If you liked this repository, feel free to leave a star ⭐ and follow me, it supports me a lot! Thanks you!
     <br><br>
