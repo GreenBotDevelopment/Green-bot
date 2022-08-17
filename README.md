@@ -59,6 +59,8 @@
  
 **📁 Installation**
 
+Before you start, make sure that Green-Bot isn't meant to be self-hosted.
+
 Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
 
 And yes, it's same for replit.
