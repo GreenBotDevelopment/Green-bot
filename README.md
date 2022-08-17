@@ -59,7 +59,7 @@
  
 **📁 Installation**
 
-Before you start, make sure that Green-Bot isn't meant to be self-hosted.
+Before you start, please not that if you want to self-host this bot for personnal user you should purchase a custom bot. Installation is not beginner friendly
 
 Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
 
