@@ -21,7 +21,7 @@
         "body-parser": "^1.19.2",
         "dblapi.js": "^2.4.1",
         "discord-hybrid-sharding": "github:meister03/discord-hybrid-sharding",
-        "discord.js": "^13.8.0",
+        "discord.js": "^14.3.0",
         "eris": "^0.17.1",
         "eris-utilities": "^0.1.5",
         "express": "^4.17.3",
