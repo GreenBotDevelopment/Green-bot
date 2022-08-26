@@ -10,6 +10,4 @@ To set a channel, just do the following command replacing `{prefix}` by your pre
 
 #### Disable the plugin
 
-To disable the plugin, just do the following command replacing `{prefix}` by your prefix=
-
 `{prefix}textchannel reset`

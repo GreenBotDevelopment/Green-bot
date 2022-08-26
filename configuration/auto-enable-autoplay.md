@@ -4,12 +4,8 @@ You can automatically enable the autoplay for every single new queue with the Au
 
 #### Enable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}autoautoplay`
+Run `/autoautoplay`
 
 #### Disable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}autoautoplay`
+Execute the command again

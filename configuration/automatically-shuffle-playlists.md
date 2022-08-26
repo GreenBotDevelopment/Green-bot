@@ -4,12 +4,8 @@ You can shuffle automatically the spotify/youtube playlist with the Auto-Shuffle
 
 #### Enable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}autoshuffle`
+Run `/autoshuffle`
 
 #### Disable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}autoshuffle`
+Run `/autoshuffle`

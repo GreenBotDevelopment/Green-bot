@@ -1,17 +1,13 @@
 # Disable the messages announcing a new song
 
-You can disable the following message if you don't want that your channel goes spammed
+You can disable the following message if you don't want that your channel full of messages
 
 ![](<../.gitbook/assets/image (21).png>)
 
 #### Enable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}`announcesongs
+Run `/announcesongs`
 
 #### Disable the plugin.
 
-Just run the following command replacing `{prefix}`by your prefix.
-
-`{prefix}`announcesongs
+Execute the command again
