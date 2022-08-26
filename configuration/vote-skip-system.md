@@ -4,12 +4,10 @@ description: >-
   people in the voice room.
 ---
 
-# Vote Skip system
-
-### Enable or Disable the plugin:
+# Vote Skip system:
 
 The vote skip system is enabled by default.
 
-You can use the command: `*voteskip` (replace `*` with your server prefix, if you have changed it)
+### Disable or Enable the plugin
 
-If it is enabled- this command will disable it and if it is disabled- this command will enable it
+Execute the command again
