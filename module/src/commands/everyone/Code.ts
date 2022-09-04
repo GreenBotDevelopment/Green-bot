@@ -17,8 +17,8 @@ export default class Premium extends Command {
         return `https://discord.com/api/oauth2/authorize?client_id=${e}&permissions=139623484672&scope=bot%20applications.commands`;
     }
     async run({ ctx: e }) {
-        const t = e.args[0];
-            if (!["redeem"].includes(t)) return e.send({
+        let t = e.args[0];
+            if (!["redeem"].includes(t) && !t) return e.send({
                 embeds: [
                     {
                         author: { name: "| Premium Codes", icon_url: e.client.user.dynamicAvatarURL(), url: Premium.invite(e.client.user.id) },
@@ -48,8 +48,8 @@ export default class Premium extends Command {
                         r = { userId: e.member.id, codeId: e.args[1] };
                         const z = await fetch(b, { method: "post", body: JSON.stringify(r), headers: { "Content-Type": "application/json" } }).catch((e) => console.error(e));
                         const l = await z.json();
-                        if(!l || !l.userId || l.startsWith("ERROR:")) return e.errorMessage("You have to provid a valid Premium Code!");
-                        if(l && l.userId) e.successMessage("You have successfully redeemed your Premium Code; use /premium status to check your subscription.")
+                        if(l.error) return e.errorMessage("You have to provid a valid Premium Code!");
+                        if(!l.error && l.data) e.successMessage("You have successfully redeemed your Premium Code; use /premium status to check your subscription.")
                     }
         }
 }

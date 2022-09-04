@@ -4,7 +4,7 @@ export default class Skip extends Command {
         return "forceskip";
     }
     get description() {
-        return "Forces Skips the currently playing song";
+        return "Skips the current song without asking all users to vote";
     }
     get aliases() {
         return ["fs"];
@@ -16,7 +16,7 @@ export default class Skip extends Command {
         return { voice: true, dispatcher: true, channel: true };
     }
     run({ ctx: e }) {
-        if (!this.checkDJ(e) || !e.member.permissions.has("manageGuild")) return e.errorMessage("You must have the `Manage Guild` permission to use this command.");
+        if (e.guildDB.dj_commands.includes("forceskip") && ( !this.checkDJ(e) || !e.member.permissions.has("manageGuild"))) return e.errorMessage("You must have the `Manage Server` permission to use this command.");
 
         0 == e.dispatcher.queue.length && "autoplay" !== e.dispatcher.repeat
             ? e.errorMessage(`Nothing next in the queue. Use \`/queue\` to see the server's queue.\nWant to try autoplay? do \`/autoplay\``)
@@ -24,7 +24,6 @@ export default class Skip extends Command {
     }
     checkDJ(context) {
         let isDj = false;
-        if (!context.guildDB.djroles || !context.guildDB.djroles.length) return true
         if (context.member.roles.find(r => context.guildDB.djroles.includes(r))) isDj = true;
         if (context.member.permissions.has("manageGuild")) isDj = true;
         if (context.dispatcher && context.dispatcher.metadata.dj === context.member.id) isDj = true;

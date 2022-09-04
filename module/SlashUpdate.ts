@@ -1,46 +1,39 @@
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-import config from "./config"
+import  { REST } from '@discordjs/rest';
+import  { Routes } from 'discord-api-types/v9';
 import { readdirSync } from "fs";
+import config from "./config";
 
-const { token } = require('./config.js');
-console.log('• Loading the commands to refresh');
-// the current amount of commands to refresh
-const commands = [];
-const x=-1;
-// peseudo load the commands to get the interaction data
-const files = readdirSync(`${__dirname}/src/interactions`, { withFileTypes: true });
-files.forEach(cat => {
-    const dirFiles = readdirSync(`${__dirname}/src/interactions/${cat.name}`, { withFileTypes: true });
-    dirFiles.forEach(async cmd => {
-        if (cmd.name.endsWith(".map")) return;
-        try {
-            const command = new ((await import(`${__dirname}/src/interactions/${cat.name}/${cmd.name}`)).default)
-           commands.push({
-            name: command.name,
-            description: command.description,
-            options: command.arguments,
-           })
-           console.log(commands)
-        } catch (error) {
-            console.log(`[Command Handler] Cannot load file ${cmd.name}. Missing export default?: ${error}`)
-        }
-       
+
+export async function refresh(clientId: string) {
+    const commands = [];
+    const files = readdirSync(`${__dirname}/src/interactions`, { withFileTypes: true });
+    files.forEach(cat => {
+        const dirFiles = readdirSync(`${__dirname}/src/interactions/${cat.name}`, { withFileTypes: true });
+        dirFiles.forEach(async cmd => {
+            if (cmd.name.endsWith(".map")) return;
+            try {
+                const command = new ((await import(`${__dirname}/src/interactions/${cat.name}/${cmd.name}`)).default)
+                if(command.name === "setprefix") return
+                commands.push({
+                    name: command.name,
+                    description: command.description,
+                    options: command.arguments,
+                })
+            
+            } catch (error) {
+                console.log(`[Command Handler] Cannot load file ${cmd.name}. Missing export default?: ${error}`)
+            }
+
+        })
     })
-})
-// stuffs are loaded, now lets log how many commands we have
-setTimeout(()=>{
-    console.log(`• Loaded ${commands.length} slash commands to refresh`);
-// as per d.js guide, create a rest client
-const rest = new REST({ version: '9' }).setToken(config.token);
-// start the load up process
-(async () => {
+
+  setTimeout(async() => {
+    const rest = new REST({ version: '9' }).setToken(config.token);
     try {
-        console.log(`• Refreshing client "946414667436269579" slash commands. Developer Mode? `);
-            await rest.put(Routes.applicationCommands(config.botId), { body: commands });
-        console.log(`• Success! Refreshed client "946414667436269579" slash commands`);
+        await rest.put(Routes.applicationCommands(clientId), { body: commands });
     } catch (error) {
         console.error(error);
     }
-})();
-})
+  }, 5000);
+    return commands.length;
+}

@@ -12,7 +12,7 @@ import { Command } from "../../abstract/QuickCommand"; export default class Volu
         return ["manageGuild"];
     }
     async run({ ctx: e }) {
-        const messages = (await e.channel.getMessages()).filter(m=>m.author?.id === e.client.user.id || m.content.startsWith(e.guildDB.prefix))
+        const messages = (await e.channel.getMessages()).filter(m=>m.author?.id === e.client.user.id)
         e.channel.deleteMessages(messages.map(m=>m.id))
         e.successMessage(`Deleted **${messages.length}** messages.`);
 

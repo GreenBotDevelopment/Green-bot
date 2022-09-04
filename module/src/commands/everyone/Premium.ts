@@ -17,7 +17,7 @@ export default class Premium extends Command {
         return `https://discord.com/api/oauth2/authorize?client_id=${e}&permissions=139623484672&scope=bot%20applications.commands`;
     }
     async run({ ctx: e }) {
-        const t = e.args[0];
+        let t = e.args[0];
         if (t) {
             const r = e.premiumlink("premiumUser") + "userId=" + e.member.id,
                 i = await fetch(r).catch((e) => console.error(e)),
@@ -28,7 +28,7 @@ export default class Premium extends Command {
             if (!["status", "activate", "active", "deactivate"].includes(t)) return e.errorMessage("Please provide a valid action: status, activate or deactivate");
             if (t)
                 if ("status" === t) {
-                    if (!o) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
+                    if (o.error) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
                     e.send({
                         embeds: [
                             {
@@ -48,7 +48,7 @@ export default class Premium extends Command {
                                                 o.guildsLeft + "/" + o.allGuilds +
                                                 "\n**Lifetime**: " + o.lifetime +
                                                 "\n**Custom**: " + o.custom +
-                                                `${o.expires ? `\n**Expiration**: <t:${o.expires}:f> (<t:${o.expires}:R>)` : ""}` +
+                                                `${o.expires ? `\n**Expiration**: <t:${Number(o.expires.toString().slice(0, -3))}:f> (<t:${Number(o.expires.toString().slice(0, -3))}:R>)` : ""}` +
                                                 "\n**Premium Server**: " +
                                                 o.premiumGuilds +
                                                 "\n\n"
@@ -63,7 +63,7 @@ export default class Premium extends Command {
                     });
                 } else {
                     if ("activate" === t || "active" === t) {
-                        if (!o) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
+                        if (o.error) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
                         if (0 === o.allGuilds)
                             return e.errorMessage(
                                 "You need to upgrade your subscription to the **Green-bot Premium x1** tier to use this command\n You can upgrade your subscription on the [Patreon page](https://green-bot.app/premium/buy)"
@@ -81,7 +81,7 @@ export default class Premium extends Command {
                         );
                     }
                     if ("deactivate" === t) {
-                        if (!o) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
+                        if (o.error) return e.errorMessage("You don't have a premium subscription yet, you need to buy one on the [Patreon page](https://green-bot.app/premium/buy)");
                         if (0 === o.allGuilds)
                             return e.errorMessage(
                                 "You need to upgrade your subscription to the **Green-bot Premium x1** tier to use this command\n You can upgrade your subscription on the [Patreon page](https://green-bot.app/premium/buy)"
@@ -127,7 +127,6 @@ export default class Premium extends Command {
                             footer: { text: "Green-Bot | green-bot.app", icon_url: e.client.user.dynamicAvatarURL() },
                         },
                     ],
-                    content: null,
                 });
         } else
             e.send({

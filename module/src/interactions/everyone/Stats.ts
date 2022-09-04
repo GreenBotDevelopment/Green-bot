@@ -13,7 +13,8 @@ export default class Stats extends Command {
         return "My current info!";
     }
     async run({ ctx: e }) {
-        const t = (await e.client.cluster.broadcastEval("this.guilds.size")).reduce((e, t) => e + t, 0);
+        const servers  = await e.client.cluster.broadcastEval("this.guilds.size")
+        const allServers = servers.flat(Infinity).reduce((a, b) => a + b)
         e.reply({
             embeds: [
                 {
@@ -21,7 +22,7 @@ export default class Stats extends Command {
                     color: 0x3A871F,
                     description: "Green-bot is a free discord music bot wich aims to provide free 24/7 music for everyone!",
                     fields: [
-                        { name: "Server Count", value: `${t.toLocaleString()}`, inline: true },
+                        { name: "Server Count", value: `${allServers.toLocaleString()}`, inline: true },
                         { name: "User Count", value: "15,000,000", inline: true },
                         { name: "Framework", value: "NodeJS - Lavalink - Shoukaku", inline: true },
                     ],

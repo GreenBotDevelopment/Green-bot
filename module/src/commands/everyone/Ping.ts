@@ -10,7 +10,7 @@ export default class Volume extends Command {
         return "Basic ping command!";
     }
     run({ ctx: e }) {
-        const b = Date.now()
+        let b = Date.now()
         e.send("**Pinging...**").then((n) => {
             n.edit({
                 embeds: [

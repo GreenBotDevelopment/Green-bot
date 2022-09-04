@@ -21,13 +21,13 @@ export default class Queue extends Command {
         const s = await e.client.database.getUser(e.author.id);
         return (s && s.playlists.find((e) => e.name === a)) || "all" === a
             ? e.errorMessage("You already have a playlist with this name or you can't use this name.")
-            : s && s.playlists.length >= 5 && !(await e.client.database.checkPremium(e.guild.id, e.author.id))
-            ? e.errorMessage("You have reached the maximun playlist limit!\n Please upgrade to the [Premium](https://green-bot.app/premium) to create more playlists!")
+            : s && s.playlists.length >= 5 && !(await e.client.database.checkPremium(e.guild.id, e.author.id, true))
+            ? e.errorMessage("You have reached the maximum number of playlists you can create!\n You need to upgrade to the [Premium](https://green-bot.app/premium) to create more playlists!")
             : void setTimeout(
                   async () => (
-                      s.playlists.push({ name: a, tracks: [] }), s.save(),
+                      s.playlists.push({ name: a, tracks: [] }), e.client.database.updateUser(s),
                       e.successMessage(
-                          `Created a playlist with the name **${a}** ${`\n\n__How it works?__\n\n• You can add tracks to this playlist using the \`/pl-add\` command!\n• You can play your playlist using the \`/pl-play ${a}\` command.`}`
+                          `Created a playlist with the name **${a}** ${`\n\n__How it works?__\n\n• You can add tracks to this playlist using the ${e.client.printCmd("pl-add")} command!\n• You can play your playlist using the ${e.client.printCmd("pl-play")} command.`}`
                       )
                   ),
                   500

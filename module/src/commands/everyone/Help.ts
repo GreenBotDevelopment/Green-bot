@@ -77,7 +77,7 @@ export default class Help extends Command {
                             })),
                             color: 0x3a871f,
                             author: { name: "Green-Bot | Help Menu", icon_url: e.author.dynamicAvatarURL(), url: "https://discord.gg/synAXZtQHM" },
-                            footer: { text: "Do " + e.guildDB.prefix + "help <command> for more information about a command!", icon_url: e.client.user.dynamicAvatarURL() },
+                            footer: { text: "Do /help <command> for more information about a command!", icon_url: e.client.user.dynamicAvatarURL() },
                         },
                     ],
                 });

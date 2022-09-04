@@ -81,9 +81,8 @@ export class sweeperManager {
     }
 
     public sweepClient() {
-        this.client.relationships.limit = 0;
         this.client.shoukaku.cooldowns.length = 0;
-        this.client.database.premiumCache.length = 0;
+        this.client.database.proceeedQueue();
         return true
     }
 

@@ -4,6 +4,7 @@ const userSchemaData = new Schema({
     userID: { type: String, required: true },
     playlists: { type: Array, required: true },
     songs: { type: Array, required: false, default: [] },
+    played_music: {type: Array, required:false, default: []}
 })
 
 const userSchema = model("user", userSchemaData);

@@ -15,24 +15,33 @@ export class CommandLoader {
             this.build("interactions")
         }, 2000)
     }
-
     get list() {
         return this.commands
     }
+    public reload() {
+        this.commands = [];
+        this.slash = [];
+        this.build("commands", true);
+        setTimeout(() => {
+            this.build("interactions", true)
+        }, 2000);
+        return { commands: this.commands.length, slash: this.slash.length }
+    }
 
-    build(type: "commands" | "interactions") {
+    build(type: "commands" | "interactions", reload?: boolean) {
         const files = readdirSync(`${this.client.location}/module/src/${type}`, { withFileTypes: true });
         files.forEach(cat => {
             const dirFiles = readdirSync(`${this.client.location}/module/src/${type}/${cat.name}`, { withFileTypes: true });
             dirFiles.forEach(async cmd => {
                 if (cmd.name.endsWith(".map")) return;
                 try {
+                    if (reload) delete require.cache[require.resolve(`${this.client.location}/module/src/${type}/${cat.name}/${cmd.name}`)];
                     const command = new ((await import(`${this.client.location}/module/src/${type}/${cat.name}/${cmd.name}`)).default)
                     type === "commands" ? this.commands.push(command) : this.slash.push(command)
                 } catch (error) {
                     console.log(`[Command Handler] Cannot load file ${cmd.name}. Missing export default?: ${error}`)
                 }
-               
+
             })
         })
     }
@@ -50,7 +59,7 @@ export class CommandLoader {
     }
 
     removeCommand(commandName: string) {
-        const index = this.commands.findIndex(cmd => cmd.name === commandName)
+        let index = this.commands.findIndex(cmd => cmd.name === commandName)
         if (!index || index == -1) return new Error("[CommandHandler] Requested to remove command but the name was not found: " + commandName + "");
         this.commands.slice(index, 1);
         return true

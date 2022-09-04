@@ -26,9 +26,9 @@ export default class Queue extends Command {
         if (!e.args[1]) return e.errorMessage("Please provide the song you want to remove to this playlist!");
         const t = s.playlists.find((e) => e.name === r);
         if (!t) return e.errorMessage("No playlist found!");
-        const a = e.args.slice(1).join(" ");
-        const o = t.tracks.find((e) => e.info.title.toLowerCase().includes(a.toLowerCase()));
+        let a = e.args[1].value
+        const o = isNaN(a) ?t.tracks.find((e) => e.info.title.toLowerCase().includes(a.toLowerCase())) : t.tracks[a-1];
         if (!o) return e.errorMessage("This track is not in your playlist");
-        (t.tracks = t.tracks.filter((e) => e.info.uri !== o.info.uri)), (s.playlists = s.playlists.filter((e) => e.name !== r)), s.playlists.push(t), s.save(), e.successMessage(`Successfully removed 1 track(s) to **${r}** `);
+        (t.tracks = t.tracks.filter((e) => e.info.uri !== o.info.uri)), (s.playlists = s.playlists.filter((e) => e.name !== r)), s.playlists.push(t), e.client.database.updateUser(s), e.successMessage(`Successfully removed 1 track(s) to **${r}** `);
     }
 }

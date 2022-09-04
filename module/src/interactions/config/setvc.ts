@@ -20,8 +20,9 @@ export default class setVc extends Command {
     }
     async run({ ctx: e }) {
         if ("reset" === e.args[0].value) return (e.guildDB.vcs = []), e.client.database.handleCache(e.guildDB), e.successMessage("The bot is now allowed to join every single voice channel!");
-        const n = e.guild.channels.get(e.args[0].value)
-        if (!n || (2 !== n.type && "GUILD_STAGE_VOICE" !== n.type))
+        let n = e.guild.channels.get(e.args[0].value)
+        if(!n) n = await e.client.getRESTChannel(e.args[0].value)
+        if (!n || (2 !== n.type && 13!== n.type))
             return e.errorMessage("Please provide a valid voice channel Id. You can check [this guide](https://www.remote.tools/remote-work/how-to-find-discord-id) to learn how to do it.");
         e.guildDB.vcs.includes(`${n.id}`)
             ? ((e.guildDB.vcs = e.guildDB.vcs.filter((e) => e !== `${n.id}`)), e.client.database.handleCache(e.guildDB), e.successMessage(`Removed <#${n.id}> from the restricted voice channels.`))

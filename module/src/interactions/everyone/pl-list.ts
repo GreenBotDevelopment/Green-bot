@@ -14,11 +14,11 @@ export default class Queue extends Command {
     }
     async run({ ctx: e }) {
         const t = await e.client.database.getUser(e.author.id);
-        if (!t) return e.errorMessage("You don't have any playlist yet!");
+        if (!t) return e.errorMessage("You don't have any playlist yet, you can create one with the "+e.client.printCmd("pl-create")+" command!");
         e.send({
             embeds: [
                 {
-                    description: "You can create a playlist with the `" + e.guildDB.prefix + "pl-create` command.",
+                    description: "You can create a playlist with the "+e.client.printCmd("pl-create")+" command.",
                     author: { name: "Your playlists", icon_url: e.author.dynamicAvatarURL() },
                     fields: [
                         {
@@ -27,7 +27,7 @@ export default class Queue extends Command {
                         },
                         {
                             name: "• Liked songs (" + t.songs.length + ")",
-                            value: t.songs.length ? `You currently have **${t.songs.length}** liked songs!\n You can play your liked songs with \`/pl-p liked-songs\`` : "You don't have any liked song yet!",
+                            value: t.songs.length ? `You currently have **${t.songs.length}** liked songs!\n You can play your liked songs using ${e.client.printCmd("pl-play")} and input **liked songs**` : "You don't have any liked song yet!",
                         },
                     ],
                     color: 0x3a871f,

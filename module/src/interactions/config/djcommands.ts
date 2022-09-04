@@ -46,7 +46,7 @@ export default class djCommands extends Command {
                 e.client.database.handleCache(e.guildDB),
                 e.successMessage("The DJ commands have been reseted!")
             );
-        const s = e.client.commands.getCommand(e.args[0]);
+        const s = e.client.commands.getCommand(e.args[0].value);
         if (!s) return e.errorMessage("Please provide a valid command name. You can get the command list with the help command.");
         e.guildDB.dj_commands.includes(`${s.name}`)
             ? ((e.guildDB.dj_commands = e.guildDB.dj_commands.filter((e) => e !== `${s.name}`)), e.client.database.handleCache(e.guildDB), e.successMessage(`The \`${s.name}\` command is no longer a DJ command!`))

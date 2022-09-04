@@ -3,6 +3,7 @@ import dbl from "dblapi.js";
 import { ShoukakuHandler } from "./modules/ShoukakuHandler";
 import { QueueManager } from "./modules/Queue";
 import { EventHandler } from "./modules/EventHandler";
+import { Shard } from "discord-cross-hosting";
 import { Spotify } from "@tuneorg/spotify";
 import { CommandLoader } from "./modules/CommandHandler";
 import { DatabaseManager } from "./modules/DatabaseManager";
@@ -26,12 +27,14 @@ export class BaseDiscordClient extends Eris.Client {
     database: DatabaseManager;
     config: any;
     collectors: CollectorManager;
-    cluster: Client;
+    cluster: Shard;
+    _cluster: Client;
     voiceHandler: voiceService;
     shoukaku: ShoukakuHandler;
     dbl: dbl;
     events: EventHandler;
     server?: Server;
+    slashs: Array<any>;
     sweepers: sweeperManager;
     spotify: Spotify;
     slashManager: SlashManager;
@@ -41,6 +44,7 @@ export class BaseDiscordClient extends Eris.Client {
         // Passing options for the eris client
         super(options.token,
             {
+                
                 firstShardID: Cluster.data.FIRST_SHARD_ID,
                 lastShardID: Cluster.data.LAST_SHARD_ID,
                 maxShards: Cluster.data.TOTAL_SHARDS,
@@ -49,7 +53,7 @@ export class BaseDiscordClient extends Eris.Client {
                 guildCreateTimeout: 1000,
                 allowedMentions: { everyone: false, roles: false, users: false },
                 autoreconnect: true,
-                intents: ["guilds", "guildVoiceStates", "guildMessages"],
+                intents: 33409,
                 connectionTimeout: 40000,
                 maxResumeAttempts: 40,
                 messageLimit: 0,
@@ -111,15 +115,17 @@ export class BaseDiscordClient extends Eris.Client {
 
         // Core Things //
         this.config = options;
-        this.shoukaku = new ShoukakuHandler(this);
         this.location = process.cwd();
-        this.spotify = new Spotify(options.spotify);
-        this.dbl = new dbl(options.dbl, this);
-        this.cluster = new Cluster.Client(this);
+        this.spotify = new Spotify(options.spotify[Math.floor(Math.random() * options.spotify.length)]);
+        this.dbl = new dbl(options.dbl);
+        this._cluster = new Cluster.Client(this);
+        this.cluster = new Shard(this._cluster)
         this.collectors = new CollectorManager();
 
 
         // Command/Slash Manager //
+        this.shoukaku = new ShoukakuHandler(this);
+
         this.commands = new CommandLoader(this);
         this.commandManager = new CommandManager(this);
         this.slashManager = new SlashManager(this);
@@ -134,9 +140,23 @@ export class BaseDiscordClient extends Eris.Client {
         this.on("interactionCreate", i => this.slashManager.handle(i))
         this.on("error", (err) => {
             if (err.toString().includes("Connection reset by peer")) return
-            console.log(err)
+        })
+        this.on("shardReady", async(id) => {
+            if (id == 0) {
+                this.server = new Server(this)
+            }
+            if (!this.slashs) {
+                this.slashs = await this.getCommands()
+
+            }
+
         })
 
+        this.sweepers = new sweeperManager(this, {
+            sweep: ["client", "emojis", "stickers", "useless", "guildMembers"],
+            timeout: 1000 * 60 * 60 * 8,
+            changeStatus: "*help | green-bot.app"
+        })
         // Database //
         this.database = new DatabaseManager(this);
 
@@ -145,25 +165,22 @@ export class BaseDiscordClient extends Eris.Client {
         // Events
         this.events = new EventHandler(this);
 
-        if (this.cluster.maintenance) console.log("[Maitainance Mode] Cluster is in maitainance")
 
-        this.sweepers = new sweeperManager(this, {
-            sweep: ["client", "emojis", "guildCategories", "stickers", "useless", "guildMembers"],
-            timeout: 1000 * 60 * 60 * 10,
-            changeStatus: "*help | green-bot.app"
-        })
     }
     listenners(debug: boolean) {
-        const _list = debug ? ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection", "warning"] : ["uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"];
+        let _list = debug ? ["multipleResolves", "uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection", "warning"] : ["uncaughtException", "uncaughtExceptionMonitor", "unhandledRejection"];
         _list.forEach((event) => {
             process.on(event, new BaseError(event).handler)
         })
         return Promise;
     }
 
+    printCmd(cmdName: string) {
+        return `</${cmdName}:${this.slashs.find(cmd => cmd.name === cmdName).id}>`
+    }
     hasBotPerm(context: Context | SlashContext, perm: any, channelVoice?: Eris.TextVoiceChannel) {
         if (context.me.permissions.has("administrator")) return true;
-        const channel = channelVoice || context.channel;
+        let channel = channelVoice || context.channel;
         let hasPerm = false;
         if (perm === "voiceConnect" && !this.hasBotPerm(context, "viewChannel", channelVoice)) return false
         const owerwrites = channel.permissionOverwrites.filter(ow => ow.id === this.user.id || context.me.roles.includes(ow.id))

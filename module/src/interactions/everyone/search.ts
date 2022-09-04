@@ -9,16 +9,16 @@ export default class Stop extends Command {
         return "Searchs a track for you!";
     }
     get arguments() {
-        return [{ name: "query", type: 3, description: "The track you want to search", required: true }];
+        return [{ name: "query", description: "The track you want to search", required: true, type: 3}];
     }
     get category() {
         return "Everyone Commands";
     }
     get checks() {
-        return { voice: true,  };
+        return { voice: true, };
     }
     async run({ ctx: e }) {
-        const n = e.args[0].value;
+        let n = e.args[0].value
         if (!e.dispatcher || !e.dispatcher.player.connection) {
             const channel = await e.getVoiceChannel();
             if (!e.client.hasBotPerm(e, "voiceConnect", channel))
@@ -39,34 +39,40 @@ export default class Stop extends Command {
         const t = e.client.shoukaku.getNode(),
             o = await e.client.queue.create(e, t);
         if (!o) return e.errorMessage("I'm not able to join your voice channel. Please try again");
+        let list_good = e.filterSongs(e.author.id, [{}])
+        if (list_good.fullType !== "no") {
+            return e.errorMessage(`Your track can not be added to the queue ${list_good.fullType === "user" ? "because you have reached the limit of songs you can queue ( " + e.guildDB.max_songs.user + ")" : "because the current queue is already full (" + e.dispatcher.queue.length + " / " + e.dispatcher.queue.length + " tracks)"}`)
+
+        }
         t.rest.resolve(`ytmsearch:${n}`).then((t) => {
             if (!t.tracks.length || 0 == t.tracks.length) return e.errorMessage("I didn't find any song on the query you provided!");
-            const r = t.tracks
+            let r = t.tracks
                 .map((e, n) => `**${n + 1}**. [${e.info.title.slice(0, 100)}](https://discord.gg/greenbot)`)
                 .slice(0, 10)
                 .join("\n");
-            e.channel
-                .createMessage({
-                    embeds: [
-                        {
-                            color: 0x3a871f,
-                            description: `• **${t.tracks.length}** results found for \`${n}\`\n• Send the number of the song that you want to play in this channel. Ex: 1`,
-                            fields: [{ name: "Songs list", value: r || "No results" }],
-                            author: { name: "Green-bot | Search", icon_url: e.author.dynamicAvatarURL() },
-                            footer: { text: "Green-bot | Free music for everyone!", icon_url: e.client.user.dynamicAvatarURL() },
-                        },
-                    ],
-                })
+            e.send({
+                embeds: [
+                    {
+                        color: 0x3a871f,
+                        description: `• **${t.tracks.length}** results found for \`${n}\`\n• Send the number of the song that you want to play in this channel. Ex: 1`,
+                        fields: [{ name: "Songs list", value: r || "No results" }],
+                        author: { name: "Green-bot | Search", icon_url: e.author.dynamicAvatarURL() },
+                        footer: { text: "Green-bot | Free music for everyone!", icon_url: e.client.user.dynamicAvatarURL() },
+                    },
+                ],
+            })
                 .then(async (msg) => {
                     e.client.collectors.create({
                         channelId: e.channel.id,
                         time: 60000,
+                        type: "message",
                         filter: (n) => n.author.id === e.author.id,
                         end: (x) => {
                             msg.delete();
                             e.errorMessage("Search timed up!")
                         },
                         exec: (n) => {
+                            console.log(n.content)
                             "cancel" === n.content.toLowerCase()
                                 ? (e.client.collectors.stop(e.channel.id), n.delete().catch((e) => { }), e.errorMessage("Canceled"))
                                 : isNaN(n.content)
@@ -75,7 +81,6 @@ export default class Stop extends Command {
                                         ? (
                                             n.delete().catch((e) => { }),
                                             e.client.collectors.stop(e.channel.id),
-                                            msg.delete(),
                                             o.addTrack(t.tracks[n.content - 1], e.author),
                                             void (o.queue.length
                                                 ? e.send({

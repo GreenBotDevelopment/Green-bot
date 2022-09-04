@@ -1,6 +1,6 @@
 
 import { BaseDiscordClient } from "../BaseDiscordClient";
-import { SlashContext } from "../modules/SlashContext";
+import { SlashContext } from "./SlashContext";
 import { Constants } from "eris";
 import { ExtendedDispatcher } from "./ExtendedDispatcher";
 
@@ -23,14 +23,13 @@ export class SlashManager {
     }
 
     async handle(e: any) {
-        if (!this.client.cluster.ready && this.client.cluster.maintenance) return
         if (this.client.collectors.handle(e, "button")) return
-        if (!e.acknowledged && e.data.custom_id !== "vote") await e.defer();
+        if (e.data.custom_id !== "vote") await e.defer();
         if (!e.guildID) return e.editOriginalMessage("You can't use slash commands on private messages!\n\nYou need to invite me to a discord server to get started!\nJoin our discord server for more help: discord.gg/greenbot");
 
         const { channel, guild, member, me } = await this.resolvePartials(e)
         if (e.type === 3) {
-            const eligigle = this.client.shoukaku.checkEligible({ author: { id: e.member.id } })
+            let eligigle = this.client.shoukaku.checkEligible({ author: { id: e.member.id } })
             if (!eligigle && !(await this.client.database.checkPremium(e.guildID, e.member.id, true))) {
                 return e.editOriginalMessage({
                     embeds: [{ description: "**Oops!** You need to wait 2 seconds beetween each button click! \n\n Want to bypass this? Become a [Premium](https://green-bot.app/premium) user " }],
@@ -45,7 +44,7 @@ export class SlashManager {
             }
             if (e.data && "back_queue" === e.data.custom_id || "next_queue" === e.data.custom_id) return;
             if ("edit_pl" === e.data.custom_id) {
-                const t = await this.client.database.getUser(e.member.id)
+                let t = await this.client.database.getUser(e.member.id)
                 return void (t
                     ? e
                         .editOriginalMessage({
@@ -80,7 +79,7 @@ export class SlashManager {
                                                     ephemeral: true,
                                                 })
                                                 .then(async (s) => {
-                                                    const n = e.channel.createMessageCollector({ filter: (t) => t.author.id === e.member.id, time: 6e4 });
+                                                    let n = e.channel.createMessageCollector({ filter: (t) => t.author.id === e.member.id, time: 6e4 });
                                                     n.on("collect", async (s) => {
                                                         "cancel" === s.content.toLowerCase() && (n.stop(), e.deleteOriginalMessage()),
                                                             (a.name = s.content),
@@ -114,7 +113,7 @@ export class SlashManager {
                         })
                         .catch((e) => { }));
             }
-            const t: ExtendedDispatcher = this.client.queue.get(e.guildID);
+            let t: ExtendedDispatcher = this.client.queue.get(e.guildID);
             if (!t || !t.queue || !t.playing)
                 return e
                     .editOriginalMessage({ embeds: [{ description: "No music is being playing on this server", color: 0xC73829 }] })
@@ -125,12 +124,12 @@ export class SlashManager {
                     })
                     .catch((e) => { });
             if ("like" === e.data.custom_id) {
-                const s = await this.client.database.getUser(e.member.id);
+                let s = await this.client.database.getUser(e.member.id);
 
                 if (s.songs.find((e) => e.info.uri === t.current.info.uri))
                     return (
                         (s.songs = s.songs.filter((e) => e.info.uri !== t.current.info.uri)),
-                        s.save(),
+                        this.client.database.updateUser(s),
                         e
                             .editOriginalMessage({
                                 embeds: [
@@ -144,13 +143,13 @@ export class SlashManager {
                             })
                             .catch((e) => { })
                     );
-                s.songs.push(t.current), s.save();
+                s.songs.push(t.current), this.client.database.updateUser(s)
                 return e
                     .editOriginalMessage({
                         embeds: [
                             {
                                 author: { name: "Song liked", icon_url: e.member.avatarURL },
-                                description: `successfully added [${t.current.info.title}](https://green-bot.app) to your liked songs${s ? (s.songs.length < 5 ? "\nYou can play your liked songs using `/pl-play liked-songs` " : "") : "\nYou can play your liked songs using `/pl-play liked-songs` "
+                                description: `successfully added [${t.current.info.title}](https://green-bot.app) to your liked songs${s ? (s.songs.length < 5 ? "\nYou can play your liked songs using "+this.client.printCmd("pl-play")+" and provide liked songs as name of the playlist" : "") : "\nYou can play your liked songs using the "+this.client.printCmd("pl-play")+" command and provide liked songs as name of the playlist"
                                     }`,
                                 color: 0x3A871F,
                             },
@@ -171,7 +170,18 @@ export class SlashManager {
                         }, 6000);
                     })
                     .catch((e) => { });
-            const s = await this.client.database.resolve(e.guildID);
+            let s = await this.client.database.resolve(e.guildID);
+            if (s.txts && 0 !== s.txts.length && !s.txts.includes(`${e.channel.id}`)) {
+                e.editOriginalMessage({ embeds: [{ description: `I am not allowed to answer to commands in this channel.\n${s.txts.length > 1 ? `Please use one of the following channels: ${s.txts.map((e) => `<#${e}>`).join(",")}` : `Please use the <#${s.txts[0]}> channel`}`, color: 0xC73829 }] })
+                    .then(() => {
+                        setTimeout(() => {
+                            e.deleteOriginalMessage().catch(null);
+                        }, 3e3);
+                    })
+
+
+            }
+
             if ("save_pl" === e.data.custom_id) {
                 if (0 == t.queue.length)
                     return e
@@ -185,19 +195,19 @@ export class SlashManager {
                 let s = await this.client.database.getUser(e.member.id),
                     a = `${guild.name}'s queue | #0`;
                 if (s.playlists.find((e) => e.name === a)) {
-                    const t = s.playlists.find((e) => e.name === a).name,
+                    let t = s.playlists.find((e) => e.name === a).name,
                         n = Number(t.charAt(t.length - 1));
                     if (((a = `${guild.name}'s queue | #${n + 1}`), s.playlists.find((e) => e.name === a))) {
-                        const t = s.playlists.find((e) => e.name === a).name,
+                        let t = s.playlists.find((e) => e.name === a).name,
                             n = Number(t.charAt(t.length - 1));
                         if (((a = `${guild.name}'s queue | #${n + 1}`), s.playlists.find((e) => e.name === a))) {
-                            const t = s.playlists.find((e) => e.name === a).name,
+                            let t = s.playlists.find((e) => e.name === a).name,
                                 n = Number(t.charAt(t.length - 1));
                             a = `${guild.name}'s queue | #${n + 1}`;
                         }
                     }
                 }
-                s.playlists.push({ name: a, tracks: t.queue }), s.save();
+                s.playlists.push({ name: a, tracks: t.queue }), this.client.database.updateUser(s)
                 return e
                     .editOriginalMessage({
                         embeds: [
@@ -257,7 +267,7 @@ export class SlashManager {
                     : e.deleteOriginalMessage()
             }
             if ("seek_back_button" === e.data.custom_id) {
-                const s = 10000
+                let s = 10000
                 t.player.seekTo(t.player.position - s)
                 e
                     .editOriginalMessage({ embeds: [{ color: 0x3A871F, author: { name: `${e.member.username} has forwarded the current song of 15s!`, icon_url: e.member.avatarURL } }] })
@@ -267,7 +277,7 @@ export class SlashManager {
                     .catch((e) => { });
             }
             if ("seek_button" === e.data.custom_id) {
-                const s = 10000
+                let s = 10000
                 t.player.seekTo(t.player.position + s),
                     e
                         .editOriginalMessage({ embeds: [{ color: 0x3A871F, author: { name: `${e.member.username} has advanced the current song of 15s!`, icon_url: e.member.avatarURL } }] })
@@ -291,16 +301,12 @@ export class SlashManager {
             if (
                 ("pause_btn" === e.data.custom_id &&
                     (this.client.queue._sockets.find((t) => t.serverId === guild.id) &&
-                        this.client.queue._sockets
-                            .filter((t) => t.serverId === guild.id)
-                            .forEach((s) => {
                                 this.client.queue.emitOp({
                                     changes: ["CURRENT_SONG"],
-                                    socketId: s.id,
                                     serverId: guild.id,
                                     queueData: { current: t.current, paused: !t.player.paused, loop: "queue" === t.repeat },
-                                });
-                            }),
+                                }),
+                           
                         t.pause(!t.player.paused),
                         t.lastMessage &&
                         this.client.editMessage(t.channelId, t.lastMessage, {
@@ -504,9 +510,20 @@ export class SlashManager {
 
                 if (!e.channel || "DM" === e.channel.type || !e.guildID)
                     return e.editOriginalMessage("You can't use slash commands on private messages!\n\nYou need to invite me to a discord server to get started!\nJoin our discord server for more help: discord.gg/greenbot");
-                const t = this.client.commands.getSlash(e.data.name)
-                if (!t) return console.log(e.data)
-                const s = await this.client.database.resolve(e.guildID),
+                let t = this.client.commands.getSlash(e.data.name)
+                if (!t) {
+                    return e.editOriginalMessage({
+                        embeds: [
+                            {
+                                color: 0x3A871F,
+                                author: { name: "Command Removed", icon_url: this.client.user.dynamicAvatarURL(), url: "https://green-bot.app/premium" },
+                                description:
+                                    "Discord is now asking bots to use only slash commands so this commands is not available anymore!",
+                            },
+                        ],
+                    })
+                }
+                let s = await this.client.database.resolve(e.guildID),
                     a = new SlashContext(this.client, e, e.data.options || [], s, me, member);
                 if (this.client.config.premiumCmd.includes(t.name) && !(await this.client.database.checkPremium(e.guildID, e.member.id, true))) {
                     return a.reply({
@@ -523,7 +540,7 @@ export class SlashManager {
                 }
 
                 if (this.client.config.voteLocks.includes(t.name)) {
-                    const t = await this.client.database.checkPremium(e.guildID, e.member.id, true),
+                    let t = await this.client.database.checkPremium(e.guildID, e.member.id, true),
                         s = await this.checkVoted(e.member.id);
                     if (!t && !s)
                         return e.editOriginalMessage({
@@ -545,29 +562,27 @@ export class SlashManager {
                             ],
                         });
                 }
-                return this.client.hasBotPerm(a, "embedLinks")
-                    ? s.txts && 0 !== s.txts.length && !s.txts.includes(`${e.channel.id}`) && "textchannels" !== t.name
-                        ? a.errorMessage(
-                            "I am not allowed to answer to commands in this channel.\n" +
-                            (s.txts.length > 1 ? `Please use one of the following channels: ${s.txts.map((e) => `<#${e}>`).join(",")}` : `Please use the <#${s.txts[0]}> channel`)
-                        )
-                        : t.permissions && !channel.permissionsOf(member).has(t.permissions)
-                            ? a.errorMessage(`You need to have the \`${t.permissions[0].replace("manageGuild", "Manage Guild")}\` permission to use this command`)
+                s.txts && 0 !== s.txts.length && !s.txts.includes(`${e.channel.id}`) && "textchannels" !== t.name
+                    ? a.errorMessage(
+                        "I am not allowed to answer to commands in this channel.\n" +
+                        (s.txts.length > 1 ? `Please use one of the following channels: ${s.txts.map((e) => `<#${e}>`).join(",")}` : `Please use the <#${s.txts[0]}> channel`)
+                    )
+                    : t.permissions && !channel.permissionsOf(member).has(t.permissions)
+                        ? a.errorMessage(`You need to have the \`${t.permissions[0].replace("manageGuild", "Manage Server")}\` permission to use this command`)
 
-                            : t.checks && t.checks.voice && !member.voiceState.channelID
-                                ? a.errorMessage("You have to be connected in a voice channel before you can use this command!")
-                                : (t.checks && t.checks.dispatcher && !a.dispatcher) || (t.checks && t.checks.dispatcher && a.dispatcher && !a.dispatcher.playing)
-                                    ? a.errorMessage("I am not currently playing music in this server. So it's impossible to do that")
-                                    : a.guildDB.dj_commands && a.guildDB.dj_commands.includes(t.name) && !this.checkDJC(a)
-                                        ? a.errorMessage("You have to have the `Manage Messages` permissions or the DJ role to use this command!")
-                                        : t.checks && t.checks.channel && member.voiceState.channelID && me.voiceState.channelID && member.voiceState.channelID !== me.voiceState.channelID
-                                            ? a.errorMessage(
-                                                "You need to be in the same voice channel as me (<#" +
-                                                me.voiceState.channelID +
-                                                ">)! Want to listen music with another Green-bot? Consider inviting [Green-bot 2](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=applications.commands&permissions=3165184)!"
-                                            )
-                                            : void t.run({ ctx: a })
-                    : e.editOriginalMessage("❌ The bot must have the `Embed links` Discord permission to work properly! \n Please have someone from the staff give me this permission.");
+                        : t.checks && t.checks.voice && !member.voiceState.channelID
+                            ? a.errorMessage(`You have to be connected in a voice channel on this server before you can use this command!\n\nHow to join a voice channel? Just click on a channel with a speaker icon ( for example click here:  ${me.voiceState && me.voiceState.channelID ? `<#${me.voiceState.channelID}>` : `<#${guild.channels.filter(c => c.type == 2)[0]?.id}`}> ) [See official discord guide](https://support.discord.com/hc/en-us/articles/360045138571-Beginner-s-Guide-to-Discord#h_9de92bc2-3bca-459f-8efd-e1e2739ca4f4)`)
+                            : (t.checks && t.checks.dispatcher && !a.dispatcher) || (t.checks && t.checks.dispatcher && a.dispatcher && !a.dispatcher.playing)
+                                ? a.errorMessage("I am not currently playing music in this server. So it's impossible to do that")
+                                : a.guildDB.dj_commands && a.guildDB.dj_commands.includes(t.name) && !this.checkDJC(a)
+                                    ? a.errorMessage("You have to have the `Manage Messages` permissions or the DJ role to use this command!")
+                                    : t.checks && t.checks.channel && member.voiceState.channelID && me.voiceState.channelID && member.voiceState.channelID !== me.voiceState.channelID
+                                        ? a.errorMessage(
+                                            "You need to be in the same voice channel as me (<#" +
+                                            me.voiceState.channelID +
+                                            ">)! Want to listen music with another Green-bot? Consider inviting [Green-bot 2](https://discord.com/oauth2/authorize?client_id=783708073390112830&scope=applications.commands&permissions=3165184)!"
+                                        )
+                                        : void t.run({ ctx: a })
             } catch (err) {
                 return (
                     console.log(err),
@@ -595,16 +610,15 @@ export class SlashManager {
     }
     checkDJC(context: SlashContext) {
         let isDj = false;
-        if (!context.guildDB.djroles || !context.guildDB.djroles.length) isDj = true
+        if (!context.guildDB.djroles || !context.guildDB.djroles.length) return true
         if (context.guildDB.djroles && context.guildDB.djroles.length && context.member.roles.find(r => context.guildDB.djroles.includes(r))) isDj = true;
-        if (context.member.permissions.has("manageGuild")) isDj = true;
+        if (context.member.permissions.has("manageMessages")) isDj = true;
         if (context.dispatcher && context.dispatcher.metadata.dj === context.member.id) isDj = true;
         return isDj
     }
     checkDJ(e, t, s) {
         let a = false;
-        if (!t.djroles || !t.djroles.length) return true
-
+        if(!t.djroles || !t.djroles.length) return true
         return t.djroles && t.djroles.length && e.member.roles.find((e) => t.djroles.includes(e)) && (a = true), s && s.metadata.dj == e.member.id && (a = true), e.member.permissions.has("manageGuild") && (a = true), a;
     }
 }

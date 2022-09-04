@@ -17,7 +17,7 @@ export default class Skip extends Command {
     }
     async run({ ctx: e }) {
         if ((e.dispatcher.player.paused && e.dispatcher.pause(false), 0 == e.dispatcher.queue.length && "autoplay" !== e.dispatcher.repeat))
-            return e.errorMessage(`Nothing next in the queue. Use \`/queue\` to see the server's queue.\nWant to try autoplay? do \`/autoplay\``);
+            return e.errorMessage(`Nothing next in the queue. Use ${e.client.printCmd("queue")} to see the server's queue.\nWant to try autoplay? do ${e.client.printCmd("autoplay")}`);
         const channel = e.guild.channels.get(e.dispatcher.player.connection.channelId)
         if (channel && channel.voiceMembers.filter(m => !m.bot).length >= 2 && e.guildDB.vote_skip) {
             if (e.dispatcher.voting) return e.errorMessage("Another vote for skipping the current track is already running.")
@@ -64,7 +64,7 @@ export default class Skip extends Command {
                     })
                 });
 
-        } else if (e.guildDB.djroles && e.guildDB.djroles.length) {
+        } else if (e.guildDB.djroles && e.guildDB.djroles.length && e.guildDB.dj_mode) {
             if (!this.checkDJ) return e.errorMessage("You need to have the DJ role or the `Manage messages` permissions to use this command.");
             e.dispatcher.skip(), e.send("**⏩ *Skipping* 👍**");
         } else e.dispatcher.skip(), e.send("**⏩ *Skipping* 👍**");

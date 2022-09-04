@@ -20,10 +20,10 @@ export default class textChannels extends Command {
     }
     async run({ ctx: e }) {
         if ("reset" === e.args[0].value) return (e.guildDB.txts = []), e.client.database.handleCache(e.guildDB), e.successMessage("The bot is now allowed to answer commands in every single text channel!");
-        const t = e.guild.channels.get(e.args[0].value);
-        if (!t || 0 !== t.type) return e.errorMessage("Please provide a valid text channel.");
-        e.guildDB.txts.includes(`${t.id}`)
-            ? ((e.guildDB.txts = e.guildDB.txts.filter((e) => e !== `${t.id}`)), e.client.database.handleCache(e.guildDB), e.successMessage(`Removed <#${t.id}> from the restricted text channels.`))
-            : (e.guildDB.txts.push(`${t.id}`), e.client.database.handleCache(e.guildDB), e.successMessage(`Added <#${t.id}> to the restricted text channels.\nThe bot won't reply to command anymore in this channel!`));
+        const t = e.args[0].value;
+        if (!t) return e.errorMessage("Please provide a valid text channel.");
+        e.guildDB.txts.includes(`${t}`)
+            ? ((e.guildDB.txts = e.guildDB.txts.filter((e) => e !== `${t}`)), e.client.database.handleCache(e.guildDB), e.successMessage(`Removed <#${t}> from the restricted text channels.`))
+            : (e.guildDB.txts.push(`${t}`), e.client.database.handleCache(e.guildDB), e.successMessage(`Added <#${t}> to the restricted text channels.\nThe bot is now allowed to answer to commands in this channel`));
     }
 }

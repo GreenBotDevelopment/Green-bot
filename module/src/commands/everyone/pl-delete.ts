@@ -19,9 +19,9 @@ export default class Queue extends Command {
         const s = e.args.join(" "),
             t = await e.client.database.getUser(e.author.id);
         return "all" === s && t
-            ? ((t.playlists = []), t.save(), e.successMessage("Deleted all your playlists!"))
+            ? ((t.playlists = []), e.client.database.updateUser(t), e.successMessage("Deleted all your playlists!"))
             : t && t.playlists.find((e) => e.name === s)
-            ? ((t.playlists = t.playlists.filter((e) => e.name !== s)), t.save(), e.successMessage(`Deleted the playlist with the name **${s}** succesfully`))
+            ? ((t.playlists = t.playlists.filter((e) => e.name !== s)), e.client.database.updateUser(t), e.successMessage(`Deleted the playlist with the name **${s}** succesfully`))
             : e.errorMessage(`You don't have any playlist called **${s}** yet!`);
     }
 }

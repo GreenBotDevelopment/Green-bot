@@ -18,16 +18,16 @@ export default class Queue extends Command {
         return { voice: true };
     }
     get arguments() {
-        return [{ name: "playlist_name", description: "The name of the playlist you want to play", required: true }];
+        return [{ name: "playlist_name", description: "The name of the playlist you want to play", required: true, type: 3 }];
     }
     async run({ ctx: e }) {
-        const t = e.args.join(" ");
+        const t = e.args.join(" ")
         const s = await e.client.database.getUser(e.author.id);
-        if ("liked-songs" === t) {
+        if (t.toLowerCase().includes("liked songs")) {
             if (0 == s.songs.length) return e.errorMessage("You don't have any liked song yet!");
             const t = e.client.shoukaku.getNode();
             if (!t) return e.errorMessage("No nodes are available yet! You can report this error is [Green bot Server](https://discord.gg/greenbot)");
-            if (!e.me.voiceState.channelID) {
+            if (!e.dispatcher) {
                 const channel = await e.getVoiceChannel();
                 if (!e.client.hasBotPerm(e, "voiceConnect", channel))
                     return e.errorMessage(
@@ -44,17 +44,23 @@ export default class Queue extends Command {
                             : `I can only play music in the <#${e.guildDB.vcs[0]}> channel.`
                     );
             }
-            const a = await e.client.queue.create(e, t);
-            
-            e.successMessage(`Added [Your liked songs](https://green-bot.app) to the queue with **${s.songs.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""}`),
-                s.songs.forEach((e) => {
-                    a.queue.push(e);
-                }),
-                e.guildDB.auto_shuffle && (e.dispatcher.queue = e.dispatcher.queue.sort(() => Math.random() - 0.5)),
-                a.tracksAdded(),
-                setTimeout(() => {
-                    a.playing || a.play();
-                }, 1100);
+            let list_good = e.filterSongs(e.author.id, s.songs)
+            if (list_good.fullType !== "no") {
+                if (list_good.songs.length == 0) {
+                    return e.errorMessage(`Your playlist can not be added to the queue ${list_good.fullType === "user" ? "because you have reached the limit of songs you can queue ( " + e.guildDB.max_songs.user + ")" : "because the current queue is already full (" + e.dispatcher.queue.length + " / "+e.dispatcher.queue.length +" tracks)"}`)
+                }
+            }
+            e.guildDB.auto_shuffle && (list_good.songs = list_good.songs.sort(() => Math.random() - 0.5))
+
+            let a = await e.client.queue.create(e, t);
+            if(!a){
+                return e.errorMessage("**Uh Oh..**! Something went wrong while joining your voice channel!\n - You may have made an error with the permissions, go to Server Settings => Roles => Green-bot and grant the administrator permission\n - If it still happens and the bot has admin permissions, use the "+e.client.printCmd("forcejoin")+" command to solve the issue")
+            }
+
+            e.successMessage(`Added [Your liked songs](https://green-bot.app) to the queue with **${list_good.songs.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""}${list_good.fullType !== "no" && `\nRemoved **${s.songs.length - list_good.songs.length}** songs because **${list_good.fullType === "user" ? "of the limitation of songs per user" : "the maximum queue size has been reached"}`}`)
+            a.queue.push(...list_good.songs)
+            a.tracksAdded();
+            if (!a.playing) a.play();
         } else {
             if (!s || !s.playlists.find((e) => e.name.toLowerCase() === t.toLowerCase())) return e.errorMessage(`You don't have any playlist called **${t.slice(0, 100)}** yet!`);
             if (!e.dispatcher) {
@@ -78,16 +84,27 @@ export default class Queue extends Command {
             if (!a || 0 == a.tracks.length) return e.errorMessage("Your playlist is empty! Add some songs before playing it!");
             const n = e.client.shoukaku.getNode();
             if (!n) return e.errorMessage("No nodes are available yet! You can report this error in [Green bot Server](https://discord.gg/greenbot)");
-            const r = await e.client.queue.create(e, n);
-            e.successMessage(`Added [${a.name}](https://green-bot.app) to the queue with **${a.tracks.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""}`),
-                a.tracks.forEach((e) => {
-                    r.queue.push(e);
-                }),
-                e.guildDB.auto_shuffle && (e.dispatcher.queue = e.dispatcher.queue.sort(() => Math.random() - 0.5)),
-                r.tracksAdded(),
-                setTimeout(() => {
-                    r.playing || r.play();
-                }, 1100);
+            let list_good = e.filterSongs(e.author.id, a.tracks)
+            if (list_good.fullType !== "no") {
+                if (list_good.songs.length == 0) {
+                    return e.errorMessage(`Your playlist can not be added to the queue ${list_good.fullType === "user" ? "because you have reached the limit of songs you can queue ( " + e.guildDB.max_songs.user + ")" : "because the current queue is already full (" + e.dispatcher.queue.length + " / "+ e.dispatcher.queue.length +" tracks)"}`)
+
+                }
+            }
+            e.guildDB.auto_shuffle && (list_good.songs = list_good.songs.sort(() => Math.random() - 0.5))
+
+            let r = await e.client.queue.create(e, n);
+            if(!r){
+                return e.errorMessage("**Uh Oh..**! Something went wrong while joining your voice channel!\n - You may have made an error with the permissions, go to Server Settings => Roles => Green-bot and grant the administrator permission\n - If it still happens and the bot has admin permissions, use the "+e.client.printCmd("forcejoin")+" command to solve the issue")
+            }
+
+            e.successMessage(`Added[${a.name}](https://green-bot.app) to the queue with **${list_good.songs.length}** tracks ${e.guildDB.auto_shuffle ? "🔀 and automatically shuffled it" : ""} ${list_good.fullType !== "no" ? `\nRemoved **${a.tracks.length - list_good.songs.length}** songs because **${list_good.fullType === "user" ? "of the limitation of songs per user" : "the maximum queue size has been reached"}` : ""}`)
+            r.queue.push(...list_good.songs)
+            r.playing || r.play();
+
+
+            r.tracksAdded()
+
         }
     }
 }

@@ -13,7 +13,7 @@ export default class Settings extends Command {
         return "View the current settings of the server";
     }
     get arguments() {
-        return [{ type: 3, name: "reset", description: "If you want to reset all settings.", required: true }];
+        return [{ type: 3, name: "reset", description: "If you want to reset all settings.", required: false }];
     }
     get category() {
         return "Admin Commands";
@@ -21,7 +21,6 @@ export default class Settings extends Command {
     async run({ ctx: e }) {
         if (e.args[0])
             return (
-                (e.guildDB.prefix = "*"),
                 (e.guildDB.announce = true),
                 (e.guildDB.vcs = []),
                 (e.guildDB.defaultVolume = 60),
@@ -29,9 +28,10 @@ export default class Settings extends Command {
                 (e.guildDB.vote_skip = true),
                 (e.guildDB.txts = []),
                 (e.guildDB.djroles = []),
-                (e.guildDB.djroles = null),
                 (e.guildDB.h24 = null),
                 (e.guildDB.auto_shuffle = false),
+                (e.guildDB.textchannel = null),
+
                 e.client.database.handleCache(e.guildDB),
                 e.successMessage("All settings of the bot have been reset!")
             );
@@ -41,15 +41,11 @@ export default class Settings extends Command {
                     {
                         color: 0x3a871f,
                         author: { name: `${e.guild.name}`, icon_url: e.guild.icon ? e.guild.iconURL : "https://cdn.discordapp.com/attachments/748897191879245834/782271474450825226/0.png?size=128" },
-                        description: `> Prefix: \`${e.guildDB.prefix}\`\n> [Green-bot Premium](https://green-bot.app/premium): ${n.guildId ? `✨ Active | <@${n.userId}>` : "Not active "}\n\nAnnoucing new songs: ${
-                            e.guildDB.announce ? "`Enabled`" : "`Disabled`"
-                        }\nDefault volume: \`${e.guildDB.defaultVolume}\`\nDj role(s): ${
-                            e.guildDB.djroles ? `${e.guildDB.djroles.length ? e.guildDB.djroles.map((e) => `<@&${e}>`).join(", ") : `<@&${e.guildDB.djroles}>`}>` : "`Not set`"
-                        }\n24/7: ${e.guildDB.h24 ? "`Enabled`" : "`Disabled`"}\nVoice channel(s): ${e.guildDB.vcs.length > 0 ? `${e.guildDB.vcs.map((e) => `<#${e}>`)}` : "`Not set`"}\nAllowed text channel(s): ${
-                            e.guildDB.txts.length > 0 ? `${e.guildDB.txts.map((e) => `<#${e}>`)}` : "`Not set`"
-                        }\nVote skip enabled: ${e.guildDB.vote_skip ? "`Enabled`" : "`Disabled`"}\nAuto shuffle Playlist: ${e.guildDB.auto_shuffle ? "`Enabled`" : "`Disabled`"}\nAuto-Autoplay: ${
-                            e.guildDB.auto_autoplay ? "`Enabled`" : "`Disabled`"
-                        }\nDj command(s): ${e.guildDB.dj_commands.length > 0 ? `${e.guildDB.dj_commands.map((e) => `\`${e}\``).join(", ")}` : "`Not set`"}`,
+                        description: `> Prefix: Slash Commands ( Press \`/\` to see list )\n> [Green-bot Premium](https://green-bot.app/premium): ${n ? `✨ Active` : "Not active "}\n\nAnnoucing new songs: ${e.guildDB.announce ? "`Enabled`" : "`Disabled`"
+                            }\nDefault volume: \`${e.guildDB.defaultVolume}\`\nDj role(s): ${e.guildDB.djroles ? `${e.guildDB.djroles && e.guildDB.djroles.length ? e.guildDB.djroles.map((e) => `<@&${e}>`).join(", ") : "`Not set`"}` : "`Not set`"
+                            }\n24/7: ${e.guildDB.h24 ? "`Enabled`" : "`Disabled`"}\nVoice channel(s): ${e.guildDB.vcs.length > 0 ? `${e.guildDB.vcs.map((e) => `<#${e}>`)}` : "`Not set`"}\nAllowed text channel(s): ${e.guildDB.txts.length > 0 ? `${e.guildDB.txts.map((e) => `<#${e}>`)}` : "`Not set`"
+                            }\nVote skip enabled: ${e.guildDB.vote_skip ? "`Enabled`" : "`Disabled`"}\nAuto shuffle Playlist: ${e.guildDB.auto_shuffle ? "`Enabled`" : "`Disabled`"}\nAuto-Autoplay: ${e.guildDB.auto_autoplay ? "`Enabled`" : "`Disabled`"
+                            }\nDj command(s): ${e.guildDB.dj_commands.length > 0 ? `${e.guildDB.dj_commands.map((e) => `\`${e}\``).join(", ")}` : "`Not set`"}\nDefaut announcement channel: ${e.guildDB.textchannel ? `<#${e.guildDB.textchannel}>` : "`Not set`"}\nMax Songs: \n  > User: ${e.guildDB.max_songs.user == -1 ? "Unlimited" : e.guildDB.max_songs.user}\n  > Queue: ${e.guildDB.max_songs.guild}`,
                     },
                 ],
             });

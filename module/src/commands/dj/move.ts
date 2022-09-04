@@ -20,7 +20,7 @@ export default class Volume extends Command {
     }
     run({ ctx: e }) {
         if (!e.args[1]) return e.errorMessage("Please provide the new position of the track!");
-        const r = e.args[0].replace("#", "") - 1,
+        let r = e.args[0].replace("#", "") - 1,
             t = e.args[1].replace("#", "") - 1;
         const o = e.dispatcher.queue[r];
         if (!o) return e.errorMessage("There is no track with this number in your queue.");

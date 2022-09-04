@@ -29,14 +29,14 @@ export default class textChannel extends Command {
                   e.dispatcher && (e.dispatcher.metadata.textchannel = null),
                   e.client.database.handleCache(e.guildDB),
                   e.successMessage("The default track announcement channel has been successfully disabled on this server!"));
-        const n = e.guild.channels.get(e.args[0].value);
-        return n && n.guild.id === e.guild.id
-            ? e.guildDB.textchannel && e.guildDB.textchannel === n.id
+        const n = e.args[0].value;
+        return n 
+            ? e.guildDB.textchannel && e.guildDB.textchannel === n
                 ? e.errorMessage("The default text channel is already this channel!")
-                : ((e.guildDB.textchannel = n.id),
-                  e.dispatcher && (e.dispatcher.metadata.textchannel = n.id),
+                : ((e.guildDB.textchannel = n),
+                  e.dispatcher && (e.dispatcher.metadata.textchannel = n),
                   e.client.database.handleCache(e.guildDB),
-                  e.successMessage(`The new track announcement channel is now ${n.mention}! \nI will send every single track announcement message in this channel!`))
+                  e.successMessage(`The new track announcement channel is now <#${n}> ! \nI will send every single track announcement message in this channel!`))
             : e.errorMessage("Please provide a valid text channel or a valid channel ID.");
     }
 }

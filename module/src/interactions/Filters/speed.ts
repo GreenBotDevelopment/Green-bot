@@ -18,7 +18,7 @@ export default class Speed extends Command {
     async run({ ctx: e }) {
         if(e.dispatcher.errored ==="yes") return e.errorMessage("The queue is in noFailure mode so you can't change the speed of the music.\n Try to do the fix command to reset the queue mode.")
 
-        const t = e.args[0].value;
+        let t = e.args[0].value;
 
         return !t || isNaN(t) || t > 5 || t < 0
             ? e.successMessage("The duration you provided is incorrect. It must be a number beetwen **1** and **5**")

@@ -22,7 +22,7 @@ export default class Queue extends Command {
     async run({ ctx: e }) {
         const a = e.args[0].value;
         if (a.length < 3 || a.length > 50) return e.errorMessage("The playlist name must be beetween 2 and 50 long.");
-        const r = await userSchema.findOne({ userID: e.author.id });
+        const r = await e.client.database.getUser(e.author.id);
         if (!r || !r.playlists.find((e) => e.name === a)) return e.errorMessage(`You don't have any playlist called **${a}** yet!`);
         const t = [];
         let s;
@@ -36,32 +36,31 @@ export default class Queue extends Command {
                 if (!u || !u.raw) return s.delete(), e.errorMessage("No results found for your query");
                 if ("track" === u.sp.type) (u.raw.info.requester = { name: e.author.username, id: e.author.id }), t.push(u.raw);
                 else if ("playlist" === u.sp.type)
-                    for (const a of u.raw) {
-                        if (u.scraped && !a.track) return e.errorMessage("No results found for your query");
-                        const r = {
-                            info: {
-                                title: u.scraped ? a.name : a.title,
-                                image: u.scraped ? a.image : a.thumbnail,
-                                uri: u.scraped ? a.track.external_urls.spotify : a.originURL,
-                                sp: true,
-                                author: a.scraped ? null : a.artists,
-                                requester: { name: e.author.username, avatar: e.author.dynamicAvatarURL(), id: e.author.id },
-                            },
+                for (const _e of u.raw) {
+                        let r = {
+                             info: {
+                            title: u.scraped ? _e.track.name : _e.title,
+                            uri: u.scraped ? _e.track.external_urls.spotify : _e.originURL,
+                            sp: true,
+                            image: u.scraped ? _e.album ? _e.album.images[0].url : "" : _e.thumbnail,
+                            author: u.scraped ? _e.track.artists[0].name : _e.artists,
+                            requester: { name: e.author.username, id: e.author.id, avatar: e.author.dynamicAvatarURL() },
+                        },
                         };
                         t.push(r);
                     }
                 else {
                     if ("album" !== u.sp.type) return  e.errorMessage("No results found for your query");
-                    for (const a of u.raw) {
-                        const r = {
-                            info: {
-                                title: u.scraped ? a.name : a.title,
-                                author: u.scraped ? a.artists[0].name : a.artists,
-                                uri: u.scraped ? a.external_urls.spotify : a.originURL,
-                                image: u.scraped ? a.image : a.thumbnail,
-                                sp: true,
-                                requester: { name: e.author.username, id: e.author.id, avatar: e.author.dynamicAvatarURL() },
-                            },
+                       for (const _e of u.raw) {
+                        let r = {
+                             info: {
+                            title: u.scraped ? _e.track.name : _e.title,
+                            uri: u.scraped ? _e.track.external_urls.spotify : _e.originURL,
+                            sp: true,
+                            image: u.scraped ? _e.album ? _e.album.images[0].url : "" : _e.thumbnail,
+                            author: u.scraped ? _e.track.artists[0].name : _e.artists,
+                            requester: { name: e.author.username, id: e.author.id, avatar: e.author.dynamicAvatarURL() },
+                        },
                         };
                         t.push(r);
                     }
@@ -70,14 +69,14 @@ export default class Queue extends Command {
                 const { loadType: a, tracks: r, playlistInfo: o } = u;
                 if ("PLAYLIST_LOADED" !== a) {
                     if (!u.tracks.length) return  e.errorMessage("No results found for your query");
-                    const a = u.tracks[0];
+                    let a = u.tracks[0];
                     (a.info.requester = { name: e.author.username, id: e.author.id, avatar: e.author.dynamicAvatarURL() }), t.push(a);
-                } else for (const a of r) (a.info.requester = { name: e.author.username, id: e.author.id }), t.push(a);
+                } else for (let a of r) (a.info.requester = { name: e.author.username, id: e.author.id }), t.push(a);
             }
         setTimeout(async () => {
            e.successMessage(1 == t.length ? `Successfully added [${t[0].info.title}](https://discord.gg/greenbot) to **${a}**` : `Successfully added ${t.length} track(s) to **${a}** `);
             const o = r.playlists.find((e) => e.name === a);
-            return t.forEach((e) => o.tracks.push(e)), (r.playlists = r.playlists.filter((e) => e.name !== a)), r.playlists.push(o), r.save();
-        }, 1500);
+            return t.forEach((e) => o.tracks.push(e)), (r.playlists = r.playlists.filter((e) => e.name !== a)), r.playlists.push(o), e.client.database.updateUser(r);
+        }, 1000);
     }
 }

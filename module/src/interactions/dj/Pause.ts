@@ -13,13 +13,9 @@ export default class Pause extends Command {
         return { voice: true, dispatcher: true, channel: true };
     }
     run({ ctx: e }) {
-        return (
             e.client.queue._sockets.find((s) => s.serverId === e.guild.id) &&
-                e.client.queue._sockets
-                    .filter((s) => s.serverId === e.guild.id)
-                    .forEach((s) => {
-                        e.client.queue.emitOp({ changes: ["CURRENT_SONG"], socketId: s.id, serverId: e.guild.id, queueData: { current: e.dispatcher.current, paused: !e.dispatcher.player.paused, loop: "queue" === e.dispatcher.repeat } });
-                    }),
+                        e.client.queue.emitOp({ changes: ["CURRENT_SONG"], serverId: e.guild.id, queueData: { current: e.dispatcher.current, paused: !e.dispatcher.player.paused, loop: "queue" === e.dispatcher.repeat } })
+                    
             e.dispatcher.lastMessage &&
                 e.client.editMessage(e.dispatcher.channelId, e.dispatcher.lastMessage, {
                     components: [
@@ -36,6 +32,5 @@ export default class Pause extends Command {
                     ],
                 }),
             e.dispatcher.player.paused ? (e.dispatcher.pause(false), e.successMessage("▶ Music unpaused!")) : (e.dispatcher.pause(true), e.successMessage("⏸ Music paused!"))
-        );
     }
 }

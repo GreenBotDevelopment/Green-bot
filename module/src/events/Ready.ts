@@ -9,7 +9,7 @@ export default class Ready extends BaseEvent {
     }
 
     async run(client) {
-       client.config.debug && console.log("[Shard] Bot is ready")
+        client.config.debug && console.log("[Shard] Bot is ready")
         client.shards.forEach(shard => {
             shard.editStatus("online", { name: "*help | green-bot.app", type: 3 })
         })

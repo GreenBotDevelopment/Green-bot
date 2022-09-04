@@ -19,7 +19,7 @@ export default class Stop extends Command {
     async run({ ctx: e }) {
         if (!e.me.voiceState.channelID) {
             const channel = await e.getVoiceChannel();
-            if(channel.userLimit == channel.voiceMembers.size) return e.errorMessage("I can't join your channel because the member limit ( Set by a server admin) has been reached! Please increase it or kick someone.")
+            if(!e.me.permissions.has("administrator") && channel.userLimit!=0 && channel.userLimit >= channel.voiceMembers.size) return e.errorMessage("I can't join your channel because the member limit ( Set by a server admin) has been reached! Please increase it or kick someone.")
             if (!e.client.hasBotPerm(e, "voiceConnect", channel))
                 return e.errorMessage(
                     "I don't have the required permissions to join your voice channel! I need `View Channels`, `Connect` and `Speak` permission. [Permissions Example](https://cdn.discordapp.com/attachments/904438715974287440/909076558558412810/unknown.png)\n If the problem persists, change the voice channel region to `Europe`"
@@ -36,8 +36,12 @@ export default class Stop extends Command {
                 );
         }
         const n = e.client.shoukaku.getNode();
-        if (e.dispatcher) e.successMessage(`Connected in <#${e.member.voiceState.channelID}>\n\n🆕 You can now manage the music easily from the [Dashboard](https://dash.green-bot.app/app/${e.guild.id})`);
-        const queue = await e.client.queue.create(e, n)
-        if (!queue) return e.errorMessage("**Uh Oh..**! Something went wrong while joining your voice channel.\nYou can do the command again or use the `"+e.guildDB.prefix+"forcejoin` command to solve the issue");
+        const queue = await e.client.queue.create(e, n);
+        if (!queue) {
+            return e.errorMessage("**Uh Oh..**! Something went wrong while joining your voice channel!\n - You may have made an error with the permissions, go to Server Settings => Roles => Green-bot and grant the administrator permission\n - If it still happens and the bot has admin permissions, use the " + e.client.printCmd("forcejoin") + " command to solve the issue")
+
+        }
+        e.successMessage(`Successfully created the player and joined <#${e.member.voiceState.channelID || ""}>!\n\n🆒 You can manage the music directly on the [Web Player](https://dash.green-bot.app/app/${e.guild.id})`)
+
     }
 }

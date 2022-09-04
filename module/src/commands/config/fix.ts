@@ -31,7 +31,7 @@ export default class Skip extends Command {
         if ("rotterdam" !== channel.rtcRegion) {
            channel
                 .edit({ rtcRegion: "rotterdam" })
-                .catch((r) => e.errorMessage("I can't change your voice channel region because I don't have the permission to!")),
+                .catch((r) => console.log(r), e.errorMessage("I can't change your voice channel region because I don't have the permission to!")),
                 e.successMessage("Changed voice channel region to **europe**")
             return;
         }

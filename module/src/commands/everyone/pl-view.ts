@@ -28,7 +28,7 @@ export default class Queue extends Command {
                 const i = await e.send({
                     embeds: [
                         {
-                            description: "You can like a song by clicking the button behing the song.\nYou can play your liked songs using the `" + e.guildDB.prefix + "pl-p liked-songs` command",
+                            description: "You can like a song by clicking the button behing the song.\nYou can play your liked songs using the `/pl-play liked-songs` command",
                             author: { name: "Your liked songs", icon_url: e.author.dynamicAvatarURL() },
                             fields: [
                                 {
@@ -93,7 +93,7 @@ export default class Queue extends Command {
                         if ("back_queue" === a.data.custom_id) {
                             if (((o -= 6), (s -= 1), (t -= 6) < 0)) return;
                             if (s < 1) return;
-                            const a = n.songs
+                            let a = n.songs
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, o)
                                 .join("\n");
@@ -120,7 +120,7 @@ export default class Queue extends Command {
                         if ("next_queue" === a.data.custom_id) {
                             if (((t += 6), (s += 1), (o += 6) > n.songs.length + 6)) return;
                             if (t < 0) return;
-                            const a = n.songs
+                            let a = n.songs
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, o)
                                 .join("\n");
@@ -152,7 +152,7 @@ export default class Queue extends Command {
                 e.send({
                     embeds: [
                         {
-                            description: "You can like a song by clicking the button behing the song.\nYou can play your liked songs using the `" + e.guildDB.prefix + "pl-p liked-songs` command",
+                            description: "You can like a song by clicking the button behing the song.\nYou can play your liked songs using "+e.client.printCmd("pl-play")+" and input **liked songs**",
                             author: { name: "Your liked songs", icon_url: e.author.dynamicAvatarURL() },
                             fields: [
                                 {
@@ -175,7 +175,7 @@ export default class Queue extends Command {
                 const a = await e.send({
                     embeds: [
                         {
-                            description: "You can play your playlist using the `" + e.guildDB.prefix + "pl-p " + o.name + "` command",
+                            description: "You can play your playlist using the "+e.client.printCmd("pl-play")+" command",
                             author: { name: o.name, icon_url: e.author.dynamicAvatarURL() },
                             fields: [
                                 {
@@ -209,7 +209,7 @@ export default class Queue extends Command {
                         a.edit({
                             embeds: [
                                 {
-                                    description: "You can play your playlist using the `" + e.guildDB.prefix + "pl-p " + o.name + "` command",
+                                    description: "You can play your playlist using the "+e.client.printCmd("pl-play")+" command",
                                     author: { name: o.name, icon_url: e.author.dynamicAvatarURL() },
                                     fields: [
                                         {
@@ -241,14 +241,14 @@ export default class Queue extends Command {
                         if ("back_queue" === u.data.custom_id) {
                             if ((console.log("got back"), (n -= 6), (i -= 1), (t -= 6) < 0)) return;
                             if (i < 1) return;
-                            const u = s
+                            let u = s
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, n)
                                 .join("\n");
                             a.edit({
                                 embeds: [
                                     {
-                                        description: "You can play your playlist using the `" + e.guildDB.prefix + "pl-p " + o.name + "` command",
+                                        description: "You can play your playlist using the "+e.client.printCmd("pl-play")+" command",
                                         author: { name: o.name, icon_url: e.author.dynamicAvatarURL() },
                                         fields: [{ name: "• List (" + s.length + " songs)", value: u }],
                                         color: 0x3A871F,
@@ -268,14 +268,14 @@ export default class Queue extends Command {
                         if ("next_queue" === u.data.custom_id) {
                             if ((console.log("got next"), (t += 6), (i += 1), (n += 6) > s.length + 6)) return console.log(n), console.log(s.length + 6);
                             if (t < 0) return;
-                            const u = s
+                            let u = s
                                 .map((e, t) => `**${t + 1})** [${e.info.title}](https://green-bot.app) by [${e.info.author ? e.info.author : "Unknow artist"}](https://green-bot.app)`)
                                 .slice(t, n)
                                 .join("\n");
                             a.edit({
                                 embeds: [
                                     {
-                                        description: "You can play your playlist using the `" + e.guildDB.prefix + "pl-p " + o.name + "` command",
+                                        description: "You can play your playlist using the "+e.client.printCmd("pl-play")+" command",
                                         author: { name: o.name, icon_url: e.author.dynamicAvatarURL() },
                                         fields: [{ name: "• List (" + s.length + " songs)", value: u }],
                                         color: 0x3A871F,
@@ -301,7 +301,7 @@ export default class Queue extends Command {
                 e.send({
                     embeds: [
                         {
-                            description: "You can play your playlist using the `" + e.guildDB.prefix + "pl-p " + o.name + "` command",
+                            description: "You can play your playlist using the "+e.client.printCmd("pl-play")+" command",
                             author: { name: o.name, icon_url: e.author.dynamicAvatarURL() },
                             fields: [
                                 {
