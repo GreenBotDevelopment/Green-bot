@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://cdn.discordapp.com/attachments/858004328170520606/870335874313904158/green-bot.png">
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://tools.bananonz.dev/av?id=783708073390112830">
     <h3>Green-bot</h3>
         If you liked this repository, feel free to leave a star ⭐ and follow me, it supports me a lot! Thanks you!
     <br><br>
@@ -59,6 +59,8 @@
  
 **📁 Installation**
 
+Before you start, please note that if you want to self-host this bot for personal user you should purchase a custom bot. Installation is not beginner friendly.
+
 Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
 
 And yes, it's same for replit.
@@ -88,14 +90,17 @@ Then, download the files and open them with Visual Studio code (code.visualstudi
 
 __Step 2.__
 When your terminal is created, write `npm install` in your terminal to download all the modules.
-⚠ the bot won't work if this doesnt works 
+⚠ the bot won't work if you don't italian the modules!
 If you encounter any error, make you sure that you have the latest version of nodejs or ask in the discord server.
 
 __Step 3.__
-When the modules have been downloaded and a `node-modules` directory has been created, go to the `config.ts` file in the `src` folder and setup the bot.
+When the modules have been downloaded and a `node_modules` directory has been created, go to the `config.ts` file in the `src` folder and setup the bot.
 You can find some comments about every setting.
 
 __Step 4.__
+
+Re-open your terminal and write `tsc --build` to build the files, you need to do it for every change.
+
 Now, you can start the bot by pressing `F5` or putting `npm run start` in the terminal.
 
 __Step 5.__
