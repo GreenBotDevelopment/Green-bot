@@ -263,7 +263,7 @@ export class ExtendedDispatcher {
                 break;
 
             case "queue":
-                if (!this.queue.find(sg => sg.info.title === this.current.info.title)) this.queue.push(this.current)
+                 this.queue.push(this.current)
                 this.client.deleteMessage(this.channelId, this.lastMessage).catch(err => { })
                 this.play()
                 break;
