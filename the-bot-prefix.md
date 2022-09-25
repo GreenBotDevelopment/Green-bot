@@ -1,6 +1,7 @@
 # The bot prefix
 
 By default, Green-bot's prefix is set to `*` You can already use the bot mention or `green` as a prefix.
+For an easier experience, you can use slash commands by pressing / and selecting the green-bot logo
 
 #### What is a prefix ?
 
