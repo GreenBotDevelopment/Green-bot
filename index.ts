@@ -5,10 +5,10 @@ import config from "./module/config";
 
 const client = new Client({
     agent: 'bot',
-    host: '185.183.33.10', // Domain without https
+    host: '', // Domain without https
     port: 4444, // Proxy Connection (Replit) needs Port 443
     // handshake: true, When Replit or any other Proxy is used
-    authToken: 'ilovepnb',
+    authToken: '',
     rollingRestarts: false, // Enable, when bot should respawn when cluster list changes.
 });
 client.on('debug', console.log);
