@@ -72,7 +72,7 @@ export class ShoukakuHandler extends Shoukaku {
         if (!res || !res.data) return null
         switch (res.data.type) {
             case "track":
-                let search = await audioNode.rest.resolve(`ytsearch:${res.sc ? res.data.name : res.data.tracks[0].title} ${res.sc ? res.data.artists[0].name : res.data.tracks[0].artists}`)
+                let search = await audioNode.rest.resolve(`scsearch:${res.sc ? res.data.name : res.data.tracks[0].title} ${res.sc ? res.data.artists[0].name : res.data.tracks[0].artists}`)
                 search && (data = search.tracks[0]);
 
                 break;
@@ -109,7 +109,7 @@ export class ShoukakuHandler extends Shoukaku {
     async search(audioNode: Node, searchQuery: string, context: any) {
         if (this.cache.find(s => s.id === searchQuery)) return { tracks: [this.cache.find(s => s.id === searchQuery).info] }
         if (this.checkURL(searchQuery) && searchQuery.includes("spotify")) return await this.spotify(searchQuery, audioNode, context.client.spotify)
-        const res = await audioNode.rest.resolve(this.checkURL(searchQuery) ? searchQuery : `ytmsearch:${searchQuery}`)
+        const res = await audioNode.rest.resolve(this.checkURL(searchQuery) ? searchQuery : `scsearch:${searchQuery}`)
         if (this.checkURL(searchQuery) && res && res.tracks.length) this.cache.push({ id: res.tracks[0].info.uri, info: res.tracks[0] });
         return res;
     }
