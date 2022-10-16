@@ -60,8 +60,8 @@
 **📁 Installation**
 
 Note: 
--If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
--The code isn't the same as production, this version is made to learn people how it works but it's not the same as Green-Bot.
+- If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
+- The code isn't the same as production, this version is made to learn people how it works but it's not the same as Green-Bot.
 
 Before you start, please consider that if you want to self-host this bot for personal use you should purchase a custom bot. Installation is not beginner friendly.
 
