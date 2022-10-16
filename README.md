@@ -59,9 +59,11 @@
  
 **📁 Installation**
 
-Before you start, please note that if you want to self-host this bot for personal user you should purchase a custom bot. Installation is not beginner friendly.
+Note: 
+-If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
+-The code isn't the same as production, this version is made to learn people how it works but it's not the same as Green-Bot.
 
-Note: If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
+Before you start, please consider that if you want to self-host this bot for personal use you should purchase a custom bot. Installation is not beginner friendly.
 
 And yes, it's same for replit.
 
