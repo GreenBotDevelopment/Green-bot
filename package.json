@@ -22,7 +22,7 @@
         "@godaddy/terminus": "^4.9.0",
         "body-parser": "^1.19.2",
         "dblapi.js": "^2.4.1",
-        "discord-api-types": "^0.26.1",
+        "discord-api-types": "^0.37.14",
         "discord-hybrid-sharding": "github:meister03/discord-hybrid-sharding",
         "eris": "^0.17.1",
         "eris-utilities": "^0.1.5",
