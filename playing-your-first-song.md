@@ -9,7 +9,7 @@ Once you've made your search, Green-bot will search your song and add it to the 
 
 If Green-bot give any results, or not the results you were looking for, then please give in a more specific search term or the direct link to the song instead.
 
-*Green-Bot search finds only songs, if you want to play a video you have to prodvide the link*
+*Green-Bot search finds only songs, if you want to play a video you have to provide the link*
 
 <img src="https://cdn.discordapp.com/attachments/863342883946627073/1010848984258052136/playsong.gif" alt="Playing Music" style="height: 400px; width:700px;"/>
 
