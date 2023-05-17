@@ -2,7 +2,7 @@
     <h3>Green-bot</h3>
         If you liked this repository, feel free to leave a star ⭐ and follow me, it supports me a lot! Thanks you!
     <br><br>
-    <p>Green-bot is a Free Discord Music bot who supports Youtube, SoundCloud, Spotify and http links!
+    <p>Green-bot is a Free Discord Music bot that can play music right into your discord server! The bot does not support youtube, deezer or spotiy.
   <br> 
     </p>
     <br>
