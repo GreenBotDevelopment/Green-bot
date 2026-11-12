@@ -1,110 +1,71 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Green bot" src="https://tools.bananonz.dev/av?id=783708073390112830">
-    <h3>Green-bot</h3>
-        If you liked this repository, feel free to leave a star ⭐ and follow me, it supports me a lot! Thanks you!
-    <br><br>
-    <p>Green-bot is a Free Discord Music bot that can play music right into your discord server! The bot does not support youtube, deezer or spotiy.
-  <br> 
-    </p>
-    <br>
-    <center>
-        <h2>🧷 Links</h2>
-        <div class="flex" style="display: flex;justify-content: center;flex-wrap: wrap;">
-            <a target="_blank" onclick="trackCampaignWebClick('', 'description');" style="  margin: 2px 5px;
-                padding: 8px 15px;
-                background-color: #3A871F;
-                color: white;
-                border-radius: 8px;
-                font-size: 16px;
-                font-weight: bold;" rel="nofollow" class="blue-btn" href="https://green-bot.app/invite"> Add the main bot •</a>
-            <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
-                padding: 8px 15px;
-                background-color: white;
-                color: black;
-                border-radius: 8px;
-                font-size: 16px;
-                font-weight: bold;" href="https://discord.gg/Q5QSbAHaXB"> Support server •</a>
-            <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
-                padding: 8px 15px;
-                background-color: #3A871F;
-                color: white;
-                border-radius: 8px;
-                font-size: 16px;
-                font-weight: bold;" href="https://green-bot.app/profile"> Dashboard •</a>
-            <a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" style="  margin: 2px 5px;
-                       padding: 8px 15px;
-                       background-color: white;
-                       color: black;
-                       border-radius: 8px;
-                       font-size: 16px;
-                       font-weight: bold;" href="https://green-bot.app/commands"> Commands list </a>
-        </div>
-    </center>
-    
- <br>  
- 
-**🚀 Bot features**
+<p align="center">
+  <a href="https://green-bot.app"><img src="https://green-bot.app/brand/mark.svg" width="96" height="96" alt="Green-bot, Discord music bot"></a>
+</p>
 
-+ Dj system <br>
-+ Unlimited use of audio filters<br>
-  + Bassboost, nightcore, karaoke, vaporwave, earrape & More
-+ Easy to use<br>
-+ Easy configuration<br>
-+ Autoplay<br>
-+ 24/7 music<br>
-+ Songs request channel<br>
-+ Highly configurable<br>
-+ Remove duplicates tracks<br>
-+ Easy to setup<br>
- <br>  
- 
-**📁 Installation**
+<h1 align="center">Green-bot: Discord Music Bot and All-in-One Discord Bot</h1>
 
-Note: 
-- If you need help with the installation, you can join our [Discord Server](https://discord.gg/Q5QSbAHaXB).
-- The code isn't the same as production, this version is made to learn people how it works but it's not the same as Green-Bot.
+<p align="center">
+  <b>The Discord music bot your whole server listens to together.</b><br>
+  Plus music games, giveaways, levels, tickets and welcome cards. Trusted by 1.6M+ Discord servers.
+</p>
 
-Before you start, please consider that if you want to self-host this bot for personal use you should purchase a custom bot. Installation is not beginner friendly.
+<p align="center">
+  <a href="https://green-bot.app"><b>Add Green-bot to Discord, free</b></a> ·
+  <a href="https://green-bot.app/features/music">Music bot features</a> ·
+  <a href="https://green-bot.app/commands">Commands</a> ·
+  <a href="https://discord.gg/greenbot">Support server</a>
+</p>
 
-And yes, it's same for replit.
+---
 
-You are looking for the All-in-One bot? [Click here](https://github.com/GreenBotDeveloppement/Green-bot/tree/multipropose)
+## A Discord music bot made for listening together
 
-Before starting, make you sure you have a mongoDB database (it's free) and nodejs v16.
+Green-bot turns your voice channel into a shared listening room. Everyone adds to the same queue and follows the synced lyrics, from Discord, from the web player or from the Discord Activity right inside the call.
 
-You will need to start a lavalink server and complete the informations in the config.js files. 
+- **A real music player in your voice call**: open the Activity and everyone sees the cover, the synced lyrics, the queue and the controls.
+- **One queue for everyone**: add songs with `/play`, from the web player or from the Activity.
+- **Never run out of music**: fresh mixes every day, your liked songs and playlists on every server, and autoplay when the queue ends.
+- **Clean music controls**: one controller per song, vote skip, loop, and audio filters like bass boost, nightcore and karaoke.
 
-[Guide: How to start and create a lavalink server](https://dsharpplus.github.io/articles/audio/lavalink/setup.html)
+## Music games for game night
 
-Once your server is ready go in the `config.js` file and add a node.
+- **Music quiz**: hear a clip, find the song. The fastest right answer wins. Solo works too.
+- **Who picked it?**: everyone picks songs in secret, then guesses who chose each one.
+- **Vibe check**: rate each song 1 to 10 in secret and get close to the average.
 
-```js
-lavalink: [
-        { name: "node", url: "IP:PORT", auth: "LAVALINK_PASSWORD" },
- ],
-```
+Scores go on your server's leaderboard.
 
-⚠ Please make sure that you are using the same informations as provided in the `application.yml` file
+## An all-in-one Discord bot for your community
 
-__Step 1.__
+- **Giveaway bot**: one-click entry, required roles, bonus entries, reroll anytime.
+- **Leveling bot**: XP for chatting and for listening in voice, rank cards and reward roles.
+- **Welcome bot**: welcome cards with name and avatar, roles on join, goodbye messages.
+- **Ticket bot**: panels with forms, claim, transcripts and ratings.
+- **Temporary voice channels**, **live alerts** for YouTube, Twitch and Kick, **timers** and **automation**.
 
-Install NodeJS on your computer or on your vps. https://nodejs.org. You MUST have NodeJs 16 or an higher version.
-Then, download the files and open them with Visual Studio code (code.visualstudio.com). Then press `Crtl + shift + ù` or click on "new terminal", on the top bar.
+Everything is set up from a web dashboard with a live preview.
 
-__Step 2.__
-When your terminal is created, write `npm install` in your terminal to download all the modules.
-⚠ the bot won't work if you don't italian the modules!
-If you encounter any error, make you sure that you have the latest version of nodejs or ask in the discord server.
+## Your own Discord bot
 
-__Step 3.__
-When the modules have been downloaded and a `node_modules` directory has been created, go to the `config.ts` file in the `src` folder and setup the bot.
-You can find some comments about every setting.
+**Custom Bot** is Green-bot with your server's name and avatar, hosted and updated for you. [Learn about Custom Bot](https://green-bot.app/custom_bot)
 
-__Step 4.__
+## Get started in 30 seconds
 
-Re-open your terminal and write `tsc --build` to build the files, you need to do it for every change.
+1. [Add Green-bot](https://green-bot.app) to your Discord server.
+2. Join a voice channel and type `/play` with a song name or a link.
+3. Type `/dashboard` to turn on giveaways, levels, tickets and more.
 
-Now, you can start the bot by pressing `F5` or putting `npm run start` in the terminal.
+## About this repository
 
-__Step 5.__
-Enjoy your bot !
+This repository holds the original open-source version of Green-bot, kept for learning. The bot you add from [green-bot.app](https://green-bot.app) is the current version. Self-hosting notes for this old code are in [INSTALL.md](INSTALL.md).
 
+---
+
+<p align="center">
+  <a href="https://green-bot.app">Website</a> ·
+  <a href="https://green-bot.app/features/music">Discord music bot</a> ·
+  <a href="https://green-bot.app/features/giveaways">Giveaway bot</a> ·
+  <a href="https://green-bot.app/features/tickets">Ticket bot</a> ·
+  <a href="https://green-bot.app/privacy">Privacy</a> ·
+  <a href="https://green-bot.app/terms">Terms</a>
+</p>
