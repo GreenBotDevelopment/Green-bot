@@ -10,7 +10,7 @@ We can help you on the [Discord Server](https://green-bot.app/discord)
 We are using **[Prettier](https://prettier.io)** to format the code.
 
 ## File names
-- Always use a normal name for commands, events etc. (ecample: `help.js`, `messageCreate.js`)
+- Always use a normal name for commands, events etc. (example: `help.js`, `messageCreate.js`)
 
 ## Some Rules
 - Use `camelCase` for `Function names`, `Variables`, etc. and `PascalCase` for `Class name`
